@@ -60,7 +60,7 @@ export class DetalleNoticiaComponent implements OnInit {
         id: 1,
         fecha: '15 Enero 2025',
         categoria: 'LINEUP',
-        titulo: '¡Confirmado! Infernal Shadows se suma al lineup 2025',
+        titulo: '¡Confirmado! Cor Rebel se suma al lineup 2026',
         descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2025.',
         contenido: [
           'El Mollerussa Metal Fest 2025 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Cor Rebel, una de las bandas más respetadas y temidas del black metal Catalan.',
