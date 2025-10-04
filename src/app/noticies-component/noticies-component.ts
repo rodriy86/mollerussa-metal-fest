@@ -58,7 +58,7 @@ export class NoticiesComponent {
       imagen: 'assets/images/foto8.jpg',
       alt: 'Merchandising 2025',
       enlace: '#Lineup',
-      textoEnlace: 'Ver Lineup'
+      textoEnlace: 'Ver Lineup',
     },
     {
       id: 3,

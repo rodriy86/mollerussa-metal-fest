@@ -29,14 +29,16 @@
           <p class="text-gray-400 text-sm mb-4">
             {{ noticia.descripcion }}
           </p>
-          <a [href]="noticia.enlace" class="text-red-500 hover:text-red-400 font-medium text-sm flex items-center">
+          <!--<a [href]="noticia.enlace" class="text-red-500 hover:text-red-400 font-medium text-sm flex items-center">
             {{ noticia.textoEnlace }} <i class="ri-arrow-right-line ml-1"></i>
-          </a>
+          </a>-->
 
+          @if (noticia.id) {
           <a [routerLink]="['/noticia', noticia.id]"
             class="text-red-500 hover:text-red-400 font-medium text-sm flex items-center">
             Leer más <i class="ri-arrow-right-line ml-1"></i>
           </a>
+          }
 
         </div>
       </article>
