@@ -63,10 +63,10 @@ export class DetalleNoticiaComponent implements OnInit {
         titulo: '¡Confirmado! Infernal Shadows se suma al lineup 2025',
         descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2025.',
         contenido: [
-          'El Mollerussa Metal Fest 2025 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Infernal Shadows, una de las bandas más respetadas y temidas del black metal finlandés.',
+          'El Mollerussa Metal Fest 2025 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Cor Rebel, una de las bandas más respetadas y temidas del black metal Catalan.',
           'La formación de Helsinki actuará el sábado 16 de julio a las 21:30h en el escenario principal, ofreciendo una actuación que promete ser uno de los momentos más intensos e inolvidables del festival.',
-          'Tras meses de negociaciones y expectación por parte de los fans, finalmente podemos confirmar que Infernal Shadows pisará el suelo catalán por primera vez en su carrera.',
-          'La banda, formada en 1994 en los fríos bosques de Finlandia, ha sido durante décadas una de las referencias indiscutibles del black metal atmosférico.'
+          'Tras meses de negociaciones y expectación por parte de los fans, finalmente podemos confirmar que Cor Rebel pisará La Amistat.',
+          'La banda, ha sido durante décadas una de las referencias indiscutibles de Lleida.'
         ],
         imagenPrincipal: 'https://readdy.ai/api/search-image?query=epic%20black%20metal%20band%20Infernal%20Shadows%20performing%20on%20massive%20stage%20with%20dramatic%20red%20and%20blue%20lighting%2C%20smoke%20effects%2C%20corpse%20paint%20face%20makeup%2C%20long%20hair%20musicians%2C%20electric%20guitars%2C%20dark%20atmospheric%20concert%20venue%2C%20Finnish%20black%20metal%20aesthetic%2C%20professional%20concert%20photography%2C%20intense%20performance%20energy%2C%20metal%20festival%20stage%20setup&width=1920&height=1080&seq=infernal001&orientation=landscape',
         autor: 'Redacción MMF',
