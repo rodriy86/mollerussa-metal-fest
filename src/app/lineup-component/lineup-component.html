@@ -7,8 +7,7 @@
       </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div *ngFor="let band of bands" 
-           class="bg-black/50 border border-red-600/30 p-6 rounded-lg card-hover">
+      <div *ngFor="let band of bands" class="bg-black/50 border border-red-600/30 p-6 rounded-lg card-hover">
         <!-- Imagen como elemento img, no como fondo -->
         <div class="w-full h-48 bg-gray-700 rounded-lg mb-4 overflow-hidden">
           <img [src]="band.image" [alt]="band.name" class="w-full h-full object-cover object-top">

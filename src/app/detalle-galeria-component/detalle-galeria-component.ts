@@ -71,7 +71,7 @@ export class DetalleGaleriaComponent {
       //dias: 2
     },
     {
-      anyo: 2025,
+      anyo: 2026,
       //titulo: 'Aniversario',
       headliners: ['Bellako', 'Indar'],
       asistencia: 250,

@@ -58,12 +58,12 @@ export class DetalleNoticiaComponent implements OnInit {
     const noticiasCompletas: { [key: number]: NoticiaCompleta } = {
       1: {
         id: 1,
-        fecha: '15 Enero 2025',
+        fecha: '15 Enero 2026',
         categoria: 'LINEUP',
         titulo: '¡Confirmado! Cor Rebel se suma al lineup 2026',
-        descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2025.',
+        descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2026.',
         contenido: [
-          'El Mollerussa Metal Fest 2025 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Cor Rebel, una de las bandas más respetadas y temidas del black metal Catalan.',
+          'El Mollerussa Metal Fest 2026 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Cor Rebel, una de las bandas más respetadas y temidas del black metal Catalan.',
           'La formación de Helsinki actuará el sábado 16 de julio a las 21:30h en el escenario principal, ofreciendo una actuación que promete ser uno de los momentos más intensos e inolvidables del festival.',
           'Tras meses de negociaciones y expectación por parte de los fans, finalmente podemos confirmar que Cor Rebel pisará La Amistat.',
           'La banda, ha sido durante décadas una de las referencias indiscutibles de Lleida.'
