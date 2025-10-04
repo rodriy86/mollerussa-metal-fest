@@ -15,8 +15,9 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@ngneat/tailwind:build",
+          "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/mmf_web",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -29,11 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "outputMode": "static"
           },
           "configurations": {
             "production": {
@@ -72,11 +69,18 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "mmf_web:build"
+          }
         },
         "test": {
-          "builder": "@ngneat/tailwind:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -94,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "5e205784-fd97-407a-8239-f4361886afe9"
+    "analytics": "543c6b05-bc19-4221-a5ca-02267665129c"
   }
 }

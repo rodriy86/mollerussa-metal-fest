@@ -16,6 +16,7 @@ import { IniciComponent } from './inici-component/inici-component';
 import { DetalleNoticiaComponent } from './detalle-noticia-component/detalle-noticia-component'
 import { DetalleGaleriaComponent } from './detalle-galeria-component/detalle-galeria-component';
 
+
 export const routes: Routes = [
   { path: '', component: IniciComponent }, // Solo esta ruta
   { path: 'noticia/:id', component: DetalleNoticiaComponent },
