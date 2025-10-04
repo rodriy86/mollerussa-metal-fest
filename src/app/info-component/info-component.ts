@@ -13,6 +13,6 @@ export class InfoComponent {
   buyTicket(type: string, price: number) {
     // Aquí tu lógica para comprar entradas
     console.log(`Comprando entrada ${type} por ${price}€`);
-    // Por ejemplo: window.open('https://entradium.com/mmf2025', '_blank');
+    // Por ejemplo: window.open('https://entradium.com/mmf2026', '_blank');
   }
 }

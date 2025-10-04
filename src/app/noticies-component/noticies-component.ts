@@ -26,7 +26,7 @@ export class NoticiesComponent {
   noticias: Noticia[] = [
     {
       id: 1,
-      fecha: '15 Enero 2025',
+      fecha: '15 Enero 2026',
       categoria: 'LINEUP',
       colorCategoria: 'bg-red-600',
       titulo: '¡Confirmado! Cor Rebel se suma a la cartelera 2026',
@@ -38,31 +38,31 @@ export class NoticiesComponent {
     },
     /*{
       id: 2,
-      fecha: '10 Enero 2025',
+      fecha: '10 Enero 2026',
       categoria: 'TIENDA',
       colorCategoria: 'bg-blue-600',
-      titulo: 'Ya disponible el merchandising oficial 2025',
+      titulo: 'Ya disponible el merchandising oficial 2026',
       descripcion: 'Consigue ya las nuevas camisetas, gorras y accesorios oficiales del festival. Diseños exclusivos que no podrás encontrar en ningún otro lugar.',
       imagen: 'https://readdy.ai/api/search-image?query=festival%20merchandise%20collection%2C%20metal%20band%20t-shirts%20and%20accessories%20laid%20out%2C%20official%20festival%20merchandise%20display%2C%20black%20shirts%20with%20red%20designs%2C%20metal%20music%20memorabilia%20collection&width=400&height=300&seq=news002&orientation=landscape',
-      alt: 'Merchandising 2025',
+      alt: 'Merchandising 2026',
       enlace: '#tienda',
       textoEnlace: 'Ver tienda'
     },*/
     {
       id: 2,
-      fecha: '10 Enero 2025',
+      fecha: '10 Enero 2026',
       categoria: 'MERCHANDAISING',
       colorCategoria: 'bg-blue-600',
       titulo: 'Purin confirma!',
       descripcion: 'Purin confirma nuestra cita en el Festival por segunda vez consecutiva! Tendran su stand montado para la venta de merchandaising y mucho mas, aprobecha esta oportunidad para llevar a purin siempre contigo.',
       imagen: 'assets/images/foto8.jpg',
-      alt: 'Merchandising 2025',
+      alt: 'Merchandising 2026',
       enlace: '#Lineup',
       textoEnlace: 'Ver Lineup',
     },
     {
       id: 3,
-      fecha: '5 Enero 2025',
+      fecha: '5 Enero 2026',
       categoria: 'ENTRADAS',
       colorCategoria: 'bg-yellow-600',
       titulo: '¡Últimos días y pocas entradas!',
@@ -74,7 +74,7 @@ export class NoticiesComponent {
     },
     {
       id: 4,
-      fecha: '28 Diciembre 2024',
+      fecha: '28 Diciembre 2025',
       categoria: 'RECINTO',
       colorCategoria: 'bg-green-600',
       titulo: 'Mejoras en el recinto: nuevo escenario',
@@ -98,7 +98,7 @@ export class NoticiesComponent {
     },
     {
       id: 6,
-      fecha: '15 Diciembre 2024',
+      fecha: '15 Diciembre 2025',
       categoria: 'ESPECIAL',
       colorCategoria: 'bg-purple-600',
       titulo: 'Colaboración épica: Iron Storm y Dark Abyss juntos en el escenario',
