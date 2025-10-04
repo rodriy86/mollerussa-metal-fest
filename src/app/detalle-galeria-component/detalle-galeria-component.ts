@@ -84,9 +84,9 @@ export class DetalleGaleriaComponent {
       anyo: 2024,
       //titulo: 'Aniversario',
       headliners: ['Purin', 'Libervm'],
-      asistencia: 250,
+      asistencia: 180,
       imagen: 'assets/images/cartelera24.png',
-      color: 'yellow',
+      color: 'silver',
       bandas: 5,
       //dias: 1
     }
