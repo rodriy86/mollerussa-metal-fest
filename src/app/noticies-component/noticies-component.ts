@@ -29,7 +29,7 @@ export class NoticiesComponent {
       fecha: '15 Enero 2025',
       categoria: 'LINEUP',
       colorCategoria: 'bg-red-600',
-      titulo: '¡Confirmado! Cor Rebel se suma al lineup 2025',
+      titulo: '¡Confirmado! Cor Rebel se suma a la cartelera 2026',
       descripcion: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal. Una adición épica que promete momentos inolvidables.',
       imagen: 'https://readdy.ai/api/search-image?query=metal%20band%20announcement%20poster%2C%20heavy%20metal%20concert%20announcement%2C%20dark%20dramatic%20design%20with%20red%20lightning%20effects%2C%20professional%20music%20industry%20announcement%2C%20band%20reveal%20poster%20with%20guitars%20and%20stage%20lights&width=400&height=300&seq=news001&orientation=landscape',
       alt: 'Nueva banda confirmada',
