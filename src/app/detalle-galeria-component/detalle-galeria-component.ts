@@ -71,11 +71,21 @@ export class DetalleGaleriaComponent {
       //dias: 2
     },
     {
-      anyo: 2026,
+      anyo: 2025,
       //titulo: 'Aniversario',
       headliners: ['Bellako', 'Indar'],
       asistencia: 250,
       imagen: 'assets/images/cartelera25.jpg',
+      color: 'yellow',
+      bandas: 5,
+      //dias: 1
+    },
+    {
+      anyo: 2024,
+      //titulo: 'Aniversario',
+      headliners: ['Purin', 'Libervm'],
+      asistencia: 250,
+      imagen: 'assets/images/cartelera24.png',
       color: 'yellow',
       bandas: 5,
       //dias: 1
