@@ -1,0 +1,105 @@
+.inici-container {
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: #dc2626;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(220, 38, 38, 0.5);
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: #d1d5db;
+    margin-bottom: 2rem;
+  }
+
+  .festival-info {
+    margin: 2rem 0;
+    
+    h2 {
+      font-size: 2rem;
+      color: #fbbf24;
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: #9ca3af;
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .btn-primary, .btn-secondary {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #dc2626;
+      color: white;
+      
+      &:hover {
+        background-color: #b91c1c;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+      }
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      
+      &:hover {
+        background-color: white;
+        color: black;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inici-container {
+    padding: 1rem;
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    p {
+      font-size: 1.2rem;
+    }
+    
+    .actions {
+      flex-direction: column;
+      align-items: center;
+      
+      button {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  }
+}

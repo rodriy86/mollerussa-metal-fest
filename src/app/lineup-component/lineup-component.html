@@ -1,0 +1,22 @@
+<section id="Lineup" class="py-20 bg-gray-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl font-black mb-6 metal-text">LINEUP 2025</h2>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        Las mejores bandas de metal nacional e internacional se reunirán en Mollerussa
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let band of bands" 
+           class="bg-black/50 border border-red-600/30 p-6 rounded-lg card-hover">
+        <!-- Imagen como elemento img, no como fondo -->
+        <div class="w-full h-48 bg-gray-700 rounded-lg mb-4 overflow-hidden">
+          <img [src]="band.image" [alt]="band.name" class="w-full h-full object-cover object-top">
+        </div>
+        <h3 class="text-2xl font-bold text-red-500 mb-2">{{ band.name }}</h3>
+        <p class="text-gray-400 mb-2">{{ band.schedule }}</p>
+        <p class="text-sm text-gray-500">{{ band.genre }}</p>
+      </div>
+    </div>
+  </div>
+</section>

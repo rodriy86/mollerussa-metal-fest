@@ -1,0 +1,189 @@
+/* Estilos globales que reemplazan Tailwind */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #111827; /* gray-900 */
+  color: white;
+  line-height: 1.5;
+}
+
+/* Utilidades de colores */
+.bg-gray-900 { background-color: #111827; }
+.bg-gray-800 { background-color: #1f2937; }
+.bg-black { background-color: #000000; }
+.bg-red-600 { background-color: #dc2626; }
+
+.text-white { color: white; }
+.text-gray-300 { color: #d1d5db; }
+.text-gray-400 { color: #9ca3af; }
+.text-gray-500 { color: #6b7280; }
+.text-red-500 { color: #ef4444; }
+
+.border-red-600 { border-color: #dc2626; }
+.border-gray-600 { border-color: #4b5563; }
+
+/* Utilidades de espaciado */
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-16 { margin-bottom: 4rem; }
+
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+
+/* Utilidades de flexbox */
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-col { flex-direction: column; }
+
+/* Utilidades de grid */
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.gap-4 { gap: 1rem; }
+.gap-8 { gap: 2rem; }
+.gap-12 { gap: 3rem; }
+
+/* Utilidades de tamaño */
+.w-12 { width: 3rem; }
+.w-16 { width: 4rem; }
+.w-full { width: 100%; }
+.h-12 { height: 3rem; }
+.h-16 { height: 4rem; }
+.h-64 { height: 16rem; }
+.min-h-screen { min-height: 100vh; }
+
+/* Utilidades de texto */
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+.text-6xl { font-size: 3.75rem; line-height: 1; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+.font-medium { font-weight: 500; }
+
+.leading-tight { line-height: 1.25; }
+
+/* Utilidades de bordes */
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-button { border-radius: 8px; }
+.border { border-width: 1px; }
+.border-2 { border-width: 2px; }
+.border-b { border-bottom-width: 1px; }
+
+/* Utilidades de posición */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-10 { z-index: 10; }
+
+/* Utilidades de efectos */
+.opacity-90 { opacity: 0.9; }
+.backdrop-blur-sm { backdrop-filter: blur(4px); }
+
+/* Utilidades de overflow */
+.overflow-hidden { overflow: hidden; }
+
+/* Utilidades de transición */
+.transition-all { transition: all 0.15s ease; }
+.transition-colors { transition: color 0.15s ease, background-color 0.15s ease; }
+
+/* Estados hover */
+.hover\:bg-red-700:hover { background-color: #b91c1c; }
+.hover\:bg-white:hover { background-color: white; }
+.hover\:text-black:hover { color: black; }
+.hover\:text-red-500:hover { color: #ef4444; }
+
+/* Utilidades específicas del proyecto */
+.metal-text {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.whitespace-nowrap { white-space: nowrap; }
+
+/* Gradientes */
+.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+.from-black { --tw-gradient-from: #000; }
+.via-gray-900 { --tw-gradient-to: #111827; }
+.to-black { --tw-gradient-to: #000; }
+.to-transparent { --tw-gradient-to: transparent; }
+
+/* Focus states */
+.focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
+.focus\:border-red-500:focus { border-color: #ef4444; }
+
+/* Placeholder */
+.placeholder-gray-400::placeholder { color: #9ca3af; }
+
+/* Responsive - Media queries */
+@media (min-width: 768px) {
+  .md\:flex { display: flex; }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:text-8xl { font-size: 6rem; }
+  .md\:text-2xl { font-size: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Clases para bg-black con opacidad */
+.bg-black\/90 { background-color: rgba(0, 0, 0, 0.9); }
+.bg-black\/50 { background-color: rgba(0, 0, 0, 0.5); }
+.bg-black\/20 { background-color: rgba(0, 0, 0, 0.2); }
+
+/* Clases para bordes con opacidad */
+.border-red-600\/30 { border-color: rgba(220, 38, 38, 0.3); }
+
+/* Contenedor máximo */
+.max-w-7xl { max-width: 80rem; }
+.max-w-4xl { max-width: 56rem; }
+.max-w-3xl { max-width: 48rem; }
+.max-w-2xl { max-width: 42rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+.text-center { text-align: center; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}

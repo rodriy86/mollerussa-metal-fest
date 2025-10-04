@@ -1,0 +1,160 @@
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;*/
+
+
+
+
+
+
+
+
+
+/* styles.scss - Solo lo esencial con Tailwind CDN */
+
+/* Estilos globales básicos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #111827;
+  color: white;
+  line-height: 1.5;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos personalizados específicos */
+.metal-text {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Fondo oscuro para hero */
+.dark-bg-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: brightness(0.9);
+  z-index: -1;
+}
+
+/*.metal-text { //tipologia de lletres antiga amb color roig
+  background: linear-gradient(45deg, #dc2626, #ef4444, #dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+}*/
+/*.metal-text{  //tipologia de lletres antiga
+  font-family: 'BlackMetalFont';
+}*/
+
+/*************galeria***************/
+.card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
+  }
+}
+
+.metal-text {//tipologia de les lletres i color
+  //font-family: 'Metal Mania', cursive;
+  //font-family: 'BlackMetalFont', cursive;
+  text-shadow: 0 0 15px rgba(239, 68, 68, 0.7);
+}
+
+// Animaciones para el modal
+.fixed.inset-0 {
+  animation: fadeIn 0.3s ease-out;
+  
+  > div {
+    animation: zoomIn 0.3s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/*************ubiacio***********/
+/*.metal-text {
+  font-family: 'Metal Mania', cursive;
+  text-shadow: 0 0 15px rgba(239, 68, 68, 0.7);
+}*/
+
+.card-hover {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+  }
+}
+
+// Estilos específicos para el mapa
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.min-h-\[400px\] {
+  min-height: 400px;
+}
+
+// Asegurar que el iframe ocupe todo el espacio
+iframe {
+  display: block;
+}
+
+// Mejoras responsive
+@media (max-width: 1024px) {
+  .grid.grid-cols-1.lg\:grid-cols-2 {
+    gap: 2rem;
+    
+    .flex-col {
+      min-height: 500px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .flex-col {
+    min-height: 400px;
+  }
+}

@@ -1,0 +1,58 @@
+<section id="tienda" class="py-20 bg-gray-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl font-black mb-6 metal-text">TIENDA OFICIAL</h2>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        Consigue el merchandising oficial del Mollerussa Metal Fest 2025
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+      <!-- Producto 1: Camiseta -->
+      <div class="bg-black/50 border border-red-600/30 p-8 rounded-lg text-center card-hover">
+        <div class="w-full h-64 bg-gray-700 rounded-lg mb-6 overflow-hidden flex items-center justify-center">
+          <i class="ri-t-shirt-line text-6xl text-gray-400"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-red-500 mb-2">Camiseta Oficial 2025</h3>
+        <p class="text-gray-400 mb-4">100% Algodón | Tallas: S - XXL</p>
+        <div class="text-3xl font-black text-white mb-6">25€</div>
+        <form class="space-y-4 mb-6">
+          <select class="w-full bg-gray-800 border border-gray-600 rounded-button px-4 py-2 text-white focus:outline-none focus:border-red-500">
+            <option>Selecciona talla</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+            <option>XXL</option>
+          </select>
+          <input type="number" value="1" min="1" max="10" 
+                 class="w-full bg-gray-800 border border-gray-600 rounded-button px-4 py-2 text-white focus:outline-none focus:border-red-500">
+        </form>
+        <button (click)="addToCart('Camiseta Oficial 2025')"
+                class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-button font-bold transition-all">
+          Añadir al Carrito
+        </button>
+      </div>
+
+      <!-- Producto 2: Gorra -->
+      <div class="bg-black/50 border border-red-600/30 p-8 rounded-lg text-center card-hover">
+        <div class="w-full h-64 bg-gray-700 rounded-lg mb-6 overflow-hidden flex items-center justify-center">
+          <i class="ri-baseball-cap-line text-6xl text-gray-400"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-red-500 mb-2">Gorra Oficial 2025</h3>
+        <p class="text-gray-400 mb-4">Snapback Ajustable | Bordado Premium</p>
+        <div class="text-3xl font-black text-white mb-6">18€</div>
+        <form class="space-y-4 mb-6">
+          <select class="w-full bg-gray-800 border border-gray-600 rounded-button px-4 py-2 text-white focus:outline-none focus:border-red-500">
+            <option>Talla única</option>
+          </select>
+          <input type="number" value="1" min="1" max="10" 
+                 class="w-full bg-gray-800 border border-gray-600 rounded-button px-4 py-2 text-white focus:outline-none focus:border-red-500">
+        </form>
+        <button (click)="addToCart('Gorra Oficial 2025')"
+                class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-button font-bold transition-all">
+          Añadir al Carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
