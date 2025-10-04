@@ -1,8 +1,11 @@
 <section id="Inicio" class="dark-bg-image relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-800" style="background-image: url('assets/images/fondoHero.jpg'); background-size: cover; background-position: center;">
-  <div class="relative z-10 w-full px-6">
+  <!-- Overlay oscuro para mejor contraste -->
+  <div class="absolute inset-0 bg-black/50 z-0"></div>
+  
+  <div class="relative z-10 w-full px-6 mt-20"> <!-- Añadido mt-20 aquí -->
     <div class="max-w-7xl mx-auto">
       <div class="max-w-3xl">
-        <h2 class="text-6xl md:text-8xl font-black mb-6 metal-text text-white leading-tight">
+        <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 metal-text text-white leading-tight">
           MOLLERUSSA<br>
           <span class="text-red-500">METAL FEST</span>
         </h2>
@@ -14,16 +17,15 @@
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <button (click)="scrollTo('Informacion')" 
-                  class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg glow-effect transition-all whitespace-nowrap">
+                  class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg glow-effect transition-all whitespace-nowrap transform hover:scale-105">
             Más Información
           </button>
           <button (click)="scrollTo('Lineup')" 
-                  class="border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-lg font-bold text-lg transition-all whitespace-nowrap">
+                  class="border-2 border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-lg font-bold text-lg transition-all whitespace-nowrap transform hover:scale-105">
             Ver Lineup
           </button>
         </div>
       </div>
     </div>
   </div>
- 
 </section>
