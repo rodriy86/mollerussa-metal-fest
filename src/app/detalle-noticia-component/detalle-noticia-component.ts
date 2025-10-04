@@ -71,7 +71,7 @@ export class DetalleNoticiaComponent implements OnInit {
         imagenPrincipal: 'https://readdy.ai/api/search-image?query=epic%20black%20metal%20band%20Infernal%20Shadows%20performing%20on%20massive%20stage%20with%20dramatic%20red%20and%20blue%20lighting%2C%20smoke%20effects%2C%20corpse%20paint%20face%20makeup%2C%20long%20hair%20musicians%2C%20electric%20guitars%2C%20dark%20atmospheric%20concert%20venue%2C%20Finnish%20black%20metal%20aesthetic%2C%20professional%20concert%20photography%2C%20intense%20performance%20energy%2C%20metal%20festival%20stage%20setup&width=1920&height=1080&seq=infernal001&orientation=landscape',
         autor: 'Redacción MMF',
         tiempoLectura: '8 min',
-        visualizaciones: '2.847',
+        visualizaciones: '-',
         imagenes: [
           'https://readdy.ai/api/search-image?query=Finnish%20black%20metal%20band%20Infernal%20Shadows%20promotional%20photo%2C%20five%20members%20with%20corpse%20paint%20makeup%2C%20long%20black%20hair%2C%20dark%20clothing%2C%20forest%20background%2C%20atmospheric%20black%20metal%20aesthetic%2C%20professional%20band%20photography%2C%20Nordic%20winter%20atmosphere%2C%20dramatic%20lighting&width=600&height=400&seq=band_photo001&orientation=landscape',
           'https://readdy.ai/api/search-image?query=Infernal%20Shadows%20live%20concert%20performance%2C%20black%20metal%20band%20on%20stage%2C%20dramatic%20stage%20lighting%2C%20corpse%20paint%20face%20makeup%2C%20electric%20guitars%2C%20concert%20photography%2C%20atmospheric%20performance%2C%20Finnish%20black%20metal%20live%20show&width=400&height=300&seq=live001&orientation=landscape'
