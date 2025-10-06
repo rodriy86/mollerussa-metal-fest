@@ -10,17 +10,17 @@
           </div>
           <h1 class="text-2xl font-bold metal-text text-red-500">Mollerussa Metal Fest</h1>
         </div>
-        
+
         <div class="hidden md:flex items-center space-x-8">
-          <button (click)="volverANoticias()" 
-                  class="flex items-center text-gray-300 hover:text-red-500 transition-colors font-medium">
+          <button (click)="volverAInicio()"
+            class="flex items-center text-gray-300 hover:text-red-500 transition-colors font-medium">
             <i class="ri-arrow-left-line mr-2"></i>
-            Volver a Noticias
+            Volver al inicio
           </button>
         </div>
 
-        <button class="md:hidden w-8 h-8 flex items-center justify-center text-white">
-          <i class="ri-menu-line text-xl"></i>
+        <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex items-center justify-center text-white">
+          <i class="ri-arrow-left-line mr-2"></i>
         </button>
       </div>
     </nav>
@@ -29,12 +29,10 @@
   <!-- Contenido Principal -->
   <main class="pt-20">
     <div *ngIf="noticia; else notFound" class="max-w-6xl mx-auto px-6">
-      
+
       <!-- Hero Section -->
       <section class="relative h-96 rounded-xl overflow-hidden mb-8">
-        <img [src]="noticia.imagenPrincipal" 
-             [alt]="noticia.titulo"
-             class="w-full h-full object-cover">
+        <img [src]="noticia.imagenPrincipal" [alt]="noticia.titulo" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-8">
           <div class="flex items-center space-x-4 mb-4">
@@ -54,7 +52,7 @@
           <div class="flex items-center">
             <i class="ri-user-3-line text-red-500 mr-2"></i>
             <span>Por {{ noticia.autor }}</span>
-          </div>
+          </div><!--
           <div class="flex items-center">
             <i class="ri-time-line text-red-500 mr-2"></i>
             <span>{{ noticia.tiempoLectura }} de lectura</span>
@@ -62,11 +60,11 @@
           <div class="flex items-center">
             <i class="ri-eye-line text-red-500 mr-2"></i>
             <span>{{ noticia.visualizaciones }} visualizaciones</span>
-          </div>
+          </div>-->
         </div>
-        
-        <button (click)="compartirNoticia()" 
-                class="flex items-center text-gray-400 hover:text-red-500 transition-colors">
+
+        <button (click)="compartirNoticia()"
+          class="flex items-center text-gray-400 hover:text-red-500 transition-colors">
           <i class="ri-share-line mr-2"></i>
           Compartir
         </button>
@@ -77,25 +75,23 @@
         <div class="max-w-4xl mx-auto">
           <div class="prose prose-lg prose-invert max-w-none">
             <!-- Párrafos de contenido -->
-            <div *ngFor="let parrafo of noticia.contenido" 
-                 class="text-lg text-gray-300 mb-6 leading-relaxed">
+            <div *ngFor="let parrafo of noticia.contenido" class="text-lg text-gray-300 mb-6 leading-relaxed">
               {{ parrafo }}
             </div>
 
             <!-- Citas -->
-            <div *ngFor="let cita of noticia.citas" 
-                 class="border-l-4 border-red-600 pl-6 my-8 text-xl italic text-gray-300 bg-black/50 p-6 rounded-lg">
+            <div *ngFor="let cita of noticia.citas"
+              class="border-l-4 border-red-600 pl-6 my-8 text-xl italic text-gray-300 bg-black/50 p-6 rounded-lg">
               "{{ cita.texto }}"
               <footer class="text-sm text-gray-500 mt-4 not-italic">— {{ cita.autor }}</footer>
             </div>
 
             <!-- Galería de imágenes -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
-              <div *ngFor="let imagen of noticia.imagenes; let i = index" 
-                   class="bg-gray-800 rounded-lg overflow-hidden">
-                <img [src]="imagen" 
-                     [alt]="'Imagen ' + (i + 1) + ' - ' + noticia.titulo"
-                     class="w-full h-64 object-cover">
+              <div *ngFor="let imagen of noticia.imagenes; let i = index"
+                class="bg-gray-800 rounded-lg overflow-hidden">
+                <img [src]="imagen" [alt]="'Imagen ' + (i + 1) + ' - ' + noticia.titulo"
+                  class="w-full h-64 object-cover">
               </div>
             </div>
           </div>
@@ -109,12 +105,12 @@
           <p class="text-gray-400 mb-8">Comparte la emoción con otros fans del metal</p>
           <div class="flex justify-center space-x-4">
             <button (click)="compartirNoticia()"
-                    class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all flex items-center">
+              class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all flex items-center">
               <i class="ri-share-line mr-2"></i>
               Compartir Noticia
             </button>
             <button (click)="volverANoticias()"
-                    class="border-2 border-red-600 hover:bg-red-600 text-red-600 hover:text-white px-8 py-3 rounded-lg font-bold transition-all">
+              class="border-2 border-red-600 hover:bg-red-600 text-red-600 hover:text-white px-8 py-3 rounded-lg font-bold transition-all">
               Ver Más Noticias
             </button>
           </div>
@@ -128,7 +124,7 @@
         <h2 class="text-3xl font-bold mb-4">Noticia no encontrada</h2>
         <p class="text-gray-400 mb-8">La noticia que buscas no existe o ha sido eliminada.</p>
         <button (click)="volverANoticias()"
-                class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all">
+          class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all">
           Volver a Noticias
         </button>
       </div>

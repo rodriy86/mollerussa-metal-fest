@@ -44,7 +44,7 @@ export class DetalleNoticiaComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -52,7 +52,9 @@ export class DetalleNoticiaComponent implements OnInit {
       this.cargarNoticia(this.noticiaId);
     });
   }
-
+  volverAInicio() {
+    this.router.navigate(['/noticias']);
+  }
   cargarNoticia(id: number) {
     // En una app real, esto vendría de una API
     const noticiasCompletas: { [key: number]: NoticiaCompleta } = {
