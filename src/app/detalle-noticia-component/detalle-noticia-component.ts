@@ -61,7 +61,7 @@ export class DetalleNoticiaComponent implements OnInit {
       1: {
         id: 1,
         fecha: '15 Enero 2026',
-        categoria: 'LINEUP',
+        categoria: 'Cartelera',
         titulo: '¡Confirmado! Cor Rebel se suma a la cartelera 2026',
         descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2026.',
         contenido: [
@@ -76,7 +76,7 @@ export class DetalleNoticiaComponent implements OnInit {
         visualizaciones: '-',
         imagenes: [
           'https://readdy.ai/api/search-image?query=Finnish%20black%20metal%20band%20Infernal%20Shadows%20promotional%20photo%2C%20five%20members%20with%20corpse%20paint%20makeup%2C%20long%20black%20hair%2C%20dark%20clothing%2C%20forest%20background%2C%20atmospheric%20black%20metal%20aesthetic%2C%20professional%20band%20photography%2C%20Nordic%20winter%20atmosphere%2C%20dramatic%20lighting&width=600&height=400&seq=band_photo001&orientation=landscape',
-          'https://readdy.ai/api/search-image?query=Infernal%20Shadows%20live%20concert%20performance%2C%20black%20metal%20band%20on%20stage%2C%20dramatic%20stage%20lighting%2C%20corpse%20paint%20face%20makeup%2C%20electric%20guitars%2C%20concert%20photography%2C%20atmospheric%20performance%2C%20Finnish%20black%20metal%20live%20show&width=400&height=300&seq=live001&orientation=landscape'
+          //'https://readdy.ai/api/search-image?query=Infernal%20Shadows%20live%20concert%20performance%2C%20black%20metal%20band%20on%20stage%2C%20dramatic%20stage%20lighting%2C%20corpse%20paint%20face%20makeup%2C%20electric%20guitars%2C%20concert%20photography%2C%20atmospheric%20performance%2C%20Finnish%20black%20metal%20live%20show&width=400&height=300&seq=live001&orientation=landscape'
         ],
         citas: [
           {
