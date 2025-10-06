@@ -50,8 +50,10 @@ export class DetalleNoticiaComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.noticiaId = +params['id'];
       this.cargarNoticia(this.noticiaId);
+      window.scrollTo(0, 0);
     });
   }
+  
   volverAInicio() {
     this.router.navigate(['/noticias']);
   }

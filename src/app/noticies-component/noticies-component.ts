@@ -24,6 +24,7 @@ interface Noticia {
   styleUrl: './noticies-component.scss'
 })
 export class NoticiesComponent {
+  
   noticias: Noticia[] = [
     {
       id: 1,
