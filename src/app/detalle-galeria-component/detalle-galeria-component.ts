@@ -15,13 +15,12 @@ export class DetalleGaleriaComponent {
     private router: Router
   ) { }
 
-  isMenuOpen = false;
-
   volverAInicio() {
-    this.router.navigate(['/Inicio']);
+    this.router.navigate(['/noticias']);
   }
   
   imagenActiva: number | null = null;
+  carteleraActiva: number | null = null;
 
   imagenes = [
     {
@@ -47,18 +46,9 @@ export class DetalleGaleriaComponent {
     {
       url: 'assets/images/foto6.jpg',
       alt: 'Clímax del concierto con pirotecnia'
-    },
-    {
-      url: 'assets/images/foto7.jpg',
-      alt: 'random'
-    },
-    {
-      url: 'assets/images/foto8.jpg',
-      alt: 'random'
     }
   ];
 
-  // Nueva propiedad para las carteleras históricas
   carteleras = [
     {
       anyo: 2026,
@@ -101,16 +91,18 @@ export class DetalleGaleriaComponent {
     return this.carteleras.reduce((total, cartelera) => total + cartelera.bandas, 0);
   }
 
-  get totalAsistentes(): number {
-    return this.carteleras.reduce((total, cartelera) => total + cartelera.asistencia, 0);
+  get totalAsistentes(): string {
+    return '2,220';
   }
 
   get totalPaises(): number {
     return 3;
   }
 
+  // Métodos para imágenes de galería
   abrirImagen(index: number) {
     this.imagenActiva = index;
+    this.carteleraActiva = null;
     document.body.style.overflow = 'hidden';
   }
 
@@ -128,6 +120,30 @@ export class DetalleGaleriaComponent {
   imagenAnterior() {
     if (this.imagenActiva !== null) {
       this.imagenActiva = (this.imagenActiva - 1 + this.imagenes.length) % this.imagenes.length;
+    }
+  }
+
+  // Métodos para carteleras
+  abrirCartelera(index: number) {
+    this.carteleraActiva = index;
+    this.imagenActiva = null;
+    document.body.style.overflow = 'hidden';
+  }
+
+  cerrarCartelera() {
+    this.carteleraActiva = null;
+    document.body.style.overflow = 'auto';
+  }
+
+  carteleraSiguiente() {
+    if (this.carteleraActiva !== null) {
+      this.carteleraActiva = (this.carteleraActiva + 1) % this.carteleras.length;
+    }
+  }
+
+  carteleraAnterior() {
+    if (this.carteleraActiva !== null) {
+      this.carteleraActiva = (this.carteleraActiva - 1 + this.carteleras.length) % this.carteleras.length;
     }
   }
 
