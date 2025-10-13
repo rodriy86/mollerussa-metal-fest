@@ -1,116 +1,88 @@
-import express from 'express';
-import cors from 'cors';
+// server.js - Node.js PURO, cero dependencias
+import http from 'http';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-// DEBUG COMPLETO: Verificar estructura de dist-build
-const distBuildPath = path.join(__dirname, '../dist-build');
-console.log('🔍 Verificando dist-build en:', distBuildPath);
-
-// Función para listar archivos recursivamente
-const listFilesRecursive = (dir, prefix = '') => {
-  try {
-    const items = fs.readdirSync(dir);
-    items.forEach(item => {
-      const fullPath = path.join(dir, item);
-      const stats = fs.statSync(fullPath);
-      console.log(prefix + (stats.isDirectory() ? '📁 ' : '📄 ') + item);
-      if (stats.isDirectory() && !item.includes('node_modules')) {
-        listFilesRecursive(fullPath, prefix + '  ');
-      }
-    });
-  } catch (error) {
-    console.log(prefix + '❌ No se pudo leer:', dir, error.message);
-  }
-};
-
-// Verificar si dist-build existe y qué contiene
-if (fs.existsSync(distBuildPath)) {
-  console.log('✅ dist-build EXISTE');
-  console.log('📁 CONTENIDO de dist-build:');
-  listFilesRecursive(distBuildPath);
+const server = http.createServer((req, res) => {
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
-  // Verificar específicamente browser/
-  const browserPath = path.join(distBuildPath, 'browser');
-  if (fs.existsSync(browserPath)) {
-    console.log('✅ browser/ EXISTE dentro de dist-build');
-    console.log('📁 CONTENIDO de browser/:');
-    listFilesRecursive(browserPath);
+  if (req.method === 'OPTIONS') {
+    res.writeHead(200);
+    res.end();
+    return;
+  }
+  
+  // Ruta de salud
+  if (req.url === '/api/health' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ 
+      status: 'OK', 
+      message: 'Backend funcionando SIN Express',
+      timestamp: new Date().toISOString()
+    }));
+    return;
+  }
+  
+  // Ruta principal - intenta servir Angular
+  if (req.url === '/' || req.url === '/index.html') {
+    const angularPath = path.join(__dirname, '../frontend/dist');
+    const indexHtmlPath = path.join(angularPath, 'index.html');
     
-    // Verificar index.html
-    const indexHtmlPath = path.join(browserPath, 'index.html');
-    if (fs.existsSync(indexHtmlPath)) {
-      console.log('✅ index.html EXISTE en browser/');
-    } else {
-      console.log('❌ index.html NO existe en browser/');
+    try {
+      if (fs.existsSync(indexHtmlPath)) {
+        const html = fs.readFileSync(indexHtmlPath, 'utf8');
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(html);
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(`
+          <html>
+            <body>
+              <h1>Mollerussa Metal Fest</h1>
+              <p>Backend funcionando ✅</p>
+              <p>Angular no encontrado en: ${indexHtmlPath}</p>
+              <p><a href="/api/health">Verificar API</a></p>
+            </body>
+          </html>
+        `);
+      }
+    } catch (error) {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(`
+        <html>
+          <body>
+            <h1>Mollerussa Metal Fest</h1>
+            <p>Backend funcionando ✅</p>
+            <p>Error: ${error.message}</p>
+          </body>
+        </html>
+      `);
     }
-  } else {
-    console.log('❌ browser/ NO existe dentro de dist-build');
+    return;
   }
-} else {
-  console.log('❌ dist-build NO EXISTE');
   
-  // Listar qué sí existe en el directorio raíz
-  console.log('📁 CONTENIDO del directorio raíz:');
-  try {
-    const rootDir = path.join(__dirname, '..');
-    const items = fs.readdirSync(rootDir);
-    items.forEach(item => {
-      const fullPath = path.join(rootDir, item);
-      const stats = fs.statSync(fullPath);
-      console.log((stats.isDirectory() ? '📁 ' : '📄 ') + item);
-    });
-  } catch (error) {
-    console.log('Error leyendo directorio raíz:', error.message);
-  }
-}
-
-// Ruta temporal para debug
-app.get('/debug', (req, res) => {
-  const distBuildPath = path.join(__dirname, '../dist-build');
-  const browserPath = path.join(distBuildPath, 'browser');
-  const indexHtmlPath = path.join(browserPath, 'index.html');
-  
-  res.json({
-    distBuildExists: fs.existsSync(distBuildPath),
-    browserExists: fs.existsSync(browserPath),
-    indexHtmlExists: fs.existsSync(indexHtmlPath),
-    paths: {
-      distBuild: distBuildPath,
-      browser: browserPath,
-      indexHtml: indexHtmlPath,
-      currentDir: __dirname,
-      rootDir: path.join(__dirname, '..')
-    }
-  });
+  // Cualquier otra ruta
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify({ 
+    message: 'Mollerussa Metal Fest API',
+    endpoint: req.url,
+    method: req.method
+  }));
 });
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Backend funcionando' });
-});
-
-app.get('*', (req, res) => {
-  res.send(`
-    <html>
-      <body>
-        <h1>Mollerussa Metal Fest - Debug</h1>
-        <p>Backend funcionando ✅</p>
-        <p><a href="/debug">Ver información de archivos</a></p>
-        <p><a href="/api/health">Verificar backend</a></p>
-      </body>
-    </html>
-  `);
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor funcionando en puerto ${PORT}`);
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log('🎸 ====================================');
+  console.log('🤘 MOLLERUSSA METAL FEST BACKEND');
+  console.log('🚀 Node.js PURO - Sin dependencias');
+  console.log('📡 Puerto: ' + PORT);
+  console.log('🌐 http://localhost:' + PORT);
+  console.log('🎸 ====================================');
 });
