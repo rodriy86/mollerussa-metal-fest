@@ -2,10 +2,10 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "nixpacks",
-    "buildCommand": "cd mmf_backend && npm install && cd ../mmf_frontend && npm install && npm run build"
+    "buildCommand": "cd backend && npm install && cd ../frontend && npm install && npm run build"
   },
   "deploy": {
-    "startCommand": "cd mmf_backend && npm start",
+    "startCommand": "cd backend && npm start",
     "restartPolicyType": "ON_FAILURE"
   }
 }
