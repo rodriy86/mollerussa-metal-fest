@@ -41,7 +41,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/mmf-web/browser/index.html'));
 });
 
+
+
+// AL FINAL DEL ARCHIVO, CAMBIA:
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 App con SSR funcionando en puerto ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Servidor funcionando en puerto ${PORT}`);
 });
