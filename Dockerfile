@@ -2,31 +2,30 @@ FROM node:22.12-alpine
 
 WORKDIR /app
 
-# Instalar Angular CLI globalmente
-RUN npm install -g @angular/cli
+# 1. COPIAR TODO EL PROYECTO PRIMERO
+COPY . .
 
-# Copiar archivos de dependencias
-COPY backend/package.json backend/package-lock.json ./backend/
-COPY frontend/package.json frontend/package-lock.json ./frontend/
+# 2. Verificar estructura
+RUN echo "=== ESTRUCTURA DEL PROYECTO ===" && \
+    ls -la && \
+    echo "=== CONTENIDO FRONTEND ===" && \
+    ls -la frontend/ && \
+    echo "=== ¿EXISTE angular.json? ===" && \
+    ls -la frontend/angular.json
 
-# Instalar dependencias del frontend
+# 3. Instalar dependencias del frontend
 RUN cd frontend && npm ci
 
-# Construir Angular
-RUN cd frontend && ng build --configuration=production --output-path=dist
+# 4. Construir Angular (AHORA SÍ encontrará el workspace)
+RUN cd frontend && npx ng build --configuration=production --output-path=dist
 
-# Instalar backend (producción solo)
+# 5. Instalar backend
 RUN cd backend && npm ci --only=production
 
-# Copiar código fuente
-COPY backend/ ./backend/
-COPY frontend/ ./frontend/
-
-# Verificar estructura final
-RUN echo "=== ESTRUCTURA FINAL ===" && \
-    find /app -name "index.html" -type f && \
-    echo "=== FRONTEND DIST ===" && \
-    ls -la /app/frontend/dist/
+# 6. Verificar build exitoso
+RUN echo "=== ARCHIVOS CONSTRUIDOS ===" && \
+    find . -name "index.html" -type f && \
+    ls -la frontend/dist/
 
 EXPOSE 3000
 
