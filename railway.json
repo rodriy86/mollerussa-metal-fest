@@ -1,13 +1,7 @@
 {
-  "name": "mmf-fullstack",
-  "version": "1.0.0",
-  "private": true,
-  "engines": {
-    "node": ">=20.0.0"
-  },
-  "scripts": {
-    "install:all": "cd backend && npm install && cd ../frontend && npm install",
-    "build:all": "cd frontend && npm run build", 
-    "start:app": "cd backend && npm start"
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "nixpacks", 
+    "buildCommand": "npm run install:all && npm run build:all"
   }
 }
