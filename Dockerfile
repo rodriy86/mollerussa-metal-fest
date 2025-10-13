@@ -7,25 +7,25 @@ COPY . .
 
 # 2. Verificar estructura
 RUN echo "=== ESTRUCTURA DEL PROYECTO ===" && \
-    ls -la && \
-    echo "=== CONTENIDO FRONTEND ===" && \
-    ls -la frontend/ && \
-    echo "=== ¿EXISTE angular.json? ===" && \
-    ls -la frontend/angular.json
+    ls -la frontend/
 
 # 3. Instalar dependencias del frontend
 RUN cd frontend && npm ci
 
-# 4. Construir Angular (AHORA SÍ encontrará el workspace)
-RUN cd frontend && npx ng build --configuration=production --output-path=dist
+# 4. Construir Angular (usa outputPath correcto)
+RUN cd frontend && npx ng build --configuration=production
 
-# 5. Instalar backend
+# 5. Verificar QUÉ se construyó
+RUN echo "=== DESPUÉS DEL BUILD ===" && \
+    echo "=== CONTENIDO DE DIST ===" && \
+    ls -la frontend/dist/ && \
+    echo "=== CONTENIDO DE DIST/MMF_WEB ===" && \
+    ls -la frontend/dist/mmf_web/ && \
+    echo "=== ¿EXISTE INDEX.HTML? ===" && \
+    find /app -name "index.html" -type f
+
+# 6. Instalar backend
 RUN cd backend && npm ci --only=production
-
-# 6. Verificar build exitoso
-RUN echo "=== ARCHIVOS CONSTRUIDOS ===" && \
-    find . -name "index.html" -type f && \
-    ls -la frontend/dist/
 
 EXPOSE 3000
 
