@@ -1,20 +1,10 @@
-// server.js - Node.js PURO, cero dependencias
-import http from 'http';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// ✅ RUTAS FLEXIBLES para ambos entornos
+// RUTAS CORRECTAS según tu package.json
 const possibleAngularPaths = [
-  path.join(__dirname, '../frontend/dist/mmf_web'),  // NUEVO Angular (Railway)
-  path.join(__dirname, '../frontend/dist'),          // VIEJO Angular (Local)
-  path.join(__dirname, '../frontend/dist/browser'),  // Otra posible
+  path.join(__dirname, '../frontend/dist/mmf-web/browser'),  // ✅ RUTA CORRECTA
+  path.join(__dirname, '../frontend/dist/mmf_web'),          // Otra posible
+  path.join(__dirname, '../frontend/dist'),                  // Fallback
 ];
 
-// Encontrar Angular automáticamente
 let angularPath = null;
 let indexHtmlPath = null;
 
@@ -29,6 +19,8 @@ for (const possiblePath of possibleAngularPaths) {
     break;
   }
 }
+
+// El resto del server.js igual...
 
 // Debug completo
 if (angularPath) {

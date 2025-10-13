@@ -1,33 +1,41 @@
 FROM node:22.12-alpine
 
 WORKDIR /app
-
-# 1. COPIAR TODO EL PROYECTO PRIMERO
 COPY . .
 
-# 2. Verificar estructura
-RUN echo "=== ESTRUCTURA DEL PROYECTO ===" && \
+# 1. Verificar estructura
+RUN echo "=== ESTRUCTURA INICIAL ===" && \
     ls -la frontend/
 
-# 3. Instalar dependencias del frontend
+# 2. Instalar dependencias
 RUN cd frontend && npm ci
 
-# 4. Construir Angular (usa outputPath correcto)
-RUN cd frontend && npx ng build --configuration=production
+# 3. Construir Angular usando EL SCRIPT CORRECTO
+RUN cd frontend && npm run build
 
-# 5. Verificar QUÉ se construyó
-RUN echo "=== DESPUÉS DEL BUILD ===" && \
-    echo "=== CONTENIDO DE DIST ===" && \
-    ls -la frontend/dist/ && \
-    echo "=== CONTENIDO DE DIST/MMF_WEB ===" && \
-    ls -la frontend/dist/mmf_web/ && \
-    echo "=== ¿EXISTE INDEX.HTML? ===" && \
-    find /app -name "index.html" -type f
+# 4. VERIFICAR build exitoso
+RUN echo "=== VERIFICANDO BUILD ===" && \
+    echo "=== RUTA ESPERADA: dist/mmf-web/browser ===" && \
+    if [ -d "frontend/dist/mmf-web/browser" ]; then \
+      echo "✅ BUILD EXITOSO"; \
+      echo "=== CONTENIDO ==="; \
+      ls -la frontend/dist/mmf-web/browser/; \
+      echo "=== ARCHIVOS PRINCIPALES ==="; \
+      find frontend/dist/mmf-web/browser/ -name "index.html" -o -name "*.js" | head -5; \
+    else \
+      echo "❌ ERROR: dist/mmf-web/browser no se creó"; \
+      echo "=== BUSCANDO OTRAS RUTAS ==="; \
+      find /app -name "index.html" -type f; \
+      echo "=== ESTRUCTURA DIST/ ==="; \
+      if [ -d "frontend/dist" ]; then \
+        find frontend/dist/ -type f | head -10; \
+      fi; \
+      exit 1; \
+    fi
 
-# 6. Instalar backend
+# 5. Backend
 RUN cd backend && npm ci --only=production
 
 EXPOSE 3000
-
 WORKDIR /app/backend
 CMD ["node", "server.js"]
