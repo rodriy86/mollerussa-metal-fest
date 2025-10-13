@@ -7,21 +7,31 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ CORREGIDO: Usar process.env.PORT para Railway
-const PORT = process.env.PORT || 3000;
+// ✅ RUTAS FLEXIBLES para ambos entornos
+const possibleAngularPaths = [
+  path.join(__dirname, '../frontend/dist/mmf_web'),  // NUEVO Angular (Railway)
+  path.join(__dirname, '../frontend/dist'),          // VIEJO Angular (Local)
+  path.join(__dirname, '../frontend/dist/browser'),  // Otra posible
+];
 
-// ✅ AÑADIR: Debug de rutas al inicio
-console.log('🔍 Iniciando servidor...');
-console.log('📁 Directorio actual:', __dirname);
-console.log('🔧 Puerto:', PORT);
+// Encontrar Angular automáticamente
+let angularPath = null;
+let indexHtmlPath = null;
 
-// Verificar si existe Angular
-const angularPath = path.join(__dirname, '../frontend/dist');
-const indexHtmlPath = path.join(angularPath, 'index.html');
-console.log('🔍 Ruta de Angular:', angularPath);
-console.log('📄 Index.html existe:', fs.existsSync(indexHtmlPath));
+console.log('🔍 Buscando Angular...');
+for (const possiblePath of possibleAngularPaths) {
+  const testPath = path.join(possiblePath, 'index.html');
+  console.log('  Probando:', possiblePath);
+  if (fs.existsSync(testPath)) {
+    angularPath = possiblePath;
+    indexHtmlPath = testPath;
+    console.log('✅ ANGULAR ENCONTRADO en:', angularPath);
+    break;
+  }
+}
 
-if (fs.existsSync(angularPath)) {
+// Debug completo
+if (angularPath) {
   console.log('📁 Contenido de Angular:');
   try {
     const files = fs.readdirSync(angularPath);
@@ -31,10 +41,23 @@ if (fs.existsSync(angularPath)) {
       console.log('  ' + (stats.isDirectory() ? '📁 ' : '📄 ') + file);
     });
   } catch (error) {
-    console.log('❌ Error leyendo Angular:', error.message);
+    console.log('❌ Error leyendo contenido:', error.message);
   }
 } else {
-  console.log('❌ Carpeta Angular no existe:', angularPath);
+  console.log('❌ ANGULAR NO ENCONTRADO en ninguna ruta');
+  // Listar qué SÍ existe
+  console.log('📁 Estructura actual:');
+  possibleAngularPaths.forEach(p => {
+    console.log('  ', p, '- Existe:', fs.existsSync(p));
+    if (fs.existsSync(p)) {
+      try {
+        const items = fs.readdirSync(p);
+        console.log('    Contenido:', items);
+      } catch (e) {
+        console.log('    Error leyendo:', e.message);
+      }
+    }
+  });
 }
 
 const server = http.createServer((req, res) => {
@@ -54,55 +77,52 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ 
       status: 'OK', 
-      message: 'Backend funcionando SIN Express',
-      timestamp: new Date().toISOString(),
+      message: 'Backend funcionando',
+      angularFound: !!angularPath,
       angularPath: angularPath,
-      angularExists: fs.existsSync(angularPath),
-      indexHtmlExists: fs.existsSync(indexHtmlPath)
+      timestamp: new Date().toISOString()
     }));
     return;
   }
   
-  // Ruta principal - intenta servir Angular
+  // Ruta principal - servir Angular si existe
   if (req.url === '/' || req.url === '/index.html') {
-    try {
-      if (fs.existsSync(indexHtmlPath)) {
+    if (angularPath && indexHtmlPath) {
+      try {
         const html = fs.readFileSync(indexHtmlPath, 'utf8');
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(html);
         console.log('✅ Sirviendo Angular desde:', indexHtmlPath);
-      } else {
+      } catch (error) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(`
           <html>
             <body>
-              <h1>Mollerussaaa Metal Fest</h1>
+              <h1>Mollerussa Metal Fest</h1>
               <p>Backend funcionando ✅</p>
-              <p>Angular no encontrado en: ${indexHtmlPath}</p>
-              <p><strong>Debug info:</strong></p>
-              <ul>
-                <li>Directorio: ${__dirname}</li>
-                <li>Angular path: ${angularPath}</li>
-                <li>Existe: ${fs.existsSync(angularPath)}</li>
-              </ul>
-              <p><a href="/api/health">Verificar API</a></p>
+              <p>Error leyendo Angular: ${error.message}</p>
             </body>
           </html>
         `);
-        console.log('❌ Angular no encontrado en:', indexHtmlPath);
       }
-    } catch (error) {
+    } else {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(`
         <html>
           <body>
             <h1>Mollerussa Metal Fest</h1>
             <p>Backend funcionando ✅</p>
-            <p>Error: ${error.message}</p>
+            <p>Angular no encontrado ❌</p>
+            <p><strong>Debug info:</strong></p>
+            <ul>
+              <li>Directorio: ${__dirname}</li>
+              <li>Angular encontrado: ${!!angularPath}</li>
+              <li>Rutas probadas: ${possibleAngularPaths.join(', ')}</li>
+            </ul>
+            <p><a href="/api/health">Verificar API</a></p>
           </body>
         </html>
       `);
-      console.log('❌ Error sirviendo Angular:', error.message);
     }
     return;
   }
@@ -116,11 +136,13 @@ const server = http.createServer((req, res) => {
   }));
 });
 
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log('🎸 ====================================');
   console.log('🤘 MOLLERUSSA METAL FEST BACKEND');
   console.log('🚀 Node.js PURO - Sin dependencias');
   console.log('📡 Puerto: ' + PORT);
   console.log('🌐 http://localhost:' + PORT);
+  console.log('🔧 Angular path: ' + (angularPath || 'NO ENCONTRADO'));
   console.log('🎸 ====================================');
 });
