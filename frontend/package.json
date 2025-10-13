@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     
-    "// BUILD ORIGINAL - MODIFICADO PARA RAILWAY": "",
-    "build": "ng build --configuration=production --output-path=dist/mmf-web/browser",
+    "// BUILD CORREGIDO - SIN output-path redundante": "",
+    "build": "ng build --configuration=production",
     
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -14,7 +14,7 @@
     
     "// BUILD ALTERNATIVOS": "",
     "build:dev": "ng build",
-    "build:railway": "ng build --configuration=production --output-path=dist/mmf-web/browser"
+    "build:railway": "ng build --configuration=production"
   },
   "prettier": {
     "printWidth": 100,
