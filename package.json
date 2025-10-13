@@ -9,6 +9,6 @@
   "scripts": {
     "start": "cd backend && npm start",
     "install:all": "cd backend && npm install && cd ../frontend && npm install",
-    "build:all": "cd frontend && npm run build"
+    "build:all": "cd frontend && npx ng build --configuration=production --output-path=dist/mmf-web/browser"
   }
 }
