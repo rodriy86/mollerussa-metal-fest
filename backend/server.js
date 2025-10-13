@@ -12,7 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 // DEBUG: Verificar estructura de archivos
-const angularPath = path.join(__dirname, '../frontend/dist/mmf-web/browser');
+//const angularPath = path.join(__dirname, '../frontend/dist/mmf-web/browser');
+const angularPath = path.join(__dirname, '../dist-build/browser');
 console.log('🔍 Buscando Angular en:', angularPath);
 
 // Listar toda la estructura del proyecto
