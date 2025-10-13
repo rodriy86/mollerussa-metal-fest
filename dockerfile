@@ -19,4 +19,4 @@ RUN cd frontend && node node_modules/@angular/cli/bin/ng.js build --configuratio
 
 EXPOSE 3000
 
-CMD ["cd", "backend", "&&", "npm", "start"]
+CMD ["cd", "backend", "&&", "npm", "start"] 
