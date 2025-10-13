@@ -8,4 +8,4 @@
     "startCommand": "cd backend && npm start",
     "restartPolicyType": "ON_FAILURE"
   }
-}
+} 
