@@ -28,7 +28,27 @@
 
   <!-- Contenido Principal -->
   <main class="pt-20">
-    <div *ngIf="noticia; else notFound" class="max-w-6xl mx-auto px-6">
+    
+    <!-- Estado de Carga -->
+    <div *ngIf="isLoading" class="max-w-6xl mx-auto px-6 py-20 text-center">
+      <div class="text-4xl mb-4">⏳</div>
+      <h2 class="text-2xl font-bold mb-4">Cargando noticia...</h2>
+      <p class="text-gray-400">Estamos cargando el contenido para ti</p>
+    </div>
+
+    <!-- Estado de Error -->
+    <div *ngIf="error && !isLoading" class="max-w-6xl mx-auto px-6 py-20 text-center">
+      <div class="text-4xl mb-4">❌</div>
+      <h2 class="text-2xl font-bold mb-4">Error al cargar</h2>
+      <p class="text-red-500 mb-6">{{ error }}</p>
+      <button (click)="recargarNoticia()"
+        class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold transition-all">
+        Reintentar
+      </button>
+    </div>
+
+    <!-- Contenido de la Noticia -->
+    <div *ngIf="noticia && !isLoading && !error" class="max-w-6xl mx-auto px-6">
 
       <!-- Hero Section -->
       <section class="relative h-96 rounded-xl overflow-hidden mb-8">
@@ -52,7 +72,7 @@
           <div class="flex items-center">
             <i class="ri-user-3-line text-red-500 mr-2"></i>
             <span>Por {{ noticia.autor }}</span>
-          </div><!--
+          </div>
           <div class="flex items-center">
             <i class="ri-time-line text-red-500 mr-2"></i>
             <span>{{ noticia.tiempoLectura }} de lectura</span>
@@ -60,7 +80,7 @@
           <div class="flex items-center">
             <i class="ri-eye-line text-red-500 mr-2"></i>
             <span>{{ noticia.visualizaciones }} visualizaciones</span>
-          </div>-->
+          </div>
         </div>
 
         <button (click)="compartirNoticia()"
@@ -78,13 +98,6 @@
             <div *ngFor="let parrafo of noticia.contenido" class="text-lg text-gray-300 mb-6 leading-relaxed">
               {{ parrafo }}
             </div>
-
-            <!-- Citas -->
-            <!--<div *ngFor="let cita of noticia.citas"
-              class="border-l-4 border-red-600 pl-6 my-8 text-xl italic text-gray-300 bg-black/50 p-6 rounded-lg">
-              "{{ cita.texto }}"
-              <footer class="text-sm text-gray-500 mt-4 not-italic">— {{ cita.autor }}</footer>
-            </div>-->
 
             <!-- Galería de imágenes -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
@@ -118,16 +131,16 @@
       </section>
     </div>
 
-    <ng-template #notFound>
-      <div class="text-center py-20">
-        <i class="ri-error-warning-line text-6xl text-red-500 mb-4"></i>
-        <h2 class="text-3xl font-bold mb-4">Noticia no encontrada</h2>
-        <p class="text-gray-400 mb-8">La noticia que buscas no existe o ha sido eliminada.</p>
-        <button (click)="volverANoticias()"
-          class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all">
-          Volver a Noticias
-        </button>
-      </div>
-    </ng-template>
+    <!-- Noticia no encontrada -->
+    <div *ngIf="!noticia && !isLoading && !error" class="max-w-6xl mx-auto px-6 py-20 text-center">
+      <i class="ri-error-warning-line text-6xl text-red-500 mb-4"></i>
+      <h2 class="text-3xl font-bold mb-4">Noticia no encontrada</h2>
+      <p class="text-gray-400 mb-8">La noticia que buscas no existe o ha sido eliminada.</p>
+      <button (click)="volverANoticias()"
+        class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all">
+        Volver a Noticias
+      </button>
+    </div>
+
   </main>
 </div>

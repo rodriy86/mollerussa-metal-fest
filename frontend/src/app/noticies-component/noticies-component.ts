@@ -10,7 +10,7 @@ interface Noticia {
   colorCategoria: string;
   titulo: string;
   resumenNoticia: string;
-  articuloNoticia: string;
+  detalleNoticia: boolean;
   imagen: string;
   alt: string;
   enlace: string;

@@ -51,7 +51,18 @@ export class LineupComponent implements OnInit {
       },
       error: (error) => {
         console.error('❌ Error HTTP:', error);
-        this.error = 'En este momento no podemos mostrar las bandas';
+
+        // Mensajes específicos según el tipo de error
+        if (error.status === 0) {
+          this.error = '⚠️ Problemas con el servidor. No se puede conectar al backend.';
+        } else if (error.status === 404) {
+          this.error = '📰 La información solicitada no existe o no está disponible (404).';
+        } else if (error.status >= 500) {
+          this.error = '🔧 Error del servidor. Por favor, inténtalo más tarde (500).';
+        } else {
+          this.error = '❌ No se pudo cargar la información. Inténtalo de nuevo.';
+        }
+
         this.bands = [];
         this.isLoading = false;
         this.cdRef.detectChanges();
