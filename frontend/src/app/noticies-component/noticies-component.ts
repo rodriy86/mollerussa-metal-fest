@@ -42,7 +42,7 @@ export class NoticiesComponent implements OnInit {
     this.isLoading = true;
     this.error = '';
 
-    //this.http.get<Noticia[]>('http://localhost:3000/api/noticias').subscribe({
+    //this.http.get<Noticia[]>('http://localhost:3000/api/noticias').subscribe({ ok
       this.http.get<Noticia[]>('/api/noticias').subscribe({
       next: (noticias) => {
         console.log('✅ Noticias cargadas correctamente:', noticias);
