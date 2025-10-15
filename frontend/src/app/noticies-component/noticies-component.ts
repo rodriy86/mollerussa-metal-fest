@@ -2,6 +2,7 @@ import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { configGlobal } from '../configGlobal';
 
 interface Noticia {
   id: number;
@@ -25,7 +26,7 @@ interface Noticia {
   styleUrl: './noticies-component.scss'
 })
 export class NoticiesComponent implements OnInit {
-  
+
   noticias: Noticia[] = [];
   isLoading: boolean = true;
   error: string = '';
@@ -42,13 +43,20 @@ export class NoticiesComponent implements OnInit {
     this.isLoading = true;
     this.error = '';
 
-    //this.http.get<Noticia[]>('http://localhost:3000/api/noticias').subscribe({ ok
-      this.http.get<Noticia[]>('/api/noticias').subscribe({
+    //detectar automaticament l'entorn
+    /*const isDevelopment = window.location.hostname === 'localhost' && window.location.port === '4200';
+    const baseUrl = isDevelopment ? 'http://localhost:3000' : '';
+    const apiUrl = `${baseUrl}/api/noticias`;*/
+
+    
+    //this.http.get<Noticia[]>(apiUrl).subscribe({
+    this.http.get<Noticia[]>(configGlobal.api.noticias).subscribe({
+
       next: (noticias) => {
         console.log('✅ Noticias cargadas correctamente:', noticias);
         this.noticias = noticias;
         this.isLoading = false;
-        
+
         // Forzar detección de cambios
         this.cdRef.detectChanges();
       },

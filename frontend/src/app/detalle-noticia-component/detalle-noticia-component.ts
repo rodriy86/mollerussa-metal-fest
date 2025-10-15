@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
+import { configGlobal } from '../configGlobal';
 
 interface NoticiaCompleta {
   id: number;
@@ -31,6 +32,7 @@ export class DetalleNoticiaComponent implements OnInit {
   noticia: NoticiaCompleta | null = null;
   isLoading: boolean = true;
   error: string = '';
+  configGlobal = configGlobal;
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -52,17 +54,18 @@ export class DetalleNoticiaComponent implements OnInit {
     console.log("id noticia:", id);
 
     // Cargar desde el backend - SOLO la noticia que el usuario seleccionó
-    this.http.get<NoticiaCompleta>(`http://localhost:3000/api/noticias/${id}/detalle`).subscribe({
+    //this.http.get<NoticiaCompleta>(`api/noticias/${id}/detalle`).subscribe({
+    this.http.get<NoticiaCompleta>(configGlobal.api.detalleNoticia(id)).subscribe({
       next: (noticia) => {
         console.log('✅ Detalle de noticia cargado:', noticia);
         this.noticia = noticia;
         this.isLoading = false;
         this.cdRef.detectChanges();
-        console.log("noticia seleccionada: ",noticia);
+        console.log("noticia seleccionada: ", noticia);
       },
       error: (error: HttpErrorResponse) => {
         console.error('❌ Error cargando detalle de noticia:', error);
-        
+
         if (error.status === 0) {
           this.error = '⚠️ No se puede conectar al servidor.';
         } else if (error.status === 404) {
@@ -70,7 +73,7 @@ export class DetalleNoticiaComponent implements OnInit {
         } else {
           this.error = '❌ No se pudo cargar la noticia. Inténtalo de nuevo.';
         }
-        
+
         this.noticia = null;
         this.isLoading = false;
         this.cdRef.detectChanges();

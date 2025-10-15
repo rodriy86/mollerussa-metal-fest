@@ -2,6 +2,7 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { configGlobal } from '../configGlobal';
 
 interface Band {
   id: number;
@@ -26,9 +27,10 @@ export class LineupComponent implements OnInit {
   bands: Band[] = [];
   isLoading: boolean = true;
   error: string = '';
+  configGlobal=configGlobal;
 
   private http = inject(HttpClient);
-  private cdRef = inject(ChangeDetectorRef); // ← AÑADIR ESTO para detectar em que componente esta al ahcer scroll
+  private cdRef = inject(ChangeDetectorRef); // ← AÑADIR AIXO per detectar en quin component esta al fer scroll
 
   ngOnInit(): void {
     console.log('🔄 Iniciando carga de bandas...');
@@ -38,8 +40,11 @@ export class LineupComponent implements OnInit {
   loadBands(): void {
     this.isLoading = true;
     this.error = '';
+
+
     
-    this.http.get<Band[]>('/api/bands').subscribe({
+    //this.http.get<Band[]>('/api/bands').subscribe({
+      this.http.get<Band[]>(configGlobal.api.bands).subscribe({
       next: (bands) => {
         console.log('✅ Bandas cargadas correctamente:', bands);
         this.bands = bands;
