@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-galeria',
@@ -10,18 +10,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './detalle-galeria-component.html',
 })
 export class DetalleGaleriaComponent {
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
+  // Textos dinámicos
+  festivalNombre = 'Mollerussa Metal Fest';
+  logoUrl = 'assets/icons/mask.png';
+  textoVolver = 'Volver al inicio';
+  tituloGaleria = 'DETALLE GALERÍA';
+  descripcionGaleria = 'Revive los mejores momentos de ediciones anteriores';
+  tituloCarteleras = 'CARTELERAS HISTÓRICAS';
+  descripcionCarteleras = 'Descubre las alineaciones que hicieron historia en el Mollerussa Metal Fest';
+  tituloEstadisticas = 'EVOLUCIÓN DEL FESTIVAL';
+  textoEdiciones = 'Ediciones';
+  textoBandas = 'Bandas totales';
+  textoAsistentes = 'Asistentes totales';
+  textoPaises = 'Países representados';
+  textoBotonVolver = 'Volver al inicio';
 
-  volverAInicio() {
-    this.router.navigate(['/noticias']);
-  }
-  
-  imagenActiva: number | null = null;
-  carteleraActiva: number | null = null;
-
+  // Arrays de datos
   imagenes = [
     {
       url: 'assets/images/foto1.jpg',
@@ -46,6 +50,22 @@ export class DetalleGaleriaComponent {
     {
       url: 'assets/images/foto6.jpg',
       alt: 'Clímax del concierto con pirotecnia'
+    },
+    {
+      url: 'assets/images/siroll.png',
+      alt: ''
+    },
+    {
+      url: 'assets/images/bn.png',
+      alt: ''
+    },
+    {
+      url: 'assets/images/trio.png',
+      alt: ''
+    },
+    {
+      url: 'assets/images/bn2.png',
+      alt: ''
     }
   ];
 
@@ -57,7 +77,8 @@ export class DetalleGaleriaComponent {
       asistencia: 550,
       imagen: 'assets/images/cartelera26.jpg',
       color: 'red',
-      bandas: 8
+      bandas: 8,
+      alt: ''
       //dias: 2
     },
     {
@@ -68,6 +89,7 @@ export class DetalleGaleriaComponent {
       imagen: 'assets/images/cartelera25.jpg',
       color: 'yellow',
       bandas: 5,
+      alt: ''
       //dias: 1
     },
     {
@@ -78,11 +100,16 @@ export class DetalleGaleriaComponent {
       imagen: 'assets/images/cartelera24.png',
       color: 'silver',
       bandas: 5,
+      alt: ''
       //dias: 1
     }
   ];
 
-  // Propiedades calculadas para las estadísticas
+  // Variables de estado
+  imagenActiva: number | null = null;
+  carteleraActiva: number | null = null;
+
+  // Getters para estadísticas
   get totalEdiciones(): number {
     return this.carteleras.length;
   }
@@ -92,70 +119,77 @@ export class DetalleGaleriaComponent {
   }
 
   get totalAsistentes(): string {
-    return '2,220';
-  }
+  const total = this.carteleras.reduce((total, cartelera) => {
+    return total + cartelera.asistencia;
+  }, 0);
+  return total.toLocaleString();
+}
 
   get totalPaises(): number {
-    return 3;
+    return 15; // Puedes calcular esto dinámicamente
   }
 
-  // Métodos para imágenes de galería
-  abrirImagen(index: number) {
+  constructor(private router: Router) {}
+
+  // Métodos para la galería de imágenes
+  abrirImagen(index: number): void {
     this.imagenActiva = index;
     this.carteleraActiva = null;
-    document.body.style.overflow = 'hidden';
   }
 
-  cerrarImagen() {
+  cerrarImagen(): void {
     this.imagenActiva = null;
-    document.body.style.overflow = 'auto';
   }
 
-  imagenSiguiente() {
+  imagenSiguiente(): void {
     if (this.imagenActiva !== null) {
       this.imagenActiva = (this.imagenActiva + 1) % this.imagenes.length;
     }
   }
 
-  imagenAnterior() {
+  imagenAnterior(): void {
     if (this.imagenActiva !== null) {
       this.imagenActiva = (this.imagenActiva - 1 + this.imagenes.length) % this.imagenes.length;
     }
   }
 
-  // Métodos para carteleras
-  abrirCartelera(index: number) {
+  // Métodos para las carteleras
+  abrirCartelera(index: number): void {
     this.carteleraActiva = index;
     this.imagenActiva = null;
-    document.body.style.overflow = 'hidden';
   }
 
-  cerrarCartelera() {
+  cerrarCartelera(): void {
     this.carteleraActiva = null;
-    document.body.style.overflow = 'auto';
   }
 
-  carteleraSiguiente() {
+  carteleraSiguiente(): void {
     if (this.carteleraActiva !== null) {
       this.carteleraActiva = (this.carteleraActiva + 1) % this.carteleras.length;
     }
   }
 
-  carteleraAnterior() {
+  carteleraAnterior(): void {
     if (this.carteleraActiva !== null) {
       this.carteleraActiva = (this.carteleraActiva - 1 + this.carteleras.length) % this.carteleras.length;
     }
   }
 
-  // Método para obtener la clase de color dinámicamente
+  // Método para obtener clases de color dinámicas
   getColorClass(color: string): string {
     const colorClasses: { [key: string]: string } = {
       'red': 'bg-red-600',
+      'blue': 'bg-blue-600',
+      'green': 'bg-green-600',
       'yellow': 'bg-yellow-600',
       'purple': 'bg-purple-600',
-      'blue': 'bg-blue-600',
-      'green': 'bg-green-600'
+      'orange': 'bg-orange-600'
     };
     return colorClasses[color] || 'bg-gray-600';
+  }
+
+  // Método para volver al inicio
+  volverAInicio(): void {
+    this.router.navigate(['/']);
   }
 }

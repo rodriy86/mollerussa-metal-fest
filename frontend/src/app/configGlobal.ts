@@ -37,7 +37,7 @@ class GlobalConfig {
     ubicacion: 'Mollerussa, Lleida',
     redes: {
       facebook: '',
-      instagram: '', 
+      instagram: 'https://www.instagram.com/mollerussametalfest/', 
       twitter: '',
       youtube: ''
     }
@@ -70,9 +70,10 @@ class GlobalConfig {
     ventaInicio: '1 Enero 2026',
     ventaFin: '14 Julio 2026',
     precios: {
-      primeres100: 45,
-      normal: 45,
-      taquilla: 80
+      primeres100: 80,
+      normal: 100,
+      masCaniseta: 110,
+      taquilla: 140
     },
     get ventaActiva(): boolean {
       const hoy = new Date();

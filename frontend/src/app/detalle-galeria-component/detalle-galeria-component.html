@@ -6,21 +6,21 @@
       <div class="flex items-center justify-between max-w-7xl mx-auto">
         <div class="flex items-center space-x-3">
           <div class="w-12 h-12 flex items-center justify-center bg-red-600 rounded-lg">
-            <img src="assets/icons/mask.png" alt="Máscara" class="w-6 h-6 filter brightness-0 invert">
+            <img [src]="logoUrl" alt="Máscara" class="w-6 h-6 filter brightness-0 invert">
           </div>
-          <h1 class="text-2xl font-bold metal-text text-red-500">Mollerussa Metal Fest</h1>
+          <h1 class="text-2xl font-bold metal-text text-red-500">{{ festivalNombre }}</h1>
         </div>
 
         <div class="hidden md:flex items-center space-x-8">
           <button (click)="volverAInicio()"
             class="flex items-center text-gray-300 hover:text-red-500 transition-colors font-medium">
             <i class="ri-arrow-left-line mr-2"></i>
-            Volver al inicio
+            {{ textoVolver }}
           </button>
         </div>
 
         <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex items-center justify-center text-white">
-          <i class="ri-arrow-left-line mr-2"></i>
+          <i class="ri-arrow-left-line"></i>
         </button>
       </div>
     </nav>
@@ -30,18 +30,18 @@
   <main class="pt-20">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-5xl font-black mb-6 metal-text">DETALLE GALERÍA</h2>
+        <h2 class="text-5xl font-black mb-6 metal-text">{{ tituloGaleria }}</h2>
         <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-          Revive los mejores momentos de ediciones anteriores
+          {{ descripcionGaleria }}
         </p>
       </div>
 
       <!-- Nueva Sección: Carteleras Históricas -->
       <section id="Carteleras" class="py-16 mb-16 border-t border-gray-700">
         <div class="text-center mb-12">
-          <h3 class="text-4xl font-black mb-4 metal-text text-red-500">CARTELERAS HISTÓRICAS</h3>
+          <h3 class="text-4xl font-black mb-4 metal-text text-red-500">{{ tituloCarteleras }}</h3>
           <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-            Descubre las alineaciones que hicieron historia en el Mollerussa Metal Fest
+            {{ descripcionCarteleras }}
           </p>
         </div>
 
@@ -55,10 +55,10 @@
                 [class]="'inline-block ' + getColorClass(cartelera.color) + ' text-white px-4 py-1 rounded-full text-sm font-bold mb-3'">
                 {{ cartelera.anyo }}
               </span>
-              <p class="text-gray-400 text-sm">{{ cartelera.bandas }} bandas </p>
+              <p class="text-gray-400 text-sm">{{ cartelera.bandas }} bandas</p>
             </div>
             <div class="bg-gray-800 rounded-lg p-4 mb-4">
-              <img [src]="cartelera.imagen" [alt]="'Cartelera ' + cartelera.anyo"
+              <img [src]="cartelera.imagen" [alt]="cartelera.alt"
                 class="w-full h-64 object-cover rounded-lg">
             </div>
             <div class="space-y-2">
@@ -68,7 +68,7 @@
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-gray-400">Asistencia:</span>
-                <span class="text-green-500 font-semibold">{{ cartelera.asistencia }} Asistentes</span>
+                <span class="text-green-500 font-semibold">{{ cartelera.asistencia }}</span>
               </div>
             </div>
           </div>
@@ -76,23 +76,23 @@
 
         <!-- Estadísticas históricas -->
         <div class="mt-12 bg-gray-800/50 border border-gray-600 rounded-xl p-8">
-          <h4 class="text-2xl font-bold text-center mb-6 text-red-500">EVOLUCIÓN DEL FESTIVAL</h4>
+          <h4 class="text-2xl font-bold text-center mb-6 text-red-500">{{ tituloEstadisticas }}</h4>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="bg-black/30 p-4 rounded-lg">
               <div class="text-3xl font-black text-red-500 mb-2">{{ totalEdiciones }}</div>
-              <div class="text-gray-400 text-sm">Ediciones</div>
+              <div class="text-gray-400 text-sm">{{ textoEdiciones }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
               <div class="text-3xl font-black text-yellow-500 mb-2">{{ totalBandas }}</div>
-              <div class="text-gray-400 text-sm">Bandas totales</div>
+              <div class="text-gray-400 text-sm">{{ textoBandas }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
-              <div class="text-3xl font-black text-green-500 mb-2">{{ totalAsistentes }} fans</div>
-              <div class="text-gray-400 text-sm">Asistentes totales</div>
+              <div class="text-3xl font-black text-green-500 mb-2">{{ totalAsistentes }}</div>
+              <div class="text-gray-400 text-sm">{{ textoAsistentes }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
               <div class="text-3xl font-black text-blue-500 mb-2">{{ totalPaises }}</div>
-              <div class="text-gray-400 text-sm">Países representados</div>
+              <div class="text-gray-400 text-sm">{{ textoPaises }}</div>
             </div>
           </div>
         </div>
@@ -117,10 +117,9 @@
       <div class="text-center py-20">
         <button (click)="volverAInicio()"
           class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all">
-          Volver al inicio
+          {{ textoBotonVolver }}
         </button>
       </div>
-
     </div>
   </main>
 
@@ -129,16 +128,12 @@
     class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
     (click)="cerrarImagen()">
 
-    <!-- Contenedor de la imagen -->
     <div class="relative max-w-7xl max-h-[90vh] w-full" (click)="$event.stopPropagation()">
-
-      <!-- Botón cerrar -->
       <button (click)="cerrarImagen()"
         class="absolute -top-4 -right-4 z-10 bg-red-600 hover:bg-red-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg">
         <i class="ri-close-line text-xl"></i>
       </button>
 
-      <!-- Botones navegación -->
       <button *ngIf="imagenes.length > 1" (click)="imagenAnterior()"
         class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all backdrop-blur-sm">
         <i class="ri-arrow-left-s-line text-2xl"></i>
@@ -149,13 +144,11 @@
         <i class="ri-arrow-right-s-line text-2xl"></i>
       </button>
 
-      <!-- Imagen ampliada -->
       <div class="flex justify-center items-center h-full">
         <img [src]="imagenes[imagenActiva].url" [alt]="imagenes[imagenActiva].alt"
           class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl">
       </div>
 
-      <!-- Información de la imagen -->
       <div
         class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white px-6 py-3 rounded-full min-w-[200px] text-center">
         <p class="text-sm font-medium">{{ imagenes[imagenActiva].alt }}</p>
@@ -171,16 +164,12 @@
     class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
     (click)="cerrarCartelera()">
 
-    <!-- Contenedor de la cartelera -->
     <div class="relative max-w-4xl max-h-[90vh] w-full" (click)="$event.stopPropagation()">
-
-      <!-- Botón cerrar -->
       <button (click)="cerrarCartelera()"
         class="absolute -top-4 -right-4 z-10 bg-red-600 hover:bg-red-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-lg">
         <i class="ri-close-line text-xl"></i>
       </button>
 
-      <!-- Botones navegación -->
       <button *ngIf="carteleras.length > 1" (click)="carteleraAnterior()"
         class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all backdrop-blur-sm">
         <i class="ri-arrow-left-s-line text-2xl"></i>
@@ -191,13 +180,11 @@
         <i class="ri-arrow-right-s-line text-2xl"></i>
       </button>
 
-      <!-- Cartelera ampliada -->
       <div class="flex justify-center items-center h-full">
-        <img [src]="carteleras[carteleraActiva].imagen" [alt]="'Cartelera ' + carteleras[carteleraActiva].anyo"
+        <img [src]="carteleras[carteleraActiva].imagen" [alt]="carteleras[carteleraActiva].alt"
           class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl">
       </div>
 
-      <!-- Información de la cartelera -->
       <div
         class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white px-6 py-3 rounded-full min-w-[300px] text-center">
         <p class="text-sm font-medium">Cartelera {{ carteleras[carteleraActiva].anyo }}</p>
