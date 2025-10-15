@@ -38,8 +38,8 @@ export class LineupComponent implements OnInit {
   loadBands(): void {
     this.isLoading = true;
     this.error = '';
-
-    this.http.get<Band[]>('http://localhost:3000/api/bands').subscribe({
+    
+    this.http.get<Band[]>('/api/bands').subscribe({
       next: (bands) => {
         console.log('✅ Bandas cargadas correctamente:', bands);
         this.bands = bands;
