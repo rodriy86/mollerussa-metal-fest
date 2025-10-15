@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { configGlobal } from '../configGlobal';
 
 @Component({
   selector: 'app-ubicacion',
@@ -10,7 +11,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrl: './ubicacion.scss'
 })
 export class UbicacionComponent {
-  
+  configGlobal=configGlobal;
+
   // URL del mapa del Teatro L'Amistat
   private mapUrlString = "https://www.google.com/maps?q=41.62979,0.89671&z=17&output=embed";
   

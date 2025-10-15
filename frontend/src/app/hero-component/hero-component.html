@@ -1,17 +1,16 @@
 <section id="Inicio" class="dark-bg-image relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-800" style="background-image: url('assets/images/fondoHero.jpg'); background-size: cover; background-position: center;">
-  <!-- Overlay oscuro para mejor contraste -->
   <div class="absolute inset-0 bg-black/50 z-0"></div>
   
-  <div class="relative z-10 w-full px-6 mt-20"> <!-- Añadido mt-20 aquí -->
+  <div class="relative z-10 w-full px-6 mt-20"> 
     <div class="max-w-7xl mx-auto">
       <div class="max-w-3xl">
         <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 metal-text text-white leading-tight">
           MOLLERUSSA<br>
           <span class="text-red-500">METAL FEST</span>
         </h2>
-        <!--<p class="text-xl md:text-2xl text-gray-300 mb-4 font-medium">
-          15 Julio 2026
-        </p>-->
+        <p class="text-xl md:text-2xl text-gray-300 mb-4 font-medium">
+          {{configGlobal.festival.fechaInicio}}
+        </p>
         <p class="text-lg text-gray-400 mb-8 max-w-2xl">
           El festival de metal más épico de Catalunya que te regalara una experiencia inolvidable en el corazón de Mollerussa.
         </p>

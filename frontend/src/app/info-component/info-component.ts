@@ -1,6 +1,7 @@
 //import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { configGlobal } from '../configGlobal';
 
 @Component({
   selector: 'app-info',
@@ -10,9 +11,9 @@ import { Component } from '@angular/core';
   styleUrl: './info-component.html',
 })
 export class InfoComponent {
+  configGlobal = configGlobal;
+
   buyTicket(type: string, price: number) {
-    // Aquí tu lógica para comprar entradas
     console.log(`Comprando entrada ${type} por ${price}€`);
-    // Por ejemplo: window.open('https://entradium.com/mmf2026', '_blank');
   }
 }

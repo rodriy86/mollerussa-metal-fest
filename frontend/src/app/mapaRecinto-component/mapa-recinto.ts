@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { configGlobal } from '../configGlobal';
 
 @Component({
   selector: 'app-mapa-recinto',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './mapa-recinto.scss'
 })
 export class MapaRecinto {
+  configGlobal=configGlobal;
 
 }

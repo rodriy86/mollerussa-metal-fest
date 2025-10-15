@@ -54,7 +54,6 @@ export class DetalleNoticiaComponent implements OnInit {
     console.log("id noticia:", id);
 
     // Cargar desde el backend - SOLO la noticia que el usuario seleccionó
-    //this.http.get<NoticiaCompleta>(`api/noticias/${id}/detalle`).subscribe({
     this.http.get<NoticiaCompleta>(configGlobal.api.detalleNoticia(id)).subscribe({
       next: (noticia) => {
         console.log('✅ Detalle de noticia cargado:', noticia);

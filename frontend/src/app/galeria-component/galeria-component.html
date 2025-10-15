@@ -1,4 +1,4 @@
-<section id="Galeria" class="py-20 bg-gray-900">
+<section id="Galeria" class="py-20  bg-gray-900">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
       <h2 class="text-5xl font-black mb-6 metal-text">GALERÍA</h2>
@@ -6,16 +6,37 @@
         Revive los mejores momentos de ediciones anteriores
       </p>
     </div>
-    
-    <!-- Nueva sintaxis de control flow -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (image of galeriaImages; track image.src) {
-        <div class="bg-gray-700 rounded-lg overflow-hidden h-64 card-hover">
-          <img [src]="image.src" 
-               [alt]="image.alt" 
-               class="w-full h-full object-cover object-top">
-        </div>
-      }
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-64 card-hover">
+        <img src="https://readdy.ai/api/search-image?query=metal%20festival%20crowd%20with%20hands%20raised%2C%20concert%20atmosphere%2C%20stage%20lights%2C%20energetic%20audience%2C%20metal%20concert%20photography%2C%20festival%20crowd%20from%20behind%20stage%20view%2C%20dramatic%20lighting&amp;width=400&amp;height=300&amp;seq=gallery001&amp;orientation=landscape" 
+             alt="Público del festival" 
+             class="w-full h-full object-cover object-top">
+      </div>
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-64 card-hover">
+        <img src="https://readdy.ai/api/search-image?query=metal%20band%20performing%20on%20main%20stage%2C%20powerful%20concert%20lighting%2C%20smoke%20effects%2C%20electric%20guitars%2C%20festival%20main%20stage%20setup%2C%20professional%20concert%20photography%2C%20dramatic%20stage%20presence&amp;width=400&amp;height=300&amp;seq=gallery002&amp;orientation=landscape" 
+             alt="Escenario principal" 
+             class="w-full h-full object-cover object-top">
+      </div>
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-64 card-hover">
+        <img src="https://readdy.ai/api/search-image?query=metal%20festival%20food%20area%2C%20food%20trucks%20at%20night%2C%20festival%20atmosphere%2C%20people%20eating%20and%20socializing%2C%20outdoor%20festival%20dining%20area%2C%20evening%20festival%20scene&amp;width=400&amp;height=300&amp;seq=gallery003&amp;orientation=landscape" 
+             alt="Zona de food trucks" 
+             class="w-full h-full object-cover object-top">
+      </div>
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-64 card-hover">
+        <img src="https://readdy.ai/api/search-image?query=metal%20festival%20merchandise%20stand%2C%20band%20t-shirts%20and%20posters%2C%20festival%20merchandise%20booth%2C%20metal%20music%20memorabilia%2C%20festival%20shopping%20area%2C%20band%20merchandise%20display&amp;width=400&amp;height=300&amp;seq=gallery004&amp;orientation=landscape" 
+             alt="Merchandising" 
+             class="w-full h-full object-cover object-top">
+      </div>
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-64 card-hover">
+        <img src="https://readdy.ai/api/search-image?query=metal%20festival%20camping%20area%20at%20night%2C%20tents%20and%20campers%2C%20festival%20camping%20atmosphere%2C%20people%20around%20campfires%2C%20outdoor%20festival%20camping%20experience%2C%20evening%20camping%20scene&amp;width=400&amp;height=300&amp;seq=gallery005&amp;orientation=landscape" 
+             alt="Zona de camping" 
+             class="w-full h-full object-cover object-top">
+      </div>
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-64 card-hover">
+        <img src="https://readdy.ai/api/search-image?query=metal%20festival%20aerial%20view%2C%20festival%20grounds%20from%20above%2C%20main%20stage%20and%20crowd%2C%20festival%20layout%20overview%2C%20aerial%20festival%20photography%2C%20large%20outdoor%20music%20festival&amp;width=400&amp;height=300&amp;seq=gallery006&amp;orientation=landscape" 
+             alt="Vista aérea del festival" 
+             class="w-full h-full object-cover object-top">
+      </div>
     </div>
   </div>
 </section>

@@ -4,36 +4,37 @@ class GlobalConfig {
   private readonly isDev = window.location.hostname === 'localhost' && window.location.port === '4200';
   private readonly baseUrl = this.isDev ? 'http://localhost:3000' : '';
 
-  // ==================== FECHAS DEL FESTIVAL ====================
-  readonly fechas = {
-    año: 2026,
-    fechaInicio: '15 Julio 2026',
+  // ==================== INFORMACIÓN DEL FESTIVAL ====================
+  readonly festival = {
+    nombre1: 'Mollerussa',
+    nombre2: 'Metalfest',
+    nombreCompleto: 'Mollerussa Metal Fest ',
+    eslogan: 'El festival de metal de referencia en Lleida',
+    ubicacion: {
+      nombreRecinto: 'Teatre La Amistat',
+      ciudad: 'Mollerussa, Lleida',
+      direccion: "Plaça 1 d'octubre",
+      googleMaps: 'https://maps.google.com/?q=Mollerussa+Lleida',
+      CP: '25230'
+    },
+    capacidad: '550',
+    edicion: '3ª Edición',
+    anyo: 2026,
+    fechaInicio: '25 Julio 2026',
     fechaFin: '',
-    dias: ['', ''],
+    dias: ['Sabado', '-'],
     horario: {
       apertura: '18:00h',
       cierre: '00:00h'
-    }
-  };
-
-  // ==================== INFORMACIÓN DEL FESTIVAL ====================
-  readonly festival = {
-    nombre: 'Mollerussa Metal Fest',
-    nombreCompleto: 'Mollerussa Metal Fest 2026',
-    eslogan: 'El festival de metal de referencia en Lleida',
-    ubicacion: {
-      nombre: 'La Amistat',
-      direccion: 'Mollerussa, Lleida',
-      googleMaps: 'https://maps.google.com/?q=Mollerussa+Lleida'
     },
-    capacidad: '5,000 asistentes',
-    edicion: '3ª Edición'
+    diaEntradasVenta: 'Próximamente'
   };
 
   // ==================== CONTACTOS Y REDES SOCIALES ====================
   readonly contactos = {
     email: 'info@mollerussametalfest.com',
     telefono: '+34 123 456 789',
+    ubicacion: 'Mollerussa, Lleida',
     redes: {
       facebook: '',
       instagram: '', 

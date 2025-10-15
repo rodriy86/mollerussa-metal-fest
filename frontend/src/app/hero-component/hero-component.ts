@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { configGlobal } from '../configGlobal';
 
 @Component({
   selector: 'app-hero',
@@ -8,7 +9,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './hero-component.html',
   styleUrl: './hero-component.scss'
 })
-export class HeroComponent  {
+export class HeroComponent {
+  configGlobal = configGlobal;
+
   scrollTo(sectionId: string) {
     const element = document.getElementById(sectionId);
     if (element) {

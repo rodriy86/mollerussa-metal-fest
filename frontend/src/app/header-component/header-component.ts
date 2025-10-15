@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; //per canviar de pagina a una altra
+import { configGlobal } from '../configGlobal';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,8 @@ import { RouterModule } from '@angular/router'; //per canviar de pagina a una al
   styleUrl: './header-component.scss'
 })
 export class HeaderComponent {
+  configGlobal=configGlobal;
+
   scrollTo(sectionId: string) {
     const element = document.getElementById(sectionId);
     if (element) {

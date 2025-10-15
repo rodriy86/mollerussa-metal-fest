@@ -30,6 +30,7 @@ export class NoticiesComponent implements OnInit {
   noticias: Noticia[] = [];
   isLoading: boolean = true;
   error: string = '';
+  configGlobal=configGlobal;
 
   private http = inject(HttpClient);
   private cdRef = inject(ChangeDetectorRef);
@@ -42,6 +43,7 @@ export class NoticiesComponent implements OnInit {
   loadNoticias(): void {
     this.isLoading = true;
     this.error = '';
+    
 
     //detectar automaticament l'entorn
     /*const isDevelopment = window.location.hostname === 'localhost' && window.location.port === '4200';
@@ -63,7 +65,7 @@ export class NoticiesComponent implements OnInit {
       error: (error) => {
         console.error('❌ Error cargando noticias:', error);
         this.error = 'En este momento no podemos mostrar las noticias';
-        this.noticias = []; // Vaciar array
+        this.noticias = [];
         this.isLoading = false;
         this.cdRef.detectChanges();
       }
