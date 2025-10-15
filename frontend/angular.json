@@ -17,7 +17,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/mmf-web",
+            "outputPath": "dist/mmf-web/browser",  // ← AÑADIR /browser
+            "index": "src/index.html",             // ← AÑADIR esta línea
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -25,12 +26,15 @@
               {
                 "glob": "**/*",
                 "input": "public" 
-              }
+              },
+              "src/favicon.ico"                   // ← AÑADIR favicon explícito
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "outputMode": "static"
+            "outputMode": "static",
+            "baseHref": "/",                      // ← AÑADIR baseHref
+            "deployUrl": "/"                      // ← AÑADIR deployUrl
           },
           "configurations": {
             "production": {
@@ -46,12 +50,15 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "outputHashing": "none"
             }
           },
           "defaultConfiguration": "production"
