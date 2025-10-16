@@ -122,16 +122,16 @@
         </a>
       </div>-->
       <div class="border border-red-600/30 rounded-lg p-6 mt-8 glow-effect">
-  <h3 class="text-xl font-bold text-red-500 mb-4">📸 Acreditación Prensa & Influencers</h3>
-  <p class="text-gray-300 mb-4">Si eres medio de comunicación o influencer, solicita tu acreditación especial para cobertura del evento.</p>
-  
-  <a 
-    [routerLink]="['/form-acreditacio']"
-    class="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:scale-105"
-  >
-    Solicitar Acreditación
-  </a>
-</div>
+        <h3 class="text-xl font-bold text-red-500 mb-4">📸 Acreditación Prensa & Influencers</h3>
+        <p class="text-gray-300 mb-4">Si eres medio de comunicación o influencer, solicita tu acreditación especial para
+          cobertura del evento.</p>
+
+        <button (click)="navegarAFormulario()" [disabled]="!configGlobal.tickets.habilitar"
+          class="bg-red-600 hover:bg-red-700 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed text-white px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:hover:bg-gray-600">
+
+          {{ configGlobal.tickets.habilitar ? 'Solicitar Acreditación' : 'Acreditación No Disponible' }}
+        </button>
+      </div>
       <div class="text-center">
         <p class="text-sm text-gray-500 mb-4">
           Entradas gestionadas por <strong>Entradium</strong> - Pago seguro garantizado

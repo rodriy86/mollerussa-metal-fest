@@ -36,7 +36,7 @@ export class NoticiesComponent implements OnInit {
   private cdRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
-    console.log('🔄 Iniciando carga de noticias...');
+    //console.log('🔄 Iniciando carga de noticias...');
     this.loadNoticias();
   }
 
@@ -55,7 +55,7 @@ export class NoticiesComponent implements OnInit {
     this.http.get<Noticia[]>(configGlobal.api.noticias).subscribe({
 
       next: (noticias) => {
-        console.log('✅ Noticias cargadas correctamente:', noticias);
+        //console.log('✅ Noticias cargadas correctamente:', noticias);
         this.noticias = noticias;
         this.isLoading = false;
 
@@ -63,7 +63,7 @@ export class NoticiesComponent implements OnInit {
         this.cdRef.detectChanges();
       },
       error: (error) => {
-        console.error('❌ Error cargando noticias:', error);
+        //console.error('❌ Error cargando noticias:', error);
         this.error = 'En este momento no podemos mostrar las noticias';
         this.noticias = [];
         this.isLoading = false;

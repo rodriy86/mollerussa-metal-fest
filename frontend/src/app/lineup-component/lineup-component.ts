@@ -30,10 +30,10 @@ export class LineupComponent implements OnInit {
   configGlobal=configGlobal;
 
   private http = inject(HttpClient);
-  private cdRef = inject(ChangeDetectorRef); // ← AÑADIR AIXO per detectar en quin component esta al fer scroll
+  private cdRef = inject(ChangeDetectorRef); 
 
   ngOnInit(): void {
-    console.log('🔄 Iniciando carga de bandas...');
+    //console.log('🔄 Iniciando carga de bandas...');
     this.loadBands();
   }
 
@@ -46,16 +46,16 @@ export class LineupComponent implements OnInit {
     //this.http.get<Band[]>('/api/bands').subscribe({
       this.http.get<Band[]>(configGlobal.api.bands).subscribe({
       next: (bands) => {
-        console.log('✅ Bandas cargadas correctamente:', bands);
+        //console.log('✅ Bandas cargadas correctamente:', bands);
         this.bands = bands;
         this.isLoading = false;
         
         // FORZAR DETECCIÓN DE CAMBIOS
         this.cdRef.detectChanges(); //<- esta linea es calbe para la detecion del componente que visualiza el usuario al hacer scroll
-        console.log('🎯 Change detection forzado');
+        //console.log('🎯 Change detection forzado');
       },
       error: (error) => {
-        console.error('❌ Error HTTP:', error);
+        //console.error('❌ Error HTTP:', error);
 
         // Mensajes específicos según el tipo de error
         if (error.status === 0) {

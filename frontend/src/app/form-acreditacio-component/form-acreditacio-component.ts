@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { configGlobal } from '../configGlobal';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-acreditacio',
@@ -44,16 +45,51 @@ export class FormAcreditacioComponent {
     aceptoTerminos: false,
     aceptoPoliticaPrivacidad: false
   };
-
   formSubmitted = false;
   showPoliticaPrivacidad = false;
+  enviando = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
+
   ngOnInit() {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }
+
+  //enviar correu
+  async onSubmit() {
+    this.formSubmitted = true;
+
+    if (!this.isFormValid()) {
+      alert('Por favor, completa todos los campos obligatorios correctamente.');
+      return;
+    }
+
+    if (!this.formData.aceptoTerminos || !this.formData.aceptoPoliticaPrivacidad) {
+      alert('Debes aceptar los términos y condiciones y la política de privacidad.');
+      return;
+    }
+
+    this.enviando = true;
+
+    try {
+      await this.enviarSolicitud();
+      alert('¡Solicitud enviada! Te contactaremos en breve.');
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.error('Error enviando solicitud:', error);
+      alert('Error al enviar la solicitud. Por favor, inténtalo de nuevo.');
+    } finally {
+      this.enviando = false;
+    }
+  }
+
+  async enviarSolicitud() {
+    //return this.http.post(configGlobal.api.noticias, this.formData).toPromise();
+    return this.http.post('http://localhost:3000/api/acreditacion', this.formData).toPromise();
+  }//fi enviar correu
+
   // Método para volver al inicio
   volverAInicio(): void {
     this.router.navigate(['/']);
@@ -114,7 +150,7 @@ export class FormAcreditacioComponent {
       }
     }*/
 
-  onSubmit() {
+  /*onSubmit() {
     this.formSubmitted = true;
 
     // Validar todos los campos obligatorios
@@ -132,7 +168,7 @@ export class FormAcreditacioComponent {
     alert('¡Solicitud enviada! Te contactaremos en breve.');
 
     this.router.navigate(['/']);
-  }
+  }*/
 
   isFormValid(): boolean {
     return (

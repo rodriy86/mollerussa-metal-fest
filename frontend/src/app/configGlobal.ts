@@ -70,6 +70,7 @@ class GlobalConfig {
   readonly tickets = {
     ventaInicio: 'Próximamente',
     ventaFin: '-',
+    habilitar: true,
     precios: {
       primeres100: 80,
       normal: 100,

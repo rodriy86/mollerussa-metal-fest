@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { configGlobal } from '../configGlobal';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 //import { FormAcreditacioComponent } from '../form-acreditacio-component/form-acreditacio-component';
 
 
@@ -15,9 +16,13 @@ import { RouterModule } from '@angular/router';
 })
 export class InfoComponent {
   configGlobal = configGlobal;
-
+  
+  constructor(private router: Router) {}
   buyTicket(type: string, price: number) {
     console.log(`Comprando entrada ${type} por ${price}€`);
+  }
+  navegarAFormulario() {
+    this.router.navigate(['/form-acreditacio']);
   }
 /*
   openPrensaModal() {
