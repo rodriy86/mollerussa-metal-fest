@@ -1,0 +1,445 @@
+<!-- Página completa en lugar de modal -->
+<section class="min-h-screen bg-gray-900 py-12">
+    <div class="max-w-4xl mx-auto px-6">
+        <!-- Botón volver -->
+        <div class="mb-8">
+            <button (click)="volverAlInicio()"
+                class="flex items-center text-red-500 hover:text-red-400 font-medium transition-colors">
+                <i class="ri-arrow-left-line mr-2"></i>
+                Volver al inicio
+            </button>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black metal-text mb-4">🎤 ACREDITACIÓN PRENSA & INFLUENCERS</h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                Los campos marcados con * son obligatorios
+            </p>
+        </div>
+
+        <!-- Formulario -->
+        <div class="bg-black/50 border-2 border-red-600 rounded-lg p-8 glow-effect">
+            <form (ngSubmit)="onSubmit()" class="space-y-8">
+
+                <!-- Tipo de Acreditación -->
+                <div>
+                    <label class="block text-white font-bold mb-4 text-xl">Tipo de Acreditación *</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label
+                            class="flex items-center p-6 border-2 border-gray-600 rounded-lg cursor-pointer hover:border-red-500 transition-all duration-200 bg-gray-800/50"
+                            [class.border-red-500]="isFieldInvalid('tipo')">
+                            <input type="radio" name="tipo" value="prensa" [(ngModel)]="formData.tipo"
+                                class="mr-4 text-red-600 focus:ring-red-500 transform scale-125" required>
+                            <div>
+                                <div class="font-bold text-white text-lg">📰 Medio de Comunicación</div>
+                                <div class="text-gray-400 mt-1">Prensa, radio, TV, medios digitales</div>
+                            </div>
+                        </label>
+                        <label
+                            class="flex items-center p-6 border-2 border-gray-600 rounded-lg cursor-pointer hover:border-red-500 transition-all duration-200 bg-gray-800/50"
+                            [class.border-red-500]="isFieldInvalid('tipo')">
+                            <input type="radio" name="tipo" value="influencer" [(ngModel)]="formData.tipo"
+                                class="mr-4 text-red-600 focus:ring-red-500 transform scale-125" required>
+                            <div>
+                                <div class="font-bold text-white text-lg">🌟 Influencer/Creador</div>
+                                <div class="text-gray-400 mt-1">Redes sociales, contenido digital</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div *ngIf="isFieldInvalid('tipo')" class="text-red-400 text-sm mt-2 flex items-center">
+                        <i class="ri-error-warning-line mr-1"></i>
+                        Este campo es obligatorio
+                    </div>
+                </div>
+
+                <!-- Información Personal -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-white font-bold mb-3">Nombre completo *</label>
+                        <input type="text" [(ngModel)]="formData.nombre" name="nombre"
+                            class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                            [class.border-red-500]="isFieldInvalid('nombre')" required>
+                        <div *ngIf="isFieldInvalid('nombre')" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-white font-bold mb-3">Email *</label>
+                        <input type="email" [(ngModel)]="formData.email" name="email"
+                            class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                            [class.border-red-500]="isEmailInvalid()" required>
+                        <div *ngIf="isEmailInvalid()" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            {{ formData.email === '' ? 'Este campo es obligatorio' : 'Email no válido' }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-white font-bold mb-3">Teléfono *</label>
+                        <input type="tel" [(ngModel)]="formData.telefono" name="telefono" placeholder="+34 123 456 789"
+                            class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                            [class.border-red-500]="isTelefonoInvalid()" required>
+                        <div *ngIf="isTelefonoInvalid()" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            {{ formData.telefono === '' ? 'Este campo es obligatorio' : 'Teléfono no válido' }}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-white font-bold mb-3">Documento de Identidad *</label>
+                        <input type="text" [(ngModel)]="formData.documentoIdentidad" name="documentoIdentidad"
+                            placeholder="DNI, NIE, Pasaporte..."
+                            class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                            [class.border-red-500]="isFieldInvalid('documentoIdentidad')" required>
+                        <div *ngIf="isFieldInvalid('documentoIdentidad')"
+                            class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-white font-bold mb-3">Ciudad o País de Residencia</label>
+                        <input type="text" [(ngModel)]="formData.ciudadResidencia" name="ciudadResidencia"
+                            placeholder="Ej: Madrid, España"
+                            class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                        <div class="text-gray-400 text-sm mt-1">Opcional - Para acreditaciones internacionales</div>
+                    </div>
+                    <div>
+                        <label class="block text-white font-bold mb-3">Redes Sociales</label>
+                        <input type="text" [(ngModel)]="formData.redesSociales" name="redesSociales"
+                            placeholder="@usuario (Instagram, Twitter, TikTok...)"
+                            class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                        <div class="text-gray-400 text-sm mt-1">Opcional</div>
+                    </div>
+                </div>
+
+                <!-- Campos específicos -->
+                <div *ngIf="formData.tipo === 'prensa'">
+                    <label class="block text-white font-bold mb-3">Medio de Comunicación *</label>
+                    <input type="text" [(ngModel)]="formData.medio" name="medio"
+                        placeholder="Nombre del medio, programa, sección..."
+                        class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                        [class.border-red-500]="isFieldInvalid('medio')" required>
+                    <div *ngIf="isFieldInvalid('medio')" class="text-red-400 text-sm mt-1 flex items-center">
+                        <i class="ri-error-warning-line mr-1"></i>
+                        Este campo es obligatorio para medios de comunicación
+                    </div>
+                </div>
+
+                <div *ngIf="formData.tipo === 'influencer'">
+                    <label class="block text-white font-bold mb-3">Plataformas y Seguidores *</label>
+                    <textarea [(ngModel)]="formData.plataformas" name="plataformas"
+                        placeholder="Ej: Instagram: @usuario (50k seguidores), TikTok: @usuario (30k), YouTube: @canal (20k)..."
+                        rows="3"
+                        class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                        [class.border-red-500]="isFieldInvalid('plataformas')" required></textarea>
+                    <div *ngIf="isFieldInvalid('plataformas')" class="text-red-400 text-sm mt-1 flex items-center">
+                        <i class="ri-error-warning-line mr-1"></i>
+                        Este campo es obligatorio para influencers
+                    </div>
+                </div>
+
+                <!-- Cobertura Propuesta -->
+                <div>
+                    <label class="block text-white font-bold mb-3">Cobertura Propuesta *</label>
+                    <textarea [(ngModel)]="formData.cobertura" name="cobertura"
+                        placeholder="Describe cómo planeas cubrir el festival, tipo de contenido (artículos, fotos, videos, stories), alcance esperado, público objetivo..."
+                        rows="5"
+                        class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"
+                        [class.border-red-500]="isFieldInvalid('cobertura')" required></textarea>
+                    <div *ngIf="isFieldInvalid('cobertura')" class="text-red-400 text-sm mt-1 flex items-center">
+                        <i class="ri-error-warning-line mr-1"></i>
+                        Este campo es obligatorio
+                    </div>
+                </div>
+
+                <!-- Necesidades Especiales -->
+                <div>
+                    <label class="block text-white font-bold mb-3">Necesidades Especiales</label>
+                    <textarea [(ngModel)]="formData.necesidadesEspeciales" name="necesidadesEspeciales"
+                        placeholder="Accesibilidad, acompañantes, equipo técnico, requisitos especiales..." rows="3"
+                        class="w-full bg-gray-800 border-2 border-gray-600 rounded-lg px-4 py-4 text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none transition-all"></textarea>
+                    <div class="text-gray-400 text-sm mt-1">Opcional</div>
+                </div>
+
+                <!-- Días de Asistencia -->
+                <!--<div>
+          <label class="block text-white font-bold mb-4 text-xl">Días que planeas asistir *</label>
+          <div class="flex flex-wrap gap-4">
+            <label *ngFor="let dia of diasFestival" 
+                   class="flex items-center bg-gray-800/50 px-6 py-3 rounded-lg border-2 border-gray-600 hover:border-red-500 transition-all"
+                   [class.border-red-500]="areDiasInvalid()">
+              <input 
+                type="checkbox" 
+                [value]="dia"
+                (change)="toggleDia(dia)"
+                class="mr-3 text-red-600 focus:ring-red-500 transform scale-125"
+              >
+              <span class="text-white font-medium">{{dia}}</span>
+            </label>
+          </div>
+          <div *ngIf="areDiasInvalid()" class="text-red-400 text-sm mt-2 flex items-center">
+            <i class="ri-error-warning-line mr-1"></i>
+            Debes seleccionar al menos un día
+          </div>
+        </div>-->
+
+                <!-- Avisos Legales -->
+                <div class="space-y-4">
+                    <!-- Términos y Condiciones -->
+                    <div class="bg-gray-800/50 border-2 border-gray-600 rounded-lg p-6"
+                        [class.border-red-500]="formSubmitted && !formData.aceptoTerminos">
+                        <label class="flex items-start">
+                            <input type="checkbox" [(ngModel)]="formData.aceptoTerminos" name="aceptoTerminos"
+                                class="mr-4 mt-1 text-red-600 focus:ring-red-500 transform scale-125" required>
+                            <span class="text-gray-300 text-sm leading-relaxed">
+                                <strong>Acepto los términos y condiciones.</strong> Entiendo que esta solicitud no
+                                garantiza la acreditación y será evaluada por el equipo organizador. Me comprometo a
+                                utilizar la acreditación únicamente para fines profesionales y a proporcionar la
+                                cobertura prometida. El incumplimiento de estos términos puede resultar en la revocación
+                                de la acreditación. *
+                            </span>
+                        </label>
+                        <div *ngIf="formSubmitted && !formData.aceptoTerminos"
+                            class="text-red-400 text-sm mt-2 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Debes aceptar los términos y condiciones
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Botones -->
+                    <div class="bg-gray-800/50 border-2 border-gray-600 rounded-lg p-6"
+                        [class.border-red-500]="formSubmitted && !formData.aceptoPoliticaPrivacidad">
+                        <label class="flex items-start">
+                            <input type="checkbox" [(ngModel)]="formData.aceptoPoliticaPrivacidad"
+                                name="aceptoPoliticaPrivacidad"
+                                class="mr-4 mt-1 text-red-600 focus:ring-red-500 transform scale-125" required>
+                            <span class="text-gray-300 text-sm leading-relaxed">
+                                <strong>He leído y acepto la </strong>
+                                <button type="button" (click)="openPoliticaPrivacidad()"
+                                    class="text-red-400 hover:text-red-300 underline font-semibold transition-colors">
+                                    Política de privacidad
+                                </button>
+                                <strong> y consiento el tratamiento de mis datos para gestionar la solicitud de
+                                    acreditación.</strong> *
+                            </span>
+                        </label>
+                        <div *ngIf="formSubmitted && !formData.aceptoPoliticaPrivacidad"
+                            class="text-red-400 text-sm mt-2 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Debes aceptar la política de privacidad
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                        <button type="submit"
+                            class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 rounded-lg transition-all duration-200 text-lg flex items-center justify-center transform hover:scale-105">
+                            <i class="ri-send-plane-line mr-3"></i>
+                            ENVIAR SOLICITUD
+                        </button>
+                        <button type="button" (click)="volverAlInicio()"
+                            class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-bold py-5 px-8 rounded-lg transition-all duration-200 text-lg">
+                            <i class="ri-arrow-left-line mr-2"></i>
+                            Volver al Inicio
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Modal de Política de Privacidad -->
+    <div *ngIf="showPoliticaPrivacidad"
+        class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-gray-900 border-2 border-red-600 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <!-- Header -->
+            <div class="bg-red-600 p-6 sticky top-0 z-10">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-black text-white">🔒 POLÍTICA DE PRIVACIDAD</h2>
+                    <button (click)="closePoliticaPrivacidad()"
+                        class="text-white hover:text-gray-200 text-2xl transition-colors">
+                        &times;
+                    </button>
+                </div>
+                <p class="text-red-100 mt-2">Acreditación de Prensa e Influencers</p>
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-8 space-y-8">
+                <!-- 1. Identidad del Responsable -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">1. Identidad del Responsable</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6 space-y-3">
+                        <p class="text-gray-300"><strong>Responsable del tratamiento:</strong> [Nombre de la entidad u
+                            organizador del evento]</p>
+                        <p class="text-gray-300"><strong>NIF/CIF:</strong> [Número de identificación fiscal]</p>
+                        <p class="text-gray-300"><strong>Dirección:</strong> [Dirección completa]</p>
+                        <p class="text-gray-300"><strong>Correo electrónico de contacto:</strong>
+                            [correo&#64;dominio.com]</p>
+                        <p class="text-gray-300"><strong>Sitio web:</strong> [www.tuevento.com]</p>
+                    </div>
+                </section>
+
+                <!-- 2. Finalidad del tratamiento de datos -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">2. Finalidad del tratamiento de datos</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6">
+                        <p class="text-gray-300 mb-4">Los datos personales recabados a través del formulario de
+                            acreditación se tratarán con las siguientes finalidades:</p>
+                        <ul class="text-gray-300 space-y-2 list-disc list-inside">
+                            <li>Gestionar las solicitudes de acreditación de prensa e influencers para el evento
+                                <strong>[nombre del evento]</strong>.
+                            </li>
+                            <li>Verificar la información facilitada y contactar con el solicitante para confirmar su
+                                acreditación.</li>
+                            <li>Facilitar información relacionada con el evento, incluyendo horarios, normas de acceso y
+                                actividades especiales.</li>
+                            <li>Verificar la identidad del solicitante mediante su número de documento (DNI, NIE o
+                                pasaporte) y garantizar la seguridad y control de acceso al recinto del evento.</li>
+                        </ul>
+                        <p class="text-gray-300 mt-4"><strong>No se tomarán decisiones automatizadas ni se elaborarán
+                                perfiles con los datos recogidos.</strong></p>
+                    </div>
+                </section>
+
+                <!-- 3. Legitimación del tratamiento -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">3. Legitimación del tratamiento</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6">
+                        <p class="text-gray-300">La base legal para el tratamiento de los datos es:</p>
+                        <ul class="text-gray-300 space-y-2 list-disc list-inside mt-2">
+                            <li>El <strong>consentimiento del interesado</strong>, otorgado al enviar el formulario.
+                            </li>
+                            <li>El <strong>interés legítimo</strong> del organizador en garantizar la seguridad y la
+                                verificación de identidad de las personas acreditadas mediante su documento
+                                identificativo.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 4. Conservación de los datos -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">4. Conservación de los datos</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6">
+                        <p class="text-gray-300">
+                            Los datos personales se conservarán únicamente durante el tiempo necesario para tramitar las
+                            acreditaciones y gestionar el evento.
+                            Finalizado el evento, los datos —incluido el número de documento de identidad— serán
+                            suprimidos o anonimizados,
+                            salvo aquellos que deban conservarse por obligación legal o para atender posibles
+                            reclamaciones.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 5. Destinatarios de los datos -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">5. Destinatarios de los datos</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6">
+                        <p class="text-gray-300 mb-4">Los datos no se comunicarán a terceros, salvo en los siguientes
+                            casos:</p>
+                        <ul class="text-gray-300 space-y-2 list-disc list-inside">
+                            <li>Cuando sea necesario para la correcta organización del evento (por ejemplo, empresas de
+                                seguridad, personal de acreditación o proveedores técnicos).</li>
+                            <li>Por obligación legal o requerimiento de una autoridad pública.</li>
+                        </ul>
+                        <p class="text-gray-300 mt-4"><strong>En ningún caso se realizarán transferencias
+                                internacionales de datos sin las garantías adecuadas establecidas por la normativa
+                                vigente.</strong></p>
+                    </div>
+                </section>
+
+                <!-- 6. Derechos de los interesados -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">6. Derechos de los interesados</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6">
+                        <p class="text-gray-300 mb-4">Puedes ejercer tus derechos de:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                            <div class="flex items-center text-gray-300">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Acceso: conocer qué datos tratamos sobre ti.</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Rectificación: solicitar la corrección de datos inexactos.</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Supresión: pedir la eliminación de tus datos cuando ya no sean necesarios.</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Limitación: solicitar que no se traten temporalmente tus datos.</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Oposición: oponerte al tratamiento por motivos legítimos.</span>
+                            </div>
+                            <div class="flex items-center text-gray-300">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Portabilidad: recibir tus datos en formato electrónico y transferirlos a otro
+                                    responsable.</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-2">
+                            Para ejercer estos derechos, envía una solicitud escrita junto con un documento acreditativo
+                            de tu identidad a:
+                        </p>
+                        <p class="text-red-400 font-semibold mb-4">📩 [correo&#64;dominio.com]</p>
+                        <p class="text-gray-300">
+                            También puedes presentar una reclamación ante la Agencia Española de Protección de Datos
+                            (AEPD) si consideras que el tratamiento de tus datos no se ajusta a la normativa:
+                        </p>
+                        <p class="text-red-400 font-semibold">🌐 www.aepd.es</p>
+                    </div>
+                </section>
+
+                <!-- 7. Medidas de seguridad -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">7. Medidas de seguridad</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6">
+                        <p class="text-gray-300">
+                            El responsable aplica medidas técnicas y organizativas adecuadas para garantizar la
+                            confidencialidad, integridad y disponibilidad de los datos personales,
+                            evitando su alteración, pérdida, tratamiento o acceso no autorizado.
+                        </p>
+                        <p class="text-gray-300 mt-3">
+                            En particular, se establecen controles de acceso restringido y protocolos de eliminación
+                            segura de la información una vez cumplida su finalidad.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 8. Modificaciones de esta política -->
+                <section>
+                    <h3 class="text-xl font-bold text-red-500 mb-4">8. Modificaciones de esta política</h3>
+                    <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6">
+                        <p class="text-gray-300">
+                            El responsable se reserva el derecho de modificar la presente Política de Privacidad para
+                            adaptarla a novedades legislativas o cambios en la gestión del evento.
+                            La versión vigente estará siempre disponible en esta misma página.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Botón de cierre -->
+                <div class="flex justify-center pt-6">
+                    <button (click)="closePoliticaPrivacidad()"
+                        class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-200">
+                        Cerrar Política de Privacidad
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
