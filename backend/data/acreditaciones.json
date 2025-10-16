@@ -52,5 +52,41 @@
     "dias": [],
     "fecha": "2025-10-16T22:17:12.045Z",
     "id": 1760653032045
+  },
+  {
+    "tipo": "influencer",
+    "nombre": "jordi",
+    "email": "rodriy86@gmail.com",
+    "telefono": "+34609122792",
+    "documentoIdentidad": "dni",
+    "ciudadResidencia": "El Palau De Anglesola",
+    "redesSociales": "usuari_a",
+    "medio": "",
+    "plataformas": "qwe",
+    "cobertura": "qwe",
+    "necesidadesEspeciales": "qwe",
+    "aceptoTerminos": true,
+    "aceptoPoliticaPrivacidad": true,
+    "dias": [],
+    "fecha": "2025-10-16T22:31:07.590Z",
+    "id": 1760653867590
+  },
+  {
+    "tipo": "influencer",
+    "nombre": "jordi",
+    "email": "rodriy86@gmail.com",
+    "telefono": "+34609122792",
+    "documentoIdentidad": "dni",
+    "ciudadResidencia": "El Palau De Anglesola",
+    "redesSociales": "auronplay",
+    "medio": "",
+    "plataformas": "asd",
+    "cobertura": "asd",
+    "necesidadesEspeciales": "asd",
+    "aceptoTerminos": true,
+    "aceptoPoliticaPrivacidad": true,
+    "dias": [],
+    "fecha": "2025-10-16T22:32:13.648Z",
+    "id": 1760653933648
   }
 ]

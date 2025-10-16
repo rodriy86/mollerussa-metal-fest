@@ -66,7 +66,7 @@ const enviarEmailAcreditacion = async (formData) => {
     const mailOptions = {
       from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
       to: 'rodriy86@gmail.com',
-      subject: `🎤 Solicitut d'acreditació - ${formData.tipo} - ${formData.nombre}`,
+      subject: `🔴SOLICITUT D'ACREDITACIÓ - ${formData.tipo} - ${formData.nombre}🔴`,
       html: `
         <!DOCTYPE html>
         <html>
