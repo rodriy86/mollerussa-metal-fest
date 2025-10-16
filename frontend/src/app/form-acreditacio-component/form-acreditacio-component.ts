@@ -24,8 +24,10 @@ import { configGlobal } from '../configGlobal';
 })
 export class FormAcreditacioComponent {
   //diasFestival = ['Viernes', 'Sábado', 'Domingo'];
-  configGlobal=configGlobal;
-  
+  configGlobal = configGlobal;
+  logoUrl = 'assets/icons/mask.png';
+  textoVolver = 'Volver al inicio';
+
   formData = {
     tipo: '',
     nombre: '',
@@ -46,7 +48,16 @@ export class FormAcreditacioComponent {
   formSubmitted = false;
   showPoliticaPrivacidad = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+  ngOnInit() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+  // Método para volver al inicio
+  volverAInicio(): void {
+    this.router.navigate(['/']);
+  }
 
   openPoliticaPrivacidad() {
     this.showPoliticaPrivacidad = true;
@@ -61,23 +72,23 @@ export class FormAcreditacioComponent {
   isFieldInvalid(fieldName: string): boolean {
     const field = this.formData[fieldName as keyof typeof this.formData];
     return this.formSubmitted && (
-      field === '' || 
-      field === null || 
+      field === '' ||
+      field === null ||
       field === undefined ||
       (Array.isArray(field) && field.length === 0)
     );
   }
 
   isEmailInvalid(): boolean {
-    return this.formSubmitted && 
-           (this.formData.email === '' || 
-            !this.isValidEmail(this.formData.email));
+    return this.formSubmitted &&
+      (this.formData.email === '' ||
+        !this.isValidEmail(this.formData.email));
   }
 
   isTelefonoInvalid(): boolean {
-    return this.formSubmitted && 
-           (this.formData.telefono === '' || 
-            !this.isValidTelefono(this.formData.telefono));
+    return this.formSubmitted &&
+      (this.formData.telefono === '' ||
+        !this.isValidTelefono(this.formData.telefono));
   }
 
   isValidEmail(email: string): boolean {
@@ -89,19 +100,19 @@ export class FormAcreditacioComponent {
     const telefonoRegex = /^[+]?[\d\s\-()]{9,}$/;
     return telefonoRegex.test(telefono);
   }
-/*
-  areDiasInvalid(): boolean {
-    return this.formSubmitted && this.formData.dias.length === 0;
-  }
-
-  toggleDia(dia: string) {
-    const index = this.formData.dias.indexOf(dia);
-    if (index > -1) {
-      this.formData.dias.splice(index, 1);
-    } else {
-      this.formData.dias.push(dia);
+  /*
+    areDiasInvalid(): boolean {
+      return this.formSubmitted && this.formData.dias.length === 0;
     }
-  }*/
+  
+    toggleDia(dia: string) {
+      const index = this.formData.dias.indexOf(dia);
+      if (index > -1) {
+        this.formData.dias.splice(index, 1);
+      } else {
+        this.formData.dias.push(dia);
+      }
+    }*/
 
   onSubmit() {
     this.formSubmitted = true;
@@ -119,7 +130,7 @@ export class FormAcreditacioComponent {
 
     console.log('Datos del formulario:', this.formData);
     alert('¡Solicitud enviada! Te contactaremos en breve.');
-    
+
     this.router.navigate(['/']);
   }
 
