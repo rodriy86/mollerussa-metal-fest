@@ -280,13 +280,12 @@
                 <section>
                     <h3 class="text-xl font-bold text-red-500 mb-4">1. Identidad del Responsable</h3>
                     <div class="bg-gray-800/50 border border-gray-600 rounded-lg p-6 space-y-3">
-                        <p class="text-gray-300"><strong>Responsable del tratamiento:</strong> [Nombre de la entidad u
-                            organizador del evento]</p>
-                        <p class="text-gray-300"><strong>NIF/CIF:</strong> [Número de identificación fiscal]</p>
-                        <p class="text-gray-300"><strong>Dirección:</strong> [Dirección completa]</p>
+                        <p class="text-gray-300"><strong>Responsable del tratamiento:</strong> {{configGlobal.festival.nombreCompleto}}</p>
+                        <p class="text-gray-300"><strong>NIF/CIF:</strong> {{configGlobal.festival.NIF}}</p>
+                        <!--<p class="text-gray-300"><strong>Dirección:</strong> [Dirección completa]</p>-->
                         <p class="text-gray-300"><strong>Correo electrónico de contacto:</strong>
-                            [correo&#64;dominio.com]</p>
-                        <p class="text-gray-300"><strong>Sitio web:</strong> [www.tuevento.com]</p>
+                            {{configGlobal.contactos.email}}</p>
+                        <p class="text-gray-300"><strong>Sitio web:</strong> {{configGlobal.contactos.web}}</p>
                     </div>
                 </section>
 

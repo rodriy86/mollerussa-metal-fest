@@ -10,6 +10,7 @@ class GlobalConfig {
     nombre2: 'Metalfest',
     nombreCompleto: 'Mollerussa Metal Fest ',
     eslogan: 'El festival de metal de referencia en Lleida',
+    NIF: "00000000#",
     ubicacion: {
       nombreRecinto: 'Teatre La Amistat',
       ciudad: 'Mollerussa, Lleida',
@@ -26,8 +27,7 @@ class GlobalConfig {
     horario: {
       apertura: '18:00h',
       cierre: '00:00h'
-    },
-    diaEntradasVenta: 'Próximamente'
+    }
   };
 
   // ==================== CONTACTOS Y REDES SOCIALES ====================
@@ -35,6 +35,7 @@ class GlobalConfig {
     email: 'info@mollerussametalfest.com',
     telefono: '+34 123 456 789',
     ubicacion: 'Mollerussa, Lleida',
+    web: 'www.mollerussametalfest.cat',
     redes: {
       facebook: '',
       instagram: 'https://www.instagram.com/mollerussametalfest/', 
@@ -67,8 +68,8 @@ class GlobalConfig {
 
   // ==================== TICKETS Y PRECIOS ====================
   readonly tickets = {
-    ventaInicio: '1 Enero 2026',
-    ventaFin: '14 Julio 2026',
+    ventaInicio: 'Próximamente',
+    ventaFin: '-',
     precios: {
       primeres100: 80,
       normal: 100,
