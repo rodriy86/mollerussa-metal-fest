@@ -45,12 +45,12 @@ const enviarEmailAcreditacion = async (formData) => {
     
     //console.log('🔍 [EMAIL-2] Configurando Gmail...');
     
-    // 🔥 CONFIGURACIÓN CORRECTA PARA GMAIL
+    //CONFIGURACIÓN CORRECTA PARA GMAIL
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rodriy86.maps@gmail.com', // 🔥 Tu email COMPLETO
-        pass: process.env.GMAIL_APP_PASSWORD // 🔥 SOLO el App Password
+        user: 'rodriy86.maps@gmail.com', 
+        pass: process.env.GMAIL_APP_PASSWORD
       }
     });
 
@@ -61,12 +61,12 @@ const enviarEmailAcreditacion = async (formData) => {
     // ... (el resto del código del email se mantiene igual)
     const diasTexto = formData.dias && formData.dias.length > 0 
       ? formData.dias.join(', ') 
-      : 'No especificado';
+      : 'No especificat';
 
     const mailOptions = {
       from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
       to: 'rodriy86@gmail.com',
-      subject: `🎤 Solicitut  d'acreditació - ${formData.tipo} - ${formData.nombre}`,
+      subject: `🎤 Solicitut d'acreditació - ${formData.tipo} - ${formData.nombre}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -83,56 +83,56 @@ const enviarEmailAcreditacion = async (formData) => {
         <body>
           <div class="header">
             <h1>🎸 MOLLERUSSA METAL FEST</h1>
-            <h2>Nueva Solicitud de Acreditación</h2>
+            <h2>Solicitut de Acreditació</h2>
           </div>
           
           <div class="content">
             <div class="section">
-              <h3>📋 Información Personal</h3>
-              <p><span class="label">Tipo:</span> ${formData.tipo === 'prensa' ? '📰 Medio de Comunicación' : '🌟 Influencer/Creador'}</p>
-              <p><span class="label">Nombre:</span> ${formData.nombre}</p>
+              <h3>📋 Informació Personal</h3>
+              <p><span class="label">Tipo:</span> ${formData.tipo === 'prensa' ? '📰 Mitja de Comunicació' : '🌟 Influencer/Creador'}</p>
+              <p><span class="label">Nom:</span> ${formData.nombre}</p>
               <p><span class="label">Email:</span> ${formData.email}</p>
-              <p><span class="label">Teléfono:</span> ${formData.telefono || 'No especificado'}</p>
-              <p><span class="label">Documento:</span> ${formData.documentoIdentidad || 'No especificado'}</p>
-              <p><span class="label">Ciudad/País:</span> ${formData.ciudadResidencia || 'No especificado'}</p>
-              <p><span class="label">Redes Sociales:</span> ${formData.redesSociales || 'No especificado'}</p>
+              <p><span class="label">Teléfon:</span> ${formData.telefono || 'No especificat'}</p>
+              <p><span class="label">Document:</span> ${formData.documentoIdentidad || 'No especificat'}</p>
+              <p><span class="label">Ciudat/País:</span> ${formData.ciudadResidencia || 'No especificat'}</p>
+              <p><span class="label">Reds Socials:</span> ${formData.redesSociales || 'No especificat'}</p>
             </div>
 
             ${formData.tipo === 'prensa' ? `
             <div class="section">
-              <h3>📰 Información del Medio</h3>
-              <p><span class="label">Medio:</span> ${formData.medio || 'No especificado'}</p>
+              <h3>📰 Informació del Mitja</h3>
+              <p><span class="label">Medio:</span> ${formData.medio || 'No especificat'}</p>
             </div>
             ` : `
             <div class="section">
-              <h3>🌟 Información del Creador</h3>
-              <p><span class="label">Plataformas y Seguidores:</span><br>${formData.plataformas || 'No especificado'}</p>
+              <h3>🌟 Informació del Creado</h3>
+              <p><span class="label">Plataformes i Seguidors:</span><br>${formData.plataformas || 'No especificat'}</p>
             </div>
             `}
 
             <div class="section">
-              <h3>📝 Cobertura Propuesta</h3>
+              <h3>📝 Cobertura Proposta</h3>
               <p>${(formData.cobertura || 'No especificada').replace(/\n/g, '<br>')}</p>
             </div>
 
             <div class="section">
-              <h3>🔧 Necesidades Especiales</h3>
-              <p>${formData.necesidadesEspeciales || 'No especificadas'}</p>
+              <h3>🔧 Necesitats Especials</h3>
+              <p>${formData.necesidadesEspeciales || 'No especificades'}</p>
             </div>
 
             <div class="section">
-              <h3>📅 Días de Asistencia</h3>
+              <h3>📅 Díes d'Asistencia</h3>
               <p>${diasTexto}</p>
             </div>
 
             <div class="section">
-              <h3>⏰ Información de la Solicitud</h3>
+              <h3>⏰ Informació de la Solicitut</h3>
               <p><span class="label">Fecha:</span> ${new Date().toLocaleString('es-ES')}</p>
             </div>
           </div>
 
           <div class="footer">
-            <p>🎸 Mollerussa Metal Fest - Sistema de Acreditaciones</p>
+            <p>🎸 Mollerussa Metal Fest - Sistema d'Acreditacions</p>
           </div>
         </body>
         </html>
