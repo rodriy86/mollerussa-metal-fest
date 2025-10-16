@@ -151,10 +151,6 @@ export class FormAcreditacioComponent {
     );
   }
 
-  volverAlInicio() {
-    this.router.navigate(['/']);
-  }
-
   resetForm() {
     this.formData = {
       tipo: '',

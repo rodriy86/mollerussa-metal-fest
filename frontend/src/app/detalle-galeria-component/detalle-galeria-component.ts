@@ -25,6 +25,12 @@ export class DetalleGaleriaComponent {
   textoPaises = 'Países representados';
   textoBotonVolver = 'Volver al inicio';
 
+  ngOnInit() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
   // Arrays de datos
   imagenes = [
     {
