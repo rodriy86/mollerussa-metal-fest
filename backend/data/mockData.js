@@ -109,7 +109,8 @@ export const mockData = {
       fecha: '5 Enero 2026',
       categoria: 'ENTRADAS',
       colorCategoria: 'bg-yellow-600',
-      titulo: '¡Últimos días y pocas entradas!',
+      //titulo: '¡Últimos días y pocas entradas!',
+      titulo: 'Angelica se equivoca a la hora de mandar mensajes de whatsap!',
       resumenNoticia: 'No te pierdas la oportunidad de conseguir tu entrada al mejor precio.',
       detalleNoticia: false,  // ← BOOLEAN
       imagen: '/assets/images/noti2.jpg',
