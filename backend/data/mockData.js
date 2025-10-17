@@ -83,7 +83,7 @@ export const mockData = {
       colorCategoria: 'bg-red-600',
       titulo: '¡Confirmado! Cor Rebel se suma a la cartelera 2026',
       resumenNoticia: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal. Una adición épica que promete momentos inolvidables.',
-      detalleNoticia: true,  // ← BOOLEAN
+      detalleNoticia: true,  
       imagen: '/assets/images/noti1.jpg',
       alt: 'Nueva banda confirmada',
       enlace: '#Lineup',
@@ -97,7 +97,7 @@ export const mockData = {
       colorCategoria: 'bg-blue-600',
       titulo: 'Purin confirma!',
       resumenNoticia: 'Purin confirma nuestra cita en el Festival por segunda vez consecutiva! Tendran su stand montado para la venta de merchandaising y mucho mas, aprobecha esta oportunidad para llevar a purin siempre contigo.',
-      detalleNoticia: true,  // ← BOOLEAN
+      detalleNoticia: true, 
       imagen: '/assets/images/foto8.jpg',
       alt: 'Merchandising 2026',
       enlace: '#Lineup',
@@ -109,10 +109,9 @@ export const mockData = {
       fecha: '5 Enero 2026',
       categoria: 'ENTRADAS',
       colorCategoria: 'bg-yellow-600',
-      //titulo: '¡Últimos días y pocas entradas!',
-      titulo: 'Angelica se equivoca a la hora de mandar mensajes de whatsap!',
+      titulo: '¡Últimos días y pocas entradas!',
       resumenNoticia: 'No te pierdas la oportunidad de conseguir tu entrada al mejor precio.',
-      detalleNoticia: false,  // ← BOOLEAN
+      detalleNoticia: false,  
       imagen: '/assets/images/noti2.jpg',
       alt: 'Early Bird tickets',
       enlace: '#Entradas',
@@ -126,7 +125,7 @@ export const mockData = {
       colorCategoria: 'bg-green-600',
       titulo: 'Mejoras en el recinto: nuevo escenario',
       resumenNoticia: 'Este año contaremos con un escenario principal renovado y una zona más amplia con mejores servicios para ofrecer la mejor experiencia posible.',
-      detalleNoticia: false,  // ← BOOLEAN
+      detalleNoticia: false,  
       imagen: '/assets/images/noti3.jpg',
       enlace: '#',
       textoEnlace: '',
@@ -140,7 +139,7 @@ export const mockData = {
       colorCategoria: 'bg-green-600',
       titulo: 'Mollerussa Metal Fest 2025: Comprometidos con el medio ambiente',
       resumenNoticia: 'Implementamos nuevas medidas ecológicas incluyendo reciclaje, energías renovables y reducción de residuos para un festival más sostenible.',
-      detalleNoticia: false,  // ← BOOLEAN
+      detalleNoticia: false,  
       imagen: '/assets/images/noti4.jpg',
       alt: 'Festival sostenible',
       enlace: '#',
@@ -155,7 +154,7 @@ export const mockData = {
       colorCategoria: 'bg-purple-600',
       titulo: 'Colaboración épica: Iron Storm y Dark Abyss juntos en el escenario',
       resumenNoticia: 'Por primera vez en la historia del festival, dos de nuestros headliners se unirán para una actuación especial que promete ser histórica.',
-      detalleNoticia: false,  // ← BOOLEAN
+      detalleNoticia: false,  
       imagen: '/assets/images/noti5.jpg',
       alt: 'Colaboración especial',
       enlace: '#lineup',
