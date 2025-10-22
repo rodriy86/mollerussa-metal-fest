@@ -73,6 +73,7 @@
             <i class="ri-user-3-line text-red-500 mr-2"></i>
             <span>Por {{ noticia.autor }}</span>
           </div>
+          <!--
           <div class="flex items-center">
             <i class="ri-time-line text-red-500 mr-2"></i>
             <span>{{ noticia.tiempoLectura }} de lectura</span>
@@ -80,18 +81,19 @@
           <div class="flex items-center">
             <i class="ri-eye-line text-red-500 mr-2"></i>
             <span>{{ noticia.visualizaciones }} visualizaciones</span>
-          </div>
+          </div>-->
         </div>
 
         <button (click)="compartirNoticia()"
           class="flex items-center text-gray-400 hover:text-red-500 transition-colors">
           <i class="ri-share-line mr-2"></i>
-          Compartir
+          
         </button>
       </div>
 
       <!-- Contenido del Artículo -->
       <article class="py-12">
+        <p>{{ noticia.fecha }}</p>
         <div class="max-w-4xl mx-auto">
           <div class="prose prose-lg prose-invert max-w-none">
             <!-- Párrafos de contenido -->
