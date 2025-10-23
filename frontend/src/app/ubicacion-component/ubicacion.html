@@ -1,8 +1,8 @@
-<section id="Ubicacion" class="py-20 bg-gray-800">
+<section id="Ubicacion" class="py-20 bg-page">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-5xl font-black mb-6 metal-text">UBICACIÓN</h2>
-      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+      <h2 class="text-5xl font-black mb-6 metal-text text-brand">UBICACIÓN</h2>
+      <p class="text-xl text-muted max-w-3xl mx-auto">
         El Mollerussa Metal Fest se celebra en el Teatre L'Amistat de Mollerussa
       </p>
     </div>
@@ -10,96 +10,96 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
       <!-- Información -->
       <div class="space-y-8">
-        <div class="bg-black/50 border border-red-600/30 p-6 rounded-lg card-hover">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <div class="w-8 h-8 flex items-center justify-center bg-red-600 rounded mr-3">
-              <i class="ri-map-pin-line text-white"></i>
+        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+          <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
+            <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
+              <i class="ri-map-pin-line text-primary"></i>
             </div>
             Dirección
           </h3>
-          <p class="text-gray-400 mb-2">{{configGlobal.festival.ubicacion.nombreRecinto}}</p>
-          <p class="text-gray-400 mb-2">{{configGlobal.festival.ubicacion.direccion}}</p>
-          <p class="text-gray-400">{{configGlobal.festival.ubicacion.CP}} {{configGlobal.festival.ubicacion.ciudad}}</p>
+          <p class="text-muted mb-2">{{configGlobal.festival.ubicacion.nombreRecinto}}</p>
+          <p class="text-muted mb-2">{{configGlobal.festival.ubicacion.direccion}}</p>
+          <p class="text-muted">{{configGlobal.festival.ubicacion.CP}} {{configGlobal.festival.ubicacion.ciudad}}</p>
         </div>
 
-        <div class="bg-black/50 border border-red-600/30 p-6 rounded-lg card-hover">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <div class="w-8 h-8 flex items-center justify-center bg-red-600 rounded mr-3">
-              <i class="ri-building-2-line text-white"></i>
+        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+          <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
+            <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
+              <i class="ri-building-2-line text-primary"></i>
             </div>
             Sobre el Teatro
           </h3>
-          <p class="text-gray-400 mb-4">
+          <p class="text-muted mb-4">
             El Teatre L'Amistat es el corazón cultural de Mollerussa y el escenario principal del Mollerussa Metal Fest.
           </p>
-          <ul class="space-y-2 text-gray-400">
+          <ul class="space-y-2 text-muted">
             <li class="flex items-center">
-              <i class="ri-user-fill text-red-500 mr-2"></i>
+              <i class="ri-user-fill text-brand mr-2"></i>
               <span>Capacidad: {{configGlobal.festival.capacidad}} personas</span>
             </li>
             <li class="flex items-center">
-              <i class="ri-star-fill text-red-500 mr-2"></i>
+              <i class="ri-star-fill text-brand mr-2"></i>
               <span>Escenario profesional</span>
             </li>
             <li class="flex items-center">
-              <i class="ri-sound-module-fill text-red-500 mr-2"></i>
+              <i class="ri-sound-module-fill text-brand mr-2"></i>
               <span>Sistema de sonido de alta calidad</span>
             </li>
           </ul>
         </div>
 
-        <div class="bg-black/50 border border-red-600/30 p-6 rounded-lg card-hover">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <div class="w-8 h-8 flex items-center justify-center bg-red-600 rounded mr-3">
-              <i class="ri-car-line text-white"></i>
+        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+          <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
+            <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
+              <i class="ri-car-line text-primary"></i>
             </div>
             Cómo llegar
           </h3>
-          <ul class="space-y-3 text-gray-400">
+          <ul class="space-y-3 text-muted">
             <li class="flex items-start">
-              <i class="ri-arrow-right-s-line text-red-500 mr-2 mt-1"></i>
+              <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
               <span><strong>En coche:</strong> Autopista AP-2, salida 9 Mollerussa</span>
             </li>
             <li class="flex items-start">
-              <i class="ri-arrow-right-s-line text-red-500 mr-2 mt-1"></i>
+              <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
               <span><strong>En tren:</strong> Estación de Mollerussa (línea Barcelona-Lleida)</span>
             </li>
             <li class="flex items-start">
-              <i class="ri-arrow-right-s-line text-red-500 mr-2 mt-1"></i>
+              <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
               <span><strong>Parking:</strong> Aparcamiento público gratuito a 800m</span>
             </li>
           </ul>
         </div>
         
-        <div class="bg-black/50 border border-red-600/30 p-6 rounded-lg card-hover">
-          <h3 class="text-xl font-bold mb-4 flex items-center">
-            <div class="w-8 h-8 flex items-center justify-center bg-red-600 rounded mr-3">
-              <i class="ri-hotel-line text-white"></i>
+        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+          <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
+            <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
+              <i class="ri-hotel-line text-primary"></i>
             </div>
             Alojamiento
           </h3>
-          <ul class="space-y-3 text-gray-400">
+          <ul class="space-y-3 text-muted">
             <li class="flex items-start">
-              <i class="ri-arrow-right-s-line text-red-500 mr-2 mt-1"></i>
+              <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
               <span>Hoteles en el centro de Mollerussa (a 5-10 min andando)</span>
             </li>
             <li class="flex items-start">
-              <i class="ri-arrow-right-s-line text-red-500 mr-2 mt-1"></i>
+              <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
               <span>Hostales y pensiones en la zona</span>
             </li>
             <li class="flex items-start">
-              <i class="ri-arrow-right-s-line text-red-500 mr-2 mt-1"></i>
+              <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
               <span>Casas rurales en los alrededores</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- Mapa del Teatro - CORREGIDO -->
-      <div class="flex flex-col bg-gray-900 rounded-xl overflow-hidden border border-gray-700 shadow-2xl h-full">
-        <div class="bg-gray-800 p-4 border-b border-gray-700 flex-shrink-0">
-          <h3 class="text-lg font-bold text-white flex items-center gap-2">
-            <i class="ri-map-pin-2-fill text-red-500"></i>
+      <!-- Mapa del Teatro -->
+      <div class="flex flex-col bg-card rounded-xl overflow-hidden border border-custom shadow-custom h-full">
+        <div class="bg-page p-4 border-b border-custom flex-shrink-0">
+          <h3 class="text-lg font-bold text-primary flex items-center gap-2">
+            <i class="ri-map-pin-2-fill text-brand"></i>
             {{configGlobal.festival.ubicacion.nombreRecinto}} - {{configGlobal.festival.ubicacion.ciudad}}
           </h3>
         </div>
@@ -115,21 +115,20 @@
           </iframe>
         </div>
         
-        <div class="bg-gray-800 p-4 border-t border-gray-700 flex-shrink-0">
-          <div class="flex flex-wrap gap-4 text-sm text-gray-400">
-            <div class="flex items-center gap-2">
-              <!--<div class="w-3 h-3 bg-red-500 rounded-full"></div>-->
+        <div class="bg-page p-4 border-t border-custom flex-shrink-0">
+          <div class="flex flex-wrap gap-4 text-sm text-muted">
+            <div class="flex items-center justify-center gap-2">
               <span>📍 {{configGlobal.festival.ubicacion.nombreRecinto}}</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center gap-2">
               <i class="ri-car-fill text-blue-400"></i>
               <span>Parking cercano</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center gap-2">
               <i class="ri-train-fill text-green-400"></i>
               <span>Transporte público</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center gap-2">
               <i class="ri-walk-fill text-yellow-400"></i>
               <span>Zona centro</span>
             </div>

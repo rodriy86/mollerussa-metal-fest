@@ -1,12 +1,9 @@
 /*@tailwind base;
 @tailwind components;
 @tailwind utilities;*/
-
-
-
-
-
-
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
 
 
 
@@ -23,10 +20,166 @@ body {
   color: white;
   line-height: 1.5;
 }
+/***********************************************/
+/*
+// FONS DE PÀGINA
+$color-bg-primary: #111827;        // Fons principal de la pàgina (bg-gray-900)
+$color-bg-secondary: #1f2937;      // Fons per a targetes (bg-gray-800)
+$color-bg-dark: #000000;           // Fons per a capçaleres (bg-black)
 
-/*.color_primari{
+// COLORS DE TEXT
+$color-text-primary: #ffffff;  
+$color-text-secondary: #d1d5db;
+$color-text-muted: #9ca3af;
 
-}*/
+// COLORS PRIMARIS (MARCA)
+$color-primary: #ef4444;           // Color primari principal (text-red-500)
+$color-primary-dark: #dc2626;      // Color primari fosc (bg-red-600)
+$color-primary-darker: #b91c1c;    // Color primari més fosc (hover:bg-red-700)
+
+// BORDES
+$color-border: #374151;            // Color per a bordes (border-gray-700)
+$color-border-primary: rgba(239, 68, 68, 0.3); // Border primari (border-red-600/30)
+
+// GRADIENTS I OVERLAYS
+$color-gradient-from: #000000;     // Color inicial gradient
+$color-gradient-via: #111827;      // Color intermig gradient  
+$color-gradient-to: #000000;       // Color final gradient
+$color-overlay: rgba(0, 0, 0, 0.8); // Overlay fosc*/
+
+// ===== VARIABLES DE TEMA - MODIFICA NOMÉS AIXÒ =====
+
+// FONS DE PÀGINA
+$color-bg-primary: #111827;        // Fons principal de la pàgina (bg-gray-900)
+$color-bg-secondary: #1f2937;      // Fons per a targetes (bg-gray-800)
+$color-bg-dark: #000000;           // Fons per a capçaleres (bg-black)
+
+// COLORS DE TEXT
+$color-text-primary: #ffffff;      // Text principal (titols)
+$color-text-secondary: #d1d5db;    // Text secundari (text base)
+$color-text-muted: #9ca3af;        // Text atenuat (text menys important a destacar)
+
+// COLORS PRIMARIS (MARCA)
+$color-primary: #ef4444;          // Color primari principal (text-red-500)
+$color-primary-dark: #dc2626;     // Color secundari, posaria un similar o el amteix que el primari (logo i botons sense hover)
+$color-primary-darker: #b91c1c;  // Color primari més fosc (hover de botons)
+
+// BORDES
+$color-border: #374151;            // Color per a bordes (border-gray-700) 
+$color-border-primary:  #6b1111;  // Border primari (border-red-600/30)
+$color-shadow: #6b1111;    // Color i opacitat dels shadows a les cards
+
+// GRADIENTS I OVERLAYS
+$color-gradient-from: #000000;     // Color inicial gradient
+$color-gradient-via: #111827;      // Color intermig gradient  
+$color-gradient-to: #000000;       // Color final gradient
+$color-overlay: rgba(0, 0, 0, 0.8); // Overlay fosc
+
+// ===== CLASSES GENERADES AUTOMÀTICAMENT =====
+
+// Fons
+.bg-page { background-color: $color-bg-primary; }      // Fons de pàgina complet
+.bg-header { background-color: $color-bg-dark; }       // Fons de capçalera
+.bg-card { background-color: $color-bg-secondary; }    // Fons per a targetes
+
+// Textos
+.text-primary { color: $color-text-primary; }          // Text principal
+.text-secondary { color: $color-text-secondary; }      // Text secundari
+.text-muted { color: $color-text-muted; }              // Text atenuat
+
+// Colors de marca
+.text-brand { color: $color-primary; }                 // Text amb color de marca
+.bg-brand { background-color: $color-primary-dark; }   // Fons amb color de marca
+.bg-brand-dark { background-color: $color-primary-darker; } // Fons amb color de marca fosc
+
+// Bordes
+.border-custom { border-color: $color-border; }        // Border estàndard
+.border-brand { border-color: $color-border-primary; } // Border amb color de marca
+
+// Efectes hover
+.hover-text-brand:hover { color: $color-primary; }     // Canvi a color marca en hover
+.hover-bg-brand-dark:hover { background-color: $color-primary-darker; } // Fons més fosc en hover
+
+.bg-transparent-hover {
+  background-color: transparent;
+  
+  
+}
+.hover-bg-transparent:hover {
+  background-color: rgba($color-bg-primary, 0.2);
+}
+
+// Gradients
+.gradient-header {
+  background: linear-gradient(to right, $color-gradient-from, $color-gradient-via, $color-gradient-to);
+}
+
+.gradient-hero {
+  background: linear-gradient(to top, $color-overlay, transparent, transparent);
+}
+
+// Efectes de shadow (simplificats)
+.shadow-custom {
+  box-shadow: 0 10px 30px $color-shadow;
+}
+
+.shadow-custom-hover {
+  box-shadow: 0 20px 40px $color-shadow;
+}
+
+// Classes per a cards amb hover (actualitzades)
+.card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px $color-shadow;
+    border-color: $color-border-primary;
+  }
+}
+
+// Mixins per a botons (generen variants)
+@mixin button-brand {
+  background-color: $color-primary-dark;
+  color: $color-text-primary;
+  
+  &:hover {
+    background-color: $color-primary-darker;
+  }
+}
+
+@mixin button-outline-brand {
+  border: 2px solid $color-primary-dark;
+  color: $color-primary-dark;
+  
+  &:hover {
+    background-color: $color-primary-dark;
+    color: $color-text-primary;
+  }
+}
+
+// Classes de botons
+.btn-brand {
+  @include button-brand;                    // Botó amb fons de color de marca  (boto primari)
+}
+
+.btn-outline-brand {
+  @include button-outline-brand;            // Botó amb contorn de marca, sense fons, (boto secundari)
+}
+
+// Classes per a estats especials
+.filter-invert {
+  filter: brightness(0) invert(1);          // Per a icones en fons fosc
+}
+
+// Utilitats addicionals
+.opacity-90 { opacity: 0.9; }
+.backdrop-blur-sm { backdrop-filter: blur(4px); }
+
+
+
+/***********************************************************************************************/
 
 
 /* Scroll suave */
@@ -43,11 +196,11 @@ html {
   box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
 }
 
-.card-hover {
+.card-hover1 {
   transition: all 0.3s ease;
 }
 
-.card-hover:hover {
+.card-hover1:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
@@ -74,21 +227,19 @@ html {
 }*/
 
 /*************galeria***************/
-.card-hover {
+.card-hover2 {
   transition: all 0.3s ease;
   cursor: pointer;
   
-  &:hover {
+  &:hover2 {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
   }
 }
 
-.metal-text {//tipologia de les lletres i color
-  //font-family: 'Metal Mania', cursive;
-  //font-family: 'BlackMetalFont', cursive;
+/*.metal-text {
   text-shadow: 0 0 15px rgba(239, 68, 68, 0.7);
-}
+}*/
 
 // Animaciones para el modal
 .fixed.inset-0 {
@@ -121,7 +272,7 @@ html {
   text-shadow: 0 0 15px rgba(239, 68, 68, 0.7);
 }*/
 
-.card-hover {
+.card-hover3 {
   transition: all 0.3s ease;
   
   &:hover {
@@ -131,7 +282,7 @@ html {
   }
 }
 
-// Estilos específicos para el mapa
+// Estils específics pel mapa
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -140,7 +291,7 @@ html {
   min-height: 400px;
 }
 
-// Asegurar que el iframe ocupe todo el espacio
+// Asegure que el iframe ocupi tot l'espai
 iframe {
   display: block;
 }

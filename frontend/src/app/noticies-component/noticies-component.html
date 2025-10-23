@@ -1,8 +1,8 @@
-<section id="noticias" class="py-20 bg-gray-900">
+<section id="noticias" class="py-20 bg-page">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-5xl font-black mb-6 metal-text">NOTICIAS</h2>
-      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+      <h2 class="text-5xl font-black mb-6 metal-text text-brand">NOTICIAS</h2>
+      <p class="text-xl text-muted max-w-3xl mx-auto">
         Mantente al día con las últimas novedades del {{configGlobal.festival.nombreCompleto}}{{configGlobal.festival.anyo}}
       </p>
     </div>
@@ -10,45 +10,31 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
       <!-- Noticia dinámica -->
       <article *ngFor="let noticia of noticias"
-        class="bg-black/50 border border-red-600/30 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-        <div class="w-full h-48 bg-gray-700 overflow-hidden">
+        class="bg-card border border-brand rounded-lg overflow-hidden hover:transform hover:scale-105 card-hover transition-all duration-300">
+        <div class="w-full h-48 bg-card overflow-hidden">
           <img [src]="noticia.imagen" [alt]="noticia.alt" class="w-full h-full object-cover object-top">
         </div>
         <div class="p-6">
-          <div class="flex items-center text-sm text-gray-500 mb-3">
+          <div class="flex items-center text-sm text-secondary mb-3">
             <i class="ri-calendar-line mr-2"></i>
             <span>{{ noticia.fecha }}</span>
-            <span class="mx-2">•</span>
-            <!--<span [class]="noticia.colorCategoria + ' text-white px-2 py-1 rounded text-xs'">
-              {{ noticia.categoria }}
-            </span>-->
           </div>
-          <h3 class="text-xl font-bold text-white mb-3 hover:text-red-500 transition-colors cursor-pointer">
+          <h3 class="text-xl font-bold text-primary mb-3 hover-text-brand transition-colors cursor-pointer">
             {{ noticia.titulo }}
           </h3>
-          <p class="text-gray-400 text-sm mb-4">
+          <p class="text-muted text-sm mb-4">
             {{ noticia.resumenNoticia }}
           </p>
-          <!--<a [href]="noticia.enlace" class="text-red-500 hover:text-red-400 font-medium text-sm flex items-center">
-            {{ noticia.textoEnlace }} <i class="ri-arrow-right-line ml-1"></i>
-          </a>-->
 
           @if (noticia.detalleNoticia) {
           <a [routerLink]="['/noticia', noticia.id]"
-            class="text-red-500 hover:text-red-400 font-medium text-sm flex items-center">
+            class="text-brand hover-text-brand font-medium text-sm flex items-center">
             Leer más <i class="ri-arrow-right-line ml-1"></i>
           </a>
           }
-
         </div>
       </article>
     </div>
-    <!-- BOTO PER VEURE MES NOTICIES, NO CREC QUE SIGUI NECESARI
-    <div class="text-center">
-      <button class="border-2 border-red-600 hover:bg-red-600 text-red-600 hover:text-white px-8 py-3 rounded-lg font-bold transition-all whitespace-nowrap">
-        Ver Todas las Noticias
-      </button>
-    </div>-->
 
   </div>
 </section>

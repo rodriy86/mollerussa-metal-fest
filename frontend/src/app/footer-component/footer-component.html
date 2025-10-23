@@ -1,62 +1,72 @@
-<footer id="contacto" class="bg-black py-16">
+<footer id="contacto" class="bg-header py-16">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-      
+
       <!-- Logo y redes sociales -->
       <div>
         <div class="flex items-center space-x-3 mb-6">
-          <div class="w-12 h-12 flex items-center justify-center bg-red-600 rounded-lg">
-            <img src="assets/icons/mask.png" alt="Máscara de gas" class="w-6 h-6 filter brightness-0 invert">
+          <div class="w-12 h-12 flex items-center justify-center bg-brand rounded-lg">
+            <img src="assets/icons/mask.png" alt="Máscara de gas" class="w-6 h-6 filter-invert">
           </div>
-          <h3 class="text-xl font-bold metal-text text-red-500">{{configGlobal.festival.nombreCompleto}}</h3>
+          <h3 class="text-xl font-bold metal-text text-brand">{{configGlobal.festival.nombreCompleto}}</h3>
         </div>
-        <p class="text-gray-400 mb-4">
+        <p class="text-muted mb-4">
           El festival de metal más épico de Catalunya. Únete a nosotros para vivir una experiencia musical inolvidable.
         </p>
         <div class="flex space-x-4">
-          <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-red-600 rounded-lg transition-colors">
-            <i class="ri-facebook-fill text-white"></i>
+          <a href="#"
+            class="w-10 h-10 flex items-center justify-center bg-card hover-bg-brand-dark rounded-lg transition-colors">
+            <i class="ri-facebook-fill text-primary"></i>
           </a>
-          <a href="{{configGlobal.contactos.redes.instagram}}" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-red-600 rounded-lg transition-colors">
-            <i class="ri-instagram-fill text-white"></i>
+          <a href="{{configGlobal.contactos.redes.instagram}}"
+            class="w-10 h-10 flex items-center justify-center bg-card hover-bg-brand-dark rounded-lg transition-colors">
+            <i class="ri-instagram-fill text-primary"></i>
           </a>
-          <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-red-600 rounded-lg transition-colors">
-            <i class="ri-twitter-x-fill text-white"></i>
+          <a href="#"
+            class="w-10 h-10 flex items-center justify-center bg-card hover-bg-brand-dark rounded-lg transition-colors">
+            <i class="ri-twitter-x-fill text-primary"></i>
           </a>
-          <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-red-600 rounded-lg transition-colors">
-            <i class="ri-youtube-fill text-white"></i>
+          <a href="#"
+            class="w-10 h-10 flex items-center justify-center bg-card hover-bg-brand-dark rounded-lg transition-colors">
+            <i class="ri-youtube-fill text-primary"></i>
           </a>
         </div>
       </div>
 
       <!-- Enlaces rápidos -->
       <div>
-        <h4 class="text-lg font-bold mb-6">Enlaces Rápidos</h4>
+        <h4 class="text-lg font-bold mb-6 text-primary">Enlaces Rápidos</h4>
         <ul class="space-y-3">
-          <li><a (click)="scrollTo('Inicio')" class="text-gray-400 hover:text-red-500 transition-colors cursor-pointer">Inicio</a></li>
-          <li><a (click)="scrollTo('Lineup')" class="text-gray-400 hover:text-red-500 transition-colors cursor-pointer">Cartelera</a></li>
-          <!--<li><a (click)="scrollTo('tienda')" class="text-gray-400 hover:text-red-500 transition-colors cursor-pointer">Tienda</a></li>-->
-          <li><a (click)="scrollTo('Informacion')" class="text-gray-400 hover:text-red-500 transition-colors cursor-pointer">Información</a></li>
-          <li><a (click)="scrollTo('Mapa-recinto')" class="text-gray-400 hover:text-red-500 transition-colors cursor-pointer">Mapa del recinto</a></li>
-          <li><a (click)="scrollTo('Ubicacion')" class="text-gray-400 hover:text-red-500 transition-colors cursor-pointer">Ubicación</a></li>
-          <li><a (click)="scrollTo('Galeria')" class="text-gray-400 hover:text-red-500 transition-colors cursor-pointer">Galeria</a></li>
+          <li><a (click)="scrollTo('Inicio')"
+              class="text-muted hover-text-brand transition-colors cursor-pointer">Inicio</a></li>
+          <li><a (click)="scrollTo('Lineup')"
+              class="text-muted hover-text-brand transition-colors cursor-pointer">Cartelera</a></li>
+          <!--<li><a (click)="scrollTo('tienda')" class="text-muted hover-text-brand transition-colors cursor-pointer">Tienda</a></li>-->
+          <li><a (click)="scrollTo('Informacion')"
+              class="text-muted hover-text-brand transition-colors cursor-pointer">Información</a></li>
+          <li><a (click)="scrollTo('Mapa-recinto')"
+              class="text-muted hover-text-brand transition-colors cursor-pointer">Mapa del recinto</a></li>
+          <li><a (click)="scrollTo('Ubicacion')"
+              class="text-muted hover-text-brand transition-colors cursor-pointer">Ubicación</a></li>
+          <li><a (click)="scrollTo('Galeria')"
+              class="text-muted hover-text-brand transition-colors cursor-pointer">Galeria</a></li>
         </ul>
       </div>
 
       <!-- Contacto -->
       <div>
-        <h4 class="text-lg font-bold mb-6">Contacto</h4>
-        <ul class="space-y-3 text-gray-400">
+        <h4 class="text-lg font-bold mb-6 text-primary">Contacto</h4>
+        <ul class="space-y-3 text-muted">
           <li class="flex items-center">
-            <i class="ri-mail-line text-red-500 mr-3"></i>
+            <i class="ri-mail-line text-brand mr-3"></i>
             {{configGlobal.contactos.email}}
           </li>
           <li class="flex items-center">
-            <i class="ri-phone-line text-red-500 mr-3"></i>
+            <i class="ri-phone-line text-brand mr-3"></i>
             {{configGlobal.contactos.telefono}}
           </li>
           <li class="flex items-center">
-            <i class="ri-map-pin-line text-red-500 mr-3"></i>
+            <i class="ri-map-pin-line text-brand mr-3"></i>
             {{configGlobal.contactos.ubicacion}}
           </li>
         </ul>
@@ -64,11 +74,12 @@
 
       <!-- Newsletter -->
       <div>
-        <h4 class="text-lg font-bold mb-6">Newsletter</h4>
-        <p class="text-gray-400 mb-4">Suscríbete para recibir las últimas noticias del festival</p>
+        <h4 class="text-lg font-bold mb-6 text-primary">Newsletter</h4>
+        <p class="text-muted mb-4">Suscríbete para recibir las últimas noticias del festival</p>
         <div class="flex gap-2">
-          <input type="email" placeholder="Tu email" class="flex-1 bg-gray-800 border border-gray-600 rounded-button px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-red-500">
-          <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-button transition-colors whitespace-nowrap">
+          <input type="email" placeholder="Tu email"
+            class="flex-1 bg-card border border-custom rounded-button px-4 py-2 text-primary placeholder-muted focus:outline-none focus:border-brand">
+          <button class="btn-brand px-4 py-2 rounded-button whitespace-nowrap">
             <i class="ri-send-plane-line"></i>
           </button>
         </div>
@@ -76,15 +87,15 @@
     </div>
 
     <!-- Copyright -->
-    <div class="border-t border-gray-800 pt-8">
+    <div class="border-t border-custom pt-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-gray-400 mb-4 md:mb-0">
+        <p class="text-muted mb-4 md:mb-0">
           © {{configGlobal.festival.nombreCompleto}}. Todos los derechos reservados.
         </p>
-        <div class="flex space-x-6 text-gray-400">
-          <a href="#" class="hover:text-red-500 transition-colors">Política de Privacidad</a>
-          <a href="#" class="hover:text-red-500 transition-colors">Términos y Condiciones</a>
-          <a href="#" class="hover:text-red-500 transition-colors">Aviso Legal</a>
+        <div class="flex space-x-6 text-muted">
+          <a href="#" class="hover-text-brand transition-colors">Política de Privacidad</a>
+          <a href="#" class="hover-text-brand transition-colors">Términos y Condiciones</a>
+          <a href="#" class="hover-text-brand transition-colors">Aviso Legal</a>
         </div>
       </div>
     </div>

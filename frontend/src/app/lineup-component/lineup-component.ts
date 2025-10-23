@@ -3,6 +3,7 @@ import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { configGlobal } from '../configGlobal';
+import { Router, RouterModule } from '@angular/router';
 
 interface Band {
   id: number;
@@ -18,7 +19,7 @@ interface Band {
 @Component({
   selector: 'app-lineup',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './lineup-component.html',
   styleUrl: './lineup-component.html'
 })
@@ -27,10 +28,11 @@ export class LineupComponent implements OnInit {
   bands: Band[] = [];
   isLoading: boolean = true;
   error: string = '';
-  configGlobal=configGlobal;
+  configGlobal = configGlobal;
 
   private http = inject(HttpClient);
-  private cdRef = inject(ChangeDetectorRef); 
+  private cdRef = inject(ChangeDetectorRef);
+  private router = inject(Router); // ← INYECTAR Router
 
   ngOnInit(): void {
     //console.log('🔄 Iniciando carga de bandas...');
@@ -41,10 +43,7 @@ export class LineupComponent implements OnInit {
     this.isLoading = true;
     this.error = '';
 
-
-    
-    //this.http.get<Band[]>('/api/bands').subscribe({
-      this.http.get<Band[]>(configGlobal.api.bands).subscribe({
+    this.http.get<Band[]>(configGlobal.api.bands).subscribe({
       next: (bands) => {
         //console.log('✅ Bandas cargadas correctamente:', bands);
         this.bands = bands;
@@ -77,5 +76,15 @@ export class LineupComponent implements OnInit {
 
   reloadBands(): void {
     this.loadBands();
+  }
+
+  // ← AÑADIR FUNCIÓN PARA VER DETALLE DE BANDA
+  verDetalleBanda(band: Band): void {
+    // Opcional: puedes hacer alguna acción adicional aquí antes de navegar
+    console.log('🎸 Navegando a detalle de banda:', band.name);
+    
+    // La navegación también se maneja con routerLink en el HTML
+    // Esta función es útil si necesitas lógica adicional antes de navegar
+    // Por ejemplo: analytics, validaciones, etc.
   }
 }

@@ -1,25 +1,25 @@
-<div class="min-h-screen bg-gray-900 text-white">
+<div class="min-h-screen bg-page text-primary">
   <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-red-600/30">
-    <div class="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black opacity-90"></div>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-header opacity-100 backdrop-blur-sm border-b border-brand">
+    <div class="absolute inset-0 gradient-header opacity-90"></div>
     <nav class="relative z-10 px-6 py-4">
       <div class="flex items-center justify-between max-w-7xl mx-auto">
         <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 flex items-center justify-center bg-red-600 rounded-lg">
-            <img src="assets/icons/mask.png" alt="Máscara" class="w-6 h-6 filter brightness-0 invert">
+          <div class="w-12 h-12 flex-center bg-brand rounded-lg">
+            <img src="assets/icons/mask.png" alt="Máscara" class="w-full h-full p-2 filter-invert">
           </div>
-          <h1 class="text-2xl font-bold metal-text text-red-500">Mollerussa Metal Fest</h1>
+          <h1 class="text-2xl font-bold metal-text text-brand">Mollerussa Metal Fest</h1>
         </div>
 
         <div class="hidden md:flex items-center space-x-8">
           <button (click)="volverAInicio()"
-            class="flex items-center text-gray-300 hover:text-red-500 transition-colors font-medium">
+            class="flex items-center text-secondary hover-text-brand transition-colors font-medium">
             <i class="ri-arrow-left-line mr-2"></i>
             Volver al inicio
           </button>
         </div>
 
-        <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex items-center justify-center text-white">
+        <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex-center text-primary">
           <i class="ri-arrow-left-line mr-2"></i>
         </button>
       </div>
@@ -28,21 +28,20 @@
 
   <!-- Contenido Principal -->
   <main class="pt-20">
-    
+
     <!-- Estado de Carga -->
     <div *ngIf="isLoading" class="max-w-6xl mx-auto px-6 py-20 text-center">
       <div class="text-4xl mb-4">⏳</div>
       <h2 class="text-2xl font-bold mb-4">Cargando noticia...</h2>
-      <p class="text-gray-400">Estamos cargando el contenido para ti</p>
+      <p class="text-muted">Estamos cargando el contenido para ti</p>
     </div>
 
     <!-- Estado de Error -->
     <div *ngIf="error && !isLoading" class="max-w-6xl mx-auto px-6 py-20 text-center">
       <div class="text-4xl mb-4">❌</div>
       <h2 class="text-2xl font-bold mb-4">Error al cargar</h2>
-      <p class="text-red-500 mb-6">{{ error }}</p>
-      <button (click)="recargarNoticia()"
-        class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold transition-all">
+      <p class="text-brand mb-6">{{ error }}</p>
+      <button (click)="recargarNoticia()" class="btn-brand px-6 py-3 rounded-lg font-bold">
         Reintentar
       </button>
     </div>
@@ -53,58 +52,56 @@
       <!-- Hero Section -->
       <section class="relative h-96 rounded-xl overflow-hidden mb-8">
         <img [src]="noticia.imagenPrincipal" [alt]="noticia.titulo" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 gradient-hero"></div>
         <div class="absolute bottom-0 left-0 right-0 p-8">
           <div class="flex items-center space-x-4 mb-4">
-            <span class="bg-red-600 text-white px-3 py-1 rounded text-sm font-bold">
+            <span class="bg-brand text-primary px-3 py-1 rounded text-sm font-bold">
               {{ noticia.categoria }}
             </span>
-            <span class="text-gray-300">{{ noticia.fecha }}</span>
+            <span class="text-secondary">{{ noticia.fecha }}</span>
           </div>
           <h1 class="text-4xl md:text-6xl font-black metal-text mb-4">{{ noticia.titulo }}</h1>
-          <p class="text-xl text-gray-300 max-w-3xl">{{ noticia.descripcionCorta }}</p>
+          <p class="text-xl text-secondary max-w-3xl">{{ noticia.descripcionCorta }}</p>
         </div>
       </section>
 
       <!-- Metadatos -->
-      <div class="flex items-center justify-between py-6 border-b border-gray-700">
-        <div class="flex items-center space-x-6 text-gray-400">
+      <div class="flex items-center justify-between py-6 border-b border-custom">
+        <div class="flex items-center space-x-6 text-muted">
           <div class="flex items-center">
-            <i class="ri-user-3-line text-red-500 mr-2"></i>
+            <i class="ri-user-3-line text-brand mr-2"></i>
             <span>Por {{ noticia.autor }}</span>
           </div>
           <!--
           <div class="flex items-center">
-            <i class="ri-time-line text-red-500 mr-2"></i>
+            <i class="ri-time-line text-brand mr-2"></i>
             <span>{{ noticia.tiempoLectura }} de lectura</span>
           </div>
           <div class="flex items-center">
-            <i class="ri-eye-line text-red-500 mr-2"></i>
+            <i class="ri-eye-line text-brand mr-2"></i>
             <span>{{ noticia.visualizaciones }} visualizaciones</span>
           </div>-->
         </div>
 
-        <button (click)="compartirNoticia()"
-          class="flex items-center text-gray-400 hover:text-red-500 transition-colors">
+        <button (click)="compartirNoticia()" class="flex items-center text-muted hover-text-brand transition-colors">
           <i class="ri-share-line mr-2"></i>
-          
         </button>
       </div>
 
       <!-- Contenido del Artículo -->
       <article class="py-12">
-        <p>{{ noticia.fecha }}</p>
         <div class="max-w-4xl mx-auto">
           <div class="prose prose-lg prose-invert max-w-none">
             <!-- Párrafos de contenido -->
-            <div *ngFor="let parrafo of noticia.contenido" class="text-lg text-gray-300 mb-6 leading-relaxed">
+            <p>{{ noticia.fecha }}</p>
+            <br>
+            <div *ngFor="let parrafo of noticia.contenido" class="text-lg text-secondary mb-6 leading-relaxed">
               {{ parrafo }}
             </div>
 
             <!-- Galería de imágenes -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
-              <div *ngFor="let imagen of noticia.imagenes; let i = index"
-                class="bg-gray-800 rounded-lg overflow-hidden">
+              <div *ngFor="let imagen of noticia.imagenes; let i = index" class="bg-card rounded-lg overflow-hidden">
                 <img [src]="imagen" [alt]="'Imagen ' + (i + 1) + ' - ' + noticia.titulo"
                   class="w-full h-64 object-cover">
               </div>
@@ -114,18 +111,16 @@
       </article>
 
       <!-- Call to Action -->
-      <section class="py-12 border-t border-gray-700">
+      <section class="py-12 border-t border-custom">
         <div class="text-center">
           <h2 class="text-3xl font-bold mb-4">¿Te ha gustado esta noticia?</h2>
-          <p class="text-gray-400 mb-8">Comparte la emoción con otros fans del metal</p>
+          <p class="text-muted mb-8">Comparte la emoción con otros fans del metal</p>
           <div class="flex justify-center space-x-4">
-            <button (click)="compartirNoticia()"
-              class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all flex items-center">
+            <button (click)="compartirNoticia()" class="btn-brand px-8 py-3 rounded-lg font-bold flex items-center">
               <i class="ri-share-line mr-2"></i>
               Compartir Noticia
             </button>
-            <button (click)="volverANoticias()"
-              class="border-2 border-red-600 hover:bg-red-600 text-red-600 hover:text-white px-8 py-3 rounded-lg font-bold transition-all">
+            <button (click)="volverANoticias()" class="btn-outline-brand px-8 py-3 rounded-lg font-bold">
               Ver Más Noticias
             </button>
           </div>
@@ -135,11 +130,10 @@
 
     <!-- Noticia no encontrada -->
     <div *ngIf="!noticia && !isLoading && !error" class="max-w-6xl mx-auto px-6 py-20 text-center">
-      <i class="ri-error-warning-line text-6xl text-red-500 mb-4"></i>
+      <i class="ri-error-warning-line text-6xl text-brand mb-4"></i>
       <h2 class="text-3xl font-bold mb-4">Noticia no encontrada</h2>
-      <p class="text-gray-400 mb-8">La noticia que buscas no existe o ha sido eliminada.</p>
-      <button (click)="volverANoticias()"
-        class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-all">
+      <p class="text-muted mb-8">La noticia que buscas no existe o ha sido eliminada.</p>
+      <button (click)="volverANoticias()" class="btn-brand px-8 py-3 rounded-lg font-bold">
         Volver a Noticias
       </button>
     </div>

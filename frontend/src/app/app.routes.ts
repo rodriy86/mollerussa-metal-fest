@@ -15,6 +15,8 @@ import { Routes } from '@angular/router';
 import { IniciComponent } from './inici-component/inici-component';
 import { DetalleNoticiaComponent } from './detalle-noticia-component/detalle-noticia-component'
 import { DetalleGaleriaComponent } from './detalle-galeria-component/detalle-galeria-component';
+import { DetalleBandaComponent } from './detalle-banda-component/detalle-banda-component';
+//import { LineupComponent } from './lineup-component/lineup-component';
 import { FormAcreditacioComponent } from './form-acreditacio-component/form-acreditacio-component';
 
 
@@ -23,6 +25,7 @@ export const routes: Routes = [
   { path: 'noticia/:id', component: DetalleNoticiaComponent },
   { path: 'detalle-galeria', component: DetalleGaleriaComponent },
   { path: 'form-acreditacio', component: FormAcreditacioComponent },
-  { path: '**', redirectTo: '' }
-  
+  { path: 'banda/:id', component: DetalleBandaComponent },
+  //{ path: 'lineup', component: LineupComponent },
+  { path: '**', redirectTo: '' }  
 ];
