@@ -1,0 +1,17 @@
+{
+  "HEADER": {
+    "INICIO": "Home",
+    "NOTICIAS": "News",
+    "CARTELERA": "Lineup",
+    "INFORMACION": "Information",
+    "UBICACION": "Location",
+    "CONTACTO": "Contact",
+    "GALERIA": "Gallery",
+    "IDIOMA": "Language"
+  },
+  "BANDS": {
+    "LOADING": "Loading bands...",
+    "ERROR": "Error loading bands",
+    "RETRY": "Retry"
+  }
+}

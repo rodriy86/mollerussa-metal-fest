@@ -34,7 +34,7 @@
             "polyfills": [
               "@angular/localize/init"
             ],
-            "localize": ["es", "ca", "en"]
+            "localize": ["es", "ca", "en"] 
           },
           "configurations": {
             "production": {

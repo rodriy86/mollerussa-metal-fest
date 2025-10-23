@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
   isMenuOpen = false;
   isLanguageDropdownOpen = false;
   
-  // USA MINÚSCULAS para coincidir con los archivos JSON
   currentLanguage: Language = { code: 'es', name: 'Español', flag: 'fi fi-es fis' };
   
   availableLanguages: Language[] = [
@@ -35,17 +34,13 @@ export class HeaderComponent implements OnInit {
   ];
 
   ngOnInit() {
-    console.log('HeaderComponent initialized');
-    
     const savedLanguage = localStorage.getItem('selectedLanguage');
     if (savedLanguage) {
       const lang = JSON.parse(savedLanguage);
-      console.log('Loaded saved language:', lang);
       this.currentLanguage = lang;
       this.translationService.setLanguage(lang.code);
     } else {
-      console.log('No saved language, using default:', this.currentLanguage.code);
-      this.translationService.setLanguage(this.currentLanguage.code);
+      this.translationService.loadTranslations(this.currentLanguage.code);
     }
   }
 
@@ -61,22 +56,13 @@ export class HeaderComponent implements OnInit {
   }
 
   selectLanguage(language: Language): void {
-    console.log('Language selected:', language);
-    
     this.currentLanguage = language;
     this.isLanguageDropdownOpen = false;
-    
-    // Guardar en localStorage
     localStorage.setItem('selectedLanguage', JSON.stringify(language));
-    
-    // Llamar al servicio de traducción
     this.onLanguageChange(language);
-    
-    console.log('Idioma cambiado a:', language.name);
   }
 
   private onLanguageChange(language: Language): void {
-    console.log('Changing language to:', language.code);
     this.translationService.setLanguage(language.code);
   }
 
