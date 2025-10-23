@@ -30,7 +30,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "outputMode": "static"
+            "outputMode": "static",
+            "polyfills": [
+              "@angular/localize/init"
+            ],
+            "localize": ["es", "ca", "en"] 
           },
           "configurations": {
             "production": {
@@ -52,6 +56,15 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "es": {
+              "localize": ["es"]
+            },
+            "ca": {
+              "localize": ["ca"]
+            },
+            "en": {
+              "localize": ["en"]
             }
           },
           "defaultConfiguration": "production"
@@ -64,6 +77,15 @@
             },
             "development": {
               "buildTarget": "mmf_web:build:development"
+            },
+            "es": {
+              "buildTarget": "mmf_web:build:es"
+            },
+            "ca": {
+              "buildTarget": "mmf_web:build:ca"
+            },
+            "en": {
+              "buildTarget": "mmf_web:build:en"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +101,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
@@ -100,4 +123,4 @@
   "cli": {
     "analytics": "543c6b05-bc19-4221-a5ca-02267665129c"
   }
-} 
+}
