@@ -3,6 +3,7 @@ import { configGlobal } from '../configGlobal';
 import { Component, HostListener, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslationService } from '../services/translation.service';
 
 interface Language {
   code: string;
@@ -13,7 +14,7 @@ interface Language {
 @Component({
   selector: 'app-header',
   standalone: true, 
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslationService],
   templateUrl: './header-component.html',
   styleUrl: './header-component.scss'
 })
@@ -137,5 +138,3 @@ export class HeaderComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }*/
 }
-
-
