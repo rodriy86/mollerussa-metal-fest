@@ -92,9 +92,9 @@
   <div class="md:hidden fixed top-0 left-0 w-full h-full bg-page z-40 mt-16" *ngIf="isMenuOpen">
     <div class="flex flex-col space-y-6 p-8 pt-20">
       <a (click)="scrollTo('Inicio'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">Inicio</a>
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">{{translate('HEADER.INICIO')}}</a>
       <a (click)="scrollTo('noticias'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">Noticias</a>
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">{{ translate('HEADER.NOTICIAS') }}</a>
       <a (click)="scrollTo('Lineup'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">Cartelera</a>
       <a (click)="scrollTo('Informacion'); toggleMenu();"
