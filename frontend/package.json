@@ -5,13 +5,13 @@
     "ng": "ng",
     "start": "ng serve",
     "// BUILD CORREGIDO - SIN output-path redundante": "",
-    "build": "ng build --configuration=production",
+    "build": "ng build --configuration=production --localize=false",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:mmf_web": "node dist/mmf-web/server/server.mjs",
     "// BUILD ALTERNATIVOS": "",
-    "build:dev": "ng build",
-    "build:railway": "ng build --configuration=production"
+    "build:dev": "ng build --localize=false",
+    "build:railway": "ng build --configuration=production --localize=false"
   },
   "prettier": {
     "printWidth": 100,
