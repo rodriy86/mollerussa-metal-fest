@@ -21,8 +21,9 @@ export class TranslationService {
   });
 
   setLanguage(lang: string): void {
-    this.currentLang.set(lang);
-    this.loadTranslations(lang);
+    console.log('Setting language to:', lang); // ← Agrega este log
+    this.currentLang.set(lang.toLowerCase()); // ← Asegúrate de usar minúsculas
+    this.loadTranslations(lang.toLowerCase());
   }
 
   getCurrentLang(): string {
@@ -30,35 +31,37 @@ export class TranslationService {
   }
 
   loadTranslations(lang: string): void {
-    if (this.translations()[lang]) {
+    const langCode = lang.toLowerCase();
+    if (this.translations()[langCode]) {
       return;
     }
 
-    this.http.get<Translation>(`/assets/i18n/${lang}.json`).subscribe({
+    console.log('Loading translations for:', langCode); // ← Agrega este log
+
+    this.http.get<Translation>(`/assets/i18n/${langCode}.json`).subscribe({
       next: (translation) => {
+        console.log('Translations loaded for:', langCode, translation); // ← Agrega este log
         this.translations.update(translations => ({
           ...translations,
-          [lang]: translation
+          [langCode]: translation
         }));
       },
       error: (error) => {
-        console.error(`Error loading ${lang} translations:`, error);
+        console.error(`Error loading ${langCode} translations:`, error);
       }
     });
   }
 
-  // Método para manejar objetos anidados como "HEADER.INICIO"
   translate(key: string): string {
     const keys = key.split('.');
     let value: any = this.currentTranslations();
 
-    // Navegar a través del objeto anidado
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
-        // Si no encuentra la traducción, devuelve la última parte de la clave
-        return keys[keys.length - 1];
+        console.warn('Translation key not found:', key); // ← Agrega este log
+        return key;
       }
     }
 
