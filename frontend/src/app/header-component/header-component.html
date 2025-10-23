@@ -30,30 +30,54 @@
       </a>
 
       <!-- Selector de Idiomas Simple -->
-      <div class="relative">
-        <button (click)="toggleLanguageDropdown()"
-          class="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand bg-transparent hover:bg-white/10 transition-all duration-200">
-          <span class="text-primary text-sm font-medium"><!--{{ currentLanguage.flag }}--> {{ currentLanguage.code }}</span>
-          <i class="ri-arrow-down-s-line text-muted transition-transform duration-300 text-sm"
-            [class.rotate-180]="isLanguageDropdownOpen"></i>
-        </button>
+     <div class="relative">
+  <button (click)="toggleLanguageDropdown()"
+    class="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand bg-transparent hover:bg-white/10 transition-all duration-200">
+    
+    <!-- BANDERA ESPAÑOLA -->
+    <span *ngIf="currentLanguage.code.trim() === 'ES'" 
+          class="fi fi-es flag-size"></span>
+    
+    <!-- BANDERA CATALANA -->
+    <span *ngIf="currentLanguage.code.trim() === 'CAT'" 
+          class="catalan-flag flag-size"></span>
+    
+    <!-- BANDERA INGLESA -->
+    <span *ngIf="currentLanguage.code.trim() === 'EN'" 
+          class="fi fi-gb flag-size"></span>
+
+    <i class="ri-arrow-down-s-line text-muted transition-transform duration-300 text-sm"
+      [class.rotate-180]="isLanguageDropdownOpen"></i>
+  </button>
 
         <!-- Lista desplegable -->
-        <div
-          class="absolute top-full right-0 mt-2 w-40 rounded-lg bg-page border border-brand shadow-custom backdrop-blur-sm transition-all duration-300 z-50"
-          [class]="isLanguageDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'">
-          <div class="py-2">
-            @for (language of availableLanguages; track language.code) {
-            <button (click)="selectLanguage(language)"
-              class="w-full flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 hover-bg-brand-dark"
-              [class]="language.code === currentLanguage.code ? 'text-brand bg-card font-bold' : 'text-secondary'">
-              <!--<span class="text-base">{{ language.flag }}</span>-->
-              <span class="flex-1 text-left">{{ language.name }}</span>
-              <span class="text-xs text-muted">{{ language.code }}</span>
-            </button>
-            }
-          </div>
-        </div>
+        <!-- Lista desplegable -->
+<div
+  class="absolute top-full right-0 mt-2 w-48 rounded-lg bg-page border border-brand shadow-custom backdrop-blur-sm transition-all duration-300 z-50"
+  [class]="isLanguageDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'">
+  <div class="py-2">
+    @for (language of availableLanguages; track language.code) {
+    <button (click)="selectLanguage(language)"
+      class="w-full flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 hover-bg-brand-dark"
+      [class]="language.code === currentLanguage.code ? 'text-brand bg-card font-bold' : 'text-secondary'">
+      
+      <!-- BANDERA ESPAÑOLA -->
+      <span *ngIf="language.code === 'ES'" 
+            class="fi fi-es flag-size flex-shrink-0"></span>
+      
+      <!-- BANDERA CATALANA -->
+      <span *ngIf="language.code === 'CAT'" 
+            class="catalan-flag flag-size flex-shrink-0"></span>
+      
+      <!-- BANDERA INGLESA -->
+      <span *ngIf="language.code === 'EN'" 
+            class="fi fi-gb flag-size flex-shrink-0"></span>
+
+      <span class="flex-1 text-left">{{ language.name }}</span>
+    </button>
+    }
+  </div>
+</div>
       </div>
     </div>
 
@@ -92,7 +116,8 @@
           <button (click)="selectLanguage(language); toggleMenu();"
             class="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand transition-all duration-200 text-sm"
             [class]="language.code === currentLanguage.code ? 'bg-card text-brand font-bold' : 'bg-page text-secondary hover:bg-card'">
-            <span class="text-base"><!--{{ language.flag }}--></span>
+            <!-- BANDERA EN MÓVIL -->
+            <span [class]="language.flag" class="flag-size"></span>
             <span>{{ language.code }}</span>
           </button>
           }
@@ -101,20 +126,3 @@
     </div>
   </div>
 </nav>
-
-<!-- Selector de Idiomas Móvil 
-      <div class="pt-6 border-t border-gray-700">
-        <div class="text-gray-400 text-sm mb-3">Idioma / Language</div>
-        <div class="grid grid-cols-2 gap-2">
-          @for (language of availableLanguages; track language.code) {
-            <button
-              (click)="selectLanguage(language); toggleMenu();"
-              class="flex items-center gap-2 px-3 py-2 rounded-lg border border-red-600/30 transition-all duration-200 text-sm"
-              [class]="language.code === currentLanguage.code ? 'bg-red-600/20 text-red-400 font-bold' : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700'"
-            >
-              <span class="text-base">{{ language.flag }}</span>
-              <span>{{ language.code }}</span>
-            </button>
-          }
-        </div>
-      </div>-->

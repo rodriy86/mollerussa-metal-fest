@@ -37,7 +37,7 @@ interface Band {
   styleUrl: './detalle-banda-component.scss'
 })
 export class DetalleBandaComponent implements OnInit {
- bandaId: number = 0;
+  bandaId: number = 0;
   band: Band | null = null;
   isLoading: boolean = true;
   error: string = '';
@@ -88,45 +88,45 @@ export class DetalleBandaComponent implements OnInit {
       }
     });
   }
-/*
+  /*
+    volverALineup() {
+      this.router.navigate(['/lineup']);
+    }*/
   volverALineup() {
-    this.router.navigate(['/lineup']);
-  }*/
- volverALineup() {
-  console.log('🔍 === DEBUG volverALineup ===');
-  
-  this.router.navigate(['/']).then(() => {
-    console.log('✅ Navegado a inicio');
-    
-    setTimeout(() => {
-      console.log('🔎 Buscando sección Lineup...');
-      
-      // Buscar por diferentes IDs posibles
-      const ids = ['Lineup', 'lineup', 'cartelera', 'Cartelera'];
-      let foundElement = null;
-      
-      for (const id of ids) {
-        const element = document.getElementById(id);
-        if (element) {
-          console.log(`✅ Encontrado con id="${id}"`);
-          foundElement = element;
-          break;
+    console.log('🔍 === DEBUG volverALineup ===');
+
+    this.router.navigate(['/']).then(() => {
+      console.log('✅ Navegado a inicio');
+
+      setTimeout(() => {
+        console.log('🔎 Buscando sección Lineup...');
+
+        // Buscar por diferentes IDs posibles
+        const ids = ['Lineup', 'lineup', 'cartelera', 'Cartelera'];
+        let foundElement = null;
+
+        for (const id of ids) {
+          const element = document.getElementById(id);
+          if (element) {
+            console.log(`✅ Encontrado con id="${id}"`);
+            foundElement = element;
+            break;
+          }
         }
-      }
-      
-      if (foundElement) {
-        console.log('🎯 Haciendo scroll...');
-        foundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        console.error('❌ No se encontró ninguna sección con ids:', ids);
-        console.log('📋 Todos los elementos con id en la página:');
-        document.querySelectorAll('[id]').forEach(el => {
-          console.log(`- ${el.id}`);
-        });
-      }
-    }, 500);
-  });
-}
+
+        if (foundElement) {
+          console.log('🎯 Haciendo scroll...');
+          foundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          console.error('❌ No se encontró ninguna sección con ids:', ids);
+          console.log('📋 Todos los elementos con id en la página:');
+          document.querySelectorAll('[id]').forEach(el => {
+            console.log(`- ${el.id}`);
+          });
+        }
+      }, 500);
+    });
+  }
 
   volverAInicio() {
     this.router.navigate(['/']);
@@ -150,21 +150,25 @@ export class DetalleBandaComponent implements OnInit {
   }
 
   getCountryIcon(country?: string): string {
-    if (!country) return 'ri-earth-line';
-    
-    const icons: { [key: string]: string } = {
-      'Spain': 'ri-spain-flag-line',
-      'USA': 'ri-usa-flag-line',
-      'UK': 'ri-uk-flag-line',
-      'Germany': 'ri-germany-flag-line',
-      'España': 'ri-spain-flag-line',
-      'Estados Unidos': 'ri-usa-flag-line',
-      'Reino Unido': 'ri-uk-flag-line',
-      'Alemania': 'ri-germany-flag-line',
-    };
-    
-    return icons[country] || 'ri-earth-line';
-  }
+  if (!country) return 'fi fi-xx';
+  
+  const flags: { [key: string]: string } = {
+    'Spain': 'fi fi-es',
+    'España': 'fi fi-es',
+    'USA': 'fi fi-us',
+    'Estados Unidos': 'fi fi-us',
+    'UK': 'fi fi-gb', 
+    'Reino Unido': 'fi fi-gb',
+    'Germany': 'fi fi-de',
+    'Alemania': 'fi fi-de',
+    'France': 'fi fi-fr',
+    'Francia': 'fi fi-fr',
+    'Italy': 'fi fi-it',
+    'Italia': 'fi fi-it',
+  };
+  
+  return flags[country] || 'fi fi-xx';
+}
 
   // Método para formatear fecha si necesitas mostrar created_at/updated_at
   formatearFecha(fecha?: string): string {

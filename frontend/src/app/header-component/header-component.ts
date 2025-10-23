@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
 interface Language {
   code: string;
   name: string;
-  //flag: string;
+  flag: string;
 }
 
 @Component({
@@ -27,14 +27,14 @@ export class HeaderComponent implements OnInit {
   isLanguageDropdownOpen = false;
   
   // Idioma actual
-  currentLanguage: Language = { code: 'ES ', name: 'Español'/*, flag: '🇪🇸' */};
+  currentLanguage: Language = { code: 'ES', name: 'Español', flag: '🇪🇸' };
   
   // Lista de idiomas disponibles
   availableLanguages: Language[] = [
-    { code: 'ES ', name: 'Español' /*flag: '🇪🇸' */},
-    { code: 'CAT', name: 'Catala' /*flag: 'cat' */},
-    { code: 'EN ', name: 'English' /*flag: '🇺🇸' */}
-  ];
+  { code: 'ES', name: 'Español', flag: 'fi fi-es fis' },
+  { code: 'CAT', name: 'Català', flag: 'catalan-flag' }, // Clase CSS personalizada
+  { code: 'EN', name: 'English', flag: 'fi fi-gb fis' }
+];
 
   ngOnInit() {
     // Cargar idioma guardado si existe

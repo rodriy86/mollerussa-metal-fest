@@ -312,3 +312,24 @@ iframe {
     min-height: 400px;
   }
 }
+// Bandera catalana con CSS puro
+.catalan-flag {
+  display: inline-block;
+  width: 24px;
+  height: 16px;
+  background: 
+    linear-gradient(
+      to bottom,
+      #fcdd09 0%, #fcdd09 10%,
+      #da121a 10%, #da121a 25%,
+      #fcdd09 25%, #fcdd09 35%,
+      #da121a 35%, #da121a 50%,
+      #fcdd09 50%, #fcdd09 60%,
+      #da121a 60%, #da121a 75%,
+      #fcdd09 75%, #fcdd09 85%,
+      #da121a 85%, #da121a 100%
+    );
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
