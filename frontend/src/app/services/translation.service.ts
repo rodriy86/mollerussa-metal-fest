@@ -13,16 +13,21 @@ export class TranslationService {
 
   private currentLang = signal<string>('es');
   private translations = signal<{ [lang: string]: Translation }>({});
+  
+  // Señal para forzar actualizaciones
+  private updateTrigger = signal(0);
 
   currentTranslations = computed(() => {
     const lang = this.currentLang();
     const allTranslations = this.translations();
+    this.updateTrigger(); // Hacerlo reactivo
     return allTranslations[lang] || {};
   });
 
   setLanguage(lang: string): void {
-    this.currentLang.set(lang);
-    this.loadTranslations(lang);
+    console.log('Setting language to:', lang);
+    this.currentLang.set(lang.toLowerCase());
+    this.loadTranslations(lang.toLowerCase());
   }
 
   getCurrentLang(): string {
@@ -30,35 +35,39 @@ export class TranslationService {
   }
 
   loadTranslations(lang: string): void {
-    if (this.translations()[lang]) {
+    const langCode = lang.toLowerCase();
+    if (this.translations()[langCode]) {
+      this.updateTrigger.update(v => v + 1); // Forzar actualización
       return;
     }
 
-    this.http.get<Translation>(`/assets/i18n/${lang}.json`).subscribe({
+    console.log('Loading translations for:', langCode);
+
+    this.http.get<Translation>(`/assets/i18n/${langCode}.json`).subscribe({
       next: (translation) => {
+        console.log('Translations loaded for:', langCode, translation);
         this.translations.update(translations => ({
           ...translations,
-          [lang]: translation
+          [langCode]: translation
         }));
+        this.updateTrigger.update(v => v + 1); // Forzar actualización después de cargar
       },
       error: (error) => {
-        console.error(`Error loading ${lang} translations:`, error);
+        console.error(`Error loading ${langCode} translations:`, error);
       }
     });
   }
 
-  // Método para manejar objetos anidados como "HEADER.INICIO"
   translate(key: string): string {
     const keys = key.split('.');
     let value: any = this.currentTranslations();
 
-    // Navegar a través del objeto anidado
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
-        // Si no encuentra la traducción, devuelve la última parte de la clave
-        return keys[keys.length - 1];
+        console.warn('Translation key not found:', key);
+        return key;
       }
     }
 
