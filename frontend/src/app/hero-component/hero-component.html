@@ -9,19 +9,19 @@
           <span class="text-brand">METAL FEST</span>
         </h2>
         <p class="text-xl md:text-2xl text-secondary mb-4 font-medium">
-          {{configGlobal.festival.fechaInicio}}
+          {{ getFormattedDate() }}
         </p>
         <p class="text-lg text-muted mb-8 max-w-2xl">
-          El festival de metal más épico de Catalunya que te regalara una experiencia inolvidable en el corazón de Mollerussa.
+          {{ 'HERO.DESCRIPTION' | translate }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <button (click)="scrollTo('Informacion')" 
                   class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
-            Más Información
+            {{ 'HERO.MORE_INFO_BUTTON' | translate }}
           </button>
           <button (click)="scrollTo('Lineup')" 
                   class="btn-outline-brand px-8 py-4 rounded-lg font-bold text-lg whitespace-nowrap transform hover:scale-105">
-            Ver cartelera
+            {{ 'HERO.LINEUP_BUTTON' | translate }}
           </button>
         </div>
       </div>

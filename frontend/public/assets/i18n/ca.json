@@ -13,5 +13,10 @@
     "LOADING": "Carregant bandes...",
     "ERROR": "Error en carregar les bandes",
     "RETRY": "Tornar a intentar"
+  },
+  "HERO": {
+    "DESCRIPTION": "El festival de metal més èpic de Catalunya que et regalarà una experiència inoblidable al cor de Mollerussa.",
+    "MORE_INFO_BUTTON": "Més Informació",
+    "LINEUP_BUTTON": "Veure cartellera"
   }
 }

@@ -13,5 +13,10 @@
     "LOADING": "Cargando bandas...",
     "ERROR": "Error al cargar las bandas",
     "RETRY": "Reintentar"
+  },
+  "HERO": {
+    "DESCRIPTION": "El festival de metal más épico de Catalunya que te regalara una experiencia inolvidable en el corazón de Mollerussa.",
+    "MORE_INFO_BUTTON": "Más Información",
+    "LINEUP_BUTTON": "Ver cartelera"
   }
 }

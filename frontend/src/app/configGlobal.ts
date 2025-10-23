@@ -21,7 +21,7 @@ class GlobalConfig {
     capacidad: '550',
     edicion: '3ª Edición',
     anyo: 2026,
-    fechaInicio: '25 Julio 2026',
+    fechaInicio: '2026-07-15',
     fechaFin: '',
     dias: ['Sabado', '-'],
     horario: {
