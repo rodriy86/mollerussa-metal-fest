@@ -13,76 +13,89 @@
     <!-- Menú Desktop -->
     <div class="hidden md:flex space-x-8 items-center">
       <a (click)="scrollTo('Inicio')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">Inicio</a>
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
+        {{ 'HEADER.INICIO' | translate }}
+      </a>
       <a (click)="scrollTo('noticias')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">Noticias</a>
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
+        {{ 'HEADER.NOTICIAS' | translate }}
+      </a>
       <a (click)="scrollTo('Lineup')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">Cartelera</a>
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
+        {{ 'HEADER.CARTELERA' | translate }}
+      </a>
       <a (click)="scrollTo('Informacion')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">Información</a>
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
+        {{ 'HEADER.INFORMACION' | translate }}
+      </a>
       <a (click)="scrollTo('Ubicacion')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">Ubicación</a>
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
+        {{ 'HEADER.UBICACION' | translate }}
+      </a>
       <a (click)="scrollTo('contacto')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">Contacto</a>
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
+        {{ 'HEADER.CONTACTO' | translate }}
+      </a>
       <a [routerLink]="['/detalle-galeria']"
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
-        Galeria
+        {{ 'HEADER.GALERIA' | translate }}
       </a>
 
       <!-- Selector de Idiomas Simple -->
-     <div class="relative">
-  <button (click)="toggleLanguageDropdown()"
-    class="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand bg-transparent hover:bg-white/10 transition-all duration-200">
-    
-    <!-- BANDERA ESPAÑOLA -->
-    <span *ngIf="currentLanguage.code.trim() === 'ES'" 
-          class="fi fi-es flag-size"></span>
-    
-    <!-- BANDERA CATALANA -->
-    <span *ngIf="currentLanguage.code.trim() === 'CAT'" 
-          class="catalan-flag flag-size"></span>
-    
-    <!-- BANDERA INGLESA -->
-    <span *ngIf="currentLanguage.code.trim() === 'EN'" 
-          class="fi fi-gb flag-size"></span>
+      <div class="relative">
+        <button (click)="toggleLanguageDropdown()"
+          class="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand bg-transparent hover:bg-white/10 transition-all duration-200"
+          [attr.aria-label]="'HEADER.IDIOMA' | translate">
+          
+          <!-- BANDERA ESPAÑOLA -->
+          <span *ngIf="currentLanguage.code === 'es'" 
+                class="fi fi-es flag-size"></span>
+          
+          <!-- BANDERA CATALANA -->
+          <span *ngIf="currentLanguage.code === 'ca'" 
+                class="catalan-flag flag-size"></span>
+          
+          <!-- BANDERA INGLESA -->
+          <span *ngIf="currentLanguage.code === 'en'" 
+                class="fi fi-gb flag-size"></span>
 
-    <i class="ri-arrow-down-s-line text-muted transition-transform duration-300 text-sm"
-      [class.rotate-180]="isLanguageDropdownOpen"></i>
-  </button>
+          <i class="ri-arrow-down-s-line text-muted transition-transform duration-300 text-sm"
+            [class.rotate-180]="isLanguageDropdownOpen"></i>
+        </button>
 
         <!-- Lista desplegable -->
-        <!-- Lista desplegable -->
-<div
-  class="absolute top-full right-0 mt-2 w-48 rounded-lg bg-page border border-brand shadow-custom backdrop-blur-sm transition-all duration-300 z-50"
-  [class]="isLanguageDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'">
-  <div class="py-2">
-    @for (language of availableLanguages; track language.code) {
-    <button (click)="selectLanguage(language)"
-      class="w-full flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 hover-bg-brand-dark"
-      [class]="language.code === currentLanguage.code ? 'text-brand bg-card font-bold' : 'text-secondary'">
-      
-      <!-- BANDERA ESPAÑOLA -->
-      <span *ngIf="language.code === 'ES'" 
-            class="fi fi-es flag-size flex-shrink-0"></span>
-      
-      <!-- BANDERA CATALANA -->
-      <span *ngIf="language.code === 'CAT'" 
-            class="catalan-flag flag-size flex-shrink-0"></span>
-      
-      <!-- BANDERA INGLESA -->
-      <span *ngIf="language.code === 'EN'" 
-            class="fi fi-gb flag-size flex-shrink-0"></span>
+        <div
+          class="absolute top-full right-0 mt-2 w-48 rounded-lg bg-page border border-brand shadow-custom backdrop-blur-sm transition-all duration-300 z-50"
+          [class]="isLanguageDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'">
+          <div class="py-2">
+            @for (language of availableLanguages; track language.code) {
+            <button (click)="selectLanguage(language)"
+              class="w-full flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 hover-bg-brand-dark"
+              [class]="language.code === currentLanguage.code ? 'text-brand bg-card font-bold' : 'text-secondary'">
+              
+              <!-- BANDERA ESPAÑOLA -->
+              <span *ngIf="language.code === 'es'" 
+                    class="fi fi-es flag-size flex-shrink-0"></span>
+              
+              <!-- BANDERA CATALANA -->
+              <span *ngIf="language.code === 'ca'" 
+                    class="catalan-flag flag-size flex-shrink-0"></span>
+              
+              <!-- BANDERA INGLESA -->
+              <span *ngIf="language.code === 'en'" 
+                    class="fi fi-gb flag-size flex-shrink-0"></span>
 
-      <span class="flex-1 text-left">{{ language.name }}</span>
-    </button>
-    }
-  </div>
-</div>
+              <span class="flex-1 text-left">{{ language.name }}</span>
+            </button>
+            }
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Botón Hamburguesa -->
-    <button class="md:hidden w-8 h-8 flex-center text-primary z-50" (click)="toggleMenu()">
+    <button class="md:hidden w-8 h-8 flex-center text-primary z-50" (click)="toggleMenu()"
+            [attr.aria-label]="'HEADER.MENU' | translate">
       <i class="ri-menu-line text-xl" *ngIf="!isMenuOpen"></i>
       <i class="ri-close-line text-xl" *ngIf="isMenuOpen"></i>
     </button>
@@ -92,33 +105,47 @@
   <div class="md:hidden fixed top-0 left-0 w-full h-full bg-page z-40 mt-16" *ngIf="isMenuOpen">
     <div class="flex flex-col space-y-6 p-8 pt-20">
       <a (click)="scrollTo('Inicio'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">{{translate('HEADER.INICIO')}}</a>
-      <a (click)="scrollTo('noticias'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">{{ translate('HEADER.NOTICIAS') }}</a>
-      <a (click)="scrollTo('Lineup'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">Cartelera</a>
-      <a (click)="scrollTo('Informacion'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">Información</a>
-      <a (click)="scrollTo('Ubicacion'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">Ubicación</a>
-      <a (click)="scrollTo('contacto'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">Contacto</a>
-      <a (click)=" toggleMenu();" [routerLink]="['/detalle-galeria']"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
-        Galeria
+        {{ 'HEADER.INICIO' | translate }}
+      </a>
+      <a (click)="scrollTo('noticias'); toggleMenu();"
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
+        {{ 'HEADER.NOTICIAS' | translate }}
+      </a>
+      <a (click)="scrollTo('Lineup'); toggleMenu();"
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
+        {{ 'HEADER.CARTELERA' | translate }}
+      </a>
+      <a (click)="scrollTo('Informacion'); toggleMenu();"
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
+        {{ 'HEADER.INFORMACION' | translate }}
+      </a>
+      <a (click)="scrollTo('Ubicacion'); toggleMenu();"
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
+        {{ 'HEADER.UBICACION' | translate }}
+      </a>
+      <a (click)="scrollTo('contacto'); toggleMenu();"
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
+        {{ 'HEADER.CONTACTO' | translate }}
+      </a>
+      <a (click)="toggleMenu();" [routerLink]="['/detalle-galeria']"
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
+        {{ 'HEADER.GALERIA' | translate }}
       </a>
 
       <!-- Selector de Idiomas Móvil -->
       <div class="pt-6 border-t border-custom">
-        <div class="text-muted text-sm mb-3">Idioma / Language</div>
+        <div class="text-muted text-sm mb-3">{{ 'HEADER.IDIOMA' | translate }}</div>
         <div class="grid grid-cols-2 gap-2">
           @for (language of availableLanguages; track language.code) {
           <button (click)="selectLanguage(language); toggleMenu();"
             class="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand transition-all duration-200 text-sm"
             [class]="language.code === currentLanguage.code ? 'bg-card text-brand font-bold' : 'bg-page text-secondary hover:bg-card'">
             <!-- BANDERA EN MÓVIL -->
-            <span [class]="language.flag" class="flag-size"></span>
-            <span>{{ language.code }}</span>
+            <span *ngIf="language.code === 'es'" class="fi fi-es flag-size"></span>
+            <span *ngIf="language.code === 'ca'" class="catalan-flag flag-size"></span>
+            <span *ngIf="language.code === 'en'" class="fi fi-gb flag-size"></span>
+            <span>{{ language.code.toUpperCase() }}</span>
           </button>
           }
         </div>
