@@ -101,9 +101,9 @@
     </button>
   </div>
 
-  <!-- Menú Móvil -->
-  <div class="md:hidden fixed top-0 left-0 w-full h-full bg-page z-40 mt-16" *ngIf="isMenuOpen">
-    <div class="flex flex-col space-y-6 p-8 pt-20">
+  <!-- Menú Móvil CORREGIDO -->
+  <div class="md:hidden fixed top-16 left-0 w-full h-[calc(100vh-64px)] bg-page z-50 overflow-y-auto" *ngIf="isMenuOpen">
+    <div class="flex flex-col space-y-6 p-8">
       <a (click)="scrollTo('Inicio'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
         {{ 'HEADER.INICIO' | translate }}
