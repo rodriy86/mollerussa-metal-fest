@@ -9,7 +9,7 @@
     "GALERIA": "Galería",
     "IDIOMA": "Idioma",
     "MENU": "Menú",
-    "MENJAR_SOLIDARI":"Quedada MMF"
+    "MENJAR_SOLIDARI":"Comida Solidaria MMF"
   },
   "BANDS": {
     "LOADING": "Cargando bandas...",
@@ -19,6 +19,7 @@
   "HERO": {
     "DESCRIPTION": "El festival de metal más épico de Catalunya que te regalara una experiencia inolvidable en el corazón de Mollerussa.",
     "MORE_INFO_BUTTON": "Más Información",
-    "LINEUP_BUTTON": "Ver cartelera"
+    "LINEUP_BUTTON": "Ver cartelera",
+    "MENJAR_SOLIDARI":"Comida solidaria MMF"
   }
 }

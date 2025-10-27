@@ -8,8 +8,7 @@
     "CONTACTO": "Contacte",
     "GALERIA": "Galeria",
     "IDIOMA": "Idioma",
-    "MENU": "Menú",
-    "MENJAR_SOLIDARI":"Quedada MMF"
+    "MENU": "Menú"
   },
   "BANDS": {
     "LOADING": "Carregant bandes...",
@@ -19,6 +18,7 @@
   "HERO": {
     "DESCRIPTION": "El festival de metal més èpic de Catalunya que et regalarà una experiència inoblidable al cor de Mollerussa.",
     "MORE_INFO_BUTTON": "Més Informació",
-    "LINEUP_BUTTON": "Veure cartellera"
+    "LINEUP_BUTTON": "Veure cartellera",
+    "MENJAR_SOLIDARI":"Menjar solidari MMF"
   }
 }
