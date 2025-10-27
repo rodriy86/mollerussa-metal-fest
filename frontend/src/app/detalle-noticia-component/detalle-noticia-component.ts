@@ -50,6 +50,10 @@ export class DetalleNoticiaComponent implements OnInit {
     });
   }
 
+  navigateToComidaSolidaria() {
+    this.router.navigate(['/comida-solidaria']);
+  }
+
   cargarNoticia(id: number) {
     this.isLoading = true;
     this.error = '';

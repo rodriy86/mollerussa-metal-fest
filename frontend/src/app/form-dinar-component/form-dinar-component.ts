@@ -24,6 +24,7 @@ export class FormDinarComponent {
     numMenores: 0,
     menoresPlato1: 0,
     menoresPlato2: 0,
+    donacionCancer: false,
     aceptoTerminos: false,
     aceptoPoliticaPrivacidad: false
   };
@@ -32,6 +33,7 @@ export class FormDinarComponent {
   showPoliticaPrivacidad = false;
   enviando = false;
   total = 0;
+  donacion = 0;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -43,15 +45,25 @@ export class FormDinarComponent {
 
   // Calcular total
   calcularTotal() {
-    this.total = (
-      (this.formData.mayoresPlato1 || 0) * 10 +
-      (this.formData.mayoresPlato2 || 0) * 11 +
-      (this.formData.mayoresCafe || 0) * 2 +
-      (this.formData.mayoresBermut || 0) * 5 +
-      (this.formData.menoresPlato1 || 0) * 10 +
-      (this.formData.menoresPlato2 || 0) * 11
-    );
-  }
+  this.total = (
+    (this.formData.mayoresPlato1 || 0) * 10 +
+    (this.formData.mayoresPlato2 || 0) * 11 +
+    (this.formData.mayoresCafe || 0) * 2 +
+    (this.formData.mayoresBermut || 0) * 5 +
+    (this.formData.menoresPlato1 || 0) * 10 +
+    (this.formData.menoresPlato2 || 0) * 11
+  );
+  
+  this.donacion = this.formData.donacionCancer ? 2 : 0;
+  
+  // ✅ DEBUG: Verifica que se ejecuta y los valores
+  console.log('Calculando total:', {
+    donacionCancer: this.formData.donacionCancer,
+    donacion: this.donacion,
+    subtotal: this.total,
+    totalFinal: this.total + this.donacion
+  });
+}
 
   // Enviar formulario
   async onSubmit() {
@@ -141,10 +153,12 @@ export class FormDinarComponent {
       numMenores: 0,
       menoresPlato1: 0,
       menoresPlato2: 0,
+      donacionCancer: false,  // ✅ NUEVO CAMPO
       aceptoTerminos: false,
       aceptoPoliticaPrivacidad: false
     };
     this.formSubmitted = false;
     this.total = 0;
+    this.donacion = 0;
   }
 }

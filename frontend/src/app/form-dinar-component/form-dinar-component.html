@@ -48,13 +48,14 @@
             <h2 class="text-2xl font-bold text-brand mb-4">🎸 Sobre el Evento</h2>
             <div class="space-y-4 text-secondary">
                 <p>
-                    Te invitamos a nuestra <strong>Comida Solidaria Mollerussa Metal Fest</strong>, un evento único que combina 
-                    buena música metal con gastronomía solidaria. 
+                    Te invitamos a nuestra <strong>Comida Solidaria Mollerussa Metal Fest</strong>, un evento único que
+                    combina
+                    buena música metal con gastronomía solidaria.
                 </p>
                 <p>
-                    Esta comida especial está organizada por la asociación Mollerussa Metal Fest como parte de nuestro 
-                    compromiso con la comunidad y la cultura metalera. Será una experiencia gastronómica acompañada de 
-                    las mejores bandas de metal de la zona, creando un ambiente único donde la buena comida y la música 
+                    Esta comida especial está organizada por la asociación Mollerussa Metal Fest como parte de nuestro
+                    compromiso con la comunidad y la cultura metalera. Será una experiencia gastronómica acompañada de
+                    las mejores bandas de metal de la zona, creando un ambiente único donde la buena comida y la música
                     se fusionan.
                 </p>
                 <p>
@@ -122,10 +123,10 @@
                 <!-- Personas mayores de 12 años -->
                 <div class="border-2 border-custom rounded-lg p-6">
                     <h3 class="text-xl font-bold text-brand mb-4">👥 Personas mayores de 12 años</h3>
-                    
+
                     <div class="mb-4">
                         <label class="block text-primary font-bold mb-3">Número de personas *</label>
-                        <input type="number" [(ngModel)]="formData.numMayores" name="numMayores" min="0" 
+                        <input type="number" [(ngModel)]="formData.numMayores" name="numMayores" min="0"
                             class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             (change)="calcularTotal()">
                         <div *ngIf="isFieldInvalid('numMayores')" class="text-red-400 text-sm mt-1 flex items-center">
@@ -137,7 +138,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                         <div>
                             <label class="block text-primary font-bold mb-2">Plato Único 1 (10€)</label>
-                            <input type="number" [(ngModel)]="formData.mayoresPlato1" name="mayoresPlato1" min="0" 
+                            <input type="number" [(ngModel)]="formData.mayoresPlato1" name="mayoresPlato1" min="0"
                                 class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
                         </div>
@@ -165,7 +166,7 @@
                 <!-- Personas menores de 12 años -->
                 <div class="border-2 border-custom rounded-lg p-6">
                     <h3 class="text-xl font-bold text-brand mb-4">🧒 Personas menores de 12 años</h3>
-                    
+
                     <div class="mb-4">
                         <label class="block text-primary font-bold mb-3">Número de personas *</label>
                         <input type="number" [(ngModel)]="formData.numMenores" name="numMenores" min="0"
@@ -193,10 +194,31 @@
                     </div>
                 </div>
 
+                <!-- Donación para asociación de niños con cáncer -->
+                <div class="border-2 border-pink-500 rounded-lg p-6 bg-pink-50/10 mb-6">
+                    <label class="flex items-start cursor-pointer group">
+                        <input type="checkbox" [ngModel]="formData.donacionCancer" name="donacionCancer"
+                            class="mr-4 mt-1 text-pink-500 focus:ring-pink-500 transform scale-125"
+                            (ngModelChange)="formData.donacionCancer = $event; calcularTotal()">
+                        <div class="flex-1">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-3">🎗️</span>
+                                <span class="text-xl font-bold text-pink-600">Añadir 2€ de donación</span>
+                            </div>
+                            <p class="text-pink-700 mt-2 text-lg font-medium">
+                                Para la asociación de niños con cáncer
+                            </p>
+                            <p class="text-pink-600 mt-1 text-sm">
+                                Tu contribución ayudará a apoyar la investigación y el tratamiento del cáncer infantil
+                            </p>
+                        </div>
+                    </label>
+                </div>
+
                 <!-- Total -->
                 <div class="bg-brand border-2 border-brand rounded-lg p-6 text-center">
                     <h3 class="text-2xl font-black text-primary mb-2">💰 TOTAL A PAGAR</h3>
-                    <div class="text-4xl font-black text-primary">{{ total }} €</div>
+                    <div class="text-4xl font-black text-primary">{{ total + donacion }} €</div>
                     <p class="text-primary mt-2">Precio calculado en base a tu selección</p>
                 </div>
 
@@ -209,9 +231,11 @@
                             <input type="checkbox" [(ngModel)]="formData.aceptoTerminos" name="aceptoTerminos"
                                 class="mr-4 mt-1 text-brand focus:ring-brand transform scale-125">
                             <span class="text-secondary text-sm leading-relaxed">
-                                <strong>Acepto los términos y condiciones.</strong> Entiendo que esta reserva está sujeta 
-                                a disponibilidad y confirmación por parte de la organización. Me comprometo a realizar el 
-                                pago correspondiente según lo seleccionado. La organización se reserva el derecho de 
+                                <strong>Acepto los términos y condiciones.</strong> Entiendo que esta reserva está
+                                sujeta
+                                a disponibilidad y confirmación por parte de la organización. Me comprometo a realizar
+                                el
+                                pago correspondiente según lo seleccionado. La organización se reserva el derecho de
                                 modificar fechas o cancelar el evento por causas de fuerza mayor. *
                             </span>
                         </label>
@@ -226,7 +250,8 @@
                     <div class="bg-page border-2 border-custom rounded-lg p-6"
                         [class.border-brand]="formSubmitted && !formData.aceptoPoliticaPrivacidad">
                         <label class="flex items-start">
-                            <input type="checkbox" [(ngModel)]="formData.aceptoPoliticaPrivacidad" name="aceptoPoliticaPrivacidad"
+                            <input type="checkbox" [(ngModel)]="formData.aceptoPoliticaPrivacidad"
+                                name="aceptoPoliticaPrivacidad"
                                 class="mr-4 mt-1 text-brand focus:ring-brand transform scale-125">
                             <span class="text-secondary text-sm leading-relaxed">
                                 <strong>He leído y acepto la </strong>
@@ -234,7 +259,8 @@
                                     class="text-brand hover-text-brand underline font-semibold transition-colors">
                                     Política de privacidad
                                 </button>
-                                <strong> y consiento el tratamiento de mis datos para gestionar la reserva de la comida solidaria.</strong> *
+                                <strong> y consiento el tratamiento de mis datos para gestionar la reserva de la comida
+                                    solidaria.</strong> *
                             </span>
                         </label>
                         <div *ngIf="formSubmitted && !formData.aceptoPoliticaPrivacidad"
@@ -290,8 +316,8 @@
                     <h3 class="text-xl font-bold text-brand mb-4">1. Finalidad del tratamiento</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
                         <p class="text-secondary">
-                            Los datos personales recabados a través del formulario de reserva se tratarán para gestionar 
-                            las reservas de la comida solidaria, contactar con los participantes y gestionar los pagos 
+                            Los datos personales recabados a través del formulario de reserva se tratarán para gestionar
+                            las reservas de la comida solidaria, contactar con los participantes y gestionar los pagos
                             correspondientes.
                         </p>
                     </div>
@@ -300,8 +326,7 @@
                 <!-- Más secciones según necesites -->
 
                 <div class="flex justify-center pt-6">
-                    <button (click)="closePoliticaPrivacidad()"
-                        class="btn-brand py-3 px-8 rounded-lg">
+                    <button (click)="closePoliticaPrivacidad()" class="btn-brand py-3 px-8 rounded-lg">
                         Cerrar Política de Privacidad
                     </button>
                 </div>

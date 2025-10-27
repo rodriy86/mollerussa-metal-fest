@@ -84,7 +84,7 @@ export const mockData = {
       titulo: 'Dinar solidari',
       resumenNoticia: 'La organització del Mollerussa Metal Fest organitzara un dinar solidari a la serra el dia 1/2/26',
       detalleNoticia: true,  
-      imagen: '/assets/images/noti1.jpg',
+      imagen: '/assets/images/menja.png',
       alt: 'Dinar solidari',
       enlace: '#',
       textoEnlace: 'Ver cartelera',
@@ -184,7 +184,7 @@ export const mockData = {
       id: 1,
       noticia_id: 1, // Foreign key a noticias.id
       fecha: '1 Febrero 2026',
-      categoria: 'LINEUP',
+      categoria: 'Eventos',
       titulo: 'Dinar solidari',
       descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2026.',
       contenido: JSON.stringify([ // SQLite almacena arrays como JSON
@@ -193,7 +193,7 @@ export const mockData = {
         'Tras meses de negociaciones y expectación por parte de los fans, finalmente podemos confirmar que Cor Rebel pisará La Amistat.',
         'La banda, ha sido durante décadas una de las referencias indiscutibles de Lleida.'
       ]),
-      imagenPrincipal: '/assets/images/cap_noti1.jpg',
+      imagenPrincipal: '/assets/images/menja.png',
       autor: 'Redacción MMF',
       tiempoLectura: '8 min',
       visualizaciones: '1.2k',

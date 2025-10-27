@@ -18,6 +18,7 @@ import { DetalleGaleriaComponent } from './detalle-galeria-component/detalle-gal
 import { DetalleBandaComponent } from './detalle-banda-component/detalle-banda-component';
 //import { LineupComponent } from './lineup-component/lineup-component';
 import { FormAcreditacioComponent } from './form-acreditacio-component/form-acreditacio-component';
+import { FormDinarComponent } from './form-dinar-component/form-dinar-component';
 
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
   { path: 'detalle-galeria', component: DetalleGaleriaComponent },
   { path: 'form-acreditacio', component: FormAcreditacioComponent },
   { path: 'banda/:id', component: DetalleBandaComponent },
+  { path: 'comida-solidaria', component: FormDinarComponent },
   //{ path: 'lineup', component: LineupComponent },
   { path: '**', redirectTo: '' }  
 ];

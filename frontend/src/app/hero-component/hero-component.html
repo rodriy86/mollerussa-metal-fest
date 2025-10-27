@@ -16,13 +16,17 @@
           {{ 'HERO.DESCRIPTION' | translate }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <button (click)="scrollTo('Informacion')" 
+          <!--<button (click)="scrollTo('Informacion')" 
                   class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
             {{ 'HERO.MORE_INFO_BUTTON' | translate }}
           </button>
           <button (click)="scrollTo('Lineup')" 
                   class="btn-outline-brand px-8 py-4 rounded-lg font-bold text-lg whitespace-nowrap transform hover:scale-105">
             {{ 'HERO.LINEUP_BUTTON' | translate }}
+          </button>-->
+          <button (click)="navigateToComidaSolidaria()" 
+                   class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
+            🍽️ Comida Solidaria
           </button>
         </div>
       </div>

@@ -42,14 +42,14 @@ const enviarEmailAcreditacion = async (formData) => {
   try {
     //console.log('📧 [EMAIL-1] Iniciando envío de email con Gmail...');
     const nodemailer = await import('nodemailer');
-    
+
     //console.log('🔍 [EMAIL-2] Configurando Gmail...');
-    
+
     //CONFIGURACIÓN CORRECTA PARA GMAIL
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rodriy86.maps@gmail.com', 
+        user: 'rodriy86.maps@gmail.com',
         pass: process.env.GMAIL_APP_PASSWORD
       }
     });
@@ -59,8 +59,8 @@ const enviarEmailAcreditacion = async (formData) => {
     //console.log('✅ [EMAIL-4] Conexión con Gmail verificada');
 
     // ... (el resto del código del email se mantiene igual)
-    const diasTexto = formData.dias && formData.dias.length > 0 
-      ? formData.dias.join(', ') 
+    const diasTexto = formData.dias && formData.dias.length > 0
+      ? formData.dias.join(', ')
       : 'No especificat';
 
     const mailOptions = {
@@ -144,7 +144,7 @@ const enviarEmailAcreditacion = async (formData) => {
     /*console.log('✅ [EMAIL-6] Email enviado correctamente. ID:', result.messageId);
     console.log('✅ [EMAIL-7] Respuesta:', result.response);*/
     return result;
-    
+
   } catch (error) {
     /*console.error('❌ [EMAIL-ERROR] Error enviando email con Gmail:');
     console.error('   - Mensaje:', error.message);
@@ -156,7 +156,7 @@ const enviarEmailAcreditacion = async (formData) => {
       console.error('   2. ¿Generaste un APP PASSWORD (no la contraseña normal)?');
       console.error('   3. Verifica en: https://myaccount.google.com/apppasswords');
     }*/
-    
+
     throw error;
   }
 };
@@ -262,6 +262,77 @@ const apiHandlers = {
     }
   },//fi acreditacio
 
+  // Comida solidaria
+  '/api/comida-solidaria': async (req, res) => {
+    if (req.method !== 'POST') {
+      return sendError(res, 405, 'Mètode no permès');
+    }
+
+    try {
+      let body = '';
+
+      req.on('data', chunk => {
+        body += chunk.toString();
+      });
+
+      req.on('end', async () => {
+        try {
+          const formData = JSON.parse(body);
+
+          if (!formData.nombre || !formData.apellidos || !formData.dni) {
+            return sendError(res, 400, 'Dades incompletes');
+          }
+
+          // Solo guardar en Google Sheets y enviar email
+          try {
+            console.log('📤 Enviando a Google Sheets...');
+            const googleSheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbyv_xCvO3UucfIQ033ZsQnK-hNwOW3DKp6HxUjQteGO08ImgpqqvzK0qbtYPwaiFLpL/exec', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'text/plain',
+              },
+              body: JSON.stringify(formData)
+            });
+
+            console.log('📨 Respuesta de Google Sheets:', googleSheetsResponse.status);
+
+            if (!googleSheetsResponse.ok) {
+              throw new Error(`HTTP error! status: ${googleSheetsResponse.status}`);
+            }
+
+            const sheetsResult = await googleSheetsResponse.json();
+            console.log('✅ Resultado Sheets:', sheetsResult);
+
+            if (!sheetsResult.success) {
+              throw new Error('Error guardant a Google Sheets: ' + (sheetsResult.error || 'Unknown error'));
+            }
+
+          } catch (error) {
+            console.error('❌ Error con Google Sheets:', error.message);
+            // Puedes decidir si quieres continuar con el email o fallar completamente
+            // throw new Error('Error guardant a Google Sheets: ' + error.message);
+          }
+
+          // Enviar email
+          await enviarEmailComidaSolidaria(formData);
+
+          sendJson(res, {
+            success: true,
+            message: 'Reserva enviada correctament i guardada a Google Sheets'
+          });
+
+        } catch (error) {
+          console.error('Error procesant reserva:', error);
+          sendError(res, 500, 'Error intern del servidor');
+        }
+      });
+
+    } catch (error) {
+      console.error('Error en endpoint dinar-solidari:', error);
+      sendError(res, 500, 'Error intern del servidor');
+    }
+  },//fi comida-solidaria
+
   // Otros endpoints
   '/api/events': (req, res) => sendJson(res, mockData.events || []),
   '/api/tickets': (req, res) => sendJson(res, mockData.tickets || []),
@@ -326,32 +397,22 @@ server.listen(PORT, () => {
   console.log('Server en marcha!');
 });
 
-// Enviar mensaje comida solidaria
-app.post('/api/comida-solidaria', async (req, res) => {
-  try {
-    const result = await enviarEmailComidaSolidaria(req.body);
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ error: 'Error al enviar la reserva' });
-  }
-});
-
 const enviarEmailComidaSolidaria = async (formData) => {
   try {
     const nodemailer = await import('nodemailer');
-    
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rodriy86.maps@gmail.com', 
+        user: 'rodriy86.maps@gmail.com',
         pass: process.env.GMAIL_APP_PASSWORD
       }
     });
 
     await transporter.verify();
 
-    // Calcular total
-    const total = (
+    // Calcular total CON DONACIÓN
+    const subtotal = (
       (formData.mayoresPlato1 || 0) * 10 +
       (formData.mayoresPlato2 || 0) * 11 +
       (formData.mayoresCafe || 0) * 2 +
@@ -360,10 +421,13 @@ const enviarEmailComidaSolidaria = async (formData) => {
       (formData.menoresPlato2 || 0) * 11
     );
 
+    const donacion = formData.donacionCancer ? 2 : 0;
+    const totalFinal = subtotal + donacion;
+
     const mailOptions = {
       from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
       to: 'rodriy86@gmail.com',
-      subject: `🍽️ NUEVA RESERVA COMIDA SOLIDARIA - ${formData.nombre} ${formData.apellidos}`,
+      subject: `🍽️ NOVA RESERVA DINAR SOLIDARI - ${formData.nombre} ${formData.apellidos}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -375,49 +439,60 @@ const enviarEmailComidaSolidaria = async (formData) => {
             .section { background: white; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #dc2626; }
             .label { font-weight: bold; color: #dc2626; }
             .total { background: #dc2626; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold; }
+            .donacion { background: #ec4899; color: white; padding: 15px; text-align: center; margin: 10px 0; border-radius: 5px; }
             .footer { background: #333; color: white; padding: 15px; text-align: center; margin-top: 20px; }
           </style>
         </head>
         <body>
           <div class="header">
             <h1>🎸 MOLLERUSSA METAL FEST</h1>
-            <h2>Nueva Reserva - Comida Solidaria</h2>
+            <h2>Nova Reserva - Dinar Solidari</h2>
           </div>
           
           <div class="content">
             <div class="section">
-              <h3>👤 Información Personal</h3>
-              <p><span class="label">Nombre:</span> ${formData.nombre} ${formData.apellidos}</p>
+              <h3>👤 Informació Personal</h3>
+              <p><span class="label">Nom:</span> ${formData.nombre} ${formData.apellidos}</p>
               <p><span class="label">DNI:</span> ${formData.dni}</p>
-              <p><span class="label">Población:</span> ${formData.poblacion}</p>
+              <p><span class="label">Població:</span> ${formData.poblacion}</p>
             </div>
 
             <div class="section">
-              <h3>👥 Personas mayores de 12 años: ${formData.numMayores}</h3>
-              <p><span class="label">Plato Único 1 (10€):</span> ${formData.mayoresPlato1 || 0}</p>
-              <p><span class="label">Plato Único 2 (11€):</span> ${formData.mayoresPlato2 || 0}</p>
-              <p><span class="label">Café (2€):</span> ${formData.mayoresCafe || 0}</p>
+              <h3>👥 Persones majors de 12 anys: ${formData.numMayores}</h3>
+              <p><span class="label">Plat Únic 1 (10€):</span> ${formData.mayoresPlato1 || 0}</p>
+              <p><span class="label">Plat Únic 2 (11€):</span> ${formData.mayoresPlato2 || 0}</p>
+              <p><span class="label">Cafè (2€):</span> ${formData.mayoresCafe || 0}</p>
               <p><span class="label">Bermut (5€):</span> ${formData.mayoresBermut || 0}</p>
             </div>
 
             <div class="section">
-              <h3>🧒 Personas menores de 12 años: ${formData.numMenores}</h3>
-              <p><span class="label">Plato Único 1 (10€):</span> ${formData.menoresPlato1 || 0}</p>
-              <p><span class="label">Plato Único 2 (11€):</span> ${formData.menoresPlato2 || 0}</p>
+              <h3>🧒 Persones menors de 12 anys: ${formData.numMenores}</h3>
+              <p><span class="label">Plat Únic 1 (10€):</span> ${formData.menoresPlato1 || 0}</p>
+              <p><span class="label">Plat Únic 2 (11€):</span> ${formData.menoresPlato2 || 0}</p>
             </div>
 
+            ${donacion > 0 ? `
+            <div class="donacion">
+              <h3>🎗️ DONACIÓ SOLIDÀRIA</h3>
+              <p><strong>+ ${donacion} € per a l'associació de nens amb càncer</strong></p>
+              <p>Gràcies per la teva solidaritat!</p>
+            </div>
+            ` : ''}
+
             <div class="total">
-              💰 TOTAL: ${total} €
+              💰 TOTAL: ${totalFinal} €
+              ${donacion > 0 ? `<br><small>(Inclou ${donacion}€ de donació solidària)</small>` : ''}
             </div>
 
             <div class="section">
-              <h3>📅 Información de la Reserva</h3>
-              <p><span class="label">Fecha:</span> ${new Date().toLocaleString('es-ES')}</p>
+              <h3>📅 Informació de la Reserva</h3>
+              <p><span class="label">Data:</span> ${new Date().toLocaleString('ca-ES')}</p>
+              <p><span class="label">Inclou donació:</span> ${formData.donacionCancer ? 'SÍ ✅' : 'NO'}</p>
             </div>
           </div>
 
           <div class="footer">
-            <p>🎸 Mollerussa Metal Fest - Comida Solidaria</p>
+            <p>🎸 Mollerussa Metal Fest - Dinar Solidari</p>
           </div>
         </body>
         </html>
@@ -425,10 +500,10 @@ const enviarEmailComidaSolidaria = async (formData) => {
     };
 
     await transporter.sendMail(mailOptions);
-    return { success: true, message: 'Reserva enviada correctamente' };
-    
+    return { success: true, message: 'Reserva enviada correctament' };
+
   } catch (error) {
-    console.error('Error enviando email de comida solidaria:', error);
+    console.error('Error enviant email de dinar solidari:', error);
     throw error;
   }
 };
