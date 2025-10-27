@@ -1,0 +1,311 @@
+<header class="fixed top-0 left-0 right-0 z-50 bg-header opacity-100 backdrop-blur-sm border-b border-brand">
+    <div class="absolute inset-0 gradient-header opacity-90"></div>
+    <nav class="relative z-10 px-6 py-4">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 flex-center bg-brand rounded-lg">
+                    <img src="assets/icons/mask.png" alt="Máscara" class="w-full h-full p-2 filter-invert">
+                </div>
+                <h1 class="text-2xl font-bold metal-text text-brand">Mollerussa Metal Fest</h1>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <button (click)="volverAInicio()"
+                    class="flex items-center text-secondary hover-text-brand transition-colors font-medium">
+                    <i class="ri-arrow-left-line mr-2"></i>
+                    Volver al inicio
+                </button>
+            </div>
+
+            <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex-center text-primary">
+                <i class="ri-arrow-left-line mr-2"></i>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<section class="min-h-screen bg-page py-12">
+    <div class="max-w-4xl mx-auto px-6">
+        <!-- Botón volver -->
+        <div class="mb-8">
+            <button (click)="volverAInicio()"
+                class="flex items-center text-brand hover-text-brand font-medium transition-colors">
+                <i class="ri-arrow-left-line mr-2"></i>
+                Volver al inicio
+            </button>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black metal-text text-brand mb-4">🍽️ COMIDA SOLIDARIA MMF</h1>
+            <p class="text-xl text-muted max-w-2xl mx-auto">
+                Los campos marcados con * son obligatorios
+            </p>
+        </div>
+
+        <!-- Descripción del evento -->
+        <div class="bg-card border-2 border-brand rounded-lg p-8 mb-8 glow-effect">
+            <h2 class="text-2xl font-bold text-brand mb-4">🎸 Sobre el Evento</h2>
+            <div class="space-y-4 text-secondary">
+                <p>
+                    Te invitamos a nuestra <strong>Comida Solidaria Mollerussa Metal Fest</strong>, un evento único que combina 
+                    buena música metal con gastronomía solidaria. 
+                </p>
+                <p>
+                    Esta comida especial está organizada por la asociación Mollerussa Metal Fest como parte de nuestro 
+                    compromiso con la comunidad y la cultura metalera. Será una experiencia gastronómica acompañada de 
+                    las mejores bandas de metal de la zona, creando un ambiente único donde la buena comida y la música 
+                    se fusionan.
+                </p>
+                <p>
+                    <strong>📍 Lugar:</strong> Por determinar<br>
+                    <strong>📅 Fecha:</strong> Por determinar<br>
+                    <strong>🎵 Actuaciones:</strong> Grupos de metal locales en directo
+                </p>
+                <p class="text-brand font-semibold">
+                    ¡No te pierdas esta experiencia única de comida y metal en directo!
+                </p>
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="bg-card border-2 border-brand rounded-lg p-8 glow-effect">
+            <form (ngSubmit)="onSubmit()" class="space-y-8">
+
+                <!-- Información Personal -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-primary font-bold mb-3">Nombre *</label>
+                        <input type="text" [(ngModel)]="formData.nombre" name="nombre"
+                            class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                            [class.border-brand]="isFieldInvalid('nombre')">
+                        <div *ngIf="isFieldInvalid('nombre')" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-primary font-bold mb-3">Apellidos *</label>
+                        <input type="text" [(ngModel)]="formData.apellidos" name="apellidos"
+                            class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                            [class.border-brand]="isFieldInvalid('apellidos')">
+                        <div *ngIf="isFieldInvalid('apellidos')" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-primary font-bold mb-3">DNI *</label>
+                        <input type="text" [(ngModel)]="formData.dni" name="dni"
+                            class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                            [class.border-brand]="isFieldInvalid('dni')">
+                        <div *ngIf="isFieldInvalid('dni')" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-primary font-bold mb-3">Población *</label>
+                        <input type="text" [(ngModel)]="formData.poblacion" name="poblacion"
+                            class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                            [class.border-brand]="isFieldInvalid('poblacion')">
+                        <div *ngIf="isFieldInvalid('poblacion')" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personas mayores de 12 años -->
+                <div class="border-2 border-custom rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-brand mb-4">👥 Personas mayores de 12 años</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-primary font-bold mb-3">Número de personas *</label>
+                        <input type="number" [(ngModel)]="formData.numMayores" name="numMayores" min="0" 
+                            class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                            (change)="calcularTotal()">
+                        <div *ngIf="isFieldInvalid('numMayores')" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                        <div>
+                            <label class="block text-primary font-bold mb-2">Plato Único 1 (10€)</label>
+                            <input type="number" [(ngModel)]="formData.mayoresPlato1" name="mayoresPlato1" min="0" 
+                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                                (change)="calcularTotal()">
+                        </div>
+                        <div>
+                            <label class="block text-primary font-bold mb-2">Plato Único 2 (11€)</label>
+                            <input type="number" [(ngModel)]="formData.mayoresPlato2" name="mayoresPlato2" min="0"
+                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                                (change)="calcularTotal()">
+                        </div>
+                        <div>
+                            <label class="block text-primary font-bold mb-2">Café (2€)</label>
+                            <input type="number" [(ngModel)]="formData.mayoresCafe" name="mayoresCafe" min="0"
+                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                                (change)="calcularTotal()">
+                        </div>
+                        <div>
+                            <label class="block text-primary font-bold mb-2">Bermut (5€)</label>
+                            <input type="number" [(ngModel)]="formData.mayoresBermut" name="mayoresBermut" min="0"
+                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                                (change)="calcularTotal()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personas menores de 12 años -->
+                <div class="border-2 border-custom rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-brand mb-4">🧒 Personas menores de 12 años</h3>
+                    
+                    <div class="mb-4">
+                        <label class="block text-primary font-bold mb-3">Número de personas *</label>
+                        <input type="number" [(ngModel)]="formData.numMenores" name="numMenores" min="0"
+                            class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                            (change)="calcularTotal()">
+                        <div *ngIf="isFieldInvalid('numMenores')" class="text-red-400 text-sm mt-1 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                            <label class="block text-primary font-bold mb-2">Plato Único 1 (10€)</label>
+                            <input type="number" [(ngModel)]="formData.menoresPlato1" name="menoresPlato1" min="0"
+                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                                (change)="calcularTotal()">
+                        </div>
+                        <div>
+                            <label class="block text-primary font-bold mb-2">Plato Único 2 (11€)</label>
+                            <input type="number" [(ngModel)]="formData.menoresPlato2" name="menoresPlato2" min="0"
+                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                                (change)="calcularTotal()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total -->
+                <div class="bg-brand border-2 border-brand rounded-lg p-6 text-center">
+                    <h3 class="text-2xl font-black text-primary mb-2">💰 TOTAL A PAGAR</h3>
+                    <div class="text-4xl font-black text-primary">{{ total }} €</div>
+                    <p class="text-primary mt-2">Precio calculado en base a tu selección</p>
+                </div>
+
+                <!-- Avisos Legales -->
+                <div class="space-y-4">
+                    <!-- Términos y Condiciones -->
+                    <div class="bg-page border-2 border-custom rounded-lg p-6"
+                        [class.border-brand]="formSubmitted && !formData.aceptoTerminos">
+                        <label class="flex items-start">
+                            <input type="checkbox" [(ngModel)]="formData.aceptoTerminos" name="aceptoTerminos"
+                                class="mr-4 mt-1 text-brand focus:ring-brand transform scale-125">
+                            <span class="text-secondary text-sm leading-relaxed">
+                                <strong>Acepto los términos y condiciones.</strong> Entiendo que esta reserva está sujeta 
+                                a disponibilidad y confirmación por parte de la organización. Me comprometo a realizar el 
+                                pago correspondiente según lo seleccionado. La organización se reserva el derecho de 
+                                modificar fechas o cancelar el evento por causas de fuerza mayor. *
+                            </span>
+                        </label>
+                        <div *ngIf="formSubmitted && !formData.aceptoTerminos"
+                            class="text-red-400 text-sm mt-2 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Debes aceptar los términos y condiciones
+                        </div>
+                    </div>
+
+                    <!-- Política de Privacidad -->
+                    <div class="bg-page border-2 border-custom rounded-lg p-6"
+                        [class.border-brand]="formSubmitted && !formData.aceptoPoliticaPrivacidad">
+                        <label class="flex items-start">
+                            <input type="checkbox" [(ngModel)]="formData.aceptoPoliticaPrivacidad" name="aceptoPoliticaPrivacidad"
+                                class="mr-4 mt-1 text-brand focus:ring-brand transform scale-125">
+                            <span class="text-secondary text-sm leading-relaxed">
+                                <strong>He leído y acepto la </strong>
+                                <button type="button" (click)="openPoliticaPrivacidad()"
+                                    class="text-brand hover-text-brand underline font-semibold transition-colors">
+                                    Política de privacidad
+                                </button>
+                                <strong> y consiento el tratamiento de mis datos para gestionar la reserva de la comida solidaria.</strong> *
+                            </span>
+                        </label>
+                        <div *ngIf="formSubmitted && !formData.aceptoPoliticaPrivacidad"
+                            class="text-red-400 text-sm mt-2 flex items-center">
+                            <i class="ri-error-warning-line mr-1"></i>
+                            Debes aceptar la política de privacidad
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                        <button type="submit" [disabled]="enviando"
+                            class="w-full sm:flex-1 btn-brand py-4 sm:py-5 px-6 sm:px-8 rounded-lg text-base sm:text-lg flex items-center justify-center transform hover:scale-105">
+                            <span *ngIf="!enviando">
+                                <i class="ri-send-plane-line mr-2 sm:mr-3"></i>
+                                ENVIAR RESERVA
+                            </span>
+                            <span *ngIf="enviando">
+                                <i class="ri-loader-4-line animate-spin mr-2 sm:mr-3"></i>
+                                ENVIANDO...
+                            </span>
+                        </button>
+                        <button type="button" (click)="volverAInicio()"
+                            class="w-full sm:flex-1 bg-card hover:bg-custom btn-outline-brand font-bold py-4 sm:py-5 px-6 sm:px-8 rounded-lg transition-all duration-200 text-base sm:text-lg">
+                            <i class="ri-arrow-left-line mr-2"></i>
+                            Volver al Inicio
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Política de Privacidad -->
+    <div *ngIf="showPoliticaPrivacidad"
+        class="fixed inset-0 bg-header z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-page border-2 border-brand rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <!-- Header -->
+            <div class="bg-brand p-6 sticky top-0 z-10">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-black text-primary">🔒 POLÍTICA DE PRIVACIDAD</h2>
+                    <button (click)="closePoliticaPrivacidad()"
+                        class="text-primary hover:text-secondary text-2xl transition-colors">
+                        &times;
+                    </button>
+                </div>
+                <p class="text-primary mt-2">Reserva Comida Solidaria</p>
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-8 space-y-8">
+                <!-- Aquí puedes poner el mismo contenido de política de privacidad que tienes en el otro formulario -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">1. Finalidad del tratamiento</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary">
+                            Los datos personales recabados a través del formulario de reserva se tratarán para gestionar 
+                            las reservas de la comida solidaria, contactar con los participantes y gestionar los pagos 
+                            correspondientes.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Más secciones según necesites -->
+
+                <div class="flex justify-center pt-6">
+                    <button (click)="closePoliticaPrivacidad()"
+                        class="btn-brand py-3 px-8 rounded-lg">
+                        Cerrar Política de Privacidad
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
