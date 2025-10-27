@@ -18,6 +18,8 @@ interface NoticiaCompleta {
   visualizaciones: string;
   imagenes: string[];
   videos?: string[];
+  boton: boolean;
+  textoBoton: string;
 }
 
 @Component({

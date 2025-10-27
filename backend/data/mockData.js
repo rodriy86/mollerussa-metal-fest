@@ -78,6 +78,20 @@ export const mockData = {
   noticias: [
     {
       id: 1,
+      fecha: '1 Febrero 2026',
+      categoria: '-',
+      colorCategoria: 'bg-red-600',
+      titulo: 'Dinar solidari',
+      resumenNoticia: 'La organització del Mollerussa Metal Fest organitzara un dinar solidari a la serra el dia 1/2/26',
+      detalleNoticia: true,  
+      imagen: '/assets/images/noti1.jpg',
+      alt: 'Dinar solidari',
+      enlace: '#',
+      textoEnlace: 'Ver cartelera',
+      created_at: '2026-01-15 09:00:00'
+    },
+    {
+      id: 2,
       fecha: '15 Enero 2026',
       categoria: 'LINEUP',
       colorCategoria: 'bg-red-600',
@@ -91,7 +105,7 @@ export const mockData = {
       created_at: '2026-01-15 09:00:00'
     },
     {
-      id: 2,
+      id: 3,
       fecha: '10 Enero 2026',
       categoria: 'MERCHANDAISING',
       colorCategoria: 'bg-blue-600',
@@ -105,7 +119,7 @@ export const mockData = {
       created_at: '2026-01-10 11:30:00'
     },
     {
-      id: 3,
+      id: 4,
       fecha: '5 Enero 2026',
       categoria: 'ENTRADAS',
       colorCategoria: 'bg-yellow-600',
@@ -119,7 +133,7 @@ export const mockData = {
       created_at: '2026-01-05 14:15:00'
     },
     {
-      id: 4,
+      id: 5,
       fecha: '28 Diciembre 2025',
       categoria: 'RECINTO',
       colorCategoria: 'bg-green-600',
@@ -133,7 +147,7 @@ export const mockData = {
       updated_at: '2025-12-28 16:45:00'
     },
     {
-      id: 5,
+      id: 6,
       fecha: '20 Diciembre 2025',
       categoria: 'SOSTENIBILIDAD',
       colorCategoria: 'bg-green-600',
@@ -148,7 +162,7 @@ export const mockData = {
       updated_at: '2025-12-20 10:20:00'
     },
     {
-      id: 6,
+      id: 7,
       fecha: '15 Diciembre 2025',
       categoria: 'ESPECIAL',
       colorCategoria: 'bg-purple-600',
@@ -166,9 +180,33 @@ export const mockData = {
 
   // Detalles de noticias - Tabla relacionada
   detalleNoticia: [
-    {
+     {
       id: 1,
       noticia_id: 1, // Foreign key a noticias.id
+      fecha: '1 Febrero 2026',
+      categoria: 'LINEUP',
+      titulo: 'Dinar solidari',
+      descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2026.',
+      contenido: JSON.stringify([ // SQLite almacena arrays como JSON
+        'El Mollerussa Metal Fest 2026 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Cor Rebel, una de las bandas más respetadas y temidas del black metal Catalan.',
+        'La formación de Mollerussa actuará el sábado 16 de julio a las 21:30h en el escenario principal, ofreciendo una actuación que promete ser uno de los momentos más intensos e inolvidables del festival.',
+        'Tras meses de negociaciones y expectación por parte de los fans, finalmente podemos confirmar que Cor Rebel pisará La Amistat.',
+        'La banda, ha sido durante décadas una de las referencias indiscutibles de Lleida.'
+      ]),
+      imagenPrincipal: '/assets/images/cap_noti1.jpg',
+      autor: 'Redacción MMF',
+      tiempoLectura: '8 min',
+      visualizaciones: '1.2k',
+      imagenes: JSON.stringify(['/assets/images/xxx.jpg']),
+      videos: JSON.stringify([]),
+      created_at: '2026-01-15 09:00:00',
+      updated_at: '2026-01-15 09:00:00',
+      boton: true,
+      textoBoton: 'Comprar ticket'
+    },
+    {
+      id: 2,
+      noticia_id: 2, // Foreign key a noticias.id
       fecha: '15 Enero 2026',
       categoria: 'LINEUP',
       titulo: '¡Confirmado! Cor Rebel se suma a la cartelera 2026',
@@ -186,10 +224,12 @@ export const mockData = {
       imagenes: JSON.stringify(['/assets/images/desc_noti1.jpg']),
       videos: JSON.stringify([]),
       created_at: '2026-01-15 09:00:00',
-      updated_at: '2026-01-15 09:00:00'
+      updated_at: '2026-01-15 09:00:00',
+      boton: false,
+      textoBoton: ''
     },
     {
-      id: 2,
+      id: 3,
       noticia_id: 2, // Foreign key a noticias.id
       fecha: '10 Enero 2026',
       categoria: 'MERCHANDAISING', 
@@ -208,7 +248,9 @@ export const mockData = {
       imagenes: JSON.stringify(['/assets/images/camisa.jpg', '/assets/images/gorra.jpg']),
       videos: JSON.stringify([]),
       created_at: '2026-01-10 11:30:00',
-      updated_at: '2026-01-10 11:30:00'
+      updated_at: '2026-01-10 11:30:00',
+      boton: false,
+      textoBoton: ''
     }
   ],
 
