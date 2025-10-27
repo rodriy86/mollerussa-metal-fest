@@ -325,3 +325,110 @@ server.listen(PORT, () => {
   console.log('   • /api/events, /api/tickets, /api/info, /api/health');*/
   console.log('Server en marcha!');
 });
+
+// Enviar mensaje comida solidaria
+app.post('/api/comida-solidaria', async (req, res) => {
+  try {
+    const result = await enviarEmailComidaSolidaria(req.body);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al enviar la reserva' });
+  }
+});
+
+const enviarEmailComidaSolidaria = async (formData) => {
+  try {
+    const nodemailer = await import('nodemailer');
+    
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'rodriy86.maps@gmail.com', 
+        pass: process.env.GMAIL_APP_PASSWORD
+      }
+    });
+
+    await transporter.verify();
+
+    // Calcular total
+    const total = (
+      (formData.mayoresPlato1 || 0) * 10 +
+      (formData.mayoresPlato2 || 0) * 11 +
+      (formData.mayoresCafe || 0) * 2 +
+      (formData.mayoresBermut || 0) * 5 +
+      (formData.menoresPlato1 || 0) * 10 +
+      (formData.menoresPlato2 || 0) * 11
+    );
+
+    const mailOptions = {
+      from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
+      to: 'rodriy86@gmail.com',
+      subject: `🍽️ NUEVA RESERVA COMIDA SOLIDARIA - ${formData.nombre} ${formData.apellidos}`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; color: #333; }
+            .header { background: #dc2626; color: white; padding: 20px; text-align: center; }
+            .content { padding: 20px; background: #f9f9f9; }
+            .section { background: white; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #dc2626; }
+            .label { font-weight: bold; color: #dc2626; }
+            .total { background: #dc2626; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold; }
+            .footer { background: #333; color: white; padding: 15px; text-align: center; margin-top: 20px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>🎸 MOLLERUSSA METAL FEST</h1>
+            <h2>Nueva Reserva - Comida Solidaria</h2>
+          </div>
+          
+          <div class="content">
+            <div class="section">
+              <h3>👤 Información Personal</h3>
+              <p><span class="label">Nombre:</span> ${formData.nombre} ${formData.apellidos}</p>
+              <p><span class="label">DNI:</span> ${formData.dni}</p>
+              <p><span class="label">Población:</span> ${formData.poblacion}</p>
+            </div>
+
+            <div class="section">
+              <h3>👥 Personas mayores de 12 años: ${formData.numMayores}</h3>
+              <p><span class="label">Plato Único 1 (10€):</span> ${formData.mayoresPlato1 || 0}</p>
+              <p><span class="label">Plato Único 2 (11€):</span> ${formData.mayoresPlato2 || 0}</p>
+              <p><span class="label">Café (2€):</span> ${formData.mayoresCafe || 0}</p>
+              <p><span class="label">Bermut (5€):</span> ${formData.mayoresBermut || 0}</p>
+            </div>
+
+            <div class="section">
+              <h3>🧒 Personas menores de 12 años: ${formData.numMenores}</h3>
+              <p><span class="label">Plato Único 1 (10€):</span> ${formData.menoresPlato1 || 0}</p>
+              <p><span class="label">Plato Único 2 (11€):</span> ${formData.menoresPlato2 || 0}</p>
+            </div>
+
+            <div class="total">
+              💰 TOTAL: ${total} €
+            </div>
+
+            <div class="section">
+              <h3>📅 Información de la Reserva</h3>
+              <p><span class="label">Fecha:</span> ${new Date().toLocaleString('es-ES')}</p>
+            </div>
+          </div>
+
+          <div class="footer">
+            <p>🎸 Mollerussa Metal Fest - Comida Solidaria</p>
+          </div>
+        </body>
+        </html>
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
+    return { success: true, message: 'Reserva enviada correctamente' };
+    
+  } catch (error) {
+    console.error('Error enviando email de comida solidaria:', error);
+    throw error;
+  }
+};
