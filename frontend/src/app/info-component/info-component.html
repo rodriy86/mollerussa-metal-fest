@@ -1,4 +1,4 @@
-<section id="Informacion" class="py-20 bg-page">
+<section id="Informacion" class="py-20 bg-page"  *ngIf="configGlobal.tickets.habilitar">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
       <h2 class="text-5xl font-black mb-6 metal-text text-brand">INFORMACIÓN</h2>
@@ -49,7 +49,9 @@
         Consigue ya tu entrada para el <strong>{{configGlobal.festival.nombreCompleto}}{{configGlobal.festival.anyo}}
         </strong>
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      
+      <div class="grid gap-6 mb-8" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!--
         <div class="bg-page border-2 border-brand p-6 rounded-lg card-hover relative">
           <div
             class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-brand text-primary px-4 py-1 rounded-full text-sm font-bold">
@@ -66,20 +68,21 @@
             (click)="buyTicket('full-festival', 99)">
             Comprar Entrada
           </button>
-        </div>
+        </div>-->
         <div class="bg-page border border-custom p-6 rounded-lg card-hover">
           <h4 class="text-xl font-bold text-primary mb-2">Entrada anticipada</h4>
           <div class="text-3xl font-black text-brand mb-4">{{configGlobal.tickets.precios.normal}}</div>
-          <ul class="text-sm text-muted mb-6 space-y-2">
+          <!--<ul class="text-sm text-muted mb-6 space-y-2">
             <li>• Acceso a un día del festival</li>
             <li>• Parking incluido</li>
             <li>• Acceso a todas las zonas</li>
-          </ul>
+          </ul>-->
           <button class="w-full btn-brand py-3 rounded-lg font-bold whitespace-nowrap"
             (click)="buyTicket('single-day', 45)">
             Comprar Entrada
           </button>
         </div>
+        <!--
         <div class="bg-page border border-custom p-6 rounded-lg card-hover">
           <h4 class="text-xl font-bold text-primary mb-2">Entrada + camiseta</h4>
           <div class="text-3xl font-black text-brand mb-4">{{configGlobal.tickets.precios.masCaniseta}}</div>
@@ -92,19 +95,19 @@
             (click)="buyTicket('single-day', 45)">
             Comprar Entrada
           </button>
-        </div>
+        </div>-->
 
         <div class="bg-page border border-yellow-600 p-6 rounded-lg card-hover">
           <h4 class="text-xl font-bold text-yellow-400 mb-2">En taquilla</h4>
           <div class="text-3xl font-black text-yellow-400 mb-4">{{configGlobal.tickets.precios.taquilla}}</div>
-          <ul class="text-sm text-muted mb-6 space-y-2">
+          <!--<ul class="text-sm text-muted mb-6 space-y-2">
             <li>• Acceso a un día del festival</li>
             <li>• Parking incluido</li>
             <li>• Acceso a todas las zonas</li>
-          </ul>
+          </ul>-->
         </div>
       </div>
-
+<!--
       <div class="border border-brand rounded-lg p-6 mt-8 glow-effect">
         <h3 class="text-xl font-bold text-brand mb-4">📸 Acreditación Prensa & Influencers</h3>
         <p class="text-secondary mb-4">Si eres medio de comunicación o influencer, solicita tu acreditación especial
@@ -116,7 +119,7 @@
 
           {{ configGlobal.tickets.habilitar ? 'Solicitar Acreditación' : 'Acreditación No Disponible' }}
         </button>
-      </div>
+      </div>-->
       <div class="text-center">
         <p class="text-sm text-secondary mb-4">
           Entradas gestionadas por <strong>Entradium</strong> - Pago seguro garantizado

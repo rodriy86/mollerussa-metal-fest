@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, TranslatePipe], // Añade TranslatePipe aquí
+  imports: [CommonModule, TranslatePipe], 
   templateUrl: './hero-component.html',
   styleUrl: './hero-component.scss'
 })
 export class HeroComponent {
-  private translationService = inject(TranslationService); // Inyecta el servicio
+  private translationService = inject(TranslationService); 
   configGlobal = configGlobal;
 
   constructor(private router: Router) { }
@@ -21,7 +21,7 @@ export class HeroComponent {
   getFormattedDate(): string {
     const lang = this.translationService.getCurrentLang();
 
-    // Solo usar la fecha de inicio (más simple y evita errores)
+    //fecha de inicio
     const startDate = new Date(this.configGlobal.festival.fechaInicio);
 
     // Opciones para mostrar en formato "15 Julio 2024"

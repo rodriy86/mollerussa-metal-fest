@@ -16,14 +16,11 @@ export class FormDinarComponent {
     apellidos: '',
     dni: '',
     poblacion: '',
-    numMayores: 0,
-    mayoresPlato1: 0,
-    mayoresPlato2: 0,
-    mayoresCafe: 0,
-    mayoresBermut: 0,
-    numMenores: 0,
-    menoresPlato1: 0,
-    menoresPlato2: 0,
+    numPersonas: 0,
+    plato1: 0,
+    platoVegetariano: 0,
+    platoCeliacos: 0,
+    platoInfantil: 0,
     donacionCancer: false,
     aceptoTerminos: false,
     aceptoPoliticaPrivacidad: false
@@ -35,6 +32,14 @@ export class FormDinarComponent {
   total = 0;
   donacion = 0;
 
+  // Precios de los platos
+  precios = {
+    plato1: 10,
+    platoVegetariano: 10,
+    platoCeliacos: 10,
+    platoInfantil: 10
+  };
+
   constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
@@ -45,25 +50,29 @@ export class FormDinarComponent {
 
   // Calcular total
   calcularTotal() {
-  this.total = (
-    (this.formData.mayoresPlato1 || 0) * 10 +
-    (this.formData.mayoresPlato2 || 0) * 11 +
-    (this.formData.mayoresCafe || 0) * 2 +
-    (this.formData.mayoresBermut || 0) * 5 +
-    (this.formData.menoresPlato1 || 0) * 10 +
-    (this.formData.menoresPlato2 || 0) * 11
-  );
-  
-  this.donacion = this.formData.donacionCancer ? 2 : 0;
-  
-  // ✅ DEBUG: Verifica que se ejecuta y los valores
-  console.log('Calculando total:', {
-    donacionCancer: this.formData.donacionCancer,
-    donacion: this.donacion,
-    subtotal: this.total,
-    totalFinal: this.total + this.donacion
-  });
-}
+    this.total = (
+      (this.formData.plato1 || 0) * this.precios.plato1 +
+      (this.formData.platoVegetariano || 0) * this.precios.platoVegetariano +
+      (this.formData.platoCeliacos || 0) * this.precios.platoCeliacos +
+      (this.formData.platoInfantil || 0) * this.precios.platoInfantil
+    );
+    
+    this.donacion = this.formData.donacionCancer ? 2 : 0;
+    
+    // ✅ DEBUG: Verifica que se ejecuta y los valores
+    /*console.log('Calculando total:', {
+      donacionCancer: this.formData.donacionCancer,
+      donacion: this.donacion,
+      subtotal: this.total,
+      totalFinal: this.total + this.donacion,
+      platos: {
+        plato1: this.formData.plato1,
+        vegetariano: this.formData.platoVegetariano,
+        celiacos: this.formData.platoCeliacos,
+        infantil: this.formData.platoInfantil
+      }
+    });*/
+  }
 
   // Enviar formulario
   async onSubmit() {
@@ -76,6 +85,15 @@ export class FormDinarComponent {
 
     if (!this.formData.aceptoTerminos || !this.formData.aceptoPoliticaPrivacidad) {
       alert('Debes aceptar los términos y condiciones y la política de privacidad.');
+      return;
+    }
+
+    // Validar que la suma de platos no exceda el número de personas
+    const totalPlatos = this.formData.plato1 + this.formData.platoVegetariano + 
+                       this.formData.platoCeliacos + this.formData.platoInfantil;
+    
+    if (totalPlatos > this.formData.numPersonas) {
+      alert('La suma de platos no puede ser mayor que el número de personas.');
       return;
     }
 
@@ -132,8 +150,7 @@ export class FormDinarComponent {
       this.formData.apellidos !== '' &&
       this.formData.dni !== '' &&
       this.formData.poblacion !== '' &&
-      this.formData.numMayores >= 0 &&
-      this.formData.numMenores >= 0 &&
+      this.formData.numPersonas >= 0 &&
       this.formData.aceptoTerminos &&
       this.formData.aceptoPoliticaPrivacidad
     );
@@ -145,15 +162,12 @@ export class FormDinarComponent {
       apellidos: '',
       dni: '',
       poblacion: '',
-      numMayores: 0,
-      mayoresPlato1: 0,
-      mayoresPlato2: 0,
-      mayoresCafe: 0,
-      mayoresBermut: 0,
-      numMenores: 0,
-      menoresPlato1: 0,
-      menoresPlato2: 0,
-      donacionCancer: false,  // ✅ NUEVO CAMPO
+      numPersonas: 0,
+      plato1: 0,
+      platoVegetariano: 0,
+      platoCeliacos: 0,
+      platoInfantil: 0,
+      donacionCancer: false,
       aceptoTerminos: false,
       aceptoPoliticaPrivacidad: false
     };

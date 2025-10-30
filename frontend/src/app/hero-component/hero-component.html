@@ -1,4 +1,5 @@
-<section id="Inicio" class="dark-bg-image relative min-h-screen flex items-center justify-center overflow-hidden bg-page" style="background-image: url('assets/images/fondoHero.jpg'); background-size: cover; background-position: center;">
+<!--canviar la opacitat amb el  rbga, 0 es sens opasitat 0.9 molt opac-->
+<section id="Inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-page" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/fondoHero2.jpg'); background-size: cover; background-position: center;">
   <div class="absolute inset-0 bg-header/50 z-0"></div>
   
   <div class="relative z-10 w-full px-6 mt-20"> 
@@ -16,14 +17,17 @@
           {{ 'HERO.DESCRIPTION' | translate }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <!--<button (click)="scrollTo('Informacion')" 
+          <!--Boto informacio-->
+          <button (click)="scrollTo('Informacion')" *ngIf="configGlobal.tickets.habilitar"
                   class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
             {{ 'HERO.MORE_INFO_BUTTON' | translate }}
           </button>
-          <button (click)="scrollTo('Lineup')" 
+          <!--Boto Lineup-->
+          <button (click)="scrollTo('Lineup')" *ngIf="configGlobal.tickets.habilitar"
                   class="btn-outline-brand px-8 py-4 rounded-lg font-bold text-lg whitespace-nowrap transform hover:scale-105">
             {{ 'HERO.LINEUP_BUTTON' | translate }}
-          </button>-->
+          </button>
+          <!--Boto dinar-->
           <button (click)="navigateToComidaSolidaria()" 
                    class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
             🍽️{{'HERO.MENJAR_SOLIDARI' | translate}} 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { configGlobal } from '../configGlobal';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 interface Noticia {
   id: number;
@@ -21,7 +22,7 @@ interface Noticia {
 @Component({
   selector: 'app-noticies',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './noticies-component.html',
   styleUrl: './noticies-component.scss'
 })

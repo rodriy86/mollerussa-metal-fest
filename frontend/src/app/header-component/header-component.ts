@@ -89,8 +89,8 @@ export class HeaderComponent implements OnInit {
       });
     }
     
-    if (this.isMenuOpen) {
-      this.isMenuOpen = false;
+    if (!this.isMenuOpen) {
+      this.isMenuOpen = !this.isMenuOpen;
     }
   }
 

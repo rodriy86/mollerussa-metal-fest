@@ -11,7 +11,7 @@
           <h3 class="text-xl font-bold metal-text text-brand">{{configGlobal.festival.nombreCompleto}}</h3>
         </div>
         <p class="text-muted mb-4">
-          El festival de metal más épico de Catalunya. Únete a nosotros para vivir una experiencia musical inolvidable.
+          {{ 'FOOTER.DESCRIPTION' | translate }}
         </p>
         <div class="flex space-x-4">
           <a href="#"
@@ -35,36 +35,34 @@
 
       <!-- Enlaces rápidos -->
       <div>
-        <h4 class="text-lg font-bold mb-6 text-primary">Enlaces Rápidos</h4>
+        <h4 class="text-lg font-bold mb-6 text-primary">{{'FOOTER.ENLACES_RAPIDOS' | translate}}</h4>
         <ul class="space-y-3">
           <li><a (click)="scrollTo('Inicio')"
-              class="text-muted hover-text-brand transition-colors cursor-pointer">Inicio</a></li>
+              class="text-muted hover-text-brand transition-colors cursor-pointer">{{'FOOTER.INICIO' | translate}}</a></li>
           <li><a (click)="scrollTo('Lineup')"
-              class="text-muted hover-text-brand transition-colors cursor-pointer">Cartelera</a></li>
+              class="text-muted hover-text-brand transition-colors cursor-pointer">{{'FOOTER.LINEUP' | translate}}</a></li>
           <!--<li><a (click)="scrollTo('tienda')" class="text-muted hover-text-brand transition-colors cursor-pointer">Tienda</a></li>-->
           <li><a (click)="scrollTo('Informacion')"
-              class="text-muted hover-text-brand transition-colors cursor-pointer">Información</a></li>
-          <li><a (click)="scrollTo('Mapa-recinto')"
-              class="text-muted hover-text-brand transition-colors cursor-pointer">Mapa del recinto</a></li>
+              class="text-muted hover-text-brand transition-colors cursor-pointer">{{'FOOTER.INFORMACION' | translate}}</a></li>
           <li><a (click)="scrollTo('Ubicacion')"
-              class="text-muted hover-text-brand transition-colors cursor-pointer">Ubicación</a></li>
+              class="text-muted hover-text-brand transition-colors cursor-pointer">{{'FOOTER.UBICACION' | translate}}</a></li>
           <li><a (click)="scrollTo('Galeria')"
-              class="text-muted hover-text-brand transition-colors cursor-pointer">Galeria</a></li>
+              class="text-muted hover-text-brand transition-colors cursor-pointer">{{'FOOTER.GALERIA' | translate}}</a></li>
         </ul>
       </div>
 
       <!-- Contacto -->
       <div>
-        <h4 class="text-lg font-bold mb-6 text-primary">Contacto</h4>
+        <h4 class="text-lg font-bold mb-6 text-primary">{{'FOOTER.CONTACTO' | translate}}</h4>
         <ul class="space-y-3 text-muted">
           <li class="flex items-center">
             <i class="ri-mail-line text-brand mr-3"></i>
             {{configGlobal.contactos.email}}
           </li>
-          <li class="flex items-center">
+          <!--<li class="flex items-center">
             <i class="ri-phone-line text-brand mr-3"></i>
             {{configGlobal.contactos.telefono}}
-          </li>
+          </li>-->
           <li class="flex items-center">
             <i class="ri-map-pin-line text-brand mr-3"></i>
             {{configGlobal.contactos.ubicacion}}
@@ -73,6 +71,7 @@
       </div>
 
       <!-- Newsletter -->
+      <!--
       <div>
         <h4 class="text-lg font-bold mb-6 text-primary">Newsletter</h4>
         <p class="text-muted mb-4">Suscríbete para recibir las últimas noticias del festival</p>
@@ -84,18 +83,34 @@
           </button>
         </div>
       </div>
+    </div>-->
+      <div>
+        <h4 class="text-lg font-bold mb-6 text-primary">{{'FOOTER.PRENSA' | translate}}</h4>
+        <p class="text-muted mb-4"></p>
+        <div class="flex gap-2">
+          <!--<button (click)="navegarAFormulario()" [disabled]="!configGlobal.tickets.habilitar"
+            class="btn-brand px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:hover:bg-gray-600 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed">
+
+            {{ configGlobal.tickets.habilitar ? 'Solicitar Acreditación' : 'Acreditación No Disponible' }}
+          </button>-->
+          <button (click)="navegarAFormulario()"
+            class="btn-brand px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:hover:bg-gray-600 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed">
+            {{'FOOTER.BTN_SOLICITAR_ACREDITACION' | translate}}
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Copyright -->
     <div class="border-t border-custom pt-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="text-muted mb-4 md:mb-0">
-          © {{configGlobal.festival.nombreCompleto}}. Todos los derechos reservados.
+          © {{configGlobal.festival.nombreCompleto}}. {{'FOOTER.TODOS_DERECHOS' | translate}}
         </p>
         <div class="flex space-x-6 text-muted">
-          <a href="#" class="hover-text-brand transition-colors">Política de Privacidad</a>
-          <a href="#" class="hover-text-brand transition-colors">Términos y Condiciones</a>
-          <a href="#" class="hover-text-brand transition-colors">Aviso Legal</a>
+          <a href="#" class="hover-text-brand transition-colors">{{'FOOTER.POLITICAS' | translate}}</a>
+          <a href="#" class="hover-text-brand transition-colors">{{'FOOTER.TERMINOS' | translate}}</a>
+          <a href="#" class="hover-text-brand transition-colors">{{'FOOTER.AVISO' | translate}}</a>
         </div>
       </div>
     </div>

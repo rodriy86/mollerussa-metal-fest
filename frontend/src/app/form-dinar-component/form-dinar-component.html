@@ -120,75 +120,56 @@
                     </div>
                 </div>
 
-                <!-- Personas mayores de 12 años -->
+                <!-- Personas -->
                 <div class="border-2 border-custom rounded-lg p-6">
-                    <h3 class="text-xl font-bold text-brand mb-4">👥 Personas mayores de 12 años</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">👥 Personas</h3>
 
-                    <div class="mb-4">
+                    <div class="mb-6">
                         <label class="block text-primary font-bold mb-3">Número de personas *</label>
-                        <input type="number" [(ngModel)]="formData.numMayores" name="numMayores" min="0"
+                        <input type="number" [(ngModel)]="formData.numPersonas" name="numPersonas" min="0"
                             class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             (change)="calcularTotal()">
-                        <div *ngIf="isFieldInvalid('numMayores')" class="text-red-400 text-sm mt-1 flex items-center">
+                        <div *ngIf="isFieldInvalid('numPersonas')" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
                             Este campo es obligatorio
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                        <div>
+                    <!-- Platos uno debajo del otro -->
+                    <div class="space-y-6">
+                        <!-- Plato Único 1 -->
+                        <div class="bg-page border border-custom rounded-lg p-4">
                             <label class="block text-primary font-bold mb-2">Plato Único 1 (10€)</label>
-                            <input type="number" [(ngModel)]="formData.mayoresPlato1" name="mayoresPlato1" min="0"
-                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                            <p class="text-secondary text-sm mb-3">Descripción del plato único 1...</p>
+                            <input type="number" [(ngModel)]="formData.plato1" name="plato1" min="0"
+                                class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
                         </div>
-                        <div>
-                            <label class="block text-primary font-bold mb-2">Plato Único 2 (11€)</label>
-                            <input type="number" [(ngModel)]="formData.mayoresPlato2" name="mayoresPlato2" min="0"
-                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
-                                (change)="calcularTotal()">
-                        </div>
-                        <div>
-                            <label class="block text-primary font-bold mb-2">Café (2€)</label>
-                            <input type="number" [(ngModel)]="formData.mayoresCafe" name="mayoresCafe" min="0"
-                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
-                                (change)="calcularTotal()">
-                        </div>
-                        <div>
-                            <label class="block text-primary font-bold mb-2">Bermut (5€)</label>
-                            <input type="number" [(ngModel)]="formData.mayoresBermut" name="mayoresBermut" min="0"
-                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
-                                (change)="calcularTotal()">
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Personas menores de 12 años -->
-                <div class="border-2 border-custom rounded-lg p-6">
-                    <h3 class="text-xl font-bold text-brand mb-4">🧒 Personas menores de 12 años</h3>
-
-                    <div class="mb-4">
-                        <label class="block text-primary font-bold mb-3">Número de personas *</label>
-                        <input type="number" [(ngModel)]="formData.numMenores" name="numMenores" min="0"
-                            class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
-                            (change)="calcularTotal()">
-                        <div *ngIf="isFieldInvalid('numMenores')" class="text-red-400 text-sm mt-1 flex items-center">
-                            <i class="ri-error-warning-line mr-1"></i>
-                            Este campo es obligatorio
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        <div>
-                            <label class="block text-primary font-bold mb-2">Plato Único 1 (10€)</label>
-                            <input type="number" [(ngModel)]="formData.menoresPlato1" name="menoresPlato1" min="0"
-                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                        <!-- Plato Único Vegetariano -->
+                        <div class="bg-page border border-custom rounded-lg p-4">
+                            <label class="block text-primary font-bold mb-2">Plato Único Vegetariano (10€)</label>
+                            <p class="text-secondary text-sm mb-3">Descripción del plato vegetariano...</p>
+                            <input type="number" [(ngModel)]="formData.platoVegetariano" name="platoVegetariano" min="0"
+                                class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
                         </div>
-                        <div>
-                            <label class="block text-primary font-bold mb-2">Plato Único 2 (11€)</label>
-                            <input type="number" [(ngModel)]="formData.menoresPlato2" name="menoresPlato2" min="0"
-                                class="w-full bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+
+                        <!-- Plato Único Celíacos -->
+                        <div class="bg-page border border-custom rounded-lg p-4">
+                            <label class="block text-primary font-bold mb-2">Plato Único Celíacos (10€)</label>
+                            <p class="text-secondary text-sm mb-3">Descripción del plato para celíacos...</p>
+                            <input type="number" [(ngModel)]="formData.platoCeliacos" name="platoCeliacos" min="0"
+                                class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+                                (change)="calcularTotal()">
+                        </div>
+
+                        <!-- Plato Único Infantil -->
+                        <div class="bg-page border border-custom rounded-lg p-4">
+                            <label class="block text-primary font-bold mb-2">Plato Único Infantil (10€)</label>
+                            <p class="text-secondary text-sm mb-3">Descripción del plato infantil...</p>
+                            <input type="number" [(ngModel)]="formData.platoInfantil" name="platoInfantil" min="0"
+                                class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
                         </div>
                     </div>
@@ -311,7 +292,6 @@
 
             <!-- Contenido -->
             <div class="p-8 space-y-8">
-                <!-- Aquí puedes poner el mismo contenido de política de privacidad que tienes en el otro formulario -->
                 <section>
                     <h3 class="text-xl font-bold text-brand mb-4">1. Finalidad del tratamiento</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
@@ -322,8 +302,6 @@
                         </p>
                     </div>
                 </section>
-
-                <!-- Más secciones según necesites -->
 
                 <div class="flex justify-center pt-6">
                     <button (click)="closePoliticaPrivacidad()" class="btn-brand py-3 px-8 rounded-lg">

@@ -1,9 +1,9 @@
 <section id="noticias" class="py-20 bg-page">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-5xl font-black mb-6 metal-text text-brand">NOTICIAS</h2>
+      <h2 class="text-5xl font-black mb-6 metal-text text-brand">{{ 'NOTICIAS.NOTICIAS' | translate }}</h2>
       <p class="text-xl text-muted max-w-3xl mx-auto">
-        Mantente al día con las últimas novedades del {{configGlobal.festival.nombreCompleto}}{{configGlobal.festival.anyo}}
+        {{ 'NOTICIAS.SUBTITULO' | translate }} {{configGlobal.festival.nombreCompleto}}{{configGlobal.festival.anyo}}
       </p>
     </div>
 
@@ -29,7 +29,7 @@
           @if (noticia.detalleNoticia) {
           <a [routerLink]="['/noticia', noticia.id]"
             class="text-brand hover-text-brand font-medium text-sm flex items-center">
-            Leer más <i class="ri-arrow-right-line ml-1"></i>
+            {{ 'NOTICIAS.LEER_MAS' | translate }} <i class="ri-arrow-right-line ml-1"></i>
           </a>
           }
         </div>

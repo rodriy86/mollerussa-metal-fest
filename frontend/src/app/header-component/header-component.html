@@ -12,26 +12,26 @@
 
     <!-- Menú Desktop -->
     <div class="hidden md:flex space-x-8 items-center">
-      <a (click)="scrollTo('Inicio')"
+      <!--<a (click)="scrollTo('Inicio')"
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
         {{ 'HEADER.INICIO' | translate }}
-      </a>
+      </a>-->
       <a (click)="scrollTo('noticias')"
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
         {{ 'HEADER.NOTICIAS' | translate }}
       </a>
       <a (click)="scrollTo('Lineup')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
-        {{ 'HEADER.CARTELERA' | translate }}
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium"  *ngIf="configGlobal.tickets.habilitar">
+        {{ 'HEADER.LINEUP' | translate }}
       </a>
       <a (click)="scrollTo('Informacion')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium"  *ngIf="configGlobal.tickets.habilitar">
         {{ 'HEADER.INFORMACION' | translate }}
       </a>
-      <a (click)="scrollTo('Ubicacion')"
+      <!--<a (click)="scrollTo('Ubicacion')"
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
         {{ 'HEADER.UBICACION' | translate }}
-      </a>
+      </a>-->
       <a (click)="scrollTo('contacto')"
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
         {{ 'HEADER.CONTACTO' | translate }}
@@ -41,7 +41,7 @@
         {{ 'HEADER.GALERIA' | translate }}
       </a>
 
-      <!-- Selector de Idiomas Simple -->
+      <!-- Selector de Idiomas -->
       <div class="relative">
         <button (click)="toggleLanguageDropdown()"
           class="flex items-center gap-2 px-3 py-2 rounded-lg border border-brand bg-transparent hover:bg-white/10 transition-all duration-200"
@@ -101,29 +101,29 @@
     </button>
   </div>
 
-  <!-- Menú Móvil CORREGIDO -->
+  <!-- Menú Móvil -->
   <div class="md:hidden fixed top-16 left-0 w-full h-[calc(100vh-64px)] bg-page z-50 overflow-y-auto" *ngIf="isMenuOpen">
     <div class="flex flex-col space-y-6 p-8">
-      <a (click)="scrollTo('Inicio'); toggleMenu();"
+      <!--<a (click)="scrollTo('Inicio'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
         {{ 'HEADER.INICIO' | translate }}
-      </a>
+      </a>-->
       <a (click)="scrollTo('noticias'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
         {{ 'HEADER.NOTICIAS' | translate }}
       </a>
       <a (click)="scrollTo('Lineup'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
-        {{ 'HEADER.CARTELERA' | translate }}
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom"  *ngIf="configGlobal.tickets.habilitar">
+        {{ 'HEADER.LINEUP' | translate }}
       </a>
       <a (click)="scrollTo('Informacion'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom"  *ngIf="configGlobal.tickets.habilitar">
         {{ 'HEADER.INFORMACION' | translate }}
       </a>
-      <a (click)="scrollTo('Ubicacion'); toggleMenu();"
+      <!--<a (click)="scrollTo('Ubicacion'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
         {{ 'HEADER.UBICACION' | translate }}
-      </a>
+      </a>-->
       <a (click)="scrollTo('contacto'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
         {{ 'HEADER.CONTACTO' | translate }}

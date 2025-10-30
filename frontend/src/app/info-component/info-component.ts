@@ -2,8 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { configGlobal } from '../configGlobal';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 //import { FormAcreditacioComponent } from '../form-acreditacio-component/form-acreditacio-component';
 
 

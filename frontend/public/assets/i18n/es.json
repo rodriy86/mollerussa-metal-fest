@@ -2,14 +2,14 @@
   "HEADER": {
     "INICIO": "Inicio",
     "NOTICIAS": "Noticias",
-    "CARTELERA": "Cartelera",
+    "LINEUP": "Lineup",
     "INFORMACION": "Información",
     "UBICACION": "Ubicación",
     "CONTACTO": "Contacto",
     "GALERIA": "Galería",
     "IDIOMA": "Idioma",
     "MENU": "Menú",
-    "MENJAR_SOLIDARI":"Comida Solidaria MMF"
+    "MENJAR_SOLIDARI": "Comida Solidaria MMF"
   },
   "BANDS": {
     "LOADING": "Cargando bandas...",
@@ -19,7 +19,29 @@
   "HERO": {
     "DESCRIPTION": "El festival de metal más épico de Catalunya que te regalara una experiencia inolvidable en el corazón de Mollerussa.",
     "MORE_INFO_BUTTON": "Más Información",
-    "LINEUP_BUTTON": "Ver cartelera",
-    "MENJAR_SOLIDARI":"Comida solidaria MMF"
-  }
+    "LINEUP_BUTTON": "Ver lineup",
+    "MENJAR_SOLIDARI": "Comida solidaria MMF"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "El festival de metal más épico de Catalunya que te regalara una experiencia inolvidable en el corazón de Mollerussa.",
+    "INICIO": "Inicio",
+    "NOTICIAS": "Noticias",
+    "LINEUP": "Lineup",
+    "INFORMACION": "Información",
+    "UBICACION": "Ubicación",
+    "CONTACTO": "Contacto",
+    "GALERIA": "Galería",
+    "ENLACES_RAPIDOS": "Enlaces rápidos",
+    "PRENSA": "Prensa",
+    "BTN_SOLICITAR_ACREDITACION": "Solicitar Acreditación",
+    "TODOS_DERECHOS": "Todos los derechos reservados.",
+    "POLITICAS": "Política de Privacidad",
+    "TERMINOS": "Términos y Condiciones",
+    "AVISO": "Aviso Legal"
+  },
+  "NOTICIAS": {
+    "NOTICIAS": "NOTICIAS",
+    "LEER_MAS": "Leer más",
+    "SUBTITULO": "Mantente al día con las últimas novedades del"
+}
 }

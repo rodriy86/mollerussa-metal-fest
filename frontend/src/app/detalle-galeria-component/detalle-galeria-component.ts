@@ -103,7 +103,7 @@ export class DetalleGaleriaComponent {
       //titulo: 'Aniversario',
       headliners: ['Purin', 'Libervm'],
       asistencia: 180,
-      imagen: 'assets/images/cartelera24.png',
+      imagen: 'assets/images/cartelera24.jpg',
       color: 'silver',
       bandas: 5,
       alt: ''

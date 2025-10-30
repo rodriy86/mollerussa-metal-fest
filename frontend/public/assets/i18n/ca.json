@@ -2,7 +2,7 @@
   "HEADER": {
     "INICIO": "Inici",
     "NOTICIAS": "Notícies",
-    "CARTELERA": "Cartellera",
+    "LINEUP": "Lineup",
     "INFORMACION": "Informació",
     "UBICACION": "Ubicació",
     "CONTACTO": "Contacte",
@@ -19,6 +19,28 @@
     "DESCRIPTION": "El festival de metal més èpic de Catalunya que et regalarà una experiència inoblidable al cor de Mollerussa.",
     "MORE_INFO_BUTTON": "Més Informació",
     "LINEUP_BUTTON": "Veure cartellera",
-    "MENJAR_SOLIDARI":"Menjar solidari MMF"
+    "MENJAR_SOLIDARI": "Menjar solidari MMF"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "El festival de metal més èpic de Catalunya que et regalarà una experiència inoblidable al cor de Mollerussa.",
+    "INICIO": "Inici",
+    "NOTICIAS": "Notícies",
+    "LINEUP": "Lineup",
+    "INFORMACION": "Informació",
+    "UBICACION": "Ubicació",
+    "CONTACTO": "Contacte",
+    "GALERIA": "Galeria",
+    "ENLACES_RAPIDOS": "Enllaços ràpids",
+    "PRENSA": "Premsa",
+    "BTN_SOLICITAR_ACREDITACION": "Sol·licitar acreditació",
+    "TODOS_DERECHOS": "Tots els drets reservats.",
+    "POLITICAS": "Política de Privacitat",
+    "TERMINOS": "Termes i Condicions",
+    "AVISO": "Avís Legal"
+  },
+  "NOTICIAS": {
+    "NOTICIAS": "NOTÍCIES",
+    "LEER_MAS": "Llegir més",
+    "SUBTITULO": "Mantingue't al dia amb les últimes novetats del"
   }
 }
