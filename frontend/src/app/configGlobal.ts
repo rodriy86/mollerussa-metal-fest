@@ -4,6 +4,29 @@ class GlobalConfig {
   private readonly isDev = window.location.hostname === 'localhost' && window.location.port === '4200';
   private readonly baseUrl = this.isDev ? 'http://localhost:3000' : '';
 
+  // ==================== CONFIGURACIÓN DE IDIOMA ====================
+  private _currentLanguage = 'es'; // Idioma por defecto
+
+  get currentLanguage(): string {
+    // Intentar cargar del localStorage al acceder
+    const saved = localStorage.getItem('mmf_language');
+    if (saved) {
+      this._currentLanguage = saved;
+    }
+    return this._currentLanguage;
+  }
+
+  set currentLanguage(lang: string) {
+    this._currentLanguage = lang;
+    localStorage.setItem('mmf_language', lang);
+  }
+
+  readonly availableLanguages = [
+    { code: 'es', name: 'Español', flag: 'fi fi-es fis' },
+    { code: 'ca', name: 'Català', flag: 'catalan-flag' },
+    { code: 'en', name: 'English', flag: 'fi fi-gb fis' }
+  ];
+
   // ==================== INFORMACIÓN DEL FESTIVAL ====================
   readonly festival = {
     nombre1: 'Mollerussa',
@@ -89,7 +112,17 @@ class GlobalConfig {
   readonly utils = {
     isDevelopment: this.isDev,
     baseUrl: this.baseUrl,
+    currentLanguage: this.currentLanguage,
     
+    // Métodos para manejar idioma
+    setLanguage: (lang: string) => {
+      configGlobal.currentLanguage = lang;
+    },
+    
+    getLanguage: () => {
+      return configGlobal.currentLanguage;
+    },
+
     // Logs con prefijo de la app
     log: (message: string, data?: any) => {
       console.log(`🎸 MMF - ${message}`, data || '');

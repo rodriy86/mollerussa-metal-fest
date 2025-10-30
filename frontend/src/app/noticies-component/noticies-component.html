@@ -1,39 +1,85 @@
 <section id="noticias" class="py-20 bg-page">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-5xl font-black mb-6 metal-text text-brand">{{ 'NOTICIAS.NOTICIAS' | translate }}</h2>
+      <h2 class="text-5xl font-black mb-6 metal-text text-brand">{{ 'NOTICIAS.TITULO' | translate }}</h2>
       <p class="text-xl text-muted max-w-3xl mx-auto">
         {{ 'NOTICIAS.SUBTITULO' | translate }} {{configGlobal.festival.nombreCompleto}}{{configGlobal.festival.anyo}}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="text-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand mx-auto"></div>
+      <p class="text-muted mt-4">{{ 'NOTICIAS.CARGANDO' | translate }}</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !isLoading" class="text-center py-12">
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md mx-auto">
+        <p>{{ error }}</p>
+        <button (click)="reloadNoticias()" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
+          {{ 'NOTICIAS.REINTENTAR' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Noticias Grid -->
+    <div *ngIf="!isLoading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
       <!-- Noticia dinámica -->
       <article *ngFor="let noticia of noticias"
         class="bg-card border border-brand rounded-lg overflow-hidden hover:transform hover:scale-105 card-hover transition-all duration-300">
+        
+        <!-- Imagen -->
         <div class="w-full h-48 bg-card overflow-hidden">
           <img [src]="noticia.imagen" [alt]="noticia.alt" class="w-full h-full object-cover object-top">
         </div>
+        
         <div class="p-6">
-          <div class="flex items-center text-sm text-secondary mb-3">
-            <i class="ri-calendar-line mr-2"></i>
-            <span>{{ noticia.fecha }}</span>
+          <!-- Categoría con color -->
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full"
+                  [style.background-color]="noticia.colorCategoria">
+              {{ noticia.categoria }}
+            </span>
+            <div class="flex items-center text-sm text-secondary">
+              <i class="ri-calendar-line mr-2"></i>
+              <span>{{ noticia.fecha }}</span>
+            </div>
           </div>
+          
+          <!-- Título -->
           <h3 class="text-xl font-bold text-primary mb-3 hover-text-brand transition-colors cursor-pointer">
             {{ noticia.titulo }}
           </h3>
-          <p class="text-muted text-sm mb-4">
+          
+          <!-- Resumen -->
+          <p class="text-muted text-sm mb-4 line-clamp-3">
             {{ noticia.resumenNoticia }}
           </p>
 
+          <!-- Enlace -->
           @if (noticia.detalleNoticia) {
           <a [routerLink]="['/noticia', noticia.id]"
-            class="text-brand hover-text-brand font-medium text-sm flex items-center">
-            {{ 'NOTICIAS.LEER_MAS' | translate }} <i class="ri-arrow-right-line ml-1"></i>
+            class="text-brand hover-text-brand font-medium text-sm flex items-center group">
+            {{ noticia.textoEnlace }} <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+          } @else if (noticia.enlace && noticia.textoEnlace) {
+          <a [href]="noticia.enlace"
+            class="text-brand hover-text-brand font-medium text-sm flex items-center group">
+            {{ noticia.textoEnlace }} <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform"></i>
           </a>
           }
         </div>
       </article>
+    </div>
+
+    <!-- Sin noticias -->
+    <div *ngIf="!isLoading && !error && noticias.length === 0" class="text-center py-12">
+      <div class="bg-card border border-custom rounded-lg p-8 max-w-md mx-auto">
+        <i class="ri-newspaper-line text-4xl text-muted mb-4"></i>
+        <h3 class="text-xl font-bold text-primary mb-2">{{ 'NOTICIAS.SIN_NOTICIAS_TITULO' | translate }}</h3>
+        <p class="text-muted">{{ 'NOTICIAS.SIN_NOTICIAS' | translate }}</p>
+      </div>
     </div>
 
   </div>

@@ -1,5 +1,6 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Translation {
   [key: string]: string | Translation;
@@ -14,6 +15,10 @@ export class TranslationService {
   private currentLang = signal<string>('es');
   private translations = signal<{ [lang: string]: Translation }>({});
   
+  // ✅ AÑADIDO: Observable para cambios de idioma
+  private currentLangSubject = new BehaviorSubject<string>('es');
+  public currentLang$: Observable<string> = this.currentLangSubject.asObservable();
+  
   // Señal para forzar actualizaciones
   private updateTrigger = signal(0);
 
@@ -25,9 +30,14 @@ export class TranslationService {
   });
 
   setLanguage(lang: string): void {
-    console.log('Setting language to:', lang);
-    this.currentLang.set(lang.toLowerCase());
-    this.loadTranslations(lang.toLowerCase());
+    const langCode = lang.toLowerCase();
+    console.log('Setting language to:', langCode);
+    
+    // ✅ ACTUALIZAR AMBOS: signal y subject
+    this.currentLang.set(langCode);
+    this.currentLangSubject.next(langCode); // ✅ NOTIFICAR A SUSCRIPTORES
+    
+    this.loadTranslations(langCode);
   }
 
   getCurrentLang(): string {

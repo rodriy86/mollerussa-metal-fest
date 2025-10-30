@@ -1,9 +1,17 @@
-// server.js - SERVIDOR MOLLERUSSA METAL FEST
+// server.js - SERVIDOR MOLLERUSSA METAL FEST CON TRADUCCIONES
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { mockData, getBandById, getDetalleNoticiaById } from './data/mockData.js';
+import { 
+  mockData, 
+  getBandById, 
+  getDetalleNoticiaById, 
+  getAllNoticias,
+  getAllBands,
+  getTickets,
+  getLineupCompleto
+} from './data/mockData.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -37,65 +45,17 @@ const extractIdFromUrl = (url) => {
   return match ? parseInt(match[1]) : null;
 };
 
-// ✅ AÑADIDO: Función para obtener idioma desde query parameters
+// Obtener idioma desde query parameters
 const getLanguageFromRequest = (req) => {
-  try {
-    console.log(`🔍 [LANG] URL original: ${req.url}`);
-    
-    // ✅ USAR LA URL COMPLETA (con query parameters)
-    const fullUrl = `http://${req.headers.host}${req.url}`;
-    console.log(`🔍 [LANG] Full URL: ${fullUrl}`);
-    
-    const url = new URL(fullUrl);
-    const langParam = url.searchParams.get('lang');
-    
-    console.log(`🔍 [LANG] Parámetro 'lang' obtenido: ${langParam}`);
-    
-    // Validar que el idioma sea soportado
-    const supportedLangs = ['es', 'ca', 'en'];
-    const lang = supportedLangs.includes(langParam) ? langParam : 'es';
-    
-    console.log(`🌐 [LANG] Idioma final a usar: ${lang}`);
-    return lang;
-    
-  } catch (error) {
-    console.error('❌ [LANG] Error parsing language:', error);
-    return 'es';
-  }
-};
-
-
-// ✅ AÑADIDO: Función para obtener noticias con traducción
-const getAllNoticias = (lang = 'es') => {
-  console.log(`📝 Getting news for language: ${lang}`);
-  
-  if (!mockData.noticias) {
-    console.log('❌ No hay noticias en mockData');
-    return [];
-  }
-  
-  // Devolver las noticias filtradas por idioma
-  return mockData.noticias.map(noticia => {
-    const noticiaTraducida = {
-      ...noticia,
-      titulo: noticia[`titulo_${lang}`] || noticia.titulo,
-      resumenNoticia: noticia[`resumenNoticia_${lang}`] || noticia.resumenNoticia,
-      categoria: noticia[`categoria_${lang}`] || noticia.categoria,
-      alt: noticia[`alt_${lang}`] || noticia.alt,
-      textoEnlace: noticia[`textoEnlace_${lang}`] || noticia.textoEnlace
-    };
-    
-    console.log(`   - Noticia ${noticia.id}: ${noticiaTraducida.titulo}`);
-    return noticiaTraducida;
-  });
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  return url.searchParams.get('lang') || 'es'; // Por defecto español
 };
 
 // Enviar email de acreditación
-const enviarEmailAcreditacion = async (formData) => { // ✅ CORREGIDO: Quité "getLanguageFromRequest" que estaba aquí
+const enviarEmailAcreditacion = async (formData) => {
   try {
     const nodemailer = await import('nodemailer');
 
-    // CONFIGURACIÓN CORRECTA PARA GMAIL
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -194,65 +154,41 @@ const enviarEmailAcreditacion = async (formData) => { // ✅ CORREGIDO: Quité "
   }
 };
 
-// Handlers de API
+// Handlers de API CON TRADUCCIONES
 const apiHandlers = {
-  // Bandas
-  '/api/bands': (req, res) => sendJson(res, mockData.bands),
+  // Bandas con traducción
+  '/api/bands': (req, res) => {
+    const lang = getLanguageFromRequest(req);
+    const bands = getAllBands(lang);
+    sendJson(res, bands);
+  },
+  
   '/api/bands/:id': (req, res) => {
     const id = extractIdFromUrl(req.url);
-    const band = id && getBandById(id);
+    const lang = getLanguageFromRequest(req);
+    const band = id && getBandById(id, lang);
     band ? sendJson(res, band) : sendError(res, 404, 'Banda no encontrada');
   },
 
-  // Noticias CON TRADUCCIÓN
+  // Noticias con traducción
   '/api/noticias': (req, res) => {
-  console.log(`🎵 [NOTICIAS] Handler llamado para: ${req.url}`);
-  
-  try {
     const lang = getLanguageFromRequest(req);
-    console.log(`🌐 [NOTICIAS] Idioma FINAL para noticias: ${lang}`);
-    
-    if (!mockData.noticias) {
-      console.log('❌ [NOTICIAS] mockData.noticias no existe');
-      return sendError(res, 500, 'Datos de noticias no disponibles');
-    }
-    
-    console.log(`📝 [NOTICIAS] Procesando ${mockData.noticias.length} noticias para idioma: ${lang}`);
-    
-    const noticiasTraducidas = mockData.noticias.map(noticia => {
-      const tituloTraducido = noticia[`titulo_${lang}`] || noticia.titulo;
-      console.log(`   - Noticia ${noticia.id}: "${tituloTraducido}" (idioma: ${lang})`);
-      
-      return {
-        ...noticia,
-        titulo: tituloTraducido,
-        resumenNoticia: noticia[`resumenNoticia_${lang}`] || noticia.resumenNoticia,
-        categoria: noticia[`categoria_${lang}`] || noticia.categoria,
-        alt: noticia[`alt_${lang}`] || noticia.alt,
-        textoEnlace: noticia[`textoEnlace_${lang}`] || noticia.textoEnlace
-      };
-    });
-    
-    console.log(`✅ [NOTICIAS] ENVIANDO ${noticiasTraducidas.length} noticias en idioma: ${lang}`);
-    sendJson(res, noticiasTraducidas);
-    
-  } catch (error) {
-    console.error('❌ [NOTICIAS] Error:', error);
-    sendError(res, 500, 'Error interno del servidor');
-  }
-},
+    const noticias = getAllNoticias(lang);
+    sendJson(res, noticias);
+  },
   
   '/api/noticias/:id': (req, res) => {
     const id = extractIdFromUrl(req.url);
-    const lang = getLanguageFromRequest(req); // ✅ Añadir idioma también para noticia individual
+    const lang = getLanguageFromRequest(req);
     const noticia = id && mockData.noticias.find(n => n.id === id);
     
     if (noticia) {
       const noticiaTraducida = {
         ...noticia,
+        fecha: noticia[`fecha_${lang}`] || noticia.fecha,
+        categoria: noticia[`categoria_${lang}`] || noticia.categoria,
         titulo: noticia[`titulo_${lang}`] || noticia.titulo,
         resumenNoticia: noticia[`resumenNoticia_${lang}`] || noticia.resumenNoticia,
-        categoria: noticia[`categoria_${lang}`] || noticia.categoria,
         alt: noticia[`alt_${lang}`] || noticia.alt,
         textoEnlace: noticia[`textoEnlace_${lang}`] || noticia.textoEnlace
       };
@@ -262,13 +198,29 @@ const apiHandlers = {
     }
   },
 
-  // Detalle Noticias
+  // Detalle Noticias con traducción
   '/api/noticias/:id/detalle': (req, res) => {
     const id = extractIdFromUrl(req.url);
-    const detalleNoticia = id && getDetalleNoticiaById(id);
+    const lang = getLanguageFromRequest(req);
+    const detalleNoticia = id && getDetalleNoticiaById(id, lang);
     detalleNoticia ? sendJson(res, detalleNoticia) : sendError(res, 404, 'Detalle no encontrado');
   },
 
+  // Lineup con traducción
+  '/api/lineup': (req, res) => {
+    const lang = getLanguageFromRequest(req);
+    const lineup = getLineupCompleto(lang);
+    sendJson(res, lineup);
+  },
+
+  // Tickets con traducción
+  '/api/tickets': (req, res) => {
+    const lang = getLanguageFromRequest(req);
+    const tickets = getTickets(lang);
+    sendJson(res, tickets);
+  },
+
+  // Acreditación (sin cambios, no necesita traducción)
   '/api/acreditacion': async (req, res) => {
     if (req.method !== 'POST') {
       return sendError(res, 405, 'Método no permitido');
@@ -285,7 +237,6 @@ const apiHandlers = {
         try {
           const formData = JSON.parse(body);
 
-          // Validación básica
           if (!formData.nombre || !formData.email || !formData.tipo) {
             return sendError(res, 400, 'Datos incompletos');
           }
@@ -327,7 +278,7 @@ const apiHandlers = {
     }
   },
 
-  // Comida solidaria
+  // Comida solidaria (sin cambios, no necesita traducción)
   '/api/comida-solidaria': async (req, res) => {
     if (req.method !== 'POST') {
       return sendError(res, 405, 'Mètode no permès');
@@ -398,42 +349,20 @@ const apiHandlers = {
 
   // Otros endpoints
   '/api/events': (req, res) => sendJson(res, mockData.events || []),
-  '/api/tickets': (req, res) => sendJson(res, mockData.tickets || []),
   '/api/info': (req, res) => sendJson(res, mockData.info || {}),
   '/api/health': (req, res) => sendJson(res, { status: 'OK', message: 'Mollerussa Metal Fest API' })
 };
 
 // Manejo de rutas API
 const handleApiRequest = (req, res) => {
-  console.log(`🔍 [API] Buscando handler para: ${req.url}`);
-  
-  // ✅ EXTRAER EL PATH SIN QUERY PARAMETERS PARA EL MATCHING
-  const pathWithoutQuery = req.url.split('?')[0];
-  console.log(`🔍 [API] Path sin query: ${pathWithoutQuery}`);
-  
   const route = Object.keys(apiHandlers)
     .sort((a, b) => b.length - a.length)
     .find(route => {
       const pattern = new RegExp('^' + route.replace(/:\w+/g, '([^/]+)') + '$');
-      
-      // ✅ BUSCAR COINCIDENCIA CON EL PATH SIN QUERY PARAMETERS
-      const matches = pattern.test(pathWithoutQuery) || 
-                     pathWithoutQuery === route || 
-                     pathWithoutQuery.startsWith(route + '/');
-      
-      if (matches) {
-        console.log(`✅ [API] ENCONTRADO handler: ${route} para ${pathWithoutQuery}`);
-      }
-      return matches;
+      return pattern.test(req.url) || req.url === route || req.url.startsWith(route + '/');
     });
 
-  if (route) {
-    console.log(`🚀 [API] Ejecutando handler: ${route}`);
-    apiHandlers[route](req, res);
-  } else {
-    console.log(`❌ [API] NO hay handler para: ${pathWithoutQuery}`);
-    sendError(res, 404, 'Endpoint no encontrado');
-  }
+  route ? apiHandlers[route](req, res) : sendError(res, 404, 'Endpoint no encontrado');
 };
 
 // Servir archivos estáticos
@@ -461,37 +390,27 @@ const serveStaticFile = (req, res) => {
 
 // Servidor principal
 const server = http.createServer((req, res) => {
-  console.log(`\n📨 [SERVER] ${req.method} ${req.url}`);
-  
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    console.log('🔄 [SERVER] Manejando CORS preflight');
-    return res.writeHead(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.writeHead(200).end();
 
-  // Verificar si es una ruta API
-  if (req.url.startsWith('/api/')) {
-    console.log(`🎯 [SERVER] Ruteando a API handler`);
-    handleApiRequest(req, res);
-  } else {
-    console.log(`📁 [SERVER] Sirviendo archivo estático`);
-    serveStaticFile(req, res);
-  }
+  req.url.startsWith('/api/') ? handleApiRequest(req, res) : serveStaticFile(req, res);
 });
 
 // Iniciar servidor
 server.listen(PORT, () => {
   console.log('🎸 MOLLERUSSA METAL FEST - Servidor con traducciones en puerto:', PORT);
   console.log('📡 Endpoints disponibles con parámetro ?lang=es|ca|en:');
-  console.log('   • /api/noticias, /api/noticias/:id');
+  console.log('   • /api/bands, /api/bands/:id');
+  console.log('   • /api/noticias, /api/noticias/:id, /api/noticias/:id/detalle');
+  console.log('   • /api/lineup, /api/tickets');
   console.log('   • 🔥 /api/acreditacion (POST)');
-  console.log('   • /api/comida-solidaria (POST)');
-  console.log('   • /api/bands, /api/events, /api/tickets');
+  console.log('   • /api/events, /api/info, /api/health');
 });
 
+// Función enviarEmailComidaSolidaria (se mantiene igual)
 const enviarEmailComidaSolidaria = async (formData) => {
   try {
     const nodemailer = await import('nodemailer');

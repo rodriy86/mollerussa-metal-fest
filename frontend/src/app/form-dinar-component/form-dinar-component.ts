@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-form-dinar',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './form-dinar-component.html',
 })
 export class FormDinarComponent {
