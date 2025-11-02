@@ -1,121 +1,88 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
+import { TranslatePipe } from '../pipes/translate.pipe';
+import { configGlobal } from '../configGlobal';
 
 @Component({
   selector: 'app-detalle-galeria',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './detalle-galeria-component.html',
   styleUrl: './detalle-galeria-component.html',
 })
-export class DetalleGaleriaComponent {
-  // Textos dinámicos
-  festivalNombre = 'Mollerussa Metal Fest';
-  logoUrl = 'assets/icons/mask.png';
-  textoVolver = 'Volver al inicio';
-  tituloGaleria = 'DETALLE GALERÍA';
-  descripcionGaleria = 'Revive los mejores momentos de ediciones anteriores';
-  tituloCarteleras = 'CARTELERAS HISTÓRICAS';
-  descripcionCarteleras = 'Descubre las alineaciones que hicieron historia en el Mollerussa Metal Fest';
-  tituloEstadisticas = 'EVOLUCIÓN DEL FESTIVAL';
-  textoEdiciones = 'Ediciones';
-  textoBandas = 'Bandas totales';
-  textoAsistentes = 'Asistentes totales';
-  textoPaises = 'Países representados';
-  textoBotonVolver = 'Volver al inicio';
-
-  ngOnInit() {
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  }
-
+export class DetalleGaleriaComponent implements OnInit {
   // Arrays de datos
-  imagenes = [
-    {
-      url: 'assets/images/foto1.jpg',
-      alt: 'Público emocionado en el escenario principal'
-    },
-    {
-      url: 'assets/images/foto2.jpg',
-      alt: 'Banda tocando con increíble energía'
-    },
-    {
-      url: 'assets/images/foto3.jpg', 
-      alt: 'Momento épico del guitarrista principal'
-    },
-    {
-      url: 'assets/images/foto4.jpg',
-      alt: 'Vista del escenario con luces espectaculares'
-    },
-    {
-      url: 'assets/images/foto5.jpg',
-      alt: 'Fans disfrutando del mejor metal'
-    },
-    {
-      url: 'assets/images/foto6.jpg',
-      alt: 'Clímax del concierto con pirotecnia'
-    },
-    {
-      url: 'assets/images/siroll.png',
-      alt: ''
-    },
-    {
-      url: 'assets/images/bn.png',
-      alt: ''
-    },
-    {
-      url: 'assets/images/trio.png',
-      alt: ''
-    },
-    {
-      url: 'assets/images/bn2.png',
-      alt: ''
-    }
-  ];
-
-  carteleras = [
-    {
-      anyo: 2026,
-      //titulo: 'Edición Épica',
-      headliners: ['Iron Fury', 'Death Realm'],
-      asistencia: 550,
-      imagen: 'assets/images/cartelera26.jpg',
-      color: 'red',
-      bandas: 8,
-      alt: ''
-      //dias: 2
-    },
-    {
-      anyo: 2025,
-      //titulo: 'Aniversario',
-      headliners: ['Bellako', 'Indar'],
-      asistencia: 250,
-      imagen: 'assets/images/cartelera25.jpg',
-      color: 'yellow',
-      bandas: 5,
-      alt: ''
-      //dias: 1
-    },
-    {
-      anyo: 2024,
-      //titulo: 'Aniversario',
-      headliners: ['Purin', 'Libervm'],
-      asistencia: 180,
-      imagen: 'assets/images/cartelera24.jpg',
-      color: 'silver',
-      bandas: 5,
-      alt: ''
-      //dias: 1
-    }
-  ];
+  imagenes: any[] = [];
+  carteleras: any[] = [];
 
   // Variables de estado
   imagenActiva: number | null = null;
   carteleraActiva: number | null = null;
+  isLoading: boolean = true;
+  error: string = '';
 
-  // Getters para estadísticas
+  private router = inject(Router);
+  private http = inject(HttpClient);
+  private cdRef = inject(ChangeDetectorRef);
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
+    this.cargarDatosGaleria();
+  }
+
+  cargarDatosGaleria() {
+    this.isLoading = true;
+    this.error = '';
+
+    // Cargar imágenes desde el backend
+    this.http.get<any[]>(configGlobal.api.galeriaImages).subscribe({
+      next: (imagenes) => {
+        this.imagenes = imagenes;
+        this.verificarCargaCompleta();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.manejarError(error, 'imágenes');
+      }
+    });
+
+    // Cargar carteleras desde el backend
+    this.http.get<any[]>(configGlobal.api.galeriaCarteleras).subscribe({
+      next: (carteleras) => {
+        this.carteleras = carteleras;
+        this.verificarCargaCompleta();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.manejarError(error, 'carteleras');
+      }
+    });
+  }
+
+  private verificarCargaCompleta() {
+    if ((this.imagenes.length > 0 || this.error) && (this.carteleras.length > 0 || this.error)) {
+      this.isLoading = false;
+      this.cdRef.detectChanges();
+    }
+  }
+
+  private manejarError(error: HttpErrorResponse, tipo: string) {
+    if (error.status === 0) {
+      this.error = '⚠️ No se puede conectar al servidor. Verifica que el backend esté ejecutándose en puerto 3000.';
+    } else if (error.status === 404) {
+      this.error = `📄 No se encontraron ${tipo} disponibles.`;
+    } else {
+      this.error = `❌ No se pudieron cargar las ${tipo}. Inténtalo de nuevo.`;
+    }
+    
+    this.verificarCargaCompleta();
+  }
+
+  reintentarCarga() {
+    this.cargarDatosGaleria();
+  }
+
   get totalEdiciones(): number {
     return this.carteleras.length;
   }
@@ -125,19 +92,16 @@ export class DetalleGaleriaComponent {
   }
 
   get totalAsistentes(): string {
-  const total = this.carteleras.reduce((total, cartelera) => {
-    return total + cartelera.asistencia;
-  }, 0);
-  return total.toLocaleString();
-}
-
-  get totalPaises(): number {
-    return 15; // Puedes calcular esto dinámicamente
+    const total = this.carteleras.reduce((total, cartelera) => {
+      return total + cartelera.asistencia;
+    }, 0);
+    return total.toLocaleString();
   }
 
-  constructor(private router: Router) {}
+  get totalPaises(): number {
+    return 15;
+  }
 
-  // Métodos para la galería de imágenes
   abrirImagen(index: number): void {
     this.imagenActiva = index;
     this.carteleraActiva = null;
@@ -159,7 +123,6 @@ export class DetalleGaleriaComponent {
     }
   }
 
-  // Métodos para las carteleras
   abrirCartelera(index: number): void {
     this.carteleraActiva = index;
     this.imagenActiva = null;
@@ -181,7 +144,6 @@ export class DetalleGaleriaComponent {
     }
   }
 
-  // Método para obtener clases de color dinámicas
   getColorClass(color: string): string {
     const colorClasses: { [key: string]: string } = {
       'red': 'bg-red-600',
@@ -189,12 +151,12 @@ export class DetalleGaleriaComponent {
       'green': 'bg-green-600',
       'yellow': 'bg-yellow-600',
       'purple': 'bg-purple-600',
-      'orange': 'bg-orange-600'
+      'orange': 'bg-orange-600',
+      'silver': 'bg-gray-400'
     };
     return colorClasses[color] || 'bg-gray-600';
   }
 
-  // Método para volver al inicio
   volverAInicio(): void {
     this.router.navigate(['/']);
   }

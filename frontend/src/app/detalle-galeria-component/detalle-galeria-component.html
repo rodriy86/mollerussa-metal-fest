@@ -15,7 +15,7 @@
           <button (click)="volverAInicio()"
             class="flex items-center text-secondary hover-text-brand transition-colors font-medium">
             <i class="ri-arrow-left-line mr-2"></i>
-            Volver al inicio
+            {{ 'GALERIA.VOLVER' | translate }}
           </button>
         </div>
 
@@ -30,18 +30,56 @@
   <main class="pt-20">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-5xl font-black mb-6 metal-text">{{ tituloGaleria }}</h2>
+        <h2 class="text-5xl font-black mb-6 metal-text">Historia del MMF</h2>
         <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-          {{ descripcionGaleria }}
+          El Mollerussa Metal Fest va néixer a la ciutat de Mollerussa (Pla d’Urgell, Lleida) amb la voluntat de donar visibilitat a l’escena del metal, punk, hardcore i derivats a la comarca i al conjunt de Catalunya.
+<br>
+La iniciativa va sorgir de Andreu Trullols, amb el suport de la Regidoria de Cultura de l’Ajuntament de Mollerussa, com una manera de crear un punt de trobada per a la comunitat metalera catalana. L’objectiu era oferir un espai per gaudir de la música, compartir experiències i reivindicar la vitalitat de l’escena.
+<br>
+Tal com va dir l’organització:
+<br>
+“Més que un festival, volem que sigui una trobada entre bandes i públic, un espai de convivència i respecte dins del món del metal català.”
+<br>
+Valors i filosofia
+<br><br>
+        -->  El Mollerussa Metal Fest destaca per:
+<br>
+🔥 Apostar per bandes de proximitat, prioritzant grups catalans i emergents.
+<br>
+🤘 Caràcter reivindicatiu i comunitari, entès com una trobada més que com un simple festival.
+<br>
+🎭 Format íntim i proper, al Teatre L’Amistat, que afavoreix el contacte directe entre músics i públic.
+<br>
+🍔 Activitats complementàries, com presentacions de llibres, servei de food-truck i punts de trobada entre bandes.
+<br>
+💪 Preus populars i ambient inclusiu, per fer arribar el metal a tothom.
+<br>
+<br>
+      --> Perspectives de futur
+<br>
+L’organització té la voluntat de consolidar el festival com una cita anual estable al calendari musical català.
+Entre els objectius de futur hi ha:
+<br>
+La creació de l’Associació Mollerussa Metal Fest per donar-li estructura legal i continuïtat.
+<br>
+L’ampliació del format amb més activitats culturals i musicals paral·leles.
+<br>
+Mantenir el focus en bandes catalanes, però obrint-se gradualment a propostes estatals i internacionals.
+<br>
+Importància per a la ciutat
+<br>
+El Mollerussa Metal Fest és avui un referent emergent de la música alternativa a les Terres de Lleida. No només aporta diversitat cultural i econòmica a la ciutat, sinó que també consolida Mollerussa com un espai obert a la creativitat i a la música en viu.
+<br>
+Amb només dues edicions, ja ha aconseguit crear una comunitat fidel i donar una nova identitat musical a la ciutat.
         </p>
       </div>
 
       <!-- Nueva Sección: Carteleras Históricas -->
       <section id="Carteleras" class="py-16 mb-16 border-t border-gray-700">
         <div class="text-center mb-12">
-          <h3 class="text-4xl font-black mb-4 metal-text text-red-500">{{ tituloCarteleras }}</h3>
+          <h3 class="text-4xl font-black mb-4 metal-text text-red-500">{{ 'GALERIA.CARTELERAS_HISTORICAS' | translate }}</h3>
           <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-            {{ descripcionCarteleras }}
+            {{ 'GALERIA.CARTELERAS_DESC' | translate }}
           </p>
         </div>
 
@@ -54,18 +92,18 @@
               <span class="inline-block bg-brand text-primary px-4 py-1 rounded-full text-sm font-bold mb-3">
                 {{ cartelera.anyo }}
               </span>
-              <p class="text-muted text-sm">{{ cartelera.bandas }} bandas</p>
+              <p class="text-muted text-sm">{{ cartelera.bandas }} {{ 'GALERIA.BANDAS' | translate | lowercase }}</p>
             </div>
             <div class="bg-page rounded-lg p-4 mb-4">
               <img [src]="cartelera.imagen" [alt]="cartelera.alt" class="w-full h-64 object-cover rounded-lg">
             </div>
             <div class="space-y-2">
               <div class="flex justify-between items-center text-sm">
-                <span class="text-muted">Headliners:</span>
+                <span class="text-muted">{{ 'GALERIA.HEADLINERS' | translate }}:</span>
                 <span class="text-brand font-semibold">{{ cartelera.headliners.join(', ') }}</span>
               </div>
               <div class="flex justify-between items-center text-sm">
-                <span class="text-muted">Asistencia:</span>
+                <span class="text-muted">{{ 'GALERIA.ASISTENCIA' | translate }}:</span>
                 <span class="text-brand font-semibold">{{ cartelera.asistencia }}</span>
               </div>
             </div>
@@ -74,28 +112,34 @@
 
         <!-- Estadísticas históricas -->
         <div class="mt-12 bg-gray-800/50 border border-gray-600 rounded-xl p-8">
-          <h4 class="text-2xl font-bold text-center mb-6 text-red-500">{{ tituloEstadisticas }}</h4>
+          <h4 class="text-2xl font-bold text-center mb-6 text-red-500">{{ 'GALERIA.ESTADISTICAS' | translate }}</h4>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="bg-black/30 p-4 rounded-lg">
               <div class="text-3xl font-black text-red-500 mb-2">{{ totalEdiciones }}</div>
-              <div class="text-gray-400 text-sm">{{ textoEdiciones }}</div>
+              <div class="text-gray-400 text-sm">{{ 'GALERIA.EDICIONES' | translate }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
               <div class="text-3xl font-black text-yellow-500 mb-2">{{ totalBandas }}</div>
-              <div class="text-gray-400 text-sm">{{ textoBandas }}</div>
+              <div class="text-gray-400 text-sm">{{ 'GALERIA.BANDAS' | translate }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
               <div class="text-3xl font-black text-green-500 mb-2">{{ totalAsistentes }}</div>
-              <div class="text-gray-400 text-sm">{{ textoAsistentes }}</div>
+              <div class="text-gray-400 text-sm">{{ 'GALERIA.ASISTENTES' | translate }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
               <div class="text-3xl font-black text-blue-500 mb-2">{{ totalPaises }}</div>
-              <div class="text-gray-400 text-sm">{{ textoPaises }}</div>
+              <div class="text-gray-400 text-sm">{{ 'GALERIA.PAISES' | translate }}</div>
             </div>
           </div>
         </div>
       </section>
 
+      <div class="text-center mb-16">
+        <h2 class="text-5xl font-black mb-6 metal-text">{{ 'GALERIA.TITULO' | translate }}</h2>
+        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+          {{ 'GALERIA.GALERIA_IMAGENES_DESC' | translate }}
+        </p>
+      </div>
       <!-- Grid de Galería de Fotos -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <div *ngFor="let imagen of imagenes; let i = index"
@@ -115,7 +159,7 @@
       <div class="text-center py-20">
         <button (click)="volverAInicio()"
           class="btn-outline-brand px-8 py-3 rounded-lg font-bold transition-all">
-          {{ textoBotonVolver }}
+          {{ 'GALERIA.VOLVER_INICIO' | translate }}
         </button>
       </div>
     </div>

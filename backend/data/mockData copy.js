@@ -1,11 +1,11 @@
 // backend/data/mockData.js - DATOS MOCK SQLite STYLE
 export const mockData = {
   bands: [
-    { 
+    {
       id: 1,
-      name: 'IRON STORM', 
-      schedule: 'Sábado 16 Julio - 20:00', 
-      genre: 'Heavy Metal', 
+      name: 'IRON STORM',
+      schedule: 'Sábado 16 Julio - 20:00',
+      genre: 'Heavy Metal',
       image: '/assets/images/band1.jpg',
       description: 'Potente heavy metal con influencias clásicas y melodías épicas.',
       country: 'España',
@@ -13,23 +13,23 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 2,
-      name: 'DARK ABYSS', 
-      schedule: 'Sábado 16 Julio - 20:30h', 
-      genre: 'Death Metal', 
+      name: 'DARK ABYSS',
+      schedule: 'Sábado 16 Julio - 20:30h',
+      genre: 'Death Metal',
       image: '/assets/images/band2.jpg',
       description: 'Death metal técnico con letras sobre oscuridad y misterio.',
-      country: 'España', 
+      country: 'España',
       year: 2018,
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 3,
-      name: 'STEEL THUNDER', 
-      schedule: 'Sábado 16 Julio - 21:00h', 
-      genre: 'Thrash Metal', 
+      name: 'STEEL THUNDER',
+      schedule: 'Sábado 16 Julio - 21:00h',
+      genre: 'Thrash Metal',
       image: '/assets/images/band1.jpg',
       description: 'Thrash metal acelerado con riffs potentes y energía en directo.',
       country: 'España',
@@ -37,11 +37,11 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 4,
-      name: 'CRIMSON VOID', 
-      schedule: 'Sábado 16 Julio - 21:30h', 
-      genre: 'Black Metal', 
+      name: 'CRIMSON VOID',
+      schedule: 'Sábado 16 Julio - 21:30h',
+      genre: 'Black Metal',
       image: '/assets/images/band2.jpg',
       description: 'Atmosférico black metal con influencias nórdicas y sonido crudo.',
       country: 'España',
@@ -49,11 +49,11 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 5,
-      name: 'ETERNAL FLAME', 
-      schedule: 'Sábado 16 Julio - 22:00h', 
-      genre: 'Power Metal', 
+      name: 'ETERNAL FLAME',
+      schedule: 'Sábado 16 Julio - 22:00h',
+      genre: 'Power Metal',
       image: '/assets/images/band1.jpg',
       description: 'Power metal sinfónico con voces operísticas y temáticas épicas.',
       country: 'España',
@@ -61,11 +61,11 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 6,
-      name: 'NEXUS THEORY', 
-      schedule: 'Sábado 16 Julio - 22:30h', 
-      genre: 'Progressive Metal', 
+      name: 'NEXUS THEORY',
+      schedule: 'Sábado 16 Julio - 22:30h',
+      genre: 'Progressive Metal',
       image: '/assets/images/band2.jpg',
       description: 'Metal progresivo con estructuras complejas y cambios de tempo.',
       country: 'España',
@@ -83,7 +83,7 @@ export const mockData = {
       colorCategoria: 'bg-red-600',
       titulo: 'Dinar solidari',
       resumenNoticia: 'La organització del Mollerussa Metal Fest organitzara un dinar solidari a la serra el dia 1/2/26',
-      detalleNoticia: true,  
+      detalleNoticia: true,
       imagen: '/assets/images/menja.png',
       alt: 'Dinar solidari',
       enlace: '#',
@@ -97,7 +97,7 @@ export const mockData = {
       colorCategoria: 'bg-red-600',
       titulo: '¡Confirmado! Cor Rebel se suma a la cartelera 2026',
       resumenNoticia: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal. Una adición épica que promete momentos inolvidables.',
-      detalleNoticia: true,  
+      detalleNoticia: true,
       imagen: '/assets/images/noti1.jpg',
       alt: 'Nueva banda confirmada',
       enlace: '#Lineup',
@@ -111,7 +111,7 @@ export const mockData = {
       colorCategoria: 'bg-blue-600',
       titulo: 'Purin confirma!',
       resumenNoticia: 'Purin confirma nuestra cita en el Festival por segunda vez consecutiva! Tendran su stand montado para la venta de merchandaising y mucho mas, aprobecha esta oportunidad para llevar a purin siempre contigo.',
-      detalleNoticia: true, 
+      detalleNoticia: true,
       imagen: '/assets/images/foto8.jpg',
       alt: 'Merchandising 2026',
       enlace: '#Lineup',
@@ -125,7 +125,7 @@ export const mockData = {
       colorCategoria: 'bg-yellow-600',
       titulo: '¡Últimos días y pocas entradas!',
       resumenNoticia: 'No te pierdas la oportunidad de conseguir tu entrada al mejor precio.',
-      detalleNoticia: false,  
+      detalleNoticia: false,
       imagen: '/assets/images/noti2.jpg',
       alt: 'Early Bird tickets',
       enlace: '#Entradas',
@@ -139,7 +139,7 @@ export const mockData = {
       colorCategoria: 'bg-green-600',
       titulo: 'Mejoras en el recinto: nuevo escenario',
       resumenNoticia: 'Este año contaremos con un escenario principal renovado y una zona más amplia con mejores servicios para ofrecer la mejor experiencia posible.',
-      detalleNoticia: false,  
+      detalleNoticia: false,
       imagen: '/assets/images/noti3.jpg',
       enlace: '#',
       textoEnlace: '',
@@ -153,7 +153,7 @@ export const mockData = {
       colorCategoria: 'bg-green-600',
       titulo: 'Mollerussa Metal Fest 2025: Comprometidos con el medio ambiente',
       resumenNoticia: 'Implementamos nuevas medidas ecológicas incluyendo reciclaje, energías renovables y reducción de residuos para un festival más sostenible.',
-      detalleNoticia: false,  
+      detalleNoticia: false,
       imagen: '/assets/images/noti4.jpg',
       alt: 'Festival sostenible',
       enlace: '#',
@@ -168,7 +168,7 @@ export const mockData = {
       colorCategoria: 'bg-purple-600',
       titulo: 'Colaboración épica: Iron Storm y Dark Abyss juntos en el escenario',
       resumenNoticia: 'Por primera vez en la historia del festival, dos de nuestros headliners se unirán para una actuación especial que promete ser histórica.',
-      detalleNoticia: false,  
+      detalleNoticia: false,
       imagen: '/assets/images/noti5.jpg',
       alt: 'Colaboración especial',
       enlace: '#lineup',
@@ -180,7 +180,7 @@ export const mockData = {
 
   // Detalles de noticias - Tabla relacionada
   detalleNoticia: [
-     {
+    {
       id: 1,
       noticia_id: 1, // Foreign key a noticias.id
       fecha: '1 Febrero 2026',
@@ -197,7 +197,7 @@ export const mockData = {
       autor: 'Redacción MMF',
       tiempoLectura: '8 min',
       visualizaciones: '1.2k',
-      imagenes: JSON.stringify(['/assets/images/xxx.jpg']),
+      imagenes: JSON.stringify(['/assets/images/menja.png']),
       videos: JSON.stringify([]),
       created_at: '2026-01-15 09:00:00',
       updated_at: '2026-01-15 09:00:00',
@@ -232,7 +232,7 @@ export const mockData = {
       id: 3,
       noticia_id: 2, // Foreign key a noticias.id
       fecha: '10 Enero 2026',
-      categoria: 'MERCHANDAISING', 
+      categoria: 'MERCHANDAISING',
       titulo: 'Purin confirma!',
       descripcionCorta: 'Purin confirma nuestra cita en el Festival por segunda vez consecutiva!',
       contenido: JSON.stringify([
@@ -243,7 +243,7 @@ export const mockData = {
       ]),
       imagenPrincipal: '/assets/images/foto8.jpg',
       autor: 'Redacción MMF',
-      tiempoLectura: '5 min', 
+      tiempoLectura: '5 min',
       visualizaciones: '890',
       imagenes: JSON.stringify(['/assets/images/camisa.jpg', '/assets/images/gorra.jpg']),
       videos: JSON.stringify([]),
@@ -262,7 +262,7 @@ export const mockData = {
     },
     {
       id: 2,
-      day: "Sábado 16 Junio", 
+      day: "Sábado 16 Junio",
       created_at: '2024-01-15 10:00:00'
     }
   ],
@@ -276,7 +276,7 @@ export const mockData = {
     },
     {
       id: 2,
-      lineup_id: 1, 
+      lineup_id: 1,
       name: "Escenario Underground",
       created_at: '2024-01-15 10:00:00'
     },
@@ -309,7 +309,7 @@ export const mockData = {
     },
     {
       id: 2,
-      type: "Pase 3 Días", 
+      type: "Pase 3 Días",
       price: 120,
       benefits: JSON.stringify(["Acceso 3 días", "3 consumiciones", "Merchandising exclusivo"]),
       created_at: '2024-01-15 10:00:00',
@@ -324,6 +324,47 @@ export const mockData = {
       updated_at: '2024-01-15 10:00:00'
     }
   ],
+
+  galeria_images: [
+    {
+      url: '/assets/images/siroll.png',
+      alt: '1'
+    },
+    {
+      url: '/assets/images/bn.png',
+      alt: '2'
+    },
+    {
+      url: '/assets/images/trio.png',
+      alt: '3'
+    },
+    {
+      url: '/assets/images/bn2.png',
+      alt: '4'
+    }
+  ],
+
+  galeria_carteleras: [
+    {
+      anyo: 2025,
+      headliners: ['Bellako', 'Indar'],
+      asistencia: 250,
+      imagen: '/assets/images/cartelera25.jpg',
+      color: 'yellow',
+      bandas: 5,
+      alt: ''
+    },
+    {
+      anyo: 2024,
+      headliners: ['Purin', 'Libervm'],
+      asistencia: 180,
+      imagen: '/assets/images/cartelera24.jpg',
+      color: 'silver',
+      bandas: 4,
+      alt: ''
+    }
+  ]
+
 };
 
 // Funciones auxiliares - SQLite Style
@@ -339,7 +380,7 @@ export const getNoticiaById = (id) => mockData.noticias.find(noticia => noticia.
 export const getDetalleNoticiaById = (id) => {
   const detalle = mockData.detalleNoticia.find(detalle => detalle.noticia_id === id);
   if (!detalle) return null;
-  
+
   // Parsear JSON como lo haría SQLite
   return {
     ...detalle,
@@ -349,7 +390,7 @@ export const getDetalleNoticiaById = (id) => {
   };
 };
 
-export const getNoticiasConDetalle = () => 
+export const getNoticiasConDetalle = () =>
   mockData.noticias.filter(noticia => noticia.tiene_detalle === 1);
 
 export const getLineupCompleto = () => {

@@ -156,9 +156,9 @@ export const mockData = {
       alt_ca: 'Dinar solidari',
       alt_en: 'Solidarity meal',
       enlace: '#',
-      textoEnlace: 'Ver cartelera',
-      textoEnlace_ca: 'Veure cartellera',
-      textoEnlace_en: 'See lineup',
+      textoEnlace: 'Llegir més',
+      textoEnlace_ca: 'Leer más',
+      textoEnlace_en: 'See more',
       created_at: '2026-01-15 09:00:00'
     },
     {
@@ -182,9 +182,9 @@ export const mockData = {
       alt_ca: 'Nova banda confirmada',
       alt_en: 'New band confirmed',
       enlace: '#Lineup',
-      textoEnlace: 'Ver cartelera',
-      textoEnlace_ca: 'Veure cartellera',
-      textoEnlace_en: 'See lineup',
+      textoEnlace: 'Llegir més',
+      textoEnlace_ca: 'Leer más',
+      textoEnlace_en: 'See more',
       created_at: '2026-01-15 09:00:00'
     },
     {
@@ -208,9 +208,9 @@ export const mockData = {
       alt_ca: 'Merchandising 2026',
       alt_en: 'Merchandising 2026',
       enlace: '#Lineup',
-      textoEnlace: 'Ver cartelera',
-      textoEnlace_ca: 'Veure cartellera',
-      textoEnlace_en: 'See lineup',
+      textoEnlace: 'Llegir més',
+      textoEnlace_ca: 'Leer más',
+      textoEnlace_en: 'See more',
       created_at: '2026-01-10 11:30:00'
     },
     {
@@ -314,9 +314,9 @@ export const mockData = {
       alt_ca: 'Col·laboració especial',
       alt_en: 'Special collaboration',
       enlace: '#lineup',
-      textoEnlace: 'Ver cartelera',
-      textoEnlace_ca: 'Veure cartellera',
-      textoEnlace_en: 'See lineup',
+      textoEnlace: 'Llegir més',
+      textoEnlace_ca: 'Leer más',
+      textoEnlace_en: 'See more',
       created_at: '2025-12-15 12:00:00',
       updated_at: '2025-12-15 12:00:00'
     }
@@ -617,6 +617,45 @@ export const mockData = {
       updated_at: '2024-01-15 10:00:00'
     }
   ],
+  galeria_images: [
+    {
+      url: '/assets/images/siroll.png',
+      alt: '1'
+    },
+    {
+      url: '/assets/images/bn.png',
+      alt: '2'
+    },
+    {
+      url: '/assets/images/trio.png',
+      alt: '3'
+    },
+    {
+      url: '/assets/images/bn2.png',
+      alt: '4'
+    }
+  ],
+
+  galeria_carteleras: [
+    {
+      anyo: 2025,
+      headliners: ['Bellako', 'Indar'],
+      asistencia: 250,
+      imagen: '/assets/images/cartelera25.jpg',
+      color: 'yellow',
+      bandas: 5,
+      alt: ''
+    },
+    {
+      anyo: 2024,
+      headliners: ['Purin', 'Libervm'],
+      asistencia: 180,
+      imagen: '/assets/images/cartelera24.jpg',
+      color: 'silver',
+      bandas: 4,
+      alt: ''
+    }
+  ]
 };
 
 // Funciones auxiliares - SQLite Style CON TRADUCCIONES

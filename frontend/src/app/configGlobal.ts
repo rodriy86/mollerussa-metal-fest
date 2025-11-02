@@ -75,6 +75,8 @@ class GlobalConfig {
     tickets: `${this.baseUrl}/api/tickets`,
     events: `${this.baseUrl}/api/events`,
     health: `${this.baseUrl}/api/health`,
+    galeriaImages: `${this.baseUrl}/api/galeria_images`,
+    galeriaCarteleras: `${this.baseUrl}/api/galeria_carteleras`,
     
     // Funciones para endpoints con parámetros
     detalleNoticia: (id: number) => `${this.baseUrl}/api/noticias/${id}/detalle`,
@@ -93,7 +95,7 @@ class GlobalConfig {
   readonly tickets = {
     ventaInicio: 'Próximamente',
     ventaFin: '-',
-    habilitar: false,
+    habilitar: true, //habilitar/deshabilitar informacio del festibal, ventad e tiquets, ubicacio, i etc
     precios: {
       primeres100: 80,
       normal: 100,
