@@ -89,7 +89,7 @@
     "SUMA_PLATOS_ERROR": "La suma de platos no puede ser mayor que el número de personas.",
     "RESERVA_ENVIADA": "¡Reserva enviada correctamente! Te contactaremos para confirmar el pago.",
     "ERROR_RESERVA": "Error al enviar la reserva. Por favor, inténtalo de nuevo."
-  },
+  }, 
   
   "GALERIA": {
     "GALERIA": "SOBRE NOSOTROS",
