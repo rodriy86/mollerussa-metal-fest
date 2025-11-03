@@ -6,7 +6,7 @@
     "INFORMACION": "Información",
     "UBICACION": "Ubicación",
     "CONTACTO": "Contacto",
-    "GALERIA": "Historia",
+    "GALERIA": "Sobre nosotros",
     "IDIOMA": "Idioma",
     "MENU": "Menú",
     "MENJAR_SOLIDARI": "Comida Solidaria MMF"
@@ -30,7 +30,7 @@
     "INFORMACION": "Información",
     "UBICACION": "Ubicación",
     "CONTACTO": "Contacto",
-    "GALERIA": "Historia",
+    "GALERIA": "Sobre nosotros",
     "ENLACES_RAPIDOS": "Enlaces rápidos",
     "PRENSA": "Prensa",
     "BTN_SOLICITAR_ACREDITACION": "Solicitar Acreditación",
@@ -92,7 +92,7 @@
   },
   
   "GALERIA": {
-    "GALERIA": "GALERÍA",
+    "GALERIA": "SOBRE NOSOTROS",
     "TITULO": "Galería",
     "VOLVER_INICIO": "Volver al Inicio",
     "CARGANDO": "Cargando galería...",

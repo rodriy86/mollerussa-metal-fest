@@ -6,7 +6,7 @@
     "INFORMACION": "Informació",
     "UBICACION": "Ubicació",
     "CONTACTO": "Contacte",
-    "GALERIA": "Història",
+    "GALERIA": "Sobre nosaltres",
     "IDIOMA": "Idioma",
     "MENU": "Menú"
   },
@@ -29,7 +29,7 @@
     "INFORMACION": "Informació",
     "UBICACION": "Ubicació",
     "CONTACTO": "Contacte",
-    "GALERIA": "Història",
+    "GALERIA": "Sobre nosaltres",
     "ENLACES_RAPIDOS": "Enllaços ràpids",
     "PRENSA": "Premsa",
     "BTN_SOLICITAR_ACREDITACION": "Sol·licitar acreditació",
@@ -91,7 +91,7 @@
     "ERROR_RESERVA": "Error en enviar la reserva. Si us plau, torna a intentar-ho."
   },
   "GALERIA": {
-    "GALERIA": "GALERIA",
+    "GALERIA": "SOBRE NOSALTRES",
     "TITULO": "Galeria",
     "VOLVER_INICIO": "Tornar a l'Inici",
     "CARGANDO": "Carregant galeria...",

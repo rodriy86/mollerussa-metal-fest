@@ -140,9 +140,9 @@ export const mockData = {
       fecha: '1 Febrero 2026',
       fecha_ca: '1 Febrer 2026',
       fecha_en: 'February 1, 2026',
-      categoria: '-',
-      categoria_ca: '-',
-      categoria_en: '-',
+      categoria: 'EVENTOS',
+      categoria_ca: 'EVENTS',
+      categoria_en: 'EVENTS',
       colorCategoria: 'bg-red-600',
       titulo: 'Dinar solidari',
       titulo_ca: 'Dinar solidari',
@@ -152,15 +152,15 @@ export const mockData = {
       resumenNoticia_en: 'The Mollerussa Metal Fest organization will organize a solidarity meal in the mountains on 2/1/26',
       detalleNoticia: true,  
       imagen: '/assets/images/menja.png',
-      alt: 'Dinar solidari',
-      alt_ca: 'Dinar solidari',
-      alt_en: 'Solidarity meal',
+      alt: '',
+      alt_ca: '',
+      alt_en: '',
       enlace: '#',
       textoEnlace: 'Llegir més',
       textoEnlace_ca: 'Leer más',
       textoEnlace_en: 'See more',
       created_at: '2026-01-15 09:00:00'
-    },
+    }/*,
     {
       id: 2,
       fecha: '15 Enero 2026',
@@ -178,9 +178,9 @@ export const mockData = {
       resumenNoticia_en: 'The legendary Finnish black metal band will perform on Saturday July 16 on the main stage. An epic addition that promises unforgettable moments.',
       detalleNoticia: true,  
       imagen: '/assets/images/noti1.jpg',
-      alt: 'Nueva banda confirmada',
-      alt_ca: 'Nova banda confirmada',
-      alt_en: 'New band confirmed',
+      alt: '',
+      alt_ca: '',
+      alt_en: '',
       enlace: '#Lineup',
       textoEnlace: 'Llegir més',
       textoEnlace_ca: 'Leer más',
@@ -204,9 +204,9 @@ export const mockData = {
       resumenNoticia_en: 'Purin confirms our appointment at the Festival for the second consecutive time! They will have their stand set up for merchandising sales and much more, take this opportunity to always carry Purin with you.',
       detalleNoticia: true, 
       imagen: '/assets/images/foto8.jpg',
-      alt: 'Merchandising 2026',
-      alt_ca: 'Merchandising 2026',
-      alt_en: 'Merchandising 2026',
+      alt: '',
+      alt_ca: '',
+      alt_en: '',
       enlace: '#Lineup',
       textoEnlace: 'Llegir més',
       textoEnlace_ca: 'Leer más',
@@ -230,13 +230,13 @@ export const mockData = {
       resumenNoticia_en: 'Don\'t miss the opportunity to get your ticket at the best price.',
       detalleNoticia: false,  
       imagen: '/assets/images/noti2.jpg',
-      alt: 'Early Bird tickets',
-      alt_ca: 'Entrades Early Bird',
-      alt_en: 'Early Bird tickets',
+      alt: '',
+      alt_ca: '',
+      alt_en: '',
       enlace: '#Entradas',
-      textoEnlace: 'Comprar entradas',
-      textoEnlace_ca: 'Comprar entrades',
-      textoEnlace_en: 'Buy tickets',
+      textoEnlace: '',
+      textoEnlace_ca: '',
+      textoEnlace_en: '',
       created_at: '2026-01-05 14:15:00'
     },
     {
@@ -256,9 +256,9 @@ export const mockData = {
       resumenNoticia_en: 'This year we will have a renovated main stage and a larger area with better services to offer the best possible experience.',
       detalleNoticia: false,  
       imagen: '/assets/images/noti3.jpg',
-      alt: 'Nuevo escenario',
-      alt_ca: 'Nou escenari',
-      alt_en: 'New stage',
+      alt: '',
+      alt_ca: '',
+      alt_en: '',
       enlace: '#',
       textoEnlace: '',
       textoEnlace_ca: '',
@@ -283,9 +283,9 @@ export const mockData = {
       resumenNoticia_en: 'We implement new ecological measures including recycling, renewable energy and waste reduction for a more sustainable festival.',
       detalleNoticia: false,  
       imagen: '/assets/images/noti4.jpg',
-      alt: 'Festival sostenible',
-      alt_ca: 'Festival sostenible',
-      alt_en: 'Sustainable festival',
+      alt: '',
+      alt_ca: '',
+      alt_en: '',
       enlace: '#',
       textoEnlace: '',
       textoEnlace_ca: '',
@@ -310,16 +310,16 @@ export const mockData = {
       resumenNoticia_en: 'For the first time in the festival\'s history, two of our headliners will join together for a special performance that promises to be historic.',
       detalleNoticia: false,  
       imagen: '/assets/images/noti5.jpg',
-      alt: 'Colaboración especial',
-      alt_ca: 'Col·laboració especial',
-      alt_en: 'Special collaboration',
+      alt: '',
+      alt_ca: '',
+      alt_en: '',
       enlace: '#lineup',
       textoEnlace: 'Llegir més',
       textoEnlace_ca: 'Leer más',
       textoEnlace_en: 'See more',
       created_at: '2025-12-15 12:00:00',
       updated_at: '2025-12-15 12:00:00'
-    }
+    }*/
   ],
 
   // Detalles de noticias - Tabla relacionada
@@ -340,30 +340,30 @@ export const mockData = {
       descripcionCorta_ca: "L'organització del Mollerussa Metal Fest organitzarà un dinar solidari a la serra el dia 1/2/26.",
       descripcionCorta_en: 'The Mollerussa Metal Fest organization will organize a solidarity meal in the mountains on 2/1/26.',
       contenido: JSON.stringify([
-        'El Mollerussa Metal Fest 2026 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Cor Rebel, una de las bandas más respetadas y temidas del black metal Catalan.',
-        'La formación de Mollerussa actuará el sábado 16 de julio a las 21:30h en el escenario principal, ofreciendo una actuación que promete ser uno de los momentos más intensos e inolvidables del festival.',
-        'Tras meses de negociaciones y expectación por parte de los fans, finalmente podemos confirmar que Cor Rebel pisará La Amistat.',
-        'La banda, ha sido durante décadas una de las referencias indiscutibles de Lleida.'
+        '(ES) El dinar sera super bo! paragraf 1.',
+        '(ES) Hi haura musica i mes paragraf 12.',
+        '(ES) Es fara per molle paragraf 3.',
+        '(ES) Vine, a casa tampoc faras res paragraf 4.',
       ]),
       contenido_ca: JSON.stringify([
-        'El Mollerussa Metal Fest 2026 segueix sumant grans noms al seu cartell i avui tenim el plaer d\'anunciar oficialment la confirmació de Cor Rebel, una de les bandes més respectades i temudes del black metal català.',
-        'La formació de Mollerussa actuarà el dissabte 16 de juliol a les 21:30h a l\'escenari principal, oferint una actuació que promet ser un dels moments més intensos i inoblidables del festival.',
-        'Després de mesos de negociacions i expectació per part dels fans, finalment podem confirmar que Cor Rebel pisarà La Amistat.',
-        'La banda ha estat durant dècades una de les referències indiscutibles de Lleida.'
+        '(CA) El dinar sera super bo! paragraf 1.',
+        '(CA) Hi haura musica i mes paragraf 12.',
+        '(CA) Es fara per molle paragraf 3.',
+        '(CA) Vine, a casa tampoc faras res paragraf 4.',
       ]),
       contenido_en: JSON.stringify([
-        'Mollerussa Metal Fest 2026 continues to add big names to its lineup and today we are pleased to officially announce the confirmation of Cor Rebel, one of the most respected and feared Catalan black metal bands.',
-        'The Mollerussa formation will perform on Saturday July 16 at 21:30h on the main stage, offering a performance that promises to be one of the most intense and unforgettable moments of the festival.',
-        'After months of negotiations and anticipation from fans, we can finally confirm that Cor Rebel will step on La Amistat.',
-        'The band has been for decades one of the undisputed references of Lleida.'
+        '(EN) El dinar sera super bo! paragraf 1.',
+        '(EN) Hi haura musica i mes paragraf 12.',
+        '(EN) Es fara per molle paragraf 3.',
+        '(EN) Vine, a casa tampoc faras res paragraf 4.',
       ]),
       imagenPrincipal: '/assets/images/menja.png',
       autor: 'Redacción MMF',
       autor_ca: 'Redacció MMF',
       autor_en: 'MMF Editorial',
       tiempoLectura: '8 min',
-      visualizaciones: '1.2k',
-      imagenes: JSON.stringify(['/assets/images/xxx.jpg']),
+      visualizaciones: '',
+      imagenes: JSON.stringify(['/assets/images/menja.png']),
       videos: JSON.stringify([]),
       created_at: '2026-01-15 09:00:00',
       updated_at: '2026-01-15 09:00:00',
@@ -371,214 +371,57 @@ export const mockData = {
       textoBoton: 'Comprar ticket',
       textoBoton_ca: 'Comprar entrada',
       textoBoton_en: 'Buy ticket'
-    },
-    {
+    }
+    /*{
       id: 2,
       noticia_id: 2,
-      fecha: '15 Enero 2026',
-      fecha_ca: '15 Gener 2026',
-      fecha_en: 'January 15, 2026',
-      categoria: 'LINEUP',
-      categoria_ca: 'CARTELLERA',
-      categoria_en: 'LINEUP',
-      titulo: '¡Confirmado! Cor Rebel se suma a la cartelera 2026',
-      titulo_ca: "Confirmat! Cor Rebel s'afegeix a la cartellera 2026",
-      titulo_en: 'Confirmed! Cor Rebel joins the 2026 lineup',
-      descripcionCorta: 'La legendaria banda de black metal finlandesa actuará el sábado 16 de julio en el escenario principal del Mollerussa Metal Fest 2026.',
-      descripcionCorta_ca: "La llegendària banda de black metal finlandesa actuarà el dissabte 16 de juliol a l'escenari principal del Mollerussa Metal Fest 2026.",
-      descripcionCorta_en: 'The legendary Finnish black metal band will perform on Saturday July 16 on the main stage of Mollerussa Metal Fest 2026.',
+      fecha: '',
+      fecha_ca: '',
+      fecha_en: '',
+      categoria: '',
+      categoria_ca: '',
+      categoria_en: '',
+      titulo: '',
+      titulo_ca: "",
+      titulo_en: '',
+      descripcionCorta: '',
+      descripcionCorta_ca: "",
+      descripcionCorta_en: '',
       contenido: JSON.stringify([
-        'El Mollerussa Metal Fest 2026 sigue sumando grandes nombres a su cartel y hoy tenemos el placer de anunciar oficialmente la confirmación de Cor Rebel, una de las bandas más respetadas y temidas del black metal Catalan.',
-        'La formación de Mollerussa actuará el sábado 16 de julio a las 21:30h en el escenario principal, ofreciendo una actuación que promete ser uno de los momentos más intensos e inolvidables del festival.',
-        'Tras meses de negociaciones y expectación por parte de los fans, finalmente podemos confirmar que Cor Rebel pisará La Amistat.',
-        'La banda, ha sido durante décadas una de las referencias indiscutibles de Lleida.'
+        '',
+        '',
+        '',
+        ''
       ]),
       contenido_ca: JSON.stringify([
-        'El Mollerussa Metal Fest 2026 segueix sumant grans noms al seu cartell i avui tenim el plaer d\'anunciar oficialment la confirmació de Cor Rebel, una de les bandes més respectades i temudes del black metal català.',
-        'La formació de Mollerussa actuarà el dissabte 16 de juliol a les 21:30h a l\'escenari principal, oferint una actuació que promet ser un dels moments més intensos i inoblidables del festival.',
-        'Després de mesos de negociacions i expectació per part dels fans, finalment podem confirmar que Cor Rebel pisarà La Amistat.',
-        'La banda ha estat durant dècades una de les referències indiscutibles de Lleida.'
+        '',
+        '',
+        '',
+        ''
       ]),
       contenido_en: JSON.stringify([
-        'Mollerussa Metal Fest 2026 continues to add big names to its lineup and today we are pleased to officially announce the confirmation of Cor Rebel, one of the most respected and feared Catalan black metal bands.',
-        'The Mollerussa formation will perform on Saturday July 16 at 21:30h on the main stage, offering a performance that promises to be one of the most intense and unforgettable moments of the festival.',
-        'After months of negotiations and anticipation from fans, we can finally confirm that Cor Rebel will step on La Amistat.',
-        'The band has been for decades one of the undisputed references of Lleida.'
+        '',
+        '',
+        '',
+        ''
       ]),
       imagenPrincipal: '/assets/images/cap_noti1.jpg',
       autor: 'Redacción MMF',
       autor_ca: 'Redacció MMF',
       autor_en: 'MMF Editorial',
-      tiempoLectura: '8 min',
-      visualizaciones: '1.2k',
+      tiempoLectura: '0 min',
+      visualizaciones: '',
       imagenes: JSON.stringify(['/assets/images/desc_noti1.jpg']),
       videos: JSON.stringify([]),
-      created_at: '2026-01-15 09:00:00',
-      updated_at: '2026-01-15 09:00:00',
+      created_at: '',
+      updated_at: '',
       boton: false,
       textoBoton: '',
       textoBoton_ca: '',
       textoBoton_en: ''
-    },
-    {
-      id: 3,
-      noticia_id: 3,
-      fecha: '10 Enero 2026',
-      fecha_ca: '10 Gener 2026',
-      fecha_en: 'January 10, 2026',
-      categoria: 'MERCHANDAISING',
-      categoria_ca: 'MERCHANDAISING',
-      categoria_en: 'MERCHANDISING',
-      titulo: 'Purin confirma!',
-      titulo_ca: 'Purin confirma!',
-      titulo_en: 'Purin confirms!',
-      descripcionCorta: 'Purin confirma nuestra cita en el Festival por segunda vez consecutiva!',
-      descripcionCorta_ca: 'Purin confirma la nostra cita al Festival per segona vegada consecutiva!',
-      descripcionCorta_en: 'Purin confirms our appointment at the Festival for the second consecutive time!',
-      contenido: JSON.stringify([
-        'Purin, la reconocida marca de merchandising metalero, ha confirmado oficialmente su participación en el Mollerussa Metal Fest 2026 por segundo año consecutivo.',
-        'Los fans podrán encontrar en su stand una amplia variedad de productos exclusivos: camisetas de edición limitada, pines, parches, y mucho más.',
-        'Además, Purin traerá novedades especiales diseñadas específicamente para esta edición del festival.',
-        'No te pierdas la oportunidad de llevar contigo un recuerdo único de esta experiencia metalera.'
-      ]),
-      contenido_ca: JSON.stringify([
-        'Purin, la reconeguda marca de merchandising metaler, ha confirmat oficialment la seva participació al Mollerussa Metal Fest 2026 per segon any consecutiu.',
-        'Els fans podran trobar al seu stand una àmplia varietat de productes exclusius: samarretes d\'edició limitada, pins, pedaços, i molt més.',
-        'A més, Purin portarà novetats especials dissenyades específicament per a aquesta edició del festival.',
-        'No et perdis l\'oportunitat de dur amb tu un record únic d\'aquesta experiència metalera.'
-      ]),
-      contenido_en: JSON.stringify([
-        'Purin, the renowned metal merchandising brand, has officially confirmed its participation in Mollerussa Metal Fest 2026 for the second consecutive year.',
-        'Fans will be able to find in their stand a wide variety of exclusive products: limited edition t-shirts, pins, patches, and much more.',
-        'In addition, Purin will bring special novelties designed specifically for this edition of the festival.',
-        'Don\'t miss the opportunity to carry with you a unique souvenir of this metal experience.'
-      ]),
-      imagenPrincipal: '/assets/images/foto8.jpg',
-      autor: 'Redacción MMF',
-      autor_ca: 'Redacció MMF',
-      autor_en: 'MMF Editorial',
-      tiempoLectura: '5 min',
-      visualizaciones: '890',
-      imagenes: JSON.stringify(['/assets/images/camisa.jpg', '/assets/images/gorra.jpg']),
-      videos: JSON.stringify([]),
-      created_at: '2026-01-10 11:30:00',
-      updated_at: '2026-01-10 11:30:00',
-      boton: false,
-      textoBoton: '',
-      textoBoton_ca: '',
-      textoBoton_en: ''
-    }
+    },*/
   ],
 
-  lineup: [
-    {
-      id: 1,
-      day: "Viernes 15 Junio",
-      day_ca: "Divendres 15 Juny",
-      day_en: "Friday June 15",
-      created_at: '2024-01-15 10:00:00'
-    },
-    {
-      id: 2,
-      day: "Sábado 16 Junio",
-      day_ca: "Dissabte 16 Juny",
-      day_en: "Saturday June 16",
-      created_at: '2024-01-15 10:00:00'
-    }
-  ],
-
-  stages: [
-    {
-      id: 1,
-      lineup_id: 1,
-      name: "Escenario Principal",
-      name_ca: "Escenari Principal",
-      name_en: "Main Stage",
-      created_at: '2024-01-15 10:00:00'
-    },
-    {
-      id: 2,
-      lineup_id: 1,
-      name: "Escenario Underground",
-      name_ca: "Escenari Underground",
-      name_en: "Underground Stage",
-      created_at: '2024-01-15 10:00:00'
-    },
-    {
-      id: 3,
-      lineup_id: 2,
-      name: "Escenario Principal",
-      name_ca: "Escenari Principal",
-      name_en: "Main Stage",
-      created_at: '2024-01-15 10:00:00'
-    }
-  ],
-
-  schedule: [
-    { 
-      id: 1, 
-      stage_id: 1, 
-      time: "18:00", 
-      band: "Apertura Local",
-      band_ca: "Obertura Local",
-      band_en: "Local Opening",
-      created_at: '2024-01-15 10:00:00' 
-    },
-    { 
-      id: 2, 
-      stage_id: 1, 
-      time: "20:00", 
-      band: "Slipknot",
-      band_ca: "Slipknot",
-      band_en: "Slipknot",
-      created_at: '2024-01-15 10:00:00' 
-    },
-    { 
-      id: 3, 
-      stage_id: 1, 
-      time: "22:30", 
-      band: "Metallica",
-      band_ca: "Metallica",
-      band_en: "Metallica",
-      created_at: '2024-01-15 10:00:00' 
-    },
-    { 
-      id: 4, 
-      stage_id: 2, 
-      time: "17:00", 
-      band: "Bandas Emergentes",
-      band_ca: "Bandes Emergents",
-      band_en: "Emerging Bands",
-      created_at: '2024-01-15 10:00:00' 
-    },
-    { 
-      id: 5, 
-      stage_id: 2, 
-      time: "19:00", 
-      band: "Competición Metal",
-      band_ca: "Competició Metal",
-      band_en: "Metal Competition",
-      created_at: '2024-01-15 10:00:00' 
-    },
-    { 
-      id: 6, 
-      stage_id: 3, 
-      time: "18:30", 
-      band: "Bandas Tributo",
-      band_ca: "Bandes Tribut",
-      band_en: "Tribute Bands",
-      created_at: '2024-01-15 10:00:00' 
-    },
-    { 
-      id: 7, 
-      stage_id: 3, 
-      time: "20:30", 
-      band: "Iron Maiden",
-      band_ca: "Iron Maiden",
-      band_en: "Iron Maiden",
-      created_at: '2024-01-15 10:00:00' 
-    }
-  ],
   tickets: [
     {
       id: 1,
@@ -693,8 +536,9 @@ export const getNoticiaById = (id, lang = 'es') => {
   };
 };
 
-export const getDetalleNoticiaById = (id, lang = 'es') => {
-  const detalle = mockData.detalleNoticia.find(detalle => detalle.noticia_id === id);
+export const getDetalleNoticiaById = (noticiaId, lang = 'es') => {
+  // Buscar por noticia_id en lugar de id directo
+  const detalle = mockData.detalleNoticia.find(detalle => detalle.noticia_id === noticiaId);
   if (!detalle) return null;
   
   return {
@@ -707,7 +551,7 @@ export const getDetalleNoticiaById = (id, lang = 'es') => {
     autor: detalle[`autor_${lang}`] || detalle.autor,
     textoBoton: detalle[`textoBoton_${lang}`] || detalle.textoBoton,
     imagenes: JSON.parse(detalle.imagenes),
-    videos: JSON.parse(detalle.videos)
+    videos: JSON.parse(detalle.videos || '[]')
   };
 };
 

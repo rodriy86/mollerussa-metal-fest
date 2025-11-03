@@ -1,10 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 import { configGlobal } from '../configGlobal';
-import { TranslationService } from '../services/translation.service'; // AÑADIR ESTO
 
 interface NoticiaCompleta {
   id: number;
@@ -41,18 +40,12 @@ export class DetalleNoticiaComponent implements OnInit {
   private router = inject(Router);
   private http = inject(HttpClient);
   private cdRef = inject(ChangeDetectorRef);
-  private translationService = inject(TranslationService); // INYECTAR EL SERVICIO
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.noticiaId = +params['id'];
       console.log('🔄 Cargando detalle de noticia ID:', this.noticiaId);
-      
-      // OBTENER IDIOMA ACTUAL DEL SERVICIO DE TRADUCCIÓN
-      const currentLang = this.translationService.getCurrentLang();
-      console.log('🌐 Idioma actual desde TranslationService:', currentLang);
-      
-      this.cargarNoticia(this.noticiaId, currentLang);
+      this.cargarNoticia(this.noticiaId);
       window.scrollTo(0, 0);
     });
   }
@@ -61,23 +54,15 @@ export class DetalleNoticiaComponent implements OnInit {
     this.router.navigate(['/comida-solidaria']);
   }
 
-  cargarNoticia(id: number, lang: string) {
+  cargarNoticia(id: number) {
     this.isLoading = true;
     this.error = '';
     console.log("id noticia:", id);
-    console.log("idioma:", lang);
 
-    // ✅ ENVIAR PARÁMETRO DE IDIOMA COMO EN NOTICIASCOMPONENT
-    const params = new HttpParams().set('lang', lang);
-    const url = `${configGlobal.api.detalleNoticia(id)}?lang=${lang}`;
-    
-    console.log('📡 URL detalle noticia:', url);
-
-    this.http.get<NoticiaCompleta>(configGlobal.api.detalleNoticia(id), { params }).subscribe({
+    // Cargar desde el backend - SOLO la noticia que el usuario seleccionó
+    this.http.get<NoticiaCompleta>(configGlobal.api.detalleNoticia(id)).subscribe({
       next: (noticia) => {
         console.log('✅ Detalle de noticia cargado:', noticia);
-        console.log('🔤 Título recibido:', noticia.titulo);
-        console.log('🗓️ Fecha recibida:', noticia.fecha);
         this.noticia = noticia;
         this.isLoading = false;
         this.cdRef.detectChanges();
@@ -85,7 +70,6 @@ export class DetalleNoticiaComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.error('❌ Error cargando detalle de noticia:', error);
-        console.error('🔍 URL que falló:', error.url);
 
         if (error.status === 0) {
           this.error = '⚠️ No se puede conectar al servidor.';
@@ -124,7 +108,6 @@ export class DetalleNoticiaComponent implements OnInit {
   }
 
   recargarNoticia() {
-    const currentLang = this.translationService.getCurrentLang();
-    this.cargarNoticia(this.noticiaId, currentLang);
+    this.cargarNoticia(this.noticiaId);
   }
 }

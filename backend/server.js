@@ -210,7 +210,11 @@ const apiHandlers = {
   // Endpoint para detalle de noticias
   '/api/noticias/:id/detalle': (req, res) => {
     const id = extractIdFromUrl(req.url);
-    const detalleNoticia = id && getDetalleNoticiaById(id);
+    const lang = getLanguageFromRequest(req);
+    if (!id) {
+      return sendError(res, 400, 'ID de noticia requerido');
+    }
+    const detalleNoticia = getDetalleNoticiaById(id, lang);
     detalleNoticia ? sendJson(res, detalleNoticia) : sendError(res, 404, 'Detalle no encontrado');
   },
 
