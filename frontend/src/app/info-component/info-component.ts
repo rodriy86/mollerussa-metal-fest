@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { configGlobal } from '../configGlobal';
 import { RouterModule, Router } from '@angular/router';
+import { TranslatePipe } from '../pipes/translate.pipe';
 //import { FormAcreditacioComponent } from '../form-acreditacio-component/form-acreditacio-component';
 
 
 @Component({
   selector: 'app-info',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './info-component.html',
   styleUrl: './info-component.html',
 })

@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 import { configGlobal } from '../configGlobal';
-import { TranslationService } from '../services/translation.service'; // AÑADIR ESTO
+import { TranslationService } from '../services/translation.service';
+
 
 interface NoticiaCompleta {
   id: number;

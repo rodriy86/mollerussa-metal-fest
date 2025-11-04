@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { configGlobal } from '../configGlobal';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-ubicacion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './ubicacion.html',
   styleUrl: './ubicacion.scss'
 })

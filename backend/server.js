@@ -157,14 +157,57 @@ const enviarEmailAcreditacion = async (formData) => {
 // Handlers de API endpoints
 const apiHandlers = {
   // Endpoint para obtener todas las bandas
-  '/api/bands': (req, res) => sendJson(res, mockData.bands),
+  //'/api/bands': (req, res) => sendJson(res, mockData.bands),
+  '/api/bands': (req, res) => {
+    const lang = getLanguageFromRequest(req);
+
+    const bandsTraducidas = mockData.bands.map(band => {
+      const translated = { ...band };
+      ['name', 'schedule', 'genre', 'description', 'country'].forEach(field => {
+        translated[field] = band[`${field}_${lang}`] || band[field];
+      });
+      return translated;
+    });
+    sendJson(res, bandsTraducidas);
+  },
 
   // Endpoint para obtener banda por ID
-  '/api/bands/:id': (req, res) => {
+  /*'/api/bands/:id': (req, res) => {
     const id = extractIdFromUrl(req.url);
     const band = id && getBandById(id);
     band ? sendJson(res, band) : sendError(res, 404, 'Banda no encontrada');
-  },
+  },*/
+  // Endpoint para obtener banda por ID
+// Endpoint para obtener banda por ID
+'/api/bands/:id': (req, res) => {
+  const id = extractIdFromUrl(req.url);
+  const lang = getLanguageFromRequest(req);
+  
+  console.log('🌐 [SERVER] Solicitud de banda ID:', id, 'en idioma:', lang);
+  
+  if (!id || isNaN(id)) {
+    return sendError(res, 400, 'ID de banda inválido');
+  }
+  
+  const band = mockData.bands.find(band => band.id === id);
+  
+  if (!band) {
+    return sendError(res, 404, 'Banda no encontrada');
+  }
+  
+  // Traducir la banda
+  const bandaTraducida = {
+    ...band,
+    name: band[`name_${lang}`] || band.name,
+    schedule: band[`schedule_${lang}`] || band.schedule,
+    genre: band[`genre_${lang}`] || band.genre,
+    description: band[`description_${lang}`] || band.description,
+    country: band[`country_${lang}`] || band.country
+  };
+  
+  sendJson(res, bandaTraducida);
+},
+
 
   // Endpoint para noticias con soporte multiidioma
   '/api/noticias': (req, res) => {

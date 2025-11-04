@@ -6,14 +6,14 @@
           <div class="w-12 h-12 flex-center bg-brand rounded-lg">
             <img src="assets/icons/mask.png" alt="Máscara" class="w-full h-full p-2 filter-invert">
           </div>
-          <h1 class="text-2xl font-bold metal-text text-brand">{{ 'ACREDITACION.TITULO_FESTIVAL' | translate }}</h1>
+          <h1 class="text-2xl font-bold metal-text text-brand">Mollerussa Metal Fest</h1>
         </div>
 
         <div class="hidden md:flex items-center space-x-8">
           <button (click)="volverAInicio()"
             class="flex items-center text-secondary hover-text-brand transition-colors font-medium">
             <i class="ri-arrow-left-line mr-2"></i>
-            {{ 'ACREDITACION.VOLVER_INICIO' | translate }}
+            Volver al inicio
           </button>
         </div>
 
@@ -31,15 +31,15 @@
             <button (click)="volverAInicio()"
                 class="flex items-center text-brand hover-text-brand font-medium transition-colors">
                 <i class="ri-arrow-left-line mr-2"></i>
-                {{ 'ACREDITACION.VOLVER_INICIO' | translate }}
+                Volver al inicio
             </button>
         </div>
 
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-black metal-text text-brand mb-4">{{ 'ACREDITACION.TITULO_PRINCIPAL' | translate }}</h1>
+            <h1 class="text-4xl md:text-5xl font-black metal-text text-brand mb-4">🎤 ACREDITACIÓN PRENSA & INFLUENCERS</h1>
             <p class="text-xl text-muted max-w-2xl mx-auto">
-                {{ 'ACREDITACION.CAMPOS_OBLIGATORIOS' | translate }}
+                Los campos marcados con * son obligatorios
             </p>
         </div>
 
@@ -49,7 +49,7 @@
 
                 <!-- Tipo de Acreditación -->
                 <div>
-                    <label class="block text-primary font-bold mb-4 text-xl">{{ 'ACREDITACION.TIPO_ACREDITACION' | translate }}</label>
+                    <label class="block text-primary font-bold mb-4 text-xl">Tipo de Acreditación *</label>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <label
                             class="flex items-center p-6 border-2 border-custom rounded-lg cursor-pointer hover:border-brand transition-all duration-200 bg-page"
@@ -57,8 +57,8 @@
                             <input type="radio" name="tipo" value="prensa" [(ngModel)]="formData.tipo"
                                 class="mr-4 text-brand focus:ring-brand transform scale-125" required>
                             <div>
-                                <div class="font-bold text-primary text-lg">{{ 'ACREDITACION.MEDIO_COMUNICACION' | translate }}</div>
-                                <div class="text-muted mt-1">{{ 'ACREDITACION.MEDIO_COMUNICACION_DESC' | translate }}</div>
+                                <div class="font-bold text-primary text-lg">📰 Medio de Comunicación</div>
+                                <div class="text-muted mt-1">Prensa, radio, TV, medios digitales</div>
                             </div>
                         </label>
                         <label
@@ -67,130 +67,130 @@
                             <input type="radio" name="tipo" value="influencer" [(ngModel)]="formData.tipo"
                                 class="mr-4 text-brand focus:ring-brand transform scale-125" required>
                             <div>
-                                <div class="font-bold text-primary text-lg">{{ 'ACREDITACION.INFLUENCER' | translate }}</div>
-                                <div class="text-muted mt-1">{{ 'ACREDITACION.INFLUENCER_DESC' | translate }}</div>
+                                <div class="font-bold text-primary text-lg">🌟 Influencer/Creador</div>
+                                <div class="text-muted mt-1">Redes sociales, contenido digital</div>
                             </div>
                         </label>
                     </div>
                     <div *ngIf="isFieldInvalid('tipo')" class="text-red-400 text-sm mt-2 flex items-center">
                         <i class="ri-error-warning-line mr-1"></i>
-                        {{ 'ACREDITACION.CAMPO_OBLIGATORIO' | translate }}
+                        Este campo es obligatorio
                     </div>
                 </div>
 
                 <!-- Información Personal -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.NOMBRE_COMPLETO' | translate }}</label>
+                        <label class="block text-primary font-bold mb-3">Nombre completo *</label>
                         <input type="text" [(ngModel)]="formData.nombre" name="nombre"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             [class.border-brand]="isFieldInvalid('nombre')" required>
                         <div *ngIf="isFieldInvalid('nombre')" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ACREDITACION.CAMPO_OBLIGATORIO' | translate }}
+                            Este campo es obligatorio
                         </div>
                     </div>
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.EMAIL' | translate }}</label>
+                        <label class="block text-primary font-bold mb-3">Email *</label>
                         <input type="email" [(ngModel)]="formData.email" name="email"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             [class.border-brand]="isEmailInvalid()" required>
                         <div *ngIf="isEmailInvalid()" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ formData.email === '' ? ('ACREDITACION.CAMPO_OBLIGATORIO' | translate) : ('ACREDITACION.EMAIL_INVALIDO' | translate) }}
+                            {{ formData.email === '' ? 'Este campo es obligatorio' : 'Email no válido' }}
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.TELEFONO' | translate }}</label>
-                        <input type="tel" [(ngModel)]="formData.telefono" name="telefono" [placeholder]="'ACREDITACION.TELEFONO_PLACEHOLDER' | translate"
+                        <label class="block text-primary font-bold mb-3">Teléfono *</label>
+                        <input type="tel" [(ngModel)]="formData.telefono" name="telefono" placeholder="+34 123 456 789"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             [class.border-brand]="isTelefonoInvalid()" required>
                         <div *ngIf="isTelefonoInvalid()" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ formData.telefono === '' ? ('ACREDITACION.CAMPO_OBLIGATORIO' | translate) : ('ACREDITACION.TELEFONO_INVALIDO' | translate) }}
+                            {{ formData.telefono === '' ? 'Este campo es obligatorio' : 'Teléfono no válido' }}
                         </div>
                     </div>
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.DOCUMENTO_IDENTIDAD' | translate }}</label>
+                        <label class="block text-primary font-bold mb-3">Documento de Identidad *</label>
                         <input type="text" [(ngModel)]="formData.documentoIdentidad" name="documentoIdentidad"
-                            [placeholder]="'ACREDITACION.DOCUMENTO_PLACEHOLDER' | translate"
+                            placeholder="DNI, NIE, Pasaporte..."
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             [class.border-brand]="isFieldInvalid('documentoIdentidad')" required>
                         <div *ngIf="isFieldInvalid('documentoIdentidad')"
                             class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ACREDITACION.CAMPO_OBLIGATORIO' | translate }}
+                            Este campo es obligatorio
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.CIUDAD_RESIDENCIA' | translate }}</label>
+                        <label class="block text-primary font-bold mb-3">Ciudad o País de Residencia</label>
                         <input type="text" [(ngModel)]="formData.ciudadResidencia" name="ciudadResidencia"
-                            [placeholder]="'ACREDITACION.CIUDAD_PLACEHOLDER' | translate"
+                            placeholder="Ej: Madrid, España"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all">
-                        <div class="text-muted text-sm mt-1">{{ 'ACREDITACION.CIUDAD_OPCIONAL' | translate }}</div>
+                        <div class="text-muted text-sm mt-1">Opcional - Para acreditaciones internacionales</div>
                     </div>
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.REDES_SOCIALES' | translate }}</label>
+                        <label class="block text-primary font-bold mb-3">Redes Sociales</label>
                         <input type="text" [(ngModel)]="formData.redesSociales" name="redesSociales"
-                            [placeholder]="'ACREDITACION.REDES_PLACEHOLDER' | translate"
+                            placeholder="@usuario (Instagram, Twitter, TikTok...)"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all">
-                        <div class="text-muted text-sm mt-1">{{ 'ACREDITACION.REDES_OPCIONAL' | translate }}</div>
+                        <div class="text-muted text-sm mt-1">Opcional</div>
                     </div>
                 </div>
 
                 <!-- Campos específicos -->
                 <div *ngIf="formData.tipo === 'prensa'">
-                    <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.MEDIO' | translate }}</label>
+                    <label class="block text-primary font-bold mb-3">Medio de Comunicación *</label>
                     <input type="text" [(ngModel)]="formData.medio" name="medio"
-                        [placeholder]="'ACREDITACION.MEDIO_PLACEHOLDER' | translate"
+                        placeholder="Nombre del medio, programa, sección..."
                         class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                         [class.border-brand]="isFieldInvalid('medio')" required>
                     <div *ngIf="isFieldInvalid('medio')" class="text-red-400 text-sm mt-1 flex items-center">
                         <i class="ri-error-warning-line mr-1"></i>
-                        {{ 'ACREDITACION.MEDIO_OBLIGATORIO' | translate }}
+                        Este campo es obligatorio para medios de comunicación
                     </div>
                 </div>
 
                 <div *ngIf="formData.tipo === 'influencer'">
-                    <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.PLATAFORMAS_SEGUIDORES' | translate }}</label>
+                    <label class="block text-primary font-bold mb-3">Plataformas y Seguidores *</label>
                     <textarea [(ngModel)]="formData.plataformas" name="plataformas"
-                        [placeholder]="'ACREDITACION.PLATAFORMAS_PLACEHOLDER' | translate"
+                        placeholder="Ej: Instagram: @usuario (50k seguidores), TikTok: @usuario (30k), YouTube: @canal (20k)..."
                         rows="3"
                         class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                         [class.border-brand]="isFieldInvalid('plataformas')" required></textarea>
                     <div *ngIf="isFieldInvalid('plataformas')" class="text-red-400 text-sm mt-1 flex items-center">
                         <i class="ri-error-warning-line mr-1"></i>
-                        {{ 'ACREDITACION.PLATAFORMAS_OBLIGATORIO' | translate }}
+                        Este campo es obligatorio para influencers
                     </div>
                 </div>
 
                 <!-- Cobertura Propuesta -->
                 <div>
-                    <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.COBERTURA' | translate }}</label>
+                    <label class="block text-primary font-bold mb-3">Cobertura Propuesta *</label>
                     <textarea [(ngModel)]="formData.cobertura" name="cobertura"
-                        [placeholder]="'ACREDITACION.COBERTURA_PLACEHOLDER' | translate"
+                        placeholder="Describe cómo planeas cubrir el festival, tipo de contenido (artículos, fotos, videos, stories), alcance esperado, público objetivo..."
                         rows="5"
                         class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                         [class.border-brand]="isFieldInvalid('cobertura')" required></textarea>
                     <div *ngIf="isFieldInvalid('cobertura')" class="text-red-400 text-sm mt-1 flex items-center">
                         <i class="ri-error-warning-line mr-1"></i>
-                        {{ 'ACREDITACION.CAMPO_OBLIGATORIO' | translate }}
+                        Este campo es obligatorio
                     </div>
                 </div>
 
                 <!-- Necesidades Especiales -->
                 <div>
-                    <label class="block text-primary font-bold mb-3">{{ 'ACREDITACION.NECESIDADES_ESPECIALES' | translate }}</label>
+                    <label class="block text-primary font-bold mb-3">Necesidades Especiales</label>
                     <textarea [(ngModel)]="formData.necesidadesEspeciales" name="necesidadesEspeciales"
-                        [placeholder]="'ACREDITACION.NECESIDADES_PLACEHOLDER' | translate" rows="3"
+                        placeholder="Accesibilidad, acompañantes, equipo técnico, requisitos especiales..." rows="3"
                         class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"></textarea>
-                    <div class="text-muted text-sm mt-1">{{ 'ACREDITACION.NECESIDADES_OPCIONAL' | translate }}</div>
+                    <div class="text-muted text-sm mt-1">Opcional</div>
                 </div>
 
                 <!-- Avisos Legales -->
@@ -202,13 +202,17 @@
                             <input type="checkbox" [(ngModel)]="formData.aceptoTerminos" name="aceptoTerminos"
                                 class="mr-4 mt-1 text-brand focus:ring-brand transform scale-125" required>
                             <span class="text-secondary text-sm leading-relaxed">
-                                <strong>{{ 'ACREDITACION.ACEPTO_TERMINOS' | translate }}</strong> {{ 'ACREDITACION.TERMINOS_TEXTO' | translate }}
+                                <strong>Acepto los términos y condiciones.</strong> Entiendo que esta solicitud no
+                                garantiza la acreditación y será evaluada por el equipo organizador. Me comprometo a
+                                utilizar la acreditación únicamente para fines profesionales y a proporcionar la
+                                cobertura prometida. El incumplimiento de estos términos puede resultar en la revocación
+                                de la acreditación. *
                             </span>
                         </label>
                         <div *ngIf="formSubmitted && !formData.aceptoTerminos"
                             class="text-red-400 text-sm mt-2 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ACREDITACION.DEBES_ACEPTAR_TERMINOS' | translate }}
+                            Debes aceptar los términos y condiciones
                         </div>
                     </div>
 
@@ -220,18 +224,19 @@
                                 name="aceptoPoliticaPrivacidad"
                                 class="mr-4 mt-1 text-brand focus:ring-brand transform scale-125" required>
                             <span class="text-secondary text-sm leading-relaxed">
-                                <strong>{{ 'ACREDITACION.HE_LEIDO' | translate }}</strong>
+                                <strong>He leído y acepto la </strong>
                                 <button type="button" (click)="openPoliticaPrivacidad()"
                                     class="text-brand hover-text-brand underline font-semibold transition-colors">
-                                    {{ 'ACREDITACION.POLITICA_PRIVACIDAD' | translate }}
+                                    Política de privacidad
                                 </button>
-                                <strong> {{ 'ACREDITACION.CONSENTIMIENTO' | translate }}</strong>
+                                <strong> y consiento el tratamiento de mis datos para gestionar la solicitud de
+                                    acreditación.</strong> *
                             </span>
                         </label>
                         <div *ngIf="formSubmitted && !formData.aceptoPoliticaPrivacidad"
                             class="text-red-400 text-sm mt-2 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ACREDITACION.DEBES_ACEPTAR_PRIVACIDAD' | translate }}
+                            Debes aceptar la política de privacidad
                         </div>
                     </div>
 
@@ -240,17 +245,17 @@
                             class="w-full sm:flex-1 btn-brand py-4 sm:py-5 px-6 sm:px-8 rounded-lg text-base sm:text-lg flex items-center justify-center transform hover:scale-105">
                             <span *ngIf="!enviando">
                                 <i class="ri-send-plane-line mr-2 sm:mr-3"></i>
-                                {{ 'ACREDITACION.ENVIAR_SOLICITUD' | translate }}
+                                ENVIAR SOLICITUD
                             </span>
                             <span *ngIf="enviando">
                                 <i class="ri-loader-4-line animate-spin mr-2 sm:mr-3"></i>
-                                {{ 'ACREDITACION.ENVIANDO' | translate }}
+                                ENVIANDO...
                             </span>
                         </button>
                         <button type="button" (click)="volverAInicio()"
                             class="w-full sm:flex-1 bg-card hover:bg-custom btn-outline-brand font-bold py-4 sm:py-5 px-6 sm:px-8 rounded-lg transition-all duration-200 text-base sm:text-lg">
                             <i class="ri-arrow-left-line mr-2"></i>
-                            {{ 'ACREDITACION.VOLVER_INICIO' | translate }}
+                            Volver al Inicio
                         </button>
                     </div>
                 </div>
@@ -265,117 +270,139 @@
             <!-- Header -->
             <div class="bg-brand p-6 sticky top-0 z-10">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-black text-primary">{{ 'POLITICA_PRIVACIDAD.TITULO' | translate }}</h2>
+                    <h2 class="text-2xl font-black text-primary">🔒 POLÍTICA DE PRIVACIDAD</h2>
                     <button (click)="closePoliticaPrivacidad()"
                         class="text-primary hover:text-secondary text-2xl transition-colors">
                         &times;
                     </button>
                 </div>
-                <p class="text-primary mt-2">{{ 'POLITICA_PRIVACIDAD.SUBTITULO' | translate }}</p>
+                <p class="text-primary mt-2">Acreditación de Prensa e Influencers</p>
             </div>
 
             <!-- Contenido -->
             <div class="p-8 space-y-8">
                 <!-- 1. Identidad del Responsable -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.IDENTIDAD_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">1. Identidad del Responsable</h3>
                     <div class="bg-card border border-custom rounded-lg p-6 space-y-3">
-                        <p class="text-secondary"><strong>{{ 'POLITICA_PRIVACIDAD.RESPONSABLE' | translate }}</strong>
+                        <p class="text-secondary"><strong>Responsable del tratamiento:</strong>
                             {{configGlobal.festival.nombreCompleto}}</p>
-                        <p class="text-secondary"><strong>{{ 'POLITICA_PRIVACIDAD.NIF' | translate }}</strong> {{configGlobal.festival.NIF}}</p>
-                        <p class="text-secondary"><strong>{{ 'POLITICA_PRIVACIDAD.EMAIL' | translate }}</strong>
+                        <p class="text-secondary"><strong>NIF/CIF:</strong> {{configGlobal.festival.NIF}}</p>
+                        <p class="text-secondary"><strong>Correo electrónico de contacto:</strong>
                             {{configGlobal.contactos.email}}</p>
-                        <p class="text-secondary"><strong>{{ 'POLITICA_PRIVACIDAD.WEB' | translate }}</strong> {{configGlobal.contactos.web}}</p>
+                        <p class="text-secondary"><strong>Sitio web:</strong> {{configGlobal.contactos.web}}</p>
                     </div>
                 </section>
 
                 <!-- 2. Finalidad del tratamiento de datos -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.FINALIDAD_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">2. Finalidad del tratamiento de datos</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary mb-4">{{ 'POLITICA_PRIVACIDAD.FINALIDAD_TEXTO' | translate }}</p>
+                        <p class="text-secondary mb-4">Los datos personales recabados a través del formulario de
+                            acreditación se tratarán con las siguientes finalidades:</p>
                         <ul class="text-secondary space-y-2 list-disc list-inside">
-                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_1' | translate }}</li>
-                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_2' | translate }}</li>
-                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_3' | translate }}</li>
-                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_4' | translate }}</li>
+                            <li>Gestionar las solicitudes de acreditación de prensa e influencers para el evento
+                                <strong>{{configGlobal.festival.nombreCompleto}}</strong>.
+                            </li>
+                            <li>Verificar la información facilitada y contactar con el solicitante para confirmar su
+                                acreditación.</li>
+                            <li>Facilitar información relacionada con el evento, incluyendo horarios, normas de acceso y
+                                actividades especiales.</li>
+                            <li>Verificar la identidad del solicitante mediante su número de documento (DNI, NIE o
+                                pasaporte) y garantizar la seguridad y control de acceso al recinto del evento.</li>
                         </ul>
-                        <p class="text-secondary mt-4"><strong>{{ 'POLITICA_PRIVACIDAD.NO_AUTOMATIZACION' | translate }}</strong></p>
+                        <p class="text-secondary mt-4"><strong>No se tomarán decisiones automatizadas ni se elaborarán
+                                perfiles con los datos recogidos.</strong></p>
                     </div>
                 </section>
 
                 <!-- 3. Legitimación del tratamiento -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">3. Legitimación del tratamiento</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary">{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_TEXTO' | translate }}</p>
+                        <p class="text-secondary">La base legal para el tratamiento de los datos es:</p>
                         <ul class="text-secondary space-y-2 list-disc list-inside mt-2">
-                            <li>{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_1' | translate }}</li>
-                            <li>{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_2' | translate }}</li>
+                            <li>El <strong>consentimiento del interesado</strong>, otorgado al enviar el formulario.
+                            </li>
+                            <li>El <strong>interés legítimo</strong> del organizador en garantizar la seguridad y la
+                                verificación de identidad de las personas acreditadas mediante su documento
+                                identificativo.</li>
                         </ul>
                     </div>
                 </section>
 
                 <!-- 4. Conservación de los datos -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.CONSERVACION_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">4. Conservación de los datos</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
                         <p class="text-secondary">
-                            {{ 'POLITICA_PRIVACIDAD.CONSERVACION_TEXTO' | translate }}
+                            Los datos personales se conservarán únicamente durante el tiempo necesario para tramitar las
+                            acreditaciones y gestionar el evento.
+                            Finalizado el evento, los datos —incluido el número de documento de identidad— serán
+                            suprimidos o anonimizados,
+                            salvo aquellos que deban conservarse por obligación legal o para atender posibles
+                            reclamaciones.
                         </p>
                     </div>
                 </section>
 
                 <!-- 5. Destinatarios de los datos -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">5. Destinatarios de los datos</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary mb-4">{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_TEXTO' | translate }}</p>
+                        <p class="text-secondary mb-4">Los datos no se comunicarán a terceros, salvo en los siguientes
+                            casos:</p>
                         <ul class="text-secondary space-y-2 list-disc list-inside">
-                            <li>{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_1' | translate }}</li>
-                            <li>{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_2' | translate }}</li>
+                            <li>Cuando sea necesario para la correcta organización del evento (por ejemplo, empresas de
+                                seguridad, personal de acreditación o proveedores técnicos).</li>
+                            <li>Por obligación legal o requerimiento de una autoridad pública.</li>
                         </ul>
-                        <p class="text-secondary mt-4"><strong>{{ 'POLITICA_PRIVACIDAD.NO_TRANSFERENCIAS' | translate }}</strong></p>
+                        <p class="text-secondary mt-4"><strong>En ningún caso se realizarán transferencias
+                                internacionales de datos sin las garantías adecuadas establecidas por la normativa
+                                vigente.</strong></p>
                     </div>
                 </section>
 
                 <!-- 6. Derechos de los interesados -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.DERECHOS_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">6. Derechos de los interesados</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary mb-4">{{ 'POLITICA_PRIVACIDAD.DERECHOS_TEXTO' | translate }}</p>
+                        <p class="text-secondary mb-4">Puedes ejercer tus derechos de:</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_ACCESO' | translate }}</span>
+                                <span>Acceso: conocer qué datos tratamos sobre ti.</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_RECTIFICACION' | translate }}</span>
+                                <span>Rectificación: solicitar la corrección de datos inexactos.</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_SUPRESION' | translate }}</span>
+                                <span>Supresión: pedir la eliminación de tus datos cuando ya no sean necesarios.</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_LIMITACION' | translate }}</span>
+                                <span>Limitación: solicitar que no se traten temporalmente tus datos.</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_OPOSICION' | translate }}</span>
+                                <span>Oposición: oponerte al tratamiento por motivos legítimos.</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_PORTABILIDAD' | translate }}</span>
+                                <span>Portabilidad: recibir tus datos en formato electrónico y transferirlos a otro
+                                    responsable.</span>
                             </div>
                         </div>
                         <p class="text-secondary mb-2">
-                            {{ 'POLITICA_PRIVACIDAD.EJERCER_DERECHOS' | translate }}
+                            Para ejercer estos derechos, envía una solicitud escrita junto con un documento acreditativo
+                            de tu identidad a:
                         </p>
                         <p class="text-brand font-semibold mb-4">📩 {{configGlobal.contactos.email}}</p>
                         <p class="text-secondary">
-                            {{ 'POLITICA_PRIVACIDAD.RECLAMACION' | translate }}
+                            También puedes presentar una reclamación ante la Agencia Española de Protección de Datos
+                            (AEPD) si consideras que el tratamiento de tus datos no se ajusta a la normativa:
                         </p>
                         <p class="text-brand font-semibold">🌐 www.aepd.es</p>
                     </div>
@@ -383,23 +410,28 @@
 
                 <!-- 7. Medidas de seguridad -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.SEGURIDAD_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">7. Medidas de seguridad</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
                         <p class="text-secondary">
-                            {{ 'POLITICA_PRIVACIDAD.SEGURIDAD_TEXTO' | translate }}
+                            El responsable aplica medidas técnicas y organizativas adecuadas para garantizar la
+                            confidencialidad, integridad y disponibilidad de los datos personales,
+                            evitando su alteración, pérdida, tratamiento o acceso no autorizado.
                         </p>
                         <p class="text-secondary mt-3">
-                            {{ 'POLITICA_PRIVACIDAD.SEGURIDAD_TEXTO_2' | translate }}
+                            En particular, se establecen controles de acceso restringido y protocolos de eliminación
+                            segura de la información una vez cumplida su finalidad.
                         </p>
                     </div>
                 </section>
 
                 <!-- 8. Modificaciones de esta política -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.MODIFICACIONES_TITULO' | translate }}</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">8. Modificaciones de esta política</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
                         <p class="text-secondary">
-                            {{ 'POLITICA_PRIVACIDAD.MODIFICACIONES_TEXTO' | translate }}
+                            El responsable se reserva el derecho de modificar la presente Política de Privacidad para
+                            adaptarla a novedades legislativas o cambios en la gestión del evento.
+                            La versión vigente estará siempre disponible en esta misma página.
                         </p>
                     </div>
                 </section>
@@ -408,7 +440,7 @@
                 <div class="flex justify-center pt-6">
                     <button (click)="closePoliticaPrivacidad()"
                         class="btn-brand py-3 px-8 rounded-lg">
-                        {{ 'POLITICA_PRIVACIDAD.CERRAR' | translate }}
+                        Cerrar Política de Privacidad
                     </button>
                 </div>
             </div>

@@ -16,11 +16,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { configGlobal } from '../configGlobal';
 import { HttpClient } from '@angular/common/http';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-form-acreditacio',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './form-acreditacio-component.html',
 })
 export class FormAcreditacioComponent {

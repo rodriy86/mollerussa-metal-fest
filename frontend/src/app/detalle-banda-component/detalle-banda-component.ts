@@ -1,21 +1,11 @@
-/*import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-detalle-banda-component',
-  imports: [],
-  templateUrl: './detalle-banda-component.html',
-  styleUrl: './detalle-banda-component.scss'
-})
-export class DetalleBandaComponent {
-
-}*/
-
-import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { configGlobal } from '../configGlobal';
-
+import { TranslationService } from '../services/translation.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
+import { Subscription } from 'rxjs';
 
 interface Band {
   id: number;
@@ -23,75 +13,110 @@ interface Band {
   schedule: string;
   genre: string;
   image: string;
-  description: string;        // ← Quita el ?
-  country: string;           // ← Quita el ?
-  year: number;              // ← Quita el ?
+  description: string;
+  country: string;
+  year: number;
   created_at?: string;
   updated_at?: string;
 }
 
 @Component({
   selector: 'app-detalle-banda-component',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, TranslatePipe], // ← AÑADIR TranslatePipe
   templateUrl: './detalle-banda-component.html',
   styleUrl: './detalle-banda-component.scss'
 })
-export class DetalleBandaComponent implements OnInit {
+export class DetalleBandaComponent implements OnInit, OnDestroy {
   bandaId: number = 0;
   band: Band | null = null;
   isLoading: boolean = true;
   error: string = '';
   configGlobal = configGlobal;
 
+  private langSubscription!: Subscription;
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private http = inject(HttpClient);
   private cdRef = inject(ChangeDetectorRef);
+  private translationService = inject(TranslationService); // ← AÑADIR TranslationService
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.bandaId = +params['id'];
       configGlobal.utils.log('Cargando detalle de banda ID:', this.bandaId);
+      
+      // Suscribirse a cambios de idioma
+      this.langSubscription = this.translationService.currentLang$.subscribe(() => {
+        this.cargarBanda(this.bandaId);
+      });
+      
       this.cargarBanda(this.bandaId);
       window.scrollTo(0, 0);
     });
   }
 
-  cargarBanda(id: number) {
-    this.isLoading = true;
-    this.error = '';
-    configGlobal.utils.log("ID banda:", id);
+  ngOnDestroy(): void {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
+  }
 
-    // Usar la función bandaPorId de configGlobal
-    this.http.get<Band>(configGlobal.api.bandaPorId(id)).subscribe({
-      next: (band) => {
-        configGlobal.utils.log('Detalle de banda cargado:', band);
+  cargarBanda(id: number) {
+  this.isLoading = true;
+  this.error = '';
+  console.log('🎸 [CLIENTE] Cargando banda ID:', id);
+
+  const currentLang = this.translationService.getCurrentLang();
+  const params = new HttpParams().set('lang', currentLang);
+
+  // ✅ USAR SOLUCIÓN TEMPORAL - Cargar TODAS las bandas
+  this.http.get<Band[]>(configGlobal.api.bands, { params }).subscribe({
+    next: (bands) => {
+      console.log('✅ [CLIENTE] Bandas cargadas:', bands.length);
+      console.log('📋 [CLIENTE] Bandas disponibles:', bands.map(b => ({ id: b.id, name: b.name })));
+      
+      // Buscar la banda por ID
+      const band = bands.find(b => b.id === id);
+      
+      if (band) {
+        console.log('🎸 [CLIENTE] Banda encontrada:', {
+          id: band.id,
+          name: band.name,
+          schedule: band.schedule,
+          genre: band.genre,
+          country: band.country
+        });
         this.band = band;
         this.isLoading = false;
         this.cdRef.detectChanges();
-        configGlobal.utils.log("Banda seleccionada: ", band);
-      },
-      error: (error: HttpErrorResponse) => {
-        configGlobal.utils.error('Error cargando detalle de banda:', error);
-
-        if (error.status === 0) {
-          this.error = '⚠️ No se puede conectar al servidor.';
-        } else if (error.status === 404) {
-          this.error = '🎸 Esta banda no tiene información detallada disponible.';
-        } else {
-          this.error = '❌ No se pudo cargar la información de la banda. Inténtalo de nuevo.';
-        }
-
+      } else {
+        console.error('❌ [CLIENTE] Banda no encontrada con ID:', id);
+        this.error = this.translationService.translate('ERRORES.BANDA_NO_ENCONTRADA') || '🎸 Esta banda no tiene información detallada disponible.';
         this.band = null;
         this.isLoading = false;
         this.cdRef.detectChanges();
       }
-    });
-  }
-  /*
-    volverALineup() {
-      this.router.navigate(['/lineup']);
-    }*/
+    },
+    error: (error: HttpErrorResponse) => {
+      console.error('❌ [CLIENTE] Error cargando bandas:', error);
+      console.error('🔗 [CLIENTE] URL que falló:', error.url);
+
+      if (error.status === 0) {
+        this.error = this.translationService.translate('ERRORES.CONEXION') || '⚠️ No se puede conectar al servidor.';
+      } else if (error.status === 404) {
+        this.error = this.translationService.translate('ERRORES.NO_ENCONTRADO') || '📰 No se encontraron bandas.';
+      } else {
+        this.error = this.translationService.translate('ERRORES.GENERICO') || '❌ No se pudo cargar la información de la banda. Inténtalo de nuevo.';
+      }
+
+      this.band = null;
+      this.isLoading = false;
+      this.cdRef.detectChanges();
+    }
+  });
+}
+
   volverALineup() {
     console.log('🔍 === DEBUG volverALineup ===');
 
@@ -101,7 +126,6 @@ export class DetalleBandaComponent implements OnInit {
       setTimeout(() => {
         console.log('🔎 Buscando sección Lineup...');
 
-        // Buscar por diferentes IDs posibles
         const ids = ['Lineup', 'lineup', 'cartelera', 'Cartelera'];
         let foundElement = null;
 
@@ -119,10 +143,6 @@ export class DetalleBandaComponent implements OnInit {
           foundElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
           console.error('❌ No se encontró ninguna sección con ids:', ids);
-          console.log('📋 Todos los elementos con id en la página:');
-          document.querySelectorAll('[id]').forEach(el => {
-            console.log(`- ${el.id}`);
-          });
         }
       }, 500);
     });
@@ -150,27 +170,27 @@ export class DetalleBandaComponent implements OnInit {
   }
 
   getCountryIcon(country?: string): string {
-  if (!country) return 'fi fi-xx';
-  
-  const flags: { [key: string]: string } = {
-    'Spain': 'fi fi-es',
-    'España': 'fi fi-es',
-    'USA': 'fi fi-us',
-    'Estados Unidos': 'fi fi-us',
-    'UK': 'fi fi-gb', 
-    'Reino Unido': 'fi fi-gb',
-    'Germany': 'fi fi-de',
-    'Alemania': 'fi fi-de',
-    'France': 'fi fi-fr',
-    'Francia': 'fi fi-fr',
-    'Italy': 'fi fi-it',
-    'Italia': 'fi fi-it',
-  };
-  
-  return flags[country] || 'fi fi-xx';
-}
+    if (!country) return 'fi fi-xx';
+    
+    const flags: { [key: string]: string } = {
+      'Spain': 'fi fi-es',
+      'España': 'fi fi-es',
+      'Espanya': 'fi fi-es',
+      'USA': 'fi fi-us',
+      'Estados Unidos': 'fi fi-us',
+      'UK': 'fi fi-gb', 
+      'Reino Unido': 'fi fi-gb',
+      'Germany': 'fi fi-de',
+      'Alemania': 'fi fi-de',
+      'France': 'fi fi-fr',
+      'Francia': 'fi fi-fr',
+      'Italy': 'fi fi-it',
+      'Italia': 'fi fi-it',
+    };
+    
+    return flags[country] || 'fi fi-xx';
+  }
 
-  // Método para formatear fecha si necesitas mostrar created_at/updated_at
   formatearFecha(fecha?: string): string {
     if (!fecha) return '';
     return configGlobal.utils.formatearFecha(fecha);

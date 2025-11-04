@@ -24,10 +24,10 @@
     </div>
 
     <!-- Noticias Grid -->
-    <div *ngIf="!isLoading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+    <div *ngIf="!isLoading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" >
       <!-- Noticia dinámica -->
-      <article *ngFor="let noticia of noticias"
-        class="bg-card border border-brand rounded-lg overflow-hidden hover:transform hover:scale-105 card-hover transition-all duration-300">
+      <article *ngFor="let noticia of noticias " 
+        class="bg-card border border-brand rounded-lg overflow-hidden">
         
         <!-- Imagen -->
         <div class="w-full h-48 bg-card overflow-hidden">
@@ -48,7 +48,7 @@
           </div>
           
           <!-- Título -->
-          <h3 class="text-xl font-bold text-primary mb-3 hover-text-brand transition-colors cursor-pointer">
+          <h3 class="text-xl font-bold text-primary mb-3 ">
             {{ noticia.titulo }}
           </h3>
           

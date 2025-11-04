@@ -1,30 +1,29 @@
-<section id="Lineup" class="py-20 bg-page"  *ngIf="configGlobal.tickets.habilitar">
+<section id="Lineup" class="py-20 bg-page" *ngIf="configGlobal.tickets.habilitar">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-5xl font-black mb-6 metal-text text-brand">LINEUP</h2>
+      <h2 class="text-5xl font-black mb-6 metal-text text-brand">{{ 'LINEUP.TITULO' | translate }}</h2>
       <p class="text-xl text-muted max-w-3xl mx-auto">
-        Las mejores bandas de metal nacional e internacional se reunirán en Mollerussaaa
+        {{ 'LINEUP.DESCRIPCION' | translate }}
       </p>
     </div>
 
     <!-- Estado de carga -->
     <div *ngIf="isLoading" class="text-center py-12">
-      <p class="text-muted">Cargando bandas...</p>
+      <p class="text-muted">{{ 'LINEUP.CARGANDO' | translate }}</p>
     </div>
 
     <!-- Estado de error -->
     <div *ngIf="error && !isLoading" class="text-center py-12">
       <p class="text-brand mb-4">{{ error }}</p>
       <button (click)="reloadBands()" class="btn-brand px-6 py-2 rounded-lg">
-        Reintentar
+        {{ 'LINEUP.REINTENTAR' | translate }}
       </button>
     </div>
 
     <!-- Grid de bandas -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" *ngIf="!isLoading && !error">
-      <div *ngFor="let band of bands" class="bg-card border border-brand p-6 rounded-lg card-hover cursor-pointer"
+      <div *ngFor="let band of bands" class="bg-card border border-brand p-6 rounded-lg card-hover cursor-pointer hover:transform hover:scale-105 transition-all duration-300"
         [routerLink]="['/banda', band.id]">
-        <!-- Imagen como elemento img, no como fondo -->
         <div class="w-full h-48 bg-card rounded-lg mb-4 overflow-hidden">
           <img [src]="band.image" [alt]="band.name" class="w-full h-full object-cover object-top">
         </div>

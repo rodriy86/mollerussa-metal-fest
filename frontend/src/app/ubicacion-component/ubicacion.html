@@ -1,102 +1,102 @@
-<section id="Ubicacion" class="py-20 bg-page"  *ngIf="configGlobal.tickets.habilitar">
+<section id="Ubicacion" class="py-20 bg-page" *ngIf="configGlobal.tickets.habilitar">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-5xl font-black mb-6 metal-text text-brand">UBICACIÓN</h2>
+      <h2 class="text-5xl font-black mb-6 metal-text text-brand">{{ 'UBICACION.TITULO' | translate }}</h2>
       <p class="text-xl text-muted max-w-3xl mx-auto">
-        El Mollerussa Metal Fest se celebra en el Teatre L'Amistat de Mollerussa
+        {{ 'UBICACION.SUBTITULO' | translate }}
       </p>
     </div>
     
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
       <!-- Información -->
       <div class="space-y-8">
-        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+        <div class="bg-card border border-brand p-6 rounded-lg">
           <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
             <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
               <i class="ri-map-pin-line text-primary"></i>
             </div>
-            Dirección
+            {{ 'UBICACION.DIRECCION' | translate }}
           </h3>
           <p class="text-muted mb-2">{{configGlobal.festival.ubicacion.nombreRecinto}}</p>
           <p class="text-muted mb-2">{{configGlobal.festival.ubicacion.direccion}}</p>
           <p class="text-muted">{{configGlobal.festival.ubicacion.CP}} {{configGlobal.festival.ubicacion.ciudad}}</p>
         </div>
 
-        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+        <div class="bg-card border border-brand p-6 rounded-lg">
           <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
             <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
               <i class="ri-building-2-line text-primary"></i>
             </div>
-            Sobre el Teatro
+            {{ 'UBICACION.SOBRE_TEATRO' | translate }}
           </h3>
           <p class="text-muted mb-4">
-            El Teatre L'Amistat es el corazón cultural de Mollerussa y el escenario principal del Mollerussa Metal Fest.
+            {{ 'UBICACION.DESCRIPCION_TEATRO' | translate }}
           </p>
           <ul class="space-y-2 text-muted">
             <li class="flex items-center">
               <i class="ri-user-fill text-brand mr-2"></i>
-              <span>Capacidad: {{configGlobal.festival.capacidad}} personas</span>
+              <span>{{ 'UBICACION.CAPACIDAD' | translate }}: {{configGlobal.festival.capacidad}} {{ 'UBICACION.PERSONAS' | translate }}</span>
             </li>
             <li class="flex items-center">
               <i class="ri-star-fill text-brand mr-2"></i>
-              <span>Escenario profesional</span>
+              <span>{{ 'UBICACION.ESCENARIO_PROFESIONAL' | translate }}</span>
             </li>
             <li class="flex items-center">
               <i class="ri-sound-module-fill text-brand mr-2"></i>
-              <span>Sistema de sonido de alta calidad</span>
+              <span>{{ 'UBICACION.SONIDO_CALIDAD' | translate }}</span>
             </li>
           </ul>
         </div>
 
-        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+        <div class="bg-card border border-brand p-6 rounded-lg">
           <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
             <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
               <i class="ri-car-line text-primary"></i>
             </div>
-            Cómo llegar
+            {{ 'UBICACION.COMO_LLEGAR' | translate }}
           </h3>
           <ul class="space-y-3 text-muted">
             <li class="flex items-start">
               <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
-              <span><strong>En coche:</strong> Autopista AP-2, salida 9 Mollerussa</span>
+              <span><strong>{{ 'UBICACION.COCHE' | translate }}:</strong> {{ 'UBICACION.INSTRUCCIONES_COCHE' | translate }}</span>
             </li>
             <li class="flex items-start">
               <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
-              <span><strong>En tren:</strong> Estación de Mollerussa (línea Barcelona-Lleida)</span>
+              <span><strong>{{ 'UBICACION.TREN' | translate }}:</strong> {{ 'UBICACION.INSTRUCCIONES_TREN' | translate }}</span>
             </li>
             <li class="flex items-start">
               <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
-              <span><strong>Parking:</strong> Aparcamiento público gratuito a 800m</span>
+              <span><strong>{{ 'UBICACION.PARKING' | translate }}:</strong> {{ 'UBICACION.INSTRUCCIONES_PARKING' | translate }}</span>
             </li>
           </ul>
         </div>
         
-        <div class="bg-card border border-brand p-6 rounded-lg card-hover">
+        <div class="bg-card border border-brand p-6 rounded-lg">
           <h3 class="text-xl font-bold mb-4 flex items-center text-primary">
             <div class="w-8 h-8 flex items-center justify-center bg-brand rounded mr-3">
               <i class="ri-hotel-line text-primary"></i>
             </div>
-            Alojamiento
+            {{ 'UBICACION.ALOJAMIENTO' | translate }}
           </h3>
           <ul class="space-y-3 text-muted">
             <li class="flex items-start">
               <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
-              <span>Hoteles en el centro de Mollerussa (a 5-10 min andando)</span>
+              <span>{{ 'UBICACION.HOTELES_CENTRO' | translate }}</span>
             </li>
             <li class="flex items-start">
               <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
-              <span>Hostales y pensiones en la zona</span>
+              <span>{{ 'UBICACION.HOSTALES_PENSIONES' | translate }}</span>
             </li>
             <li class="flex items-start">
               <i class="ri-arrow-right-s-line text-brand mr-2 mt-1"></i>
-              <span>Casas rurales en los alrededores</span>
+              <span>{{ 'UBICACION.CASAS_RURALES' | translate }}</span>
             </li>
           </ul>
         </div>
       </div>
 
       <!-- Mapa del Teatro -->
-      <div class="flex flex-col bg-card rounded-xl overflow-hidden border border-custom shadow-custom h-full">
+      <div class="flex flex-col bg-card card-hover rounded-xl overflow-hidden border border-brand h-full hover:transform hover:scale-105 transition-all duration-300">
         <div class="bg-page p-4 border-b border-custom flex-shrink-0">
           <h3 class="text-lg font-bold text-primary flex items-center gap-2">
             <i class="ri-map-pin-2-fill text-brand"></i>
@@ -111,7 +111,7 @@
             allowfullscreen
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Mapa del Teatre L'Amistat - Mollerussa Metal Fest">
+            [title]="'UBICACION.TITULO_MAPA' | translate">
           </iframe>
         </div>
         
@@ -122,15 +122,15 @@
             </div>
             <div class="flex items-center justify-center gap-2">
               <i class="ri-car-fill text-blue-400"></i>
-              <span>Parking cercano</span>
+              <span>{{ 'UBICACION.PARKING_CERCANO' | translate }}</span>
             </div>
             <div class="flex items-center justify-center gap-2">
               <i class="ri-train-fill text-green-400"></i>
-              <span>Transporte público</span>
+              <span>{{ 'UBICACION.TRANSPORTE_PUBLICO' | translate }}</span>
             </div>
             <div class="flex items-center justify-center gap-2">
               <i class="ri-walk-fill text-yellow-400"></i>
-              <span>Zona centro</span>
+              <span>{{ 'UBICACION.ZONA_CENTRO' | translate }}</span>
             </div>
           </div>
         </div>
