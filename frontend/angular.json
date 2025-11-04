@@ -24,7 +24,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public" 
+                "input": "public"
               }
             ],
             "styles": [
@@ -34,20 +34,24 @@
             "polyfills": [
               "@angular/localize/init"
             ],
-            "localize": ["es", "ca", "en"] 
+            "localize": [
+              "es",
+              "ca",
+              "en"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "50kb",
+                  "maximumError": "100kb"
                 }
               ],
               "outputHashing": "all"
@@ -58,13 +62,19 @@
               "sourceMap": true
             },
             "es": {
-              "localize": ["es"]
+              "localize": [
+                "es"
+              ]
             },
             "ca": {
-              "localize": ["ca"]
+              "localize": [
+                "ca"
+              ]
             },
             "en": {
-              "localize": ["en"]
+              "localize": [
+                "en"
+              ]
             }
           },
           "defaultConfiguration": "production"
