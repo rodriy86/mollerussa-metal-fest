@@ -11,7 +11,7 @@ import { configGlobal } from '../configGlobal';
   standalone: true,
   imports: [CommonModule, TranslatePipe],
   templateUrl: './detalle-galeria-component.html',
-  styleUrl: './detalle-galeria-component.html',
+  styleUrl: './detalle-galeria-component.scss',
 })
 export class DetalleGaleriaComponent implements OnInit {
   // Arrays de datos

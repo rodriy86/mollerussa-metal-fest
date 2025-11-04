@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-page text-primary">
+<div class="min-h-screen bg-page text-roig">
   <!-- Header -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-header opacity-100 backdrop-blur-sm border-b border-brand">
     <div class="absolute inset-0 gradient-header opacity-90"></div>
@@ -19,7 +19,7 @@
           </button>
         </div>
 
-        <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex-center text-primary">
+        <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex-center text-roig">
           <i class="ri-arrow-left-line mr-2"></i>
         </button>
       </div>
@@ -29,55 +29,169 @@
   <!-- Contenido Principal -->
   <main class="pt-20">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-5xl font-black mb-6 metal-text">Historia del MMF</h2>
-        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-          El Mollerussa Metal Fest va néixer a la ciutat de Mollerussa (Pla d’Urgell, Lleida) amb la voluntat de donar visibilitat a l’escena del metal, punk, hardcore i derivats a la comarca i al conjunt de Catalunya.
-<br>
-La iniciativa va sorgir de Andreu Trullols, amb el suport de la Regidoria de Cultura de l’Ajuntament de Mollerussa, com una manera de crear un punt de trobada per a la comunitat metalera catalana. L’objectiu era oferir un espai per gaudir de la música, compartir experiències i reivindicar la vitalitat de l’escena.
-<br>
-Tal com va dir l’organització:
-<br>
-“Més que un festival, volem que sigui una trobada entre bandes i públic, un espai de convivència i respecte dins del món del metal català.”
-<br>
-Valors i filosofia
-<br><br>
-        -->  El Mollerussa Metal Fest destaca per:
-<br>
-🔥 Apostar per bandes de proximitat, prioritzant grups catalans i emergents.
-<br>
-🤘 Caràcter reivindicatiu i comunitari, entès com una trobada més que com un simple festival.
-<br>
-🎭 Format íntim i proper, al Teatre L’Amistat, que afavoreix el contacte directe entre músics i públic.
-<br>
-🍔 Activitats complementàries, com presentacions de llibres, servei de food-truck i punts de trobada entre bandes.
-<br>
-💪 Preus populars i ambient inclusiu, per fer arribar el metal a tothom.
-<br>
-<br>
-      --> Perspectives de futur
-<br>
-L’organització té la voluntat de consolidar el festival com una cita anual estable al calendari musical català.
-Entre els objectius de futur hi ha:
-<br>
-La creació de l’Associació Mollerussa Metal Fest per donar-li estructura legal i continuïtat.
-<br>
-L’ampliació del format amb més activitats culturals i musicals paral·leles.
-<br>
-Mantenir el focus en bandes catalanes, però obrint-se gradualment a propostes estatals i internacionals.
-<br>
-Importància per a la ciutat
-<br>
-El Mollerussa Metal Fest és avui un referent emergent de la música alternativa a les Terres de Lleida. No només aporta diversitat cultural i econòmica a la ciutat, sinó que també consolida Mollerussa com un espai obert a la creativitat i a la música en viu.
-<br>
-Amb només dues edicions, ja ha aconseguit crear una comunitat fidel i donar una nova identitat musical a la ciutat.
-        </p>
+      <!-- Sección Historia -->
+      <div class="mb-16">
+        <div class="max-w-4xl mx-auto">
+          <!-- Título centrado -->
+          <div class="text-center mb-12">
+            <h2 class="text-5xl font-black mb-4 metal-text text-roig">{{ 'GALERIA.HISTORIA_TITULO' | translate }}</h2>
+            <div class="w-24 h-1 bg-brand mx-auto"></div>
+          </div>
+
+          <!-- Contenido alineado a la izquierda -->
+          <div class="space-y-8 text-left">
+            <!-- Orígenes -->
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold text-roig">{{ 'GALERIA.HISTORIA_ORIGENES' | translate }}</h3>
+              <p class="text-lg leading-relaxed text-gray-300">
+                {{ 'GALERIA.HISTORIA_ORIGEN_1' | translate }}
+              </p>
+              <p class="text-lg leading-relaxed text-gray-300">
+                {{ 'GALERIA.HISTORIA_ORIGEN_2' | translate }}
+              </p>
+            </div>
+
+            <!-- Cita destacada -->
+            <div class="bg-gray-800/50 border-l-4 border-brand p-6 rounded-r-lg my-6">
+              <div class="flex items-start space-x-4">
+                <i class="ri-double-quotes-l text-3xl text-roig mt-1"></i>
+                <div>
+                  <p class="text-xl italic text-white leading-relaxed">
+                    {{ 'GALERIA.HISTORIA_CITA' | translate }}
+                  </p>
+                  <p class="text-gray-400 mt-2 text-sm">{{ 'GALERIA.HISTORIA_CITA_AUTOR' | translate }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Valores y Filosofía -->
+            <div class="space-y-6">
+              <h3 class="text-2xl font-bold text-roig">{{ 'GALERIA.HISTORIA_VALORES' | translate }}</h3>
+              <p class="text-lg text-gray-300">
+                {{ 'GALERIA.HISTORIA_VALORES_INTRO' | translate }}
+              </p>
+              
+              <div class="grid md:grid-cols-2 gap-6 mt-4">
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3 p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                    <span class="text-roig text-xl mt-1">🔥</span>
+                    <div>
+                      <h4 class="font-semibold text-white mb-1">{{ 'GALERIA.VALOR_1' | translate }}</h4>
+                      <p class="text-gray-400 text-sm">{{ 'GALERIA.VALOR_1_DESC' | translate }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start space-x-3 p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                    <span class="text-roig text-xl mt-1">🤘</span>
+                    <div>
+                      <h4 class="font-semibold text-white mb-1">{{ 'GALERIA.VALOR_2' | translate }}</h4>
+                      <p class="text-gray-400 text-sm">{{ 'GALERIA.VALOR_2_DESC' | translate }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start space-x-3 p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                    <span class="text-roig text-xl mt-1">🎭</span>
+                    <div>
+                      <h4 class="font-semibold text-white mb-1">{{ 'GALERIA.VALOR_3' | translate }}</h4>
+                      <p class="text-gray-400 text-sm">{{ 'GALERIA.VALOR_3_DESC' | translate }}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3 p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                    <span class="text-roig text-xl mt-1">🍔</span>
+                    <div>
+                      <h4 class="font-semibold text-white mb-1">{{ 'GALERIA.VALOR_4' | translate }}</h4>
+                      <p class="text-gray-400 text-sm">{{ 'GALERIA.VALOR_4_DESC' | translate }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start space-x-3 p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors">
+                    <span class="text-roig text-xl mt-1">💪</span>
+                    <div>
+                      <h4 class="font-semibold text-white mb-1">{{ 'GALERIA.VALOR_5' | translate }}</h4>
+                      <p class="text-gray-400 text-sm">{{ 'GALERIA.VALOR_5_DESC' | translate }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Perspectivas de Futuro -->
+            <div class="space-y-6 pt-6 ">
+              <h3 class="text-2xl font-bold text-roig">{{ 'GALERIA.HISTORIA_FUTURO' | translate }}</h3>
+              <p class="text-lg text-gray-300">
+                {{ 'GALERIA.HISTORIA_FUTURO_INTRO' | translate }}
+              </p>
+              
+              <div class="space-y-4 mt-4">
+                <div class="flex items-center space-x-4 p-4 bg-page rounded-lg border border-brand">
+                  <i class="ri-team-line text-roig text-2xl"></i>
+                  <div>
+                    <h4 class="font-semibold text-white">{{ 'GALERIA.OBJETIVO_1' | translate }}</h4>
+                    <p class="text-gray-300">{{ 'GALERIA.OBJETIVO_1_DESC' | translate }}</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-4 p-4 bg-page rounded-lg border border-brand">
+                  <i class="ri-calendar-2-line text-roig text-2xl"></i>
+                  <div>
+                    <h4 class="font-semibold text-white">{{ 'GALERIA.OBJETIVO_2' | translate }}</h4>
+                    <p class="text-gray-300">{{ 'GALERIA.OBJETIVO_2_DESC' | translate }}</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-4 p-4 bg-page rounded-lg border border-brand">
+                  <i class="ri-global-line text-roig text-2xl"></i>
+                  <div>
+                    <h4 class="font-semibold text-white">{{ 'GALERIA.OBJETIVO_3' | translate }}</h4>
+                    <p class="text-gray-300">{{ 'GALERIA.OBJETIVO_3_DESC' | translate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Impacto en la Ciudad -->
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-8 mt-8 border border-gray-700">
+              <h3 class="text-2xl font-bold text-roig mb-4">{{ 'GALERIA.HISTORIA_IMPACTO' | translate }}</h3>
+              <p class="text-lg leading-relaxed text-gray-300 mb-4">
+                {{ 'GALERIA.HISTORIA_IMPACTO_TEXTO' | translate }}
+              </p>
+              <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div class="space-y-2">
+                  <div class="flex items-center space-x-2">
+                    <i class="ri-community-line text-roig"></i>
+                    <span class="text-gray-300">{{ 'GALERIA.IMPACTO_1' | translate }}</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="ri-heart-line text-roig"></i>
+                    <span class="text-gray-300">{{ 'GALERIA.IMPACTO_2' | translate }}</span>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex items-center space-x-2">
+                    <i class="ri-user-heart-line text-roig"></i>
+                    <span class="text-gray-300">{{ 'GALERIA.IMPACTO_3' | translate }}</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="ri-star-line text-roig"></i>
+                    <span class="text-gray-300">{{ 'GALERIA.IMPACTO_4' | translate }}</span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-lg font-semibold text-white mt-6 text-center">
+                {{ 'GALERIA.HISTORIA_IMPACTO_FINAL' | translate }}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Nueva Sección: Carteleras Históricas -->
+      <!-- Sección: Carteleras Históricas -->
       <section id="Carteleras" class="py-16 mb-16 border-t border-gray-700">
         <div class="text-center mb-12">
-          <h3 class="text-4xl font-black mb-4 metal-text text-red-500">{{ 'GALERIA.CARTELERAS_HISTORICAS' | translate }}</h3>
+          <h3 class="text-4xl font-black mb-4 metal-text text-primary">{{ 'GALERIA.CARTELERAS_HISTORICAS' | translate }}</h3>
           <p class="text-lg text-gray-400 max-w-2xl mx-auto">
             {{ 'GALERIA.CARTELERAS_DESC' | translate }}
           </p>
@@ -112,34 +226,36 @@ Amb només dues edicions, ja ha aconseguit crear una comunitat fidel i donar una
 
         <!-- Estadísticas históricas -->
         <div class="mt-12 bg-gray-800/50 border border-gray-600 rounded-xl p-8">
-          <h4 class="text-2xl font-bold text-center mb-6 text-red-500">{{ 'GALERIA.ESTADISTICAS' | translate }}</h4>
+          <h4 class="text-2xl font-bold text-center mb-6 text-primary">{{ 'GALERIA.ESTADISTICAS' | translate }}</h4>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="bg-black/30 p-4 rounded-lg">
-              <div class="text-3xl font-black text-red-500 mb-2">{{ totalEdiciones }}</div>
+              <div class="text-3xl font-black text-primary mb-2">{{ totalEdiciones }}</div>
               <div class="text-gray-400 text-sm">{{ 'GALERIA.EDICIONES' | translate }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
-              <div class="text-3xl font-black text-yellow-500 mb-2">{{ totalBandas }}</div>
+              <div class="text-3xl font-black text-primary mb-2">{{ totalBandas }}</div>
               <div class="text-gray-400 text-sm">{{ 'GALERIA.BANDAS' | translate }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
-              <div class="text-3xl font-black text-green-500 mb-2">{{ totalAsistentes }}</div>
+              <div class="text-3xl font-black text-primary mb-2">{{ totalAsistentes }}</div>
               <div class="text-gray-400 text-sm">{{ 'GALERIA.ASISTENTES' | translate }}</div>
             </div>
             <div class="bg-black/30 p-4 rounded-lg">
-              <div class="text-3xl font-black text-blue-500 mb-2">{{ totalPaises }}</div>
+              <div class="text-3xl font-black text-primary mb-2">{{ totalPaises }}</div>
               <div class="text-gray-400 text-sm">{{ 'GALERIA.PAISES' | translate }}</div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Sección Galería de Fotos -->
       <div class="text-center mb-16">
         <h2 class="text-5xl font-black mb-6 metal-text">{{ 'GALERIA.TITULO' | translate }}</h2>
         <p class="text-xl text-gray-400 max-w-3xl mx-auto">
           {{ 'GALERIA.GALERIA_IMAGENES_DESC' | translate }}
         </p>
       </div>
+      
       <!-- Grid de Galería de Fotos -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <div *ngFor="let imagen of imagenes; let i = index"
@@ -229,7 +345,7 @@ Amb només dues edicions, ja ha aconseguit crear una comunitat fidel i donar una
 
       <div
         class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white px-6 py-3 rounded-full min-w-[300px] text-center">
-        <p class="text-sm font-medium">Cartelera {{ carteleras[carteleraActiva].anyo }}</p>
+        <p class="text-sm font-medium">{{ 'GALERIA.CARTELERA' | translate }} {{ carteleras[carteleraActiva].anyo }}</p>
         <p class="text-xs text-gray-300 mt-1">
           {{ carteleraActiva + 1 }} / {{ carteleras.length }}
         </p>

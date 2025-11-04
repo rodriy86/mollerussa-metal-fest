@@ -58,11 +58,13 @@ $color-bg-dark: #000000;           // Fons per a capçaleres (bg-black)
 $color-text-primary: #ffffff;      // Text principal (titols)
 $color-text-secondary: #d1d5db;    // Text secundari (text base)
 $color-text-muted: #9ca3af;        // Text atenuat (text menys important a destacar)
+$color-text-roig: #ef4444;         // Text roig (titols)
 
 // COLORS PRIMARIS (MARCA)
 $color-primary: #ef4444;          // Color primari principal (text-red-500)
 $color-primary-dark: #dc2626;     // Color secundari, posaria un similar o el amteix que el primari (logo i botons sense hover)
 $color-primary-darker: #b91c1c;  // Color primari més fosc (hover de botons)
+$color-secondary: #f59e0b;         // Color secundari AMARILLO
 
 // BORDES
 $color-border: #374151;            // Color per a bordes (border-gray-700) 
@@ -86,19 +88,27 @@ $color-overlay: rgba(0, 0, 0, 0.8); // Overlay fosc
 .text-primary { color: $color-text-primary; }          // Text principal
 .text-secondary { color: $color-text-secondary; }      // Text secundari
 .text-muted { color: $color-text-muted; }              // Text atenuat
+.text-roig { color: $color-text-roig; }                // Text rojo
 
 // Colors de marca
-.text-brand { color: $color-primary; }                 // Text amb color de marca
+/*.text-brand { color: $color-primary; }                 
+.bg-brand { background-color: $color-primary-dark; }   
+.bg-brand-dark { background-color: $color-primary-darker; } */
+.text-brand { color: $color-primary; }                 // Text amb color de marca ROJO
+.text-brand-secondary { color: $color-secondary; }     // Text amb color secundario AMARILLO
 .bg-brand { background-color: $color-primary-dark; }   // Fons amb color de marca
+.bg-brand-secondary { background-color: $color-secondary; } // Fons amb color secundario
 .bg-brand-dark { background-color: $color-primary-darker; } // Fons amb color de marca fosc
 
 // Bordes
 .border-custom { border-color: $color-border; }        // Border estàndard
 .border-brand { border-color: $color-border-primary; } // Border amb color de marca
+.border-brand-secondary { border-color: $color-secondary; } // Border amb color secundario
 
 // Efectes hover
 .hover-text-brand:hover { color: $color-primary; }     // Canvi a color marca en hover
 .hover-bg-brand-dark:hover { background-color: $color-primary-darker; } // Fons més fosc en hover
+.hover-text-brand-secondary:hover { color: $color-secondary; } // Canvi a color secundario en hover
 
 .bg-transparent-hover {
   background-color: transparent;
