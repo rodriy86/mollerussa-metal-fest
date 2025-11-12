@@ -77,6 +77,12 @@ class GlobalConfig {
     health: `${this.baseUrl}/api/health`,
     galeriaImages: `${this.baseUrl}/api/galeria_images`,
     galeriaCarteleras: `${this.baseUrl}/api/galeria_carteleras`,
+    auth: `${this.baseUrl}/api/auth`,
+    login: `${this.baseUrl}/api/auth/login`,
+    verify: `${this.baseUrl}/api/auth/verify`,
+    
+    //login: '/api/auth/login',
+    //auth: '/api/auth',
     
     // Funciones para endpoints con parámetros
     detalleNoticia: (id: number) => `${this.baseUrl}/api/noticias/${id}/detalle`,

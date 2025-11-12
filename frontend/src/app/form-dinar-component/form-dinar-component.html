@@ -279,101 +279,167 @@
             <!-- Header -->
             <div class="bg-brand p-6 sticky top-0 z-10">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-black text-primary">🔒 POLÍTICA DE PRIVACIDAD</h2>
+                    <h2 class="text-2xl font-black text-primary">{{ 'POLITICA_PRIVACIDAD.TITULO' | translate }}</h2>
                     <button (click)="closePoliticaPrivacidad()"
                         class="text-primary hover:text-secondary text-2xl transition-colors">
                         &times;
                     </button>
                 </div>
-                <p class="text-primary mt-2">Protección de datos personales</p>
+                <p class="text-primary mt-2">{{ 'POLITICA_PRIVACIDAD.SUBTITULO' | translate }}</p>
             </div>
 
             <!-- Contenido -->
             <div class="p-8 space-y-8">
                 <!-- 1. Identidad del Responsable -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">1. Identidad del Responsable</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.IDENTIDAD_TITULO' | translate
+                        }}</h3>
                     <div class="bg-card border border-custom rounded-lg p-6 space-y-3">
-                        <p class="text-secondary"><strong>Responsable del tratamiento:</strong>
-                            {{configGlobal.festival.nombreCompleto}}</p>
-                        <p class="text-secondary"><strong>NIF/CIF:</strong> {{configGlobal.festival.NIF}}</p>
-                        <p class="text-secondary"><strong>Correo electrónico de contacto:</strong>
-                            {{configGlobal.contactos.email}}</p>
-                        <p class="text-secondary"><strong>Sitio web:</strong> {{configGlobal.contactos.web}}</p>
+                        <p class="text-secondary">
+                            <strong>{{ 'POLITICA_PRIVACIDAD.RESPONSABLE' | translate }}</strong>
+                            {{configGlobal.festival.nombreCompleto}}
+                        </p>
+                        <p class="text-secondary">
+                            <strong>{{ 'POLITICA_PRIVACIDAD.NIF' | translate }}</strong> {{configGlobal.festival.NIF}}
+                        </p>
+                        <p class="text-secondary">
+                            <strong>{{ 'POLITICA_PRIVACIDAD.EMAIL' | translate }}</strong>
+                            {{configGlobal.contactos.email}}
+                        </p>
+                        <p class="text-secondary">
+                            <strong>{{ 'POLITICA_PRIVACIDAD.WEB' | translate }}</strong> {{configGlobal.contactos.web}}
+                        </p>
                     </div>
                 </section>
 
                 <!-- 2. Finalidad del tratamiento de datos -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">2. Finalidad del tratamiento de datos</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.FINALIDAD_TITULO' | translate
+                        }}</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary mb-4">Los datos personales recabados se tratarán con las siguientes
-                            finalidades:</p>
+                        <p class="text-secondary mb-4">{{ 'POLITICA_PRIVACIDAD.FINALIDAD_TEXTO' | translate }}</p>
                         <ul class="text-secondary space-y-2 list-disc list-inside">
-                            <li>Gestionar las solicitudes de información y contacto de los usuarios.</li>
-                            <li>Enviar comunicaciones relacionadas con el festival y sus actividades.</li>
-                            <li>Gestionar la venta de entradas y acreditaciones.</li>
-                            <li>Mejorar la experiencia del usuario en nuestro sitio web.</li>
+                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_1' | translate }}</li>
+                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_2' | translate }}</li>
+                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_3' | translate }}</li>
+                            <li>{{ 'POLITICA_PRIVACIDAD.FINALIDAD_4' | translate }}</li>
                         </ul>
+                        <p class="text-secondary mt-4"><strong>{{ 'POLITICA_PRIVACIDAD.NO_AUTOMATIZACION' | translate
+                                }}</strong></p>
                     </div>
                 </section>
 
                 <!-- 3. Legitimación del tratamiento -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">3. Legitimación del tratamiento</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_TITULO' |
+                        translate }}</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary">La base legal para el tratamiento de los datos es:</p>
+                        <p class="text-secondary">{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_TEXTO' | translate }}</p>
                         <ul class="text-secondary space-y-2 list-disc list-inside mt-2">
-                            <li>El <strong>consentimiento del interesado</strong>, otorgado al interactuar con nuestros
-                                servicios.</li>
-                            <li>La <strong>ejecución de contratos</strong> para la compra de entradas.</li>
-                            <li>El <strong>interés legítimo</strong> en mejorar nuestros servicios.</li>
+                            <li>{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_1' | translate }}</li>
+                            <li>{{ 'POLITICA_PRIVACIDAD.LEGITIMACION_2' | translate }}</li>
                         </ul>
                     </div>
                 </section>
 
-                <!-- 4. Derechos de los interesados -->
+                <!-- 4. Conservación de los datos -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">4. Derechos de los interesados</h3>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.CONSERVACION_TITULO' |
+                        translate }}</h3>
                     <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary mb-4">Puedes ejercer tus derechos de:</p>
+                        <p class="text-secondary">
+                            {{ 'POLITICA_PRIVACIDAD.CONSERVACION_TEXTO' | translate }}
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 5. Destinatarios de los datos -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_TITULO' |
+                        translate }}</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary mb-4">{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_TEXTO' | translate }}</p>
+                        <ul class="text-secondary space-y-2 list-disc list-inside">
+                            <li>{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_1' | translate }}</li>
+                            <li>{{ 'POLITICA_PRIVACIDAD.DESTINATARIOS_2' | translate }}</li>
+                        </ul>
+                        <p class="text-secondary mt-4"><strong>{{ 'POLITICA_PRIVACIDAD.NO_TRANSFERENCIAS' | translate
+                                }}</strong></p>
+                    </div>
+                </section>
+
+                <!-- 6. Derechos de los interesados -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.DERECHOS_TITULO' | translate
+                        }}</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary mb-4">{{ 'POLITICA_PRIVACIDAD.DERECHOS_TEXTO' | translate }}</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>Acceso a tus datos personales.</span>
+                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_ACCESO' | translate }}</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>Rectificación de datos inexactos.</span>
+                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_RECTIFICACION' | translate }}</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>Supresión de tus datos.</span>
+                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_SUPRESION' | translate }}</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>Limitación del tratamiento.</span>
+                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_LIMITACION' | translate }}</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>Portabilidad de datos.</span>
+                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_OPOSICION' | translate }}</span>
                             </div>
                             <div class="flex items-center text-secondary">
                                 <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
-                                <span>Oposición al tratamiento.</span>
+                                <span>{{ 'POLITICA_PRIVACIDAD.DERECHO_PORTABILIDAD' | translate }}</span>
                             </div>
                         </div>
                         <p class="text-secondary mb-2">
-                            Para ejercer estos derechos, contacta con:
+                            {{ 'POLITICA_PRIVACIDAD.EJERCER_DERECHOS' | translate }}
                         </p>
                         <p class="text-brand font-semibold mb-4">📩 {{configGlobal.contactos.email}}</p>
+                        <p class="text-secondary">
+                            {{ 'POLITICA_PRIVACIDAD.RECLAMACION' | translate }}
+                        </p>
+                        <p class="text-brand font-semibold">🌐 www.aepd.es</p>
+                    </div>
+                </section>
+
+                <!-- 7. Medidas de seguridad -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.SEGURIDAD_TITULO' | translate
+                        }}</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary">
+                            {{ 'POLITICA_PRIVACIDAD.SEGURIDAD_TEXTO' | translate }}
+                        </p>
+                        <p class="text-secondary mt-3">
+                            {{ 'POLITICA_PRIVACIDAD.SEGURIDAD_TEXTO_2' | translate }}
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 8. Modificaciones de esta política -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.MODIFICACIONES_TITULO' |
+                        translate }}</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary">
+                            {{ 'POLITICA_PRIVACIDAD.MODIFICACIONES_TEXTO' | translate }}
+                        </p>
                     </div>
                 </section>
 
                 <!-- Botón de cierre -->
                 <div class="flex justify-center pt-6">
                     <button (click)="closePoliticaPrivacidad()" class="btn-brand py-3 px-8 rounded-lg">
-                        Cerrar Política de Privacidad
+                        {{ 'POLITICA_PRIVACIDAD.CERRAR' | translate }}
                     </button>
                 </div>
             </div>

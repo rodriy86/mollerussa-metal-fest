@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core'; // ✅ Importar inject
 import { CommonModule } from '@angular/common';
 import { configGlobal } from '../configGlobal';
 import { RouterModule, Router } from '@angular/router';
 import { TranslatePipe } from '../pipes/translate.pipe';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,9 +13,12 @@ import { TranslatePipe } from '../pipes/translate.pipe';
   styleUrl: './footer-component.scss'
 })
 export class FooterComponent {
- configGlobal=configGlobal;
+  configGlobal = configGlobal;
+  
+  // ✅ Usar inject para ambos servicios
+  private router = inject(Router);
+  authService = inject(AuthService);
 
- constructor(private router: Router) {}
   showPoliticaPrivacidad = false;
   showTerminosCondiciones = false;
   showAvisoLegal = false;
@@ -25,11 +29,12 @@ export class FooterComponent {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
+
   navegarAFormulario() {
     this.router.navigate(['/form-acreditacio']);
   }
 
-   openPoliticaPrivacidad() {
+  openPoliticaPrivacidad() {
     this.showPoliticaPrivacidad = true;
   }
 

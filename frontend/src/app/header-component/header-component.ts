@@ -4,6 +4,7 @@ import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../services/translation.service';
 import { TranslatePipe } from '../pipes/translate.pipe';
+import { AuthService } from '../services/auth.service';
 
 interface Language {
   code: string;
@@ -20,6 +21,7 @@ interface Language {
 })
 export class HeaderComponent implements OnInit {
   private translationService = inject(TranslationService);
+  authService = inject(AuthService);
   configGlobal = configGlobal;
 
   isMenuOpen = false;

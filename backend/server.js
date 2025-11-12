@@ -3,7 +3,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { mockData, getBandById, getDetalleNoticiaById } from './data/mockData.js';
+import { mockData, getBandById, getDetalleNoticiaById} from './data/mockData.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -13,6 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 3000;
 const angularPath = path.join(__dirname, '../frontend/dist/mmf-web/browser');
+//const authRoutes = require('./src/routes/authRoutes');
 
 // Tipos MIME para archivos estáticos
 const mimeTypes = {
@@ -50,6 +51,9 @@ const getLanguageFromRequest = (req) => {
     return 'es';
   }
 };
+
+const USERS = mockData.User;
+
 
 // Enviar email de acreditación
 const enviarEmailAcreditacion = async (formData) => {
@@ -153,6 +157,16 @@ const enviarEmailAcreditacion = async (formData) => {
     throw error;
   }
 };
+/*
+const USERS = [
+  {
+    id: 3,
+      email: 'admin@mmf.cat',
+      password: 'a1234',
+      name: 'Administrador',
+      role: 'admin',
+      isActive: true
+  }]*/
 
 // Handlers de API endpoints
 const apiHandlers = {
@@ -208,6 +222,69 @@ const apiHandlers = {
   sendJson(res, bandaTraducida);
 },
 
+//Endpoint de login
+  // ✅ ENDPOINT LOGIN CORREGIDO - Reemplaza el que tienes actualmente
+'/api/auth/login': (req, res) => {
+  if (req.method !== 'POST') {
+    return sendError(res, 405, 'Método no permitido');
+  }
+
+  let body = '';
+  
+  req.on('data', chunk => {
+    body += chunk.toString();
+  });
+
+  req.on('end', () => {
+    try {
+      const { email, password } = JSON.parse(body);
+      
+      console.log('🔐 Intento de login:', { email });
+
+      // Validar campos requeridos
+      if (!email || !password) {
+        return sendError(res, 400, 'Email y contraseña son requeridos');
+      }
+
+      // Buscar usuario activo
+      const user = USERS.find(u => 
+        u.email.toLowerCase() === email.toLowerCase() && 
+        u.isActive
+      );
+
+      if (!user) {
+        console.log('❌ Usuario no encontrado:', email);
+        return sendError(res, 401, 'Usuario no encontrado o inactivo');
+      }
+
+      // Verificar contraseña (texto plano en mock)
+      if (user.password !== password) {
+        console.log('❌ Contraseña incorrecta para:', email);
+        return sendError(res, 401, 'Contraseña incorrecta');
+      }
+
+      // ✅ Login exitoso
+      console.log('✅ Login exitoso:', user.email, 'Rol:', user.role);
+      
+      // Eliminar password del response
+      const { password: _, ...userWithoutPassword } = user;
+
+      // Generar token simulado
+      const token = `mock-token-${user.id}-${Date.now()}`;
+
+      sendJson(res, {
+        success: true,
+        token: token,
+        user: userWithoutPassword,
+        message: 'Login exitoso'
+      });
+
+    } catch (error) {
+      console.error('❌ Error en login:', error);
+      sendError(res, 500, 'Error interno del servidor: ' + error.message);
+    }
+  });
+},
 
   // Endpoint para noticias con soporte multiidioma
   '/api/noticias': (req, res) => {

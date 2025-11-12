@@ -1,15 +1,15 @@
 export const mockData = {
   bands: [
-    { 
+    {
       id: 1,
-      name: 'IRON STORM', 
+      name: 'IRON STORM',
       name_ca: 'IRON STORM',
       name_en: 'IRON STORM',
-      schedule: 'Sábado 16 Julio - 20:00', 
+      schedule: 'Sábado 16 Julio - 20:00',
       schedule_ca: 'Dissabte 16 Juliol - 20:00',
       schedule_en: 'Saturday July 16 - 20:00',
-      genre: 'Heavy Metal', 
-      genre_ca: 'Heavy Metal', 
+      genre: 'Heavy Metal',
+      genre_ca: 'Heavy Metal',
       genre_en: 'Heavy Metal',
       image: '/assets/images/band1.jpg',
       description: 'Potente heavy metal con influencias clásicas y melodías épicas.',
@@ -22,15 +22,15 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 2,
-      name: 'DARK ABYSS', 
+      name: 'DARK ABYSS',
       name_ca: 'DARK ABYSS',
       name_en: 'DARK ABYSS',
-      schedule: 'Sábado 16 Julio - 20:30h', 
+      schedule: 'Sábado 16 Julio - 20:30h',
       schedule_ca: 'Dissabte 16 Juliol - 20:30h',
       schedule_en: 'Saturday July 16 - 20:30h',
-      genre: 'Death Metal', 
+      genre: 'Death Metal',
       genre_ca: 'Death Metal',
       genre_en: 'Death Metal',
       image: '/assets/images/band2.jpg',
@@ -44,15 +44,15 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 3,
-      name: 'STEEL THUNDER', 
+      name: 'STEEL THUNDER',
       name_ca: 'STEEL THUNDER',
       name_en: 'STEEL THUNDER',
-      schedule: 'Sábado 16 Julio - 21:00h', 
+      schedule: 'Sábado 16 Julio - 21:00h',
       schedule_ca: 'Dissabte 16 Juliol - 21:00h',
       schedule_en: 'Saturday July 16 - 21:00h',
-      genre: 'Thrash Metal', 
+      genre: 'Thrash Metal',
       genre_ca: 'Thrash Metal',
       genre_en: 'Thrash Metal',
       image: '/assets/images/band1.jpg',
@@ -66,15 +66,15 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 4,
-      name: 'CRIMSON VOID', 
+      name: 'CRIMSON VOID',
       name_ca: 'CRIMSON VOID',
       name_en: 'CRIMSON VOID',
-      schedule: 'Sábado 16 Julio - 21:30h', 
+      schedule: 'Sábado 16 Julio - 21:30h',
       schedule_ca: 'Dissabte 16 Juliol - 21:30h',
       schedule_en: 'Saturday July 16 - 21:30h',
-      genre: 'Black Metal', 
+      genre: 'Black Metal',
       genre_ca: 'Black Metal',
       genre_en: 'Black Metal',
       image: '/assets/images/band2.jpg',
@@ -88,15 +88,15 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 5,
-      name: 'ETERNAL FLAME', 
+      name: 'ETERNAL FLAME',
       name_ca: 'ETERNAL FLAME',
       name_en: 'ETERNAL FLAME',
-      schedule: 'Sábado 16 Julio - 22:00h', 
+      schedule: 'Sábado 16 Julio - 22:00h',
       schedule_ca: 'Dissabte 16 Juliol - 22:00h',
       schedule_en: 'Saturday July 16 - 22:00h',
-      genre: 'Power Metal', 
+      genre: 'Power Metal',
       genre_ca: 'Power Metal',
       genre_en: 'Power Metal',
       image: '/assets/images/band1.jpg',
@@ -110,15 +110,15 @@ export const mockData = {
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
     },
-    { 
+    {
       id: 6,
-      name: 'NEXUS THEORY', 
+      name: 'NEXUS THEORY',
       name_ca: 'NEXUS THEORY',
       name_en: 'NEXUS THEORY',
-      schedule: 'Sábado 16 Julio - 22:30h', 
+      schedule: 'Sábado 16 Julio - 22:30h',
       schedule_ca: 'Dissabte 16 Juliol - 22:30h',
       schedule_en: 'Saturday July 16 - 22:30h',
-      genre: 'Progressive Metal', 
+      genre: 'Progressive Metal',
       genre_ca: 'Progressive Metal',
       genre_en: 'Progressive Metal',
       image: '/assets/images/band2.jpg',
@@ -150,7 +150,7 @@ export const mockData = {
       resumenNoticia: 'La organització del Mollerussa Metal Fest organitzara un dinar solidari a la serra el dia 1/2/26',
       resumenNoticia_ca: "L'organització del Mollerussa Metal Fest organitzarà un dinar solidari a la serra el dia 1/2/26",
       resumenNoticia_en: 'The Mollerussa Metal Fest organization will organize a solidarity meal in the mountains on 2/1/26',
-      detalleNoticia: true,  
+      detalleNoticia: true,
       imagen: '/assets/images/menja.png',
       alt: '',
       alt_ca: '',
@@ -339,14 +339,50 @@ export const mockData = {
       bandas: 4,
       alt: ''
     }
+  ],
+  User: [
+    {
+      id: 1,
+      email: 'admin@mollerussametalfest.com',
+      password: 'metal2024',
+      name: 'Administrador Principal',
+      role: 'admin',
+      isActive: true
+    },
+    {
+      id: 2,
+      email: 'editor@mollerussametalfest.com',
+      password: 'editor2024',
+      name: 'Editor de Contenidos',
+      role: 'editor',
+      isActive: true
+    },
+    {
+      id: 3,
+      email: 'admin@mmf.cat',
+      password: 'a1234',
+      name: 'Administrador',
+      role: 'admin',
+      isActive: true
+    },
+    {
+      id: 4,
+      email: 'edit@mmf.cat',
+      password: 'e1234',
+      name: 'Editor',
+      role: 'edit',
+      isActive: true
+    }
   ]
 };
+
+
 
 // Funciones auxiliares - SQLite Style CON TRADUCCIONES
 export const getBandById = (id, lang = 'es') => {
   const band = mockData.bands.find(band => band.id === id);
   if (!band) return null;
-  
+
   return {
     ...band,
     name: band[`name_${lang}`] || band.name,
@@ -365,7 +401,7 @@ export const getAllGenres = (lang = 'es') => {
 export const getNoticiaById = (id, lang = 'es') => {
   const noticia = mockData.noticias.find(noticia => noticia.id === id);
   if (!noticia) return null;
-  
+
   return {
     ...noticia,
     fecha: noticia[`fecha_${lang}`] || noticia.fecha,
@@ -381,7 +417,7 @@ export const getDetalleNoticiaById = (noticiaId, lang = 'es') => {
   // Buscar por noticia_id en lugar de id directo
   const detalle = mockData.detalleNoticia.find(detalle => detalle.noticia_id === noticiaId);
   if (!detalle) return null;
-  
+
   return {
     ...detalle,
     fecha: detalle[`fecha_${lang}`] || detalle.fecha,

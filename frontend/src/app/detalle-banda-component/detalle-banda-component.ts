@@ -23,7 +23,7 @@ interface Band {
 @Component({
   selector: 'app-detalle-banda-component',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslatePipe], // ← AÑADIR TranslatePipe
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './detalle-banda-component.html',
   styleUrl: './detalle-banda-component.scss'
 })
@@ -39,7 +39,7 @@ export class DetalleBandaComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private http = inject(HttpClient);
   private cdRef = inject(ChangeDetectorRef);
-  private translationService = inject(TranslationService); // ← AÑADIR TranslationService
+  private translationService = inject(TranslationService); 
 
   ngOnInit() {
     this.route.params.subscribe(params => {

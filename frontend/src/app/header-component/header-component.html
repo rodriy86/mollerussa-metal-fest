@@ -9,6 +9,11 @@
       </div>
       <h1 class="text-2xl font-bold metal-text text-brand">{{configGlobal.festival.nombreCompleto}}</h1>
     </div>
+    <div *ngIf="authService.getCurrentUser()" class="user-info">
+        <p class="welcome-text">
+          <strong>{{ authService.getCurrentUser()?.name }}</strong>
+        </p>
+      </div>
 
     <!-- Menú Desktop -->
     <div class="hidden md:flex space-x-8 items-center">

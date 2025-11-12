@@ -1,0 +1,145 @@
+<header class="fixed top-0 left-0 right-0 z-50 bg-header opacity-100 backdrop-blur-sm border-b border-brand">
+    <div class="absolute inset-0 gradient-header opacity-90"></div>
+    <nav class="relative z-10 px-6 py-4">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 flex-center bg-brand rounded-lg">
+                    <img src="assets/icons/mask.png" alt="Máscara" class="w-full h-full p-2 filter-invert">
+                </div>
+                <h1 class="text-2xl font-bold metal-text text-brand">Mollerussa Metal Fest</h1>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <button (click)="volverAInicio()"
+                    class="flex items-center text-secondary hover-text-brand transition-colors font-medium">
+                    <i class="ri-arrow-left-line mr-2"></i>
+                    {{ 'LOGIN.VOLVER_INICIO' | translate }}
+                </button>
+            </div>
+
+            <button (click)="volverAInicio()" class="md:hidden w-8 h-8 flex-center text-primary">
+                <i class="ri-arrow-left-line text-xl"></i>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<section class="min-h-screen bg-page py-12 pt-24">
+    <div class="max-w-md mx-auto px-6">
+        <!-- Botón volver para móvil -->
+        <div class="mb-8 md:hidden">
+            <button (click)="volverAInicio()"
+                class="flex items-center text-brand hover-text-brand font-medium transition-colors">
+                <i class="ri-arrow-left-line mr-2"></i>
+                {{ 'LOGIN.VOLVER_INICIO' | translate }}
+            </button>
+        </div>
+
+        <!-- Card de Login -->
+        <div class="bg-card border-2 border-brand rounded-lg p-8 glow-effect">
+            <!-- Header del Login -->
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 flex-center bg-brand rounded-full mx-auto mb-4">
+                    <i class="ri-user-line text-3xl text-primary"></i>
+                </div>
+                <h1 class="text-3xl font-black metal-text text-brand mb-2">{{ 'LOGIN.TITULO' | translate }}</h1>
+                <p class="text-muted">{{ 'LOGIN.SUBTITULO' | translate }}</p>
+            </div>
+
+            <!-- Formulario de Login -->
+            <form (ngSubmit)="onSubmit()" class="space-y-6">
+                <!-- Email -->
+                <div>
+                    <label class="block text-primary font-bold mb-3">
+                        <i class="ri-mail-line mr-2"></i>
+                        {{ 'LOGIN.EMAIL' | translate }} *
+                    </label>
+                    <input 
+                        type="email" 
+                        [(ngModel)]="loginData.email" 
+                        name="email"
+                        placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}"
+                        class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all placeholder-gray-500"
+                        [class.border-red-400]="showError">
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label class="block text-primary font-bold mb-3">
+                        <i class="ri-lock-line mr-2"></i>
+                        {{ 'LOGIN.PASSWORD' | translate }} *
+                    </label>
+                    <input 
+                        type="password" 
+                        [(ngModel)]="loginData.password" 
+                        name="password"
+                        placeholder="{{ 'LOGIN.PASSWORD_PLACEHOLDER' | translate }}"
+                        class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all placeholder-gray-500"
+                        [class.border-red-400]="showError">
+                </div>
+
+                <!-- Recordarme -->
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center cursor-pointer">
+                        <input 
+                            type="checkbox" 
+                            [(ngModel)]="loginData.rememberMe" 
+                            name="rememberMe"
+                            class="mr-3 text-brand focus:ring-brand transform scale-125">
+                        <span class="text-secondary text-sm">{{ 'LOGIN.RECUERDAME' | translate }}</span>
+                    </label>
+                    
+                    <!-- Olvidé contraseña -->
+                    <button type="button" class="text-brand hover-text-brand text-sm transition-colors">
+                        {{ 'LOGIN.OLVIDE_PASSWORD' | translate }}
+                    </button>
+                </div>
+
+                <!-- Mensaje de Error -->
+                <div *ngIf="showError" 
+                    class="bg-red-500/10 border-2 border-red-400 rounded-lg p-4 text-red-400 flex items-center animate-pulse">
+                    <i class="ri-error-warning-line mr-3 text-xl"></i>
+                    <span>{{ errorMessage | translate }}</span>
+                </div>
+
+                <!-- Botón de Login -->
+                <button 
+                    type="submit" 
+                    [disabled]="!isFormValid() || isLoading"
+                    class="w-full btn-brand py-4 rounded-lg text-lg font-bold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transform hover:scale-105 disabled:hover:scale-100">
+                    
+                    <span *ngIf="!isLoading" class="flex items-center">
+                        <i class="ri-login-box-line mr-3"></i>
+                        {{ 'LOGIN.BOTON_ACCEDER' | translate }}
+                    </span>
+                    <span *ngIf="isLoading" class="flex items-center">
+                        <i class="ri-loader-4-line animate-spin mr-3"></i>
+                        {{ 'LOGIN.CARGANDO' | translate }}
+                    </span>
+                </button>
+            </form>
+
+            <!-- Información adicional -->
+            <div class="mt-8 pt-6 border-t border-custom">
+                <div class="bg-page border border-custom rounded-lg p-4">
+                    <h3 class="text-lg font-bold text-brand mb-2 flex items-center">
+                        <i class="ri-information-line mr-2"></i>
+                        {{ 'LOGIN.INFORMACION_TITULO' | translate }}
+                    </h3>
+                    <p class="text-secondary text-sm mb-3">
+                        {{ 'LOGIN.INFORMACION_DESCRIPCION' | translate }}
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer de seguridad -->
+        <div class="text-center mt-6">
+            <p class="text-xs text-muted flex items-center justify-center">
+                <i class="ri-shield-check-line mr-2"></i>
+                {{ 'LOGIN.SEGURIDAD' | translate }}
+            </p>
+        </div>
+    </div>
+</section>

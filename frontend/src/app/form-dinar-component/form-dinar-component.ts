@@ -13,8 +13,8 @@ import { configGlobal } from '../configGlobal';
   templateUrl: './form-dinar-component.html',
 })
 export class FormDinarComponent {
-   configGlobal=configGlobal;
-   
+  configGlobal = configGlobal;
+
   formData = {
     nombre: '',
     apellidos: '',
@@ -60,9 +60,9 @@ export class FormDinarComponent {
       (this.formData.platoCeliacos || 0) * this.precios.platoCeliacos +
       (this.formData.platoInfantil || 0) * this.precios.platoInfantil
     );
-    
+
     this.donacion = this.formData.donacionCancer ? 2 : 0;
-    
+
     // ✅ DEBUG: Verifica que se ejecuta y los valores
     /*console.log('Calculando total:', {
       donacionCancer: this.formData.donacionCancer,
@@ -93,9 +93,9 @@ export class FormDinarComponent {
     }
 
     // Validar que la suma de platos no exceda el número de personas
-    const totalPlatos = this.formData.plato1 + this.formData.platoVegetariano + 
-                       this.formData.platoCeliacos + this.formData.platoInfantil;
-    
+    const totalPlatos = this.formData.plato1 + this.formData.platoVegetariano +
+      this.formData.platoCeliacos + this.formData.platoInfantil;
+
     if (totalPlatos > this.formData.numPersonas) {
       alert('La suma de platos no puede ser mayor que el número de personas.');
       return;
@@ -136,11 +136,11 @@ export class FormDinarComponent {
 
   isFieldInvalid(fieldName: string): boolean {
     const fieldValue = this.formData[fieldName as keyof typeof this.formData];
-    
+
     if (typeof fieldValue === 'number') {
       return this.formSubmitted && (fieldValue === null || fieldValue === undefined || fieldValue < 0);
     }
-    
+
     return this.formSubmitted && (
       fieldValue === '' ||
       fieldValue === null ||
