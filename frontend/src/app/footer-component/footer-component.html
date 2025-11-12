@@ -70,29 +70,11 @@
         </ul>
       </div>
 
-      <!-- Newsletter -->
-      <!--
-      <div>
-        <h4 class="text-lg font-bold mb-6 text-primary">Newsletter</h4>
-        <p class="text-muted mb-4">Suscríbete para recibir las últimas noticias del festival</p>
-        <div class="flex gap-2">
-          <input type="email" placeholder="Tu email"
-            class="flex-1 bg-card border border-custom rounded-button px-4 py-2 text-primary placeholder-muted focus:outline-none focus:border-brand">
-          <button class="btn-brand px-4 py-2 rounded-button whitespace-nowrap">
-            <i class="ri-send-plane-line"></i>
-          </button>
-        </div>
-      </div>
-    </div>-->
+      <!-- Prensa -->
       <div>
         <h4 class="text-lg font-bold mb-6 text-primary">{{'FOOTER.PRENSA' | translate}}</h4>
         <p class="text-muted mb-4"></p>
         <div class="flex gap-2">
-          <!--<button (click)="navegarAFormulario()" [disabled]="!configGlobal.tickets.habilitar"
-            class="btn-brand px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:hover:bg-gray-600 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed">
-
-            {{ configGlobal.tickets.habilitar ? 'Solicitar Acreditación' : 'Acreditación No Disponible' }}
-          </button>-->
           <button (click)="navegarAFormulario()"
             class="btn-brand px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:hover:bg-gray-600 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed">
             <i class="ri-send-plane-line mr-2 sm:mr-3"></i>
@@ -109,11 +91,302 @@
           © {{configGlobal.festival.nombreCompleto}}. {{'FOOTER.TODOS_DERECHOS' | translate}}
         </p>
         <div class="flex space-x-6 text-muted">
-          <a href="#" class="hover-text-brand transition-colors">{{'FOOTER.POLITICAS' | translate}}</a>
-          <a href="#" class="hover-text-brand transition-colors">{{'FOOTER.TERMINOS' | translate}}</a>
-          <a href="#" class="hover-text-brand transition-colors">{{'FOOTER.AVISO' | translate}}</a>
+          <button (click)="openPoliticaPrivacidad()" class="hover-text-brand transition-colors">{{'FOOTER.POLITICAS' | translate}}</button>
+          <button (click)="openTerminosCondiciones()" class="hover-text-brand transition-colors">{{'FOOTER.TERMINOS' | translate}}</button>
+          <button (click)="openAvisoLegal()" class="hover-text-brand transition-colors">{{'FOOTER.AVISO' | translate}}</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Modal de Política de Privacidad -->
+  <div *ngIf="showPoliticaPrivacidad"
+      class="fixed inset-0 bg-header z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div class="bg-page border-2 border-brand rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <!-- Header -->
+          <div class="bg-brand p-6 sticky top-0 z-10">
+              <div class="flex justify-between items-center">
+                  <h2 class="text-2xl font-black text-primary">🔒 POLÍTICA DE PRIVACIDAD</h2>
+                  <button (click)="closePoliticaPrivacidad()"
+                      class="text-primary hover:text-secondary text-2xl transition-colors">
+                      &times;
+                  </button>
+              </div>
+              <p class="text-primary mt-2">Protección de datos personales</p>
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-8 space-y-8">
+              <!-- 1. Identidad del Responsable -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">1. Identidad del Responsable</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6 space-y-3">
+                      <p class="text-secondary"><strong>Responsable del tratamiento:</strong>
+                          {{configGlobal.festival.nombreCompleto}}</p>
+                      <p class="text-secondary"><strong>NIF/CIF:</strong> {{configGlobal.festival.NIF}}</p>
+                      <p class="text-secondary"><strong>Correo electrónico de contacto:</strong>
+                          {{configGlobal.contactos.email}}</p>
+                      <p class="text-secondary"><strong>Sitio web:</strong> {{configGlobal.contactos.web}}</p>
+                  </div>
+              </section>
+
+              <!-- 2. Finalidad del tratamiento de datos -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">2. Finalidad del tratamiento de datos</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary mb-4">Los datos personales recabados se tratarán con las siguientes finalidades:</p>
+                      <ul class="text-secondary space-y-2 list-disc list-inside">
+                          <li>Gestionar las solicitudes de información y contacto de los usuarios.</li>
+                          <li>Enviar comunicaciones relacionadas con el festival y sus actividades.</li>
+                          <li>Gestionar la venta de entradas y acreditaciones.</li>
+                          <li>Mejorar la experiencia del usuario en nuestro sitio web.</li>
+                      </ul>
+                  </div>
+              </section>
+
+              <!-- 3. Legitimación del tratamiento -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">3. Legitimación del tratamiento</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary">La base legal para el tratamiento de los datos es:</p>
+                      <ul class="text-secondary space-y-2 list-disc list-inside mt-2">
+                          <li>El <strong>consentimiento del interesado</strong>, otorgado al interactuar con nuestros servicios.</li>
+                          <li>La <strong>ejecución de contratos</strong> para la compra de entradas.</li>
+                          <li>El <strong>interés legítimo</strong> en mejorar nuestros servicios.</li>
+                      </ul>
+                  </div>
+              </section>
+
+              <!-- 4. Derechos de los interesados -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">4. Derechos de los interesados</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary mb-4">Puedes ejercer tus derechos de:</p>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                          <div class="flex items-center text-secondary">
+                              <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                              <span>Acceso a tus datos personales.</span>
+                          </div>
+                          <div class="flex items-center text-secondary">
+                              <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                              <span>Rectificación de datos inexactos.</span>
+                          </div>
+                          <div class="flex items-center text-secondary">
+                              <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                              <span>Supresión de tus datos.</span>
+                          </div>
+                          <div class="flex items-center text-secondary">
+                              <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                              <span>Limitación del tratamiento.</span>
+                          </div>
+                          <div class="flex items-center text-secondary">
+                              <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                              <span>Portabilidad de datos.</span>
+                          </div>
+                          <div class="flex items-center text-secondary">
+                              <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                              <span>Oposición al tratamiento.</span>
+                          </div>
+                      </div>
+                      <p class="text-secondary mb-2">
+                          Para ejercer estos derechos, contacta con:
+                      </p>
+                      <p class="text-brand font-semibold mb-4">📩 {{configGlobal.contactos.email}}</p>
+                  </div>
+              </section>
+
+              <!-- Botón de cierre -->
+              <div class="flex justify-center pt-6">
+                  <button (click)="closePoliticaPrivacidad()"
+                      class="btn-brand py-3 px-8 rounded-lg">
+                      Cerrar Política de Privacidad
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modal de Términos y Condiciones -->
+  <div *ngIf="showTerminosCondiciones"
+      class="fixed inset-0 bg-header z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div class="bg-page border-2 border-brand rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <!-- Header -->
+          <div class="bg-brand p-6 sticky top-0 z-10">
+              <div class="flex justify-between items-center">
+                  <h2 class="text-2xl font-black text-primary">📋 TÉRMINOS Y CONDICIONES</h2>
+                  <button (click)="closeTerminosCondiciones()"
+                      class="text-primary hover:text-secondary text-2xl transition-colors">
+                      &times;
+                  </button>
+              </div>
+              <p class="text-primary mt-2">Condiciones de uso del sitio web y servicios</p>
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-8 space-y-8">
+              <!-- 1. Aceptación de términos -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">1. Aceptación de los Términos</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary">
+                          Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos Términos y Condiciones de Uso,
+                          todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de las leyes locales aplicables.
+                      </p>
+                  </div>
+              </section>
+
+              <!-- 2. Uso del sitio web -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">2. Uso del Sitio Web</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary mb-4">Se concede permiso para usar temporalmente este sitio web para:</p>
+                      <ul class="text-secondary space-y-2 list-disc list-inside">
+                          <li>Obtener información sobre el festival y sus actividades.</li>
+                          <li>Comprar entradas y acreditaciones.</li>
+                          <li>Contactar con la organización del evento.</li>
+                      </ul>
+                      <p class="text-secondary mt-4">Queda prohibido:</p>
+                      <ul class="text-secondary space-y-2 list-disc list-inside">
+                          <li>Utilizar el sitio de manera fraudulenta o con fines ilícitos.</li>
+                          <li>Realizar actividades que puedan dañar, sobrecargar o perjudicar el sitio.</li>
+                          <li>Acceder a áreas restringidas del sitio web.</li>
+                      </ul>
+                  </div>
+              </section>
+
+              <!-- 3. Compra de entradas -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">3. Compra de Entradas y Acreditaciones</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <ul class="text-secondary space-y-3 list-disc list-inside">
+                          <li>Las entradas y acreditaciones son personales e intransferibles.</li>
+                          <li>La organización se reserva el derecho de admisión.</li>
+                          <li>No se realizan reembolsos excepto por cancelación del evento.</li>
+                          <li>El incumplimiento de las normas del festival puede resultar en la expulsión sin reembolso.</li>
+                      </ul>
+                  </div>
+              </section>
+
+              <!-- 4. Propiedad intelectual -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">4. Propiedad Intelectual</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary">
+                          Todo el contenido de este sitio web, incluyendo pero no limitado a texto, gráficos, logotipos, imágenes,
+                          y software, es propiedad de {{configGlobal.festival.nombreCompleto}} y está protegido por las leyes de propiedad intelectual.
+                      </p>
+                  </div>
+              </section>
+
+              <!-- 5. Limitación de responsabilidad -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">5. Limitación de Responsabilidad</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary">
+                          {{configGlobal.festival.nombreCompleto}} no será responsable de ningún daño directo, indirecto, incidental,
+                          especial o consecuente que resulte del uso o la imposibilidad de uso de este sitio web.
+                      </p>
+                  </div>
+              </section>
+
+              <!-- Botón de cierre -->
+              <div class="flex justify-center pt-6">
+                  <button (click)="closeTerminosCondiciones()"
+                      class="btn-brand py-3 px-8 rounded-lg">
+                      Cerrar Términos y Condiciones
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modal de Aviso Legal -->
+  <div *ngIf="showAvisoLegal"
+      class="fixed inset-0 bg-header z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div class="bg-page border-2 border-brand rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <!-- Header -->
+          <div class="bg-brand p-6 sticky top-0 z-10">
+              <div class="flex justify-between items-center">
+                  <h2 class="text-2xl font-black text-primary">⚖️ AVISO LEGAL</h2>
+                  <button (click)="closeAvisoLegal()"
+                      class="text-primary hover:text-secondary text-2xl transition-colors">
+                      &times;
+                  </button>
+              </div>
+              <p class="text-primary mt-2">Información legal y condiciones de uso</p>
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-8 space-y-8">
+              <!-- 1. Información general -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">1. Información General</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6 space-y-3">
+                      <p class="text-secondary"><strong>Denominación social:</strong> {{configGlobal.festival.nombreCompleto}}</p>
+                      <p class="text-secondary"><strong>NIF/CIF:</strong> {{configGlobal.festival.NIF}}</p>
+                      <p class="text-secondary"><strong>Domicilio social:</strong> {{configGlobal.contactos.ubicacion}}</p>
+                      <p class="text-secondary"><strong>Correo electrónico:</strong> {{configGlobal.contactos.email}}</p>
+                      <p class="text-secondary"><strong>Sitio web:</strong> {{configGlobal.contactos.web}}</p>
+                  </div>
+              </section>
+
+              <!-- 2. Objeto -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">2. Objeto</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary">
+                          El presente aviso legal regula el uso del sitio web {{configGlobal.contactos.web}}, del que es titular
+                          {{configGlobal.festival.nombreCompleto}}. La navegación por el sitio web atribuye la condición de usuario del mismo
+                          e implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal.
+                      </p>
+                  </div>
+              </section>
+
+              <!-- 3. Condiciones de acceso y uso -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">3. Condiciones de Acceso y Uso</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary mb-4">El usuario se compromete a utilizar el sitio web de conformidad con la ley y el presente Aviso Legal.</p>
+                      <ul class="text-secondary space-y-2 list-disc list-inside">
+                          <li>Queda prohibido utilizar el sitio con fines ilícitos o lesivos.</li>
+                          <li>No está permitido realizar actividades publicitarias o de explotación comercial sin autorización.</li>
+                          <li>El usuario se compromete a no realizar ninguna conducta que pudiera dañar la imagen o los intereses del festival.</li>
+                      </ul>
+                  </div>
+              </section>
+
+              <!-- 4. Propiedad industrial e intelectual -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">4. Propiedad Industrial e Intelectual</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary">
+                          Todos los contenidos del sitio web, incluyendo textos, fotografías, gráficos, imágenes, iconos, tecnología, software,
+                          así como su diseño gráfico y códigos fuente, constituyen una obra cuya propiedad pertenece a
+                          {{configGlobal.festival.nombreCompleto}}, sin que puedan entenderse cedidos al usuario ninguno de los derechos de explotación sobre los mismos.
+                      </p>
+                  </div>
+              </section>
+
+              <!-- 5. Legislación aplicable y jurisdicción -->
+              <section>
+                  <h3 class="text-xl font-bold text-brand mb-4">5. Legislación Aplicable y Jurisdicción</h3>
+                  <div class="bg-card border border-custom rounded-lg p-6">
+                      <p class="text-secondary">
+                          Este Aviso Legal se rige por la legislación española. Para la resolución de cualquier conflicto que pudiera derivarse
+                          del acceso al sitio web, el usuario y {{configGlobal.festival.nombreCompleto}} se someterán a los juzgados y tribunales
+                          del domicilio del organizador, con renuncia expresa a cualquier otro fuero.
+                      </p>
+                  </div>
+              </section>
+
+              <!-- Botón de cierre -->
+              <div class="flex justify-center pt-6">
+                  <button (click)="closeAvisoLegal()"
+                      class="btn-brand py-3 px-8 rounded-lg">
+                      Cerrar Aviso Legal
+                  </button>
+              </div>
+          </div>
+      </div>
   </div>
 </footer>

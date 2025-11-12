@@ -15,6 +15,9 @@ export class FooterComponent {
  configGlobal=configGlobal;
 
  constructor(private router: Router) {}
+  showPoliticaPrivacidad = false;
+  showTerminosCondiciones = false;
+  showAvisoLegal = false;
  
   scrollTo(sectionId: string) {
     const element = document.getElementById(sectionId);
@@ -24,5 +27,30 @@ export class FooterComponent {
   }
   navegarAFormulario() {
     this.router.navigate(['/form-acreditacio']);
+  }
+
+   openPoliticaPrivacidad() {
+    this.showPoliticaPrivacidad = true;
+  }
+
+  openTerminosCondiciones() {
+    this.showTerminosCondiciones = true;
+  }
+
+  openAvisoLegal() {
+    this.showAvisoLegal = true;
+  }
+
+  // Métodos para cerrar los modales
+  closePoliticaPrivacidad() {
+    this.showPoliticaPrivacidad = false;
+  }
+
+  closeTerminosCondiciones() {
+    this.showTerminosCondiciones = false;
+  }
+
+  closeAvisoLegal() {
+    this.showAvisoLegal = false;
   }
 }
