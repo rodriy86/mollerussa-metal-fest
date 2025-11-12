@@ -7,13 +7,13 @@ import { TranslatePipe } from '../pipes/translate.pipe';
 import { configGlobal } from '../configGlobal';
 
 @Component({
-  selector: 'app-detalle-galeria',
+  selector: 'app-sobre-nosotros',
   standalone: true,
   imports: [CommonModule, TranslatePipe],
-  templateUrl: './detalle-galeria-component.html',
-  styleUrl: './detalle-galeria-component.scss',
+  templateUrl: './sobre-nosotros-component.html',
+  styleUrl: './sobre-nosotros-component.scss',
 })
-export class DetalleGaleriaComponent implements OnInit {
+export class SobreNosotrosComponent implements OnInit {
   // Arrays de datos
   imagenes: any[] = [];
   carteleras: any[] = [];

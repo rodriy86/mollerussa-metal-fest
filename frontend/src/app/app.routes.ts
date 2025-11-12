@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { IniciComponent } from './inici-component/inici-component';
 import { DetalleNoticiaComponent } from './detalle-noticia-component/detalle-noticia-component'
-import { DetalleGaleriaComponent } from './detalle-galeria-component/detalle-galeria-component';
+import { SobreNosotrosComponent } from './sobre-nosotros-component/sobre-nosotros-component';
 import { DetalleBandaComponent } from './detalle-banda-component/detalle-banda-component';
 import { FormAcreditacioComponent } from './form-acreditacio-component/form-acreditacio-component';
 import { FormDinarComponent } from './form-dinar-component/form-dinar-component';
@@ -11,7 +11,7 @@ export const routes: Routes = [
   // === RUTAS PÚBLICAS === (Todos pueden acceder)
   { path: '', component: IniciComponent },
   { path: 'noticia/:id', component: DetalleNoticiaComponent },
-  { path: 'detalle-galeria', component: DetalleGaleriaComponent },
+  { path: 'detalle-galeria', component: SobreNosotrosComponent },
   { path: 'banda/:id', component: DetalleBandaComponent },
   { path: 'comida-solidaria', component: FormDinarComponent },
 
