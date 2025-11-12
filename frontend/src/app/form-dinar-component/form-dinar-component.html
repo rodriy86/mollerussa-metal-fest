@@ -37,7 +37,8 @@
 
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-black metal-text text-brand mb-4">{{ 'FORM_DINAR.TITULO' | translate }}</h1>
+            <h1 class="text-4xl md:text-5xl font-black metal-text text-brand mb-4">{{ 'FORM_DINAR.TITULO' | translate }}
+            </h1>
             <p class="text-xl text-muted max-w-2xl mx-auto">
                 {{ 'FORM_DINAR.SUBTITULO' | translate }}
             </p>
@@ -77,7 +78,8 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.APELLIDOS' | translate }} *</label>
+                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.APELLIDOS' | translate }}
+                            *</label>
                         <input type="text" [(ngModel)]="formData.apellidos" name="apellidos"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             [class.border-brand]="isFieldInvalid('apellidos')">
@@ -100,7 +102,8 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.POBLACION' | translate }} *</label>
+                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.POBLACION' | translate }}
+                            *</label>
                         <input type="text" [(ngModel)]="formData.poblacion" name="poblacion"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             [class.border-brand]="isFieldInvalid('poblacion')">
@@ -116,7 +119,8 @@
                     <h3 class="text-xl font-bold text-brand mb-4">👥 {{ 'FORM_DINAR.PERSONAS' | translate }}</h3>
 
                     <div class="mb-6">
-                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.NUMERO_PERSONAS' | translate }} *</label>
+                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.NUMERO_PERSONAS' | translate }}
+                            *</label>
                         <input type="number" [(ngModel)]="formData.numPersonas" name="numPersonas" min="0"
                             class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                             (change)="calcularTotal()">
@@ -130,8 +134,10 @@
                     <div class="space-y-6">
                         <!-- Plato Único 1 -->
                         <div class="bg-page border border-custom rounded-lg p-4">
-                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_UNICO_1' | translate }} (10€)</label>
-                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_1' | translate }}</p>
+                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_UNICO_1' | translate
+                                }} (10€)</label>
+                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_1' | translate }}
+                            </p>
                             <input type="number" [(ngModel)]="formData.plato1" name="plato1" min="0"
                                 class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
@@ -139,8 +145,10 @@
 
                         <!-- Plato Único Vegetariano -->
                         <div class="bg-page border border-custom rounded-lg p-4">
-                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_VEGETARIANO' | translate }} (10€)</label>
-                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_VEGETARIANO' | translate }}</p>
+                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_VEGETARIANO' |
+                                translate }} (10€)</label>
+                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_VEGETARIANO' |
+                                translate }}</p>
                             <input type="number" [(ngModel)]="formData.platoVegetariano" name="platoVegetariano" min="0"
                                 class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
@@ -148,8 +156,10 @@
 
                         <!-- Plato Único Celíacos -->
                         <div class="bg-page border border-custom rounded-lg p-4">
-                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_CELIACOS' | translate }} (10€)</label>
-                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_CELIACOS' | translate }}</p>
+                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_CELIACOS' | translate
+                                }} (10€)</label>
+                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_CELIACOS' |
+                                translate }}</p>
                             <input type="number" [(ngModel)]="formData.platoCeliacos" name="platoCeliacos" min="0"
                                 class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
@@ -157,8 +167,10 @@
 
                         <!-- Plato Único Infantil -->
                         <div class="bg-page border border-custom rounded-lg p-4">
-                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_INFANTIL' | translate }} (10€)</label>
-                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_INFANTIL' | translate }}</p>
+                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_INFANTIL' | translate
+                                }} (10€)</label>
+                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_INFANTIL' |
+                                translate }}</p>
                             <input type="number" [(ngModel)]="formData.platoInfantil" name="platoInfantil" min="0"
                                 class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
@@ -175,7 +187,8 @@
                         <div class="flex-1">
                             <div class="flex items-center">
                                 <span class="text-2xl mr-3">🎗️</span>
-                                <span class="text-xl font-bold text-pink-600">{{ 'FORM_DINAR.DONACION_TITULO' | translate }}</span>
+                                <span class="text-xl font-bold text-pink-600">{{ 'FORM_DINAR.DONACION_TITULO' |
+                                    translate }}</span>
                             </div>
                             <p class="text-pink-700 mt-2 text-lg font-medium">
                                 {{ 'FORM_DINAR.DONACION_DESCRIPCION' | translate }}
@@ -202,7 +215,8 @@
                         <label class="flex items-start">
                             <input type="checkbox" [(ngModel)]="formData.aceptoTerminos" name="aceptoTerminos"
                                 class="mr-4 mt-1 text-brand focus:ring-brand transform scale-125">
-                            <span class="text-secondary text-sm leading-relaxed" [innerHTML]="'FORM_DINAR.TERMINOS_TEXTO' | translate">
+                            <span class="text-secondary text-sm leading-relaxed"
+                                [innerHTML]="'FORM_DINAR.TERMINOS_TEXTO' | translate">
                             </span>
                         </label>
                         <div *ngIf="formSubmitted && !formData.aceptoTerminos"
@@ -265,32 +279,105 @@
             <!-- Header -->
             <div class="bg-brand p-6 sticky top-0 z-10">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-black text-primary">🔒 {{ 'POLITICA_PRIVACIDAD.TITULO' | translate }}</h2>
+                    <h2 class="text-2xl font-black text-primary">🔒 POLÍTICA DE PRIVACIDAD</h2>
                     <button (click)="closePoliticaPrivacidad()"
                         class="text-primary hover:text-secondary text-2xl transition-colors">
                         &times;
                     </button>
                 </div>
-                <p class="text-primary mt-2">{{ 'POLITICA_PRIVACIDAD.SUBTITULO' | translate }}</p>
+                <p class="text-primary mt-2">Protección de datos personales</p>
             </div>
 
             <!-- Contenido -->
             <div class="p-8 space-y-8">
+                <!-- 1. Identidad del Responsable -->
                 <section>
-                    <h3 class="text-xl font-bold text-brand mb-4">{{ 'POLITICA_PRIVACIDAD.FINALIDAD_TITULO' | translate }}</h3>
-                    <div class="bg-card border border-custom rounded-lg p-6">
-                        <p class="text-secondary">
-                            {{ 'POLITICA_PRIVACIDAD.FINALIDAD_DESCRIPCION' | translate }}
-                        </p>
+                    <h3 class="text-xl font-bold text-brand mb-4">1. Identidad del Responsable</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6 space-y-3">
+                        <p class="text-secondary"><strong>Responsable del tratamiento:</strong>
+                            {{configGlobal.festival.nombreCompleto}}</p>
+                        <p class="text-secondary"><strong>NIF/CIF:</strong> {{configGlobal.festival.NIF}}</p>
+                        <p class="text-secondary"><strong>Correo electrónico de contacto:</strong>
+                            {{configGlobal.contactos.email}}</p>
+                        <p class="text-secondary"><strong>Sitio web:</strong> {{configGlobal.contactos.web}}</p>
                     </div>
                 </section>
 
+                <!-- 2. Finalidad del tratamiento de datos -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">2. Finalidad del tratamiento de datos</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary mb-4">Los datos personales recabados se tratarán con las siguientes
+                            finalidades:</p>
+                        <ul class="text-secondary space-y-2 list-disc list-inside">
+                            <li>Gestionar las solicitudes de información y contacto de los usuarios.</li>
+                            <li>Enviar comunicaciones relacionadas con el festival y sus actividades.</li>
+                            <li>Gestionar la venta de entradas y acreditaciones.</li>
+                            <li>Mejorar la experiencia del usuario en nuestro sitio web.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 3. Legitimación del tratamiento -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">3. Legitimación del tratamiento</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary">La base legal para el tratamiento de los datos es:</p>
+                        <ul class="text-secondary space-y-2 list-disc list-inside mt-2">
+                            <li>El <strong>consentimiento del interesado</strong>, otorgado al interactuar con nuestros
+                                servicios.</li>
+                            <li>La <strong>ejecución de contratos</strong> para la compra de entradas.</li>
+                            <li>El <strong>interés legítimo</strong> en mejorar nuestros servicios.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 4. Derechos de los interesados -->
+                <section>
+                    <h3 class="text-xl font-bold text-brand mb-4">4. Derechos de los interesados</h3>
+                    <div class="bg-card border border-custom rounded-lg p-6">
+                        <p class="text-secondary mb-4">Puedes ejercer tus derechos de:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                            <div class="flex items-center text-secondary">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Acceso a tus datos personales.</span>
+                            </div>
+                            <div class="flex items-center text-secondary">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Rectificación de datos inexactos.</span>
+                            </div>
+                            <div class="flex items-center text-secondary">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Supresión de tus datos.</span>
+                            </div>
+                            <div class="flex items-center text-secondary">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Limitación del tratamiento.</span>
+                            </div>
+                            <div class="flex items-center text-secondary">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Portabilidad de datos.</span>
+                            </div>
+                            <div class="flex items-center text-secondary">
+                                <i class="ri-checkbox-circle-line text-green-500 mr-2"></i>
+                                <span>Oposición al tratamiento.</span>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-2">
+                            Para ejercer estos derechos, contacta con:
+                        </p>
+                        <p class="text-brand font-semibold mb-4">📩 {{configGlobal.contactos.email}}</p>
+                    </div>
+                </section>
+
+                <!-- Botón de cierre -->
                 <div class="flex justify-center pt-6">
                     <button (click)="closePoliticaPrivacidad()" class="btn-brand py-3 px-8 rounded-lg">
-                        {{ 'POLITICA_PRIVACIDAD.CERRAR' | translate }}
+                        Cerrar Política de Privacidad
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
 </section>

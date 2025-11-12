@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { TranslatePipe } from '../pipes/translate.pipe';
+import { configGlobal } from '../configGlobal';
 
 @Component({
   selector: 'app-form-dinar',
@@ -12,6 +13,8 @@ import { TranslatePipe } from '../pipes/translate.pipe';
   templateUrl: './form-dinar-component.html',
 })
 export class FormDinarComponent {
+   configGlobal=configGlobal;
+   
   formData = {
     nombre: '',
     apellidos: '',
