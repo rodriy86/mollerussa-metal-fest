@@ -7,6 +7,9 @@ import { Router, RouterModule } from '@angular/router';
 import { TranslationService } from '../services/translation.service';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+
+  
 
 interface Band {
   id: number;
@@ -36,6 +39,7 @@ export class LineupComponent implements OnInit, OnDestroy {
   private langSubscription!: Subscription;
   private http = inject(HttpClient);
   private cdRef = inject(ChangeDetectorRef);
+  authService = inject(AuthService);
   private translationService = inject(TranslationService);
 
   ngOnInit(): void {

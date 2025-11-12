@@ -1,4 +1,5 @@
-<section id="Informacion" class="py-20 bg-page" *ngIf="configGlobal.tickets.habilitar">
+<section id="Informacion" class="py-20 bg-page" 
+         *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
       <h2 class="text-5xl font-black mb-6 metal-text text-brand">{{ 'INFORMACION.TITULO' | translate }}</h2>

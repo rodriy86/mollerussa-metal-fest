@@ -1,0 +1,147 @@
+<!-- Sección de Administración - Solo visible para admin -->
+<section *ngIf="authService.isAdmin()" class="admin-section py-16 bg-gray-900/50">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Header de la sección -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-black metal-text text-brand mb-4">
+        {{ 'ADMIN.PANEL_TITULO' | translate }}
+      </h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        {{ 'ADMIN.PANEL_SUBTITULO' | translate }}
+      </p>
+    </div>
+
+    <!-- Información del admin -->
+    <div class="bg-gray-800 border-2 border-brand rounded-lg p-6 mb-8 max-w-md mx-auto">
+      <div class="flex items-center space-x-4">
+        <div class="w-12 h-12 flex items-center justify-center bg-brand rounded-full">
+          <i class="ri-user-star-line text-2xl text-white"></i>
+        </div>
+        <div class="flex-1">
+          <p class="text-white font-semibold">{{ authService.getCurrentUser()?.name }}</p>
+          <p class="text-gray-300 text-sm">{{ authService.getCurrentUser()?.email }}</p>
+          <p class="text-brand text-sm font-bold mt-1">
+            {{ 'ADMIN.ROL' | translate }}: {{ authService.getCurrentUser()?.role | uppercase }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjetas de herramientas admin -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      
+      <!-- Gestión de Usuarios -->
+      <div class="bg-gray-800 border-2 border-red-500 rounded-lg p-6 hover:scale-105 transition-transform cursor-pointer glow-effect"
+           (click)="gestionarUsuarios()">
+        <div class="text-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-red-600 rounded-full mx-auto mb-4">
+            <i class="ri-user-settings-line text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">{{ 'ADMIN.GESTION_USUARIOS' | translate }}</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            {{ 'ADMIN.GESTION_USUARIOS_DESC' | translate }}
+          </p>
+          <div class="text-red-400 text-sm font-semibold">
+            <i class="ri-shield-keyhole-line mr-2"></i>
+            {{ 'ADMIN.SOLO_ADMIN' | translate }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Gestión de Bandas -->
+      <div class="bg-gray-800 border-2 border-purple-500 rounded-lg p-6 hover:scale-105 transition-transform cursor-pointer glow-effect"
+           (click)="gestionarBandas()">
+        <div class="text-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-purple-600 rounded-full mx-auto mb-4">
+            <i class="ri-music-2-line text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">{{ 'ADMIN.GESTION_BANDAS' | translate }}</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            {{ 'ADMIN.GESTION_BANDAS_DESC' | translate }}
+          </p>
+          <div class="text-purple-400 text-sm">
+            <i class="ri-edit-line mr-2"></i>
+            {{ 'ADMIN.EDITAR_CONTENIDO' | translate }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Configuración -->
+      <div class="bg-gray-800 border-2 border-blue-500 rounded-lg p-6 hover:scale-105 transition-transform cursor-pointer glow-effect"
+           (click)="gestionarConfiguracion()">
+        <div class="text-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-blue-600 rounded-full mx-auto mb-4">
+            <i class="ri-settings-3-line text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">{{ 'ADMIN.CONFIGURACION' | translate }}</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            {{ 'ADMIN.CONFIGURACION_DESC' | translate }}
+          </p>
+          <div class="text-blue-400 text-sm font-semibold">
+            <i class="ri-shield-keyhole-line mr-2"></i>
+            {{ 'ADMIN.SOLO_ADMIN' | translate }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Exportar Datos -->
+      <div class="bg-gray-800 border-2 border-green-500 rounded-lg p-6 hover:scale-105 transition-transform cursor-pointer glow-effect"
+           (click)="exportarDatos()">
+        <div class="text-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-green-600 rounded-full mx-auto mb-4">
+            <i class="ri-download-line text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">{{ 'ADMIN.EXPORTAR_DATOS' | translate }}</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            {{ 'ADMIN.EXPORTAR_DATOS_DESC' | translate }}
+          </p>
+          <div class="text-green-400 text-sm">
+            <i class="ri-database-2-line mr-2"></i>
+            {{ 'ADMIN.BACKUP' | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <button>Mostrar seccions ocultes</button>
+
+    <!-- Estadísticas -->
+    <div class="bg-gray-800 border-2 border-brand rounded-lg p-8">
+      <h3 class="text-2xl font-bold text-brand mb-6 text-center">
+        <i class="ri-dashboard-line mr-3"></i>
+        {{ 'ADMIN.ESTADISTICAS' | translate }}
+      </h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center p-6 bg-gray-900 rounded-lg border border-gray-700">
+          <div class="text-3xl font-bold text-brand mb-2">6</div>
+          <div class="text-gray-300 text-sm">{{ 'ADMIN.TOTAL_BANDAS' | translate }}</div>
+          <div class="text-green-400 text-xs mt-1">
+            <i class="ri-arrow-up-line mr-1"></i>+2 esta semana
+          </div>
+        </div>
+        <div class="text-center p-6 bg-gray-900 rounded-lg border border-gray-700">
+          <div class="text-3xl font-bold text-brand mb-2">12</div>
+          <div class="text-gray-300 text-sm">{{ 'ADMIN.TOTAL_NOTICIAS' | translate }}</div>
+          <div class="text-blue-400 text-xs mt-1">
+            <i class="ri-eye-line mr-1"></i>1.2K visitas
+          </div>
+        </div>
+        <div class="text-center p-6 bg-gray-900 rounded-lg border border-gray-700">
+          <div class="text-3xl font-bold text-brand mb-2">4</div>
+          <div class="text-gray-300 text-sm">{{ 'ADMIN.TOTAL_USUARIOS' | translate }}</div>
+          <div class="text-purple-400 text-xs mt-1">
+            <i class="ri-user-line mr-1"></i>2 activos
+          </div>
+        </div>
+        <div class="text-center p-6 bg-gray-900 rounded-lg border border-gray-700">
+          <div class="text-3xl font-bold text-brand mb-2">89%</div>
+          <div class="text-gray-300 text-sm">{{ 'ADMIN.SATISFACCION' | translate }}</div>
+          <div class="text-yellow-400 text-xs mt-1">
+            <i class="ri-star-line mr-1"></i>4.5/5
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

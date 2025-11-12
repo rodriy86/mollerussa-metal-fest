@@ -101,7 +101,7 @@ class GlobalConfig {
   readonly tickets = {
     ventaInicio: 'Próximamente',
     ventaFin: '-',
-    habilitar: true, //habilitar/deshabilitar informacio del festibal, ventad e tiquets, ubicacio, i etc
+    habilitar: false, //habilitar/deshabilitar informacio del festibal, ventad e tiquets, ubicacio, i etc
     precios: {
       primeres100: 80,
       normal: 100,

@@ -1,9 +1,10 @@
 //import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { configGlobal } from '../configGlobal';
 import { RouterModule, Router } from '@angular/router';
 import { TranslatePipe } from '../pipes/translate.pipe';
+import { AuthService } from '../services/auth.service';
 //import { FormAcreditacioComponent } from '../form-acreditacio-component/form-acreditacio-component';
 
 
@@ -16,33 +17,36 @@ import { TranslatePipe } from '../pipes/translate.pipe';
 })
 export class InfoComponent {
   configGlobal = configGlobal;
-  
-  constructor(private router: Router) {}
+
+
+  private router = inject(Router);
+  authService = inject(AuthService);
+
   buyTicket(type: string, price: number) {
     console.log(`Comprando entrada ${type} por ${price}€`);
   }
   navegarAFormulario() {
     this.router.navigate(['/form-acreditacio']);
   }
-/*
-  openPrensaModal() {
-    console.log('🎯 Botón clickeado - llamando a openModal()');
-    if (this.prensaModal) {
-      console.log('✅ prensaModal encontrado');
-      this.prensaModal.openModal();
-    } else {
-      console.log('❌ prensaModal es undefined');
-    }
-  }*/
-/*
-  testClick() {
-    console.log('🎯 testClick() EJECUTADO - El botón funciona');
-    
-    if (this.prensaModal) {
-      console.log('✅ prensaModal encontrado, llamando openModal()');
-      this.prensaModal.openModal();
-    } else {
-      console.log('❌ prensaModal es undefined');
-    }
-  }*/
+  /*
+    openPrensaModal() {
+      console.log('🎯 Botón clickeado - llamando a openModal()');
+      if (this.prensaModal) {
+        console.log('✅ prensaModal encontrado');
+        this.prensaModal.openModal();
+      } else {
+        console.log('❌ prensaModal es undefined');
+      }
+    }*/
+  /*
+    testClick() {
+      console.log('🎯 testClick() EJECUTADO - El botón funciona');
+      
+      if (this.prensaModal) {
+        console.log('✅ prensaModal encontrado, llamando openModal()');
+        this.prensaModal.openModal();
+      } else {
+        console.log('❌ prensaModal es undefined');
+      }
+    }*/
 }

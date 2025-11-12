@@ -26,11 +26,11 @@
         {{ 'HEADER.NOTICIAS' | translate }}
       </a>
       <a (click)="scrollTo('Lineup')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium"  *ngIf="configGlobal.tickets.habilitar">
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium"  *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()">
         {{ 'HEADER.LINEUP' | translate }}
       </a>
       <a (click)="scrollTo('Informacion')"
-        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium"  *ngIf="configGlobal.tickets.habilitar">
+        class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium"  *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()">
         {{ 'HEADER.INFORMACION' | translate }}
       </a>
       <!--<a (click)="scrollTo('Ubicacion')"
@@ -118,11 +118,11 @@
         {{ 'HEADER.NOTICIAS' | translate }}
       </a>
       <a (click)="scrollTo('Lineup'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom"  *ngIf="configGlobal.tickets.habilitar">
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom"  *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()">
         {{ 'HEADER.LINEUP' | translate }}
       </a>
       <a (click)="scrollTo('Informacion'); toggleMenu();"
-        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom"  *ngIf="configGlobal.tickets.habilitar">
+        class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom"  *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()">
         {{ 'HEADER.INFORMACION' | translate }}
       </a>
       <!--<a (click)="scrollTo('Ubicacion'); toggleMenu();"

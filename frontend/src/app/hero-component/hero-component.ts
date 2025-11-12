@@ -4,6 +4,7 @@ import { configGlobal } from '../configGlobal';
 import { TranslationService } from '../services/translation.service';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-hero',
@@ -16,6 +17,7 @@ export class HeroComponent {
   private translationService = inject(TranslationService); 
   configGlobal = configGlobal;
 
+    authService = inject(AuthService);
   constructor(private router: Router) { }
 
   getFormattedDate(): string {

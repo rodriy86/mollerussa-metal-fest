@@ -8,6 +8,7 @@ import { InfoComponent } from '../info-component/info-component';
 //import { TiendaComponent } from '../tienda-component/tienda-component';
 //import { MapaRecinto } from '../mapaRecinto-component/mapa-recinto';
 import { UbicacionComponent } from '../ubicacion-component/ubicacion';
+//import { AdminComponent } from "../admin-component/admin-component";
 //import { GaleriaComponent } from '../galeria-component/galeria-component';
 //import { FooterComponent } from '../footer-component/footer-component';
 
@@ -26,8 +27,8 @@ import { UbicacionComponent } from '../ubicacion-component/ubicacion';
     //MapaRecinto,
     //FooterComponent,
     UbicacionComponent,
-    //GaleriaComponent
-  ],
+    //AdminComponent
+],
   templateUrl: './inici-component.html',
   styleUrl: './inici-component.scss'
 })
