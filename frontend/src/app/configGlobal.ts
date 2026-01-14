@@ -22,8 +22,8 @@ class GlobalConfig {
   }
 
   readonly availableLanguages = [
-    { code: 'es', name: 'Español', flag: 'fi fi-es fis' },
     { code: 'ca', name: 'Català', flag: 'catalan-flag' },
+    { code: 'es', name: 'Español', flag: 'fi fi-es fis' },    
     { code: 'en', name: 'English', flag: 'fi fi-gb fis' }
   ];
 
