@@ -1,6 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { configGlobal } from '../configGlobal';
 
 export interface Translation {
   [key: string]: string | Translation;
@@ -16,7 +17,7 @@ export class TranslationService {
   private translations = signal<{ [lang: string]: Translation }>({});
   
   // ✅ AÑADIDO: Observable para cambios de idioma
-  private currentLangSubject = new BehaviorSubject<string>('es');
+  private currentLangSubject = new BehaviorSubject<string>(configGlobal.currentLanguage);
   public currentLang$: Observable<string> = this.currentLangSubject.asObservable();
   
   // Señal para forzar actualizaciones
