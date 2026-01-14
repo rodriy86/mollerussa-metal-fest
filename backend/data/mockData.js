@@ -135,7 +135,7 @@ export const mockData = {
   ],
 
   noticias: [
-    {
+    /*{
       id: 1,
       fecha: '1 Febrero 2026',
       fecha_ca: '1 Febrer 2026',
@@ -160,7 +160,7 @@ export const mockData = {
       textoEnlace_ca: 'Leer más',
       textoEnlace_en: 'See more',
       created_at: '2026-01-15 09:00:00'
-    }
+    }*/
   ],
 
   // Detalles de noticias - Tabla relacionada
@@ -171,7 +171,7 @@ export const mockData = {
       fecha: '1 Febrero 2026',
       fecha_ca: '1 Febrer 2026',
       fecha_en: 'February 1, 2026',
-      categoria: 'Eventos',
+      categoria: 'Eventos',/**/
       categoria_ca: 'Esdeveniments',
       categoria_en: 'Events',
       titulo: 'Dinar solidari',

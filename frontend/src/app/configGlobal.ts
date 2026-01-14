@@ -5,7 +5,7 @@ class GlobalConfig {
   private readonly baseUrl = this.isDev ? 'http://localhost:3000' : '';
 
   // ==================== CONFIGURACIÓN DE IDIOMA ====================
-  private _currentLanguage = 'es'; // Idioma por defecto
+  private _currentLanguage = 'ca'; // Idioma por defecto
 
   get currentLanguage(): string {
     // Intentar cargar del localStorage al acceder
@@ -32,7 +32,7 @@ class GlobalConfig {
     nombre1: 'Mollerussa',
     nombre2: 'Metalfest',
     nombreCompleto: 'Mollerussa Metal Fest ',
-    eslogan: 'El festival de metal de referencia en Lleida',
+    //eslogan: 'El festival de metal de referencia en Lleida',
     NIF: "00000000#",
     ubicacion: {
       nombreRecinto: 'Teatre La Amistat',
@@ -44,7 +44,7 @@ class GlobalConfig {
     capacidad: '550',
     edicion: '3ª Edición',
     anyo: 2026,
-    fechaInicio: '2026-07-15',
+    fechaInicio: '2026-10-03',
     fechaFin: '',
     dias: ['Sabado', '-'],
     horario: {
