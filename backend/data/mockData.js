@@ -1,6 +1,6 @@
 export const mockData = {
   bands: [
-    {
+    /*{
       id: 1,
       name: 'IRON STORM',
       name_ca: 'IRON STORM',
@@ -131,7 +131,7 @@ export const mockData = {
       year: 2020,
       created_at: '2024-01-15 10:00:00',
       updated_at: '2024-01-15 10:00:00'
-    }
+    }*/
   ],
 
   noticias: [
