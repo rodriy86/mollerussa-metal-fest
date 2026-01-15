@@ -33,10 +33,10 @@
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium"  *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()">
         {{ 'HEADER.INFORMACION' | translate }}
       </a>
-      <!--<a (click)="scrollTo('Ubicacion')"
+      <a (click)="scrollTo('Ubicacion')"
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
         {{ 'HEADER.UBICACION' | translate }}
-      </a>-->
+      </a>
       <a (click)="scrollTo('contacto')"
         class="cursor-pointer text-secondary hover-text-brand transition-colors font-medium">
         {{ 'HEADER.CONTACTO' | translate }}
@@ -125,10 +125,10 @@
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom"  *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()">
         {{ 'HEADER.INFORMACION' | translate }}
       </a>
-      <!--<a (click)="scrollTo('Ubicacion'); toggleMenu();"
+      <a (click)="scrollTo('Ubicacion'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
         {{ 'HEADER.UBICACION' | translate }}
-      </a>-->
+      </a>
       <a (click)="scrollTo('contacto'); toggleMenu();"
         class="cursor-pointer text-primary hover-text-brand transition-colors font-medium py-3 text-lg border-b border-custom">
         {{ 'HEADER.CONTACTO' | translate }}
