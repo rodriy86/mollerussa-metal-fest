@@ -117,8 +117,19 @@
                       <span class="text-secondary mr-2">{{ 'DETALLE_BANDA.HORARIO' | translate }}:</span>
                       <span class="text-primary font-medium">{{ band.schedule }}</span>
                     </div>
+                    <div class="flex items-center" *ngIf="band.spotify">
+                      <a [href]="band.spotify"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group"
+                        [title]="'DETALLE_BANDA.ABRIR_SPOTIFY' | translate">
+                        <i class="ri-spotify-fill text-3xl text-[#1DB954] group-hover:text-[#1ed760] group-hover:scale-110 transition-all duration-300"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
+                
+
                 
                 <!-- Espacio para información adicional futura -->
                 <!--<div class="bg-card rounded-lg p-6 border border-custom flex items-center justify-center">
