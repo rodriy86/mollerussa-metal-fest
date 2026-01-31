@@ -215,7 +215,7 @@
     "CARGANDO": "Loading bands...",
     "REINTENTAR": "Retry"
   },
-  "BAND_DETAIL": {
+  "DETALLE_BANDA": {
     "VOLVER_LINEUP": "Back to Lineup",
     "CARGANDO": "Loading band...",
     "CARGANDO_DESCRIPCION": "We're loading the information for you",
