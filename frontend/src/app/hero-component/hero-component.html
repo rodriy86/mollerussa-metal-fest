@@ -20,20 +20,20 @@
       </p> FORA -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center"> <!-- Añadido justify-center -->
         <!--Boto informacio-->
-        <button (click)="scrollTo('Informacion')" *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()"
+        <!--<button (click)="scrollTo('Informacion')" *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()"
           class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
           {{ 'HERO.MORE_INFO_BUTTON' | translate }}
-        </button>
+        </button>-->
         <!--Boto Lineup-->
-        <button (click)="scrollTo('Lineup')" *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()"
+        <!--<button (click)="scrollTo('Lineup')" *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()"
           class="btn-outline-brand px-8 py-4 rounded-lg font-bold text-lg whitespace-nowrap transform hover:scale-105">
           {{ 'HERO.LINEUP_BUTTON' | translate }}
-        </button>
+        </button>-->
         <!-- 🍽️Boto dinar-->
-        <button (click)="navigateToComidaSolidaria()" *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()"
+        <!--<button (click)="navigateToComidaSolidaria()" *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()"
           class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
           {{'HERO.MENJAR_SOLIDARI' | translate}}
-        </button>
+        </button>-->
       </div>
     </div>
   </div>

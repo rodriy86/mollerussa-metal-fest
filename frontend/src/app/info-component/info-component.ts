@@ -21,6 +21,7 @@ export class InfoComponent {
 
   private router = inject(Router);
   authService = inject(AuthService);
+  public window = window;
 
   buyTicket(type: string, price: number) {
     console.log(`Comprando entrada ${type} por ${price}€`);
@@ -28,6 +29,11 @@ export class InfoComponent {
   navegarAFormulario() {
     this.router.navigate(['/form-acreditacio']);
   }
+  comprarEntrada() {
+  // Esto abrirá en la MISMA ventana
+  //window.location.href = 'https://entradium.com/events/mollerussa-metal-fest-2026-mollerussa';
+    window.location.href = this.configGlobal.tickets.urlTikets;
+}
   /*
     openPrensaModal() {
       console.log('🎯 Botón clickeado - llamando a openModal()');

@@ -99,9 +99,10 @@ class GlobalConfig {
 
   // ==================== TICKETS Y PRECIOS ====================
   readonly tickets = {
-    ventaInicio: 'Próximamente',
+    ventaInicio: '✅',
     ventaFin: '-',
-    habilitar: false, //habilitar/deshabilitar informacio del festibal, ventad e tiquets, ubicacio, i etc
+    habilitar: true, //habilitar/deshabilitar informacio del festibal, ventad e tiquets, ubicacio, i etc
+    urlTikets:"https://entradium.com/events/mollerussa-metal-fest-2026-mollerussa",
     precios: {
       primeres100: 80,
       normal: 100,

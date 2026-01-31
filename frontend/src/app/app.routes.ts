@@ -25,7 +25,7 @@ export const routes: Routes = [
   { 
     path: 'form-acreditacio', 
     component: FormAcreditacioComponent,
-    canActivate: [authGuard]  // ← Solo usuarios autenticados
+    //canActivate: [authGuard]  // ← Solo usuarios autenticados
   },
 
   // === RUTA DE FALLBACK ===
