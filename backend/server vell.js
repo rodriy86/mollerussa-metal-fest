@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 import { mockData, getBandById, getDetalleNoticiaById} from './data/mockData.js';
 import dotenv from 'dotenv';
 
-
 dotenv.config();
 
 // Configuración de paths
@@ -224,6 +223,7 @@ const apiHandlers = {
 },
 
 //Endpoint de login
+  // ✅ ENDPOINT LOGIN CORREGIDO - Reemplaza el que tienes actualmente
 '/api/auth/login': (req, res) => {
   if (req.method !== 'POST') {
     return sendError(res, 405, 'Método no permitido');
@@ -396,119 +396,67 @@ const apiHandlers = {
   },
 
   // Endpoint POST para comida solidaria
-'/api/comida-solidaria': async (req, res) => {
-  if (req.method !== 'POST') {
-    return sendError(res, 405, 'Mètode no permès');
-  }
+  '/api/comida-solidaria': async (req, res) => {
+    if (req.method !== 'POST') {
+      return sendError(res, 405, 'Mètode no permès');
+    }
 
-  let body = '';
-
-  req.on('data', chunk => {
-    body += chunk.toString();
-  });
-
-  req.on('end', async () => {
     try {
-      // 1. PARSEAR DATOS
-      const formData = JSON.parse(body);
+      let body = '';
 
-      // 2. VALIDACIÓN
-      const requiredFields = ['nombre', 'apellidos', 'dni'];
-      const missingFields = requiredFields.filter(field => !formData[field]);
-      
-      if (missingFields.length > 0) {
-        return sendError(res, 400, `Falten camps obligatoris: ${missingFields.join(', ')}`);
-      }
+      req.on('data', chunk => {
+        body += chunk.toString();
+      });
 
-      // 3. CALCULAR TOTAL
-      let totalCalculado = Number(formData.preuTotal) || 0;
-      if (!formData.preuTotal || totalCalculado === 0) {
-        const precioPorPlato = 10;
-        const donacionCancer = 2;
-        
-        const plato1 = Number(formData.plato1) || 0;
-        const platoVegetariano = Number(formData.platoVegetariano) || 0;
-        const platoCeliacos = Number(formData.platoCeliacos) || 0;
-        const platoInfantil = Number(formData.platoInfantil) || 0;
-        
-        const totalPlatos = (plato1 + platoVegetariano + platoCeliacos + platoInfantil) * precioPorPlato;
-        totalCalculado = totalPlatos;
-        
-        if (formData.donacionCancer) {
-          totalCalculado += donacionCancer;
-        }
-      }
-
-      // 4. PREPARAR DATOS PARA GOOGLE SHEETS
-      const sheetsData = {
-        nombre: String(formData.nombre || ''),
-        apellidos: String(formData.apellidos || ''),
-        dni: String(formData.dni || ''),
-        poblacion: String(formData.poblacion || ''),
-        telefono: String(formData.telefono || ''),
-        email: String(formData.email || ''),
-        plat_llongonissa: Number(formData.plato1) || 0,
-        plat_escalivada: Number(formData.platoVegetariano) || 0,
-        preuTotal: Number(totalCalculado) || 0
-      };
-
-      // 5. ENVIAR A GOOGLE SHEETS
-      let sheetsSuccess = false;
-      let sheetsResponse = null;
-      
-      try {
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxtweNdgZxp4Fd5PmWITG2E_w8P3CkVs9WFTi9QtjRiP84rdSGAoV5JXForsO_e10eA/exec';
-        
-        const response = await fetch(googleScriptUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(sheetsData)
-        });
-
-        const resultText = await response.text();
-        
+      req.on('end', async () => {
         try {
-          sheetsResponse = JSON.parse(resultText);
-          sheetsSuccess = sheetsResponse.success === true;
-        } catch {
-          sheetsSuccess = resultText.toLowerCase().includes('éxito') || 
-                         resultText.toLowerCase().includes('success');
-        }
+          const formData = JSON.parse(body);
 
-      } catch (sheetsError) {
-        console.error('Error Google Sheets:', sheetsError.message);
-      }
+          if (!formData.nombre || !formData.apellidos || !formData.dni) {
+            return sendError(res, 400, 'Dades incompletes');
+          }
 
-      // 6. ENVIAR EMAIL
-      let emailSent = false;
-      let emailResult = null;
-      
-      try {
-        formData.preuTotal = totalCalculado;
-        emailResult = await enviarEmailComidaSolidaria(formData);
-        emailSent = emailResult.success === true;
+          // Enviar a Google Sheets
+          try {
+            const googleSheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbyv_xCvO3UucfIQ033ZsQnK-hNwOW3DKp6HxUjQteGO08ImgpqqvzK0qbtYPwaiFLpL/exec', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'text/plain',
+              },
+              body: JSON.stringify(formData)
+            });
 
-      } catch (emailError) {
-        console.error('Error email:', emailError.message);
-      }
+            if (!googleSheetsResponse.ok) {
+              throw new Error(`HTTP error! status: ${googleSheetsResponse.status}`);
+            }
 
-      // 7. RESPONDER
-      sendJson(res, {
-        success: true,
-        message: 'Reserva procesada correctament',
-        details: {
-          emailSent: emailSent,
-          sheetsSaved: sheetsSuccess,
-          total: totalCalculado
+            const sheetsResult = await googleSheetsResponse.json();
+
+            if (!sheetsResult.success) {
+              throw new Error('Error guardant a Google Sheets: ' + (sheetsResult.error || 'Unknown error'));
+            }
+
+          } catch (error) {
+            console.error('Error con Google Sheets:', error.message);
+          }
+
+          // Enviar email de confirmación
+          await enviarEmailComidaSolidaria(formData);
+
+          sendJson(res, {
+            success: true,
+            message: 'Reserva enviada correctament i guardada a Google Sheets'
+          });
+
+        } catch (error) {
+          sendError(res, 500, 'Error intern del servidor');
         }
       });
 
     } catch (error) {
-      console.error('Error procesando reserva:', error.message);
-      sendError(res, 500, `Error del servidor: ${error.message}`);
+      sendError(res, 500, 'Error intern del servidor');
     }
-  });
-},
+  },
 
   // Otros endpoints básicos
   '/api/events': (req, res) => sendJson(res, mockData.events || []),
@@ -608,11 +556,11 @@ const enviarEmailComidaSolidaria = async (formData) => {
     );
 
     const donacion = formData.donacionCancer ? 2 : 0;
-    const preuTotal = formData.preuTotal || 0; 
+    const preuTotal = formData.preuTotal;
 
     const mailOptions = {
       from: `"Mollerussa Metal Fest" <info.mmf973@gmail.com>`,
-      to: 'info.mmf973@gmail.com',
+      to: 'rodriy86@gmail.com',
       subject: `🍽️ NOVA RESERVA DINAR SOLIDARI - ${formData.nombre} ${formData.apellidos}`,
       html: `
         <!DOCTYPE html>
