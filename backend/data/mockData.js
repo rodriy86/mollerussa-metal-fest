@@ -354,8 +354,8 @@ export const mockData = {
   User: [
     {
       id: 1,
-      email: 'admin@mollerussametalfest.com',
-      password: 'metal2024',
+      email: 'info.mmf973@gmail.com',
+      password: 'PutaEspanya973',
       name: 'Administrador Principal',
       role: 'admin',
       isActive: true
