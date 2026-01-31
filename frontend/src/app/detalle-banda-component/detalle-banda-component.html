@@ -62,21 +62,14 @@
               <span class="text-secondary">{{ band.schedule }}</span>
             </div>
             <h1 class="text-4xl md:text-6xl font-black metal-text mb-4">{{ band.name }}</h1>
-            <p class="text-xl text-secondary max-w-3xl" *ngIf="band.description">{{ band.description }}</p>
+            <!--<p class="text-xl text-secondary max-w-3xl" *ngIf="band.description">{{ band.description }}</p>-->
           </div>
         </section>
 
         <!-- Metadatos -->
         <div class="flex items-center justify-between py-6 border-b border-custom">
           <div class="flex items-center space-x-6 text-muted">
-            <div class="flex items-center">
-              <i class="ri-music-2-line text-brand mr-2"></i>
-              <span>{{ band.genre }}</span>
-            </div>
-            <div class="flex items-center">
-              <i class="ri-time-line text-brand mr-2"></i>
-              <span>{{ band.schedule }}</span>
-            </div>
+            <span>Per: {{ band.autor }}</span>
           </div>
 
           <button (click)="compartirBanda()" class="flex items-center text-muted hover-text-brand transition-colors">

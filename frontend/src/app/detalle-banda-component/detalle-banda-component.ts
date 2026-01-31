@@ -14,6 +14,7 @@ interface Band {
   genre: string;
   image: string;
   description: string;
+  autor: string;
   country: string;
   year: number;
   created_at?: string;
@@ -85,7 +86,8 @@ export class DetalleBandaComponent implements OnInit, OnDestroy {
           name: band.name,
           schedule: band.schedule,
           genre: band.genre,
-          country: band.country
+          country: band.country,
+          autor: band.autor
         });
         this.band = band;
         this.isLoading = false;
