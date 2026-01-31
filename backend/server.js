@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { mockData, getBandById, getDetalleNoticiaById} from './data/mockData.js';
 import dotenv from 'dotenv';
 
+
 dotenv.config();
 
 // Configuración de paths
@@ -46,9 +47,9 @@ const getLanguageFromRequest = (req) => {
     const url = new URL(fullUrl);
     const langParam = url.searchParams.get('lang');
     const supportedLangs = ['es', 'ca', 'en'];
-    return supportedLangs.includes(langParam) ? langParam : 'es';
+    return supportedLangs.includes(langParam) ? langParam : 'ca';
   } catch (error) {
-    return 'es';
+    return 'ca';
   }
 };
 
@@ -63,7 +64,7 @@ const enviarEmailAcreditacion = async (formData) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rodriy86.maps@gmail.com',
+        user: 'info.mmf973@gmail.com',
         pass: process.env.GMAIL_APP_PASSWORD
       }
     });
@@ -75,7 +76,7 @@ const enviarEmailAcreditacion = async (formData) => {
       : 'No especificat';
 
     const mailOptions = {
-      from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
+      from: `"Mollerussa Metal Fest" <info.mmf973@gmail.com>`,
       to: 'rodriy86@gmail.com',
       subject: `🔴SOLICITUT D'ACREDITACIÓ - ${formData.tipo} - ${formData.nombre}🔴`,
       html: `
@@ -223,7 +224,6 @@ const apiHandlers = {
 },
 
 //Endpoint de login
-  // ✅ ENDPOINT LOGIN CORREGIDO - Reemplaza el que tienes actualmente
 '/api/auth/login': (req, res) => {
   if (req.method !== 'POST') {
     return sendError(res, 405, 'Método no permitido');
@@ -396,67 +396,119 @@ const apiHandlers = {
   },
 
   // Endpoint POST para comida solidaria
-  '/api/comida-solidaria': async (req, res) => {
-    if (req.method !== 'POST') {
-      return sendError(res, 405, 'Mètode no permès');
-    }
+'/api/comida-solidaria': async (req, res) => {
+  if (req.method !== 'POST') {
+    return sendError(res, 405, 'Mètode no permès');
+  }
 
+  let body = '';
+
+  req.on('data', chunk => {
+    body += chunk.toString();
+  });
+
+  req.on('end', async () => {
     try {
-      let body = '';
+      // 1. PARSEAR DATOS
+      const formData = JSON.parse(body);
 
-      req.on('data', chunk => {
-        body += chunk.toString();
-      });
+      // 2. VALIDACIÓN
+      const requiredFields = ['nombre', 'apellidos', 'dni'];
+      const missingFields = requiredFields.filter(field => !formData[field]);
+      
+      if (missingFields.length > 0) {
+        return sendError(res, 400, `Falten camps obligatoris: ${missingFields.join(', ')}`);
+      }
 
-      req.on('end', async () => {
+      // 3. CALCULAR TOTAL
+      let totalCalculado = Number(formData.preuTotal) || 0;
+      if (!formData.preuTotal || totalCalculado === 0) {
+        const precioPorPlato = 10;
+        const donacionCancer = 2;
+        
+        const plato1 = Number(formData.plato1) || 0;
+        const platoVegetariano = Number(formData.platoVegetariano) || 0;
+        const platoCeliacos = Number(formData.platoCeliacos) || 0;
+        const platoInfantil = Number(formData.platoInfantil) || 0;
+        
+        const totalPlatos = (plato1 + platoVegetariano + platoCeliacos + platoInfantil) * precioPorPlato;
+        totalCalculado = totalPlatos;
+        
+        if (formData.donacionCancer) {
+          totalCalculado += donacionCancer;
+        }
+      }
+
+      // 4. PREPARAR DATOS PARA GOOGLE SHEETS
+      const sheetsData = {
+        nombre: String(formData.nombre || ''),
+        apellidos: String(formData.apellidos || ''),
+        dni: String(formData.dni || ''),
+        poblacion: String(formData.poblacion || ''),
+        telefono: String(formData.telefono || ''),
+        email: String(formData.email || ''),
+        plat_llongonissa: Number(formData.plato1) || 0,
+        plat_escalivada: Number(formData.platoVegetariano) || 0,
+        preuTotal: Number(totalCalculado) || 0
+      };
+
+      // 5. ENVIAR A GOOGLE SHEETS
+      let sheetsSuccess = false;
+      let sheetsResponse = null;
+      
+      try {
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxtweNdgZxp4Fd5PmWITG2E_w8P3CkVs9WFTi9QtjRiP84rdSGAoV5JXForsO_e10eA/exec';
+        
+        const response = await fetch(googleScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sheetsData)
+        });
+
+        const resultText = await response.text();
+        
         try {
-          const formData = JSON.parse(body);
+          sheetsResponse = JSON.parse(resultText);
+          sheetsSuccess = sheetsResponse.success === true;
+        } catch {
+          sheetsSuccess = resultText.toLowerCase().includes('éxito') || 
+                         resultText.toLowerCase().includes('success');
+        }
 
-          if (!formData.nombre || !formData.apellidos || !formData.dni) {
-            return sendError(res, 400, 'Dades incompletes');
-          }
+      } catch (sheetsError) {
+        console.error('Error Google Sheets:', sheetsError.message);
+      }
 
-          // Enviar a Google Sheets
-          try {
-            const googleSheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbyv_xCvO3UucfIQ033ZsQnK-hNwOW3DKp6HxUjQteGO08ImgpqqvzK0qbtYPwaiFLpL/exec', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'text/plain',
-              },
-              body: JSON.stringify(formData)
-            });
+      // 6. ENVIAR EMAIL
+      let emailSent = false;
+      let emailResult = null;
+      
+      try {
+        formData.preuTotal = totalCalculado;
+        emailResult = await enviarEmailComidaSolidaria(formData);
+        emailSent = emailResult.success === true;
 
-            if (!googleSheetsResponse.ok) {
-              throw new Error(`HTTP error! status: ${googleSheetsResponse.status}`);
-            }
+      } catch (emailError) {
+        console.error('Error email:', emailError.message);
+      }
 
-            const sheetsResult = await googleSheetsResponse.json();
-
-            if (!sheetsResult.success) {
-              throw new Error('Error guardant a Google Sheets: ' + (sheetsResult.error || 'Unknown error'));
-            }
-
-          } catch (error) {
-            console.error('Error con Google Sheets:', error.message);
-          }
-
-          // Enviar email de confirmación
-          await enviarEmailComidaSolidaria(formData);
-
-          sendJson(res, {
-            success: true,
-            message: 'Reserva enviada correctament i guardada a Google Sheets'
-          });
-
-        } catch (error) {
-          sendError(res, 500, 'Error intern del servidor');
+      // 7. RESPONDER
+      sendJson(res, {
+        success: true,
+        message: 'Reserva procesada correctament',
+        details: {
+          emailSent: emailSent,
+          sheetsSaved: sheetsSuccess,
+          total: totalCalculado
         }
       });
 
     } catch (error) {
-      sendError(res, 500, 'Error intern del servidor');
+      console.error('Error procesando reserva:', error.message);
+      sendError(res, 500, `Error del servidor: ${error.message}`);
     }
-  },
+  });
+},
 
   // Otros endpoints básicos
   '/api/events': (req, res) => sendJson(res, mockData.events || []),
@@ -538,7 +590,7 @@ const enviarEmailComidaSolidaria = async (formData) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rodriy86.maps@gmail.com',
+        user: 'info.mmf973@gmail.com',
         pass: process.env.GMAIL_APP_PASSWORD
       }
     });
@@ -556,11 +608,11 @@ const enviarEmailComidaSolidaria = async (formData) => {
     );
 
     const donacion = formData.donacionCancer ? 2 : 0;
-    const totalFinal = subtotal + donacion;
+    const preuTotal = formData.preuTotal || 0; 
 
     const mailOptions = {
-      from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
-      to: 'rodriy86@gmail.com',
+      from: `"Mollerussa Metal Fest" <info.mmf973@gmail.com>`,
+      to: 'info.mmf973@gmail.com',
       subject: `🍽️ NOVA RESERVA DINAR SOLIDARI - ${formData.nombre} ${formData.apellidos}`,
       html: `
         <!DOCTYPE html>
@@ -592,17 +644,8 @@ const enviarEmailComidaSolidaria = async (formData) => {
             </div>
 
             <div class="section">
-              <h3>👥 Persones majors de 12 anys: ${formData.numMayores}</h3>
-              <p><span class="label">Plat Únic 1 (10€):</span> ${formData.mayoresPlato1 || 0}</p>
-              <p><span class="label">Plat Únic 2 (11€):</span> ${formData.mayoresPlato2 || 0}</p>
-              <p><span class="label">Cafè (2€):</span> ${formData.mayoresCafe || 0}</p>
-              <p><span class="label">Bermut (5€):</span> ${formData.mayoresBermut || 0}</p>
-            </div>
-
-            <div class="section">
-              <h3>🧒 Persones menors de 12 anys: ${formData.numMenores}</h3>
-              <p><span class="label">Plat Únic 1 (10€):</span> ${formData.menoresPlato1 || 0}</p>
-              <p><span class="label">Plat Únic 2 (11€):</span> ${formData.menoresPlato2 || 0}</p>
+              <p><span class="label">Plat llongonissa (10€):</span> ${formData.plato1 || 0}</p>
+              <p><span class="label">Plat Escalivada (10€):</span> ${formData.platoVegetariano || 0}</p>
             </div>
 
             ${donacion > 0 ? `
@@ -614,14 +657,14 @@ const enviarEmailComidaSolidaria = async (formData) => {
             ` : ''}
 
             <div class="total">
-              💰 TOTAL: ${totalFinal} €
+              💰 TOTAL: ${preuTotal} €
               ${donacion > 0 ? `<br><small>(Inclou ${donacion}€ de donació solidària)</small>` : ''}
             </div>
 
             <div class="section">
               <h3>📅 Informació de la Reserva</h3>
               <p><span class="label">Data:</span> ${new Date().toLocaleString('ca-ES')}</p>
-              <p><span class="label">Inclou donació:</span> ${formData.donacionCancer ? 'SÍ ✅' : 'NO'}</p>
+              <!--<p><span class="label">Inclou donació:</span> ${formData.donacionCancer ? 'SÍ ✅' : 'NO'}</p>-->
             </div>
           </div>
 

@@ -29,8 +29,12 @@
           class="btn-outline-brand px-8 py-4 rounded-lg font-bold text-lg whitespace-nowrap transform hover:scale-105">
           {{ 'HERO.LINEUP_BUTTON' | translate }}
         </button>
-        <!-- 🍽️Boto dinar-->
+        <!-- 🍽️Boto dinar
         <button (click)="navigateToComidaSolidaria()" *ngIf="configGlobal.tickets.habilitar || authService.isAdmin()"
+          class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
+          {{'HERO.MENJAR_SOLIDARI' | translate}}
+        </button>-->
+        <button (click)="navigateToComidaSolidaria()"
           class="btn-brand px-8 py-4 rounded-lg font-bold text-lg glow-effect whitespace-nowrap transform hover:scale-105">
           {{'HERO.MENJAR_SOLIDARI' | translate}}
         </button>

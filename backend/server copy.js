@@ -1,35 +1,28 @@
-// server.js - SERVIDOR MOLLERUSSA METAL FEST CON TRADUCCIONES
+// server.js - SERVIDOR MOLLERUSSA METAL FEST
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { 
-  mockData, 
-  getBandById, 
-  getDetalleNoticiaById, 
-  getAllNoticias,
-  getAllBands,
-  getTickets,
-  getLineupCompleto
-} from './data/mockData.js';
+import { mockData, getBandById, getDetalleNoticiaById} from './data/mockData.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Configuración de paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const PORT = process.env.PORT || 3000;
 const angularPath = path.join(__dirname, '../frontend/dist/mmf-web/browser');
+//const authRoutes = require('./src/routes/authRoutes');
 
-// Configuración
+// Tipos MIME para archivos estáticos
 const mimeTypes = {
   '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css',
   '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon'
 };
 
-// Utilidades
+// Utilidades de respuesta
 const sendJson = (res, data) => {
   res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
   res.end(JSON.stringify(data));
@@ -40,6 +33,7 @@ const sendError = (res, code, message) => {
   res.end(JSON.stringify({ error: message }));
 };
 
+// Extraer ID de la URL para endpoints con parámetros
 const extractIdFromUrl = (url) => {
   const match = url.match(/\/(\d+)(?:\/|$)/);
   return match ? parseInt(match[1]) : null;
@@ -47,9 +41,19 @@ const extractIdFromUrl = (url) => {
 
 // Obtener idioma desde query parameters
 const getLanguageFromRequest = (req) => {
-  const url = new URL(req.url, `http://${req.headers.host}`);
-  return url.searchParams.get('lang') || 'es'; // Por defecto español
+  try {
+    const fullUrl = `http://${req.headers.host}${req.url}`;
+    const url = new URL(fullUrl);
+    const langParam = url.searchParams.get('lang');
+    const supportedLangs = ['es', 'ca', 'en'];
+    return supportedLangs.includes(langParam) ? langParam : 'ca';
+  } catch (error) {
+    return 'ca';
+  }
 };
+
+const USERS = mockData.User;
+
 
 // Enviar email de acreditación
 const enviarEmailAcreditacion = async (formData) => {
@@ -59,7 +63,7 @@ const enviarEmailAcreditacion = async (formData) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rodriy86.maps@gmail.com',
+        user: 'info.mmf973@gmail.com',
         pass: process.env.GMAIL_APP_PASSWORD
       }
     });
@@ -71,7 +75,7 @@ const enviarEmailAcreditacion = async (formData) => {
       : 'No especificat';
 
     const mailOptions = {
-      from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
+      from: `"Mollerussa Metal Fest" <info.mmf973@gmail.com>`,
       to: 'rodriy86@gmail.com',
       subject: `🔴SOLICITUT D'ACREDITACIÓ - ${formData.tipo} - ${formData.nombre}🔴`,
       html: `
@@ -153,42 +157,167 @@ const enviarEmailAcreditacion = async (formData) => {
     throw error;
   }
 };
+/*
+const USERS = [
+  {
+    id: 3,
+      email: 'admin@mmf.cat',
+      password: 'a1234',
+      name: 'Administrador',
+      role: 'admin',
+      isActive: true
+  }]*/
 
-// Handlers de API CON TRADUCCIONES
+// Handlers de API endpoints
 const apiHandlers = {
-  // Bandas con traducción
+  // Endpoint para obtener todas las bandas
+  //'/api/bands': (req, res) => sendJson(res, mockData.bands),
   '/api/bands': (req, res) => {
     const lang = getLanguageFromRequest(req);
-    const bands = getAllBands(lang);
-    sendJson(res, bands);
-  },
-  
-  '/api/bands/:id': (req, res) => {
-    const id = extractIdFromUrl(req.url);
-    const lang = getLanguageFromRequest(req);
-    const band = id && getBandById(id, lang);
-    band ? sendJson(res, band) : sendError(res, 404, 'Banda no encontrada');
+
+    const bandsTraducidas = mockData.bands.map(band => {
+      const translated = { ...band };
+      ['name', 'schedule', 'genre', 'description', 'country'].forEach(field => {
+        translated[field] = band[`${field}_${lang}`] || band[field];
+      });
+      return translated;
+    });
+    sendJson(res, bandsTraducidas);
   },
 
-  // Noticias con traducción
+  // Endpoint para obtener banda por ID
+  /*'/api/bands/:id': (req, res) => {
+    const id = extractIdFromUrl(req.url);
+    const band = id && getBandById(id);
+    band ? sendJson(res, band) : sendError(res, 404, 'Banda no encontrada');
+  },*/
+  // Endpoint para obtener banda por ID
+// Endpoint para obtener banda por ID
+'/api/bands/:id': (req, res) => {
+  const id = extractIdFromUrl(req.url);
+  const lang = getLanguageFromRequest(req);
+  
+  console.log('🌐 [SERVER] Solicitud de banda ID:', id, 'en idioma:', lang);
+  
+  if (!id || isNaN(id)) {
+    return sendError(res, 400, 'ID de banda inválido');
+  }
+  
+  const band = mockData.bands.find(band => band.id === id);
+  
+  if (!band) {
+    return sendError(res, 404, 'Banda no encontrada');
+  }
+  
+  // Traducir la banda
+  const bandaTraducida = {
+    ...band,
+    name: band[`name_${lang}`] || band.name,
+    schedule: band[`schedule_${lang}`] || band.schedule,
+    genre: band[`genre_${lang}`] || band.genre,
+    description: band[`description_${lang}`] || band.description,
+    country: band[`country_${lang}`] || band.country
+  };
+  
+  sendJson(res, bandaTraducida);
+},
+
+//Endpoint de login
+  // ✅ ENDPOINT LOGIN CORREGIDO - Reemplaza el que tienes actualmente
+'/api/auth/login': (req, res) => {
+  if (req.method !== 'POST') {
+    return sendError(res, 405, 'Método no permitido');
+  }
+
+  let body = '';
+  
+  req.on('data', chunk => {
+    body += chunk.toString();
+  });
+
+  req.on('end', () => {
+    try {
+      const { email, password } = JSON.parse(body);
+      
+      console.log('🔐 Intento de login:', { email });
+
+      // Validar campos requeridos
+      if (!email || !password) {
+        return sendError(res, 400, 'Email y contraseña son requeridos');
+      }
+
+      // Buscar usuario activo
+      const user = USERS.find(u => 
+        u.email.toLowerCase() === email.toLowerCase() && 
+        u.isActive
+      );
+
+      if (!user) {
+        console.log('❌ Usuario no encontrado:', email);
+        return sendError(res, 401, 'Usuario no encontrado o inactivo');
+      }
+
+      // Verificar contraseña (texto plano en mock)
+      if (user.password !== password) {
+        console.log('❌ Contraseña incorrecta para:', email);
+        return sendError(res, 401, 'Contraseña incorrecta');
+      }
+
+      // ✅ Login exitoso
+      console.log('✅ Login exitoso:', user.email, 'Rol:', user.role);
+      
+      // Eliminar password del response
+      const { password: _, ...userWithoutPassword } = user;
+
+      // Generar token simulado
+      const token = `mock-token-${user.id}-${Date.now()}`;
+
+      sendJson(res, {
+        success: true,
+        token: token,
+        user: userWithoutPassword,
+        message: 'Login exitoso'
+      });
+
+    } catch (error) {
+      console.error('❌ Error en login:', error);
+      sendError(res, 500, 'Error interno del servidor: ' + error.message);
+    }
+  });
+},
+
+  // Endpoint para noticias con soporte multiidioma
   '/api/noticias': (req, res) => {
     const lang = getLanguageFromRequest(req);
-    const noticias = getAllNoticias(lang);
-    sendJson(res, noticias);
+
+    if (!mockData.noticias) {
+      return sendError(res, 500, 'Datos de noticias no disponibles');
+    }
+
+    const noticiasTraducidas = mockData.noticias.map(noticia => ({
+      ...noticia,
+      titulo: noticia[`titulo_${lang}`] || noticia.titulo,
+      resumenNoticia: noticia[`resumenNoticia_${lang}`] || noticia.resumenNoticia,
+      categoria: noticia[`categoria_${lang}`] || noticia.categoria,
+      alt: noticia[`alt_${lang}`] || noticia.alt,
+      textoEnlace: noticia[`textoEnlace_${lang}`] || noticia.textoEnlace
+    }));
+
+    sendJson(res, noticiasTraducidas);
   },
-  
+
+  // Endpoint para noticia individual con traducción
   '/api/noticias/:id': (req, res) => {
     const id = extractIdFromUrl(req.url);
     const lang = getLanguageFromRequest(req);
     const noticia = id && mockData.noticias.find(n => n.id === id);
-    
+
     if (noticia) {
       const noticiaTraducida = {
         ...noticia,
-        fecha: noticia[`fecha_${lang}`] || noticia.fecha,
-        categoria: noticia[`categoria_${lang}`] || noticia.categoria,
         titulo: noticia[`titulo_${lang}`] || noticia.titulo,
         resumenNoticia: noticia[`resumenNoticia_${lang}`] || noticia.resumenNoticia,
+        categoria: noticia[`categoria_${lang}`] || noticia.categoria,
         alt: noticia[`alt_${lang}`] || noticia.alt,
         textoEnlace: noticia[`textoEnlace_${lang}`] || noticia.textoEnlace
       };
@@ -198,29 +327,18 @@ const apiHandlers = {
     }
   },
 
-  // Detalle Noticias con traducción
+  // Endpoint para detalle de noticias
   '/api/noticias/:id/detalle': (req, res) => {
     const id = extractIdFromUrl(req.url);
     const lang = getLanguageFromRequest(req);
-    const detalleNoticia = id && getDetalleNoticiaById(id, lang);
+    if (!id) {
+      return sendError(res, 400, 'ID de noticia requerido');
+    }
+    const detalleNoticia = getDetalleNoticiaById(id, lang);
     detalleNoticia ? sendJson(res, detalleNoticia) : sendError(res, 404, 'Detalle no encontrado');
   },
 
-  // Lineup con traducción
-  '/api/lineup': (req, res) => {
-    const lang = getLanguageFromRequest(req);
-    const lineup = getLineupCompleto(lang);
-    sendJson(res, lineup);
-  },
-
-  // Tickets con traducción
-  '/api/tickets': (req, res) => {
-    const lang = getLanguageFromRequest(req);
-    const tickets = getTickets(lang);
-    sendJson(res, tickets);
-  },
-
-  // Acreditación (sin cambios, no necesita traducción)
+  // Endpoint POST para enviar solicitud de acreditación
   '/api/acreditacion': async (req, res) => {
     if (req.method !== 'POST') {
       return sendError(res, 405, 'Método no permitido');
@@ -247,9 +365,8 @@ const apiHandlers = {
 
           await enviarEmailAcreditacion(formData);
 
-          // Guardar en archivo JSON (backup)
+          // Guardar en archivo JSON como backup
           const acreditacionesPath = path.join(__dirname, 'data', 'acreditaciones.json');
-
           const acreditaciones = fs.existsSync(acreditacionesPath)
             ? JSON.parse(fs.readFileSync(acreditacionesPath, 'utf8'))
             : [];
@@ -278,7 +395,7 @@ const apiHandlers = {
     }
   },
 
-  // Comida solidaria (sin cambios, no necesita traducción)
+  // Endpoint POST para comida solidaria
   '/api/comida-solidaria': async (req, res) => {
     if (req.method !== 'POST') {
       return sendError(res, 405, 'Mètode no permès');
@@ -299,9 +416,8 @@ const apiHandlers = {
             return sendError(res, 400, 'Dades incompletes');
           }
 
-          // Solo guardar en Google Sheets y enviar email
+          // Enviar a Google Sheets
           try {
-            console.log('📤 Enviando a Google Sheets...');
             const googleSheetsResponse = await fetch('https://script.google.com/macros/s/AKfycbyv_xCvO3UucfIQ033ZsQnK-hNwOW3DKp6HxUjQteGO08ImgpqqvzK0qbtYPwaiFLpL/exec', {
               method: 'POST',
               headers: {
@@ -310,24 +426,21 @@ const apiHandlers = {
               body: JSON.stringify(formData)
             });
 
-            console.log('📨 Respuesta de Google Sheets:', googleSheetsResponse.status);
-
             if (!googleSheetsResponse.ok) {
               throw new Error(`HTTP error! status: ${googleSheetsResponse.status}`);
             }
 
             const sheetsResult = await googleSheetsResponse.json();
-            console.log('✅ Resultado Sheets:', sheetsResult);
 
             if (!sheetsResult.success) {
               throw new Error('Error guardant a Google Sheets: ' + (sheetsResult.error || 'Unknown error'));
             }
 
           } catch (error) {
-            console.error('❌ Error con Google Sheets:', error.message);
+            console.error('Error con Google Sheets:', error.message);
           }
 
-          // Enviar email
+          // Enviar email de confirmación
           await enviarEmailComidaSolidaria(formData);
 
           sendJson(res, {
@@ -336,36 +449,45 @@ const apiHandlers = {
           });
 
         } catch (error) {
-          console.error('Error procesant reserva:', error);
           sendError(res, 500, 'Error intern del servidor');
         }
       });
 
     } catch (error) {
-      console.error('Error en endpoint dinar-solidari:', error);
       sendError(res, 500, 'Error intern del servidor');
     }
   },
 
-  // Otros endpoints
+  // Otros endpoints básicos
   '/api/events': (req, res) => sendJson(res, mockData.events || []),
+  '/api/tickets': (req, res) => sendJson(res, mockData.tickets || []),
   '/api/info': (req, res) => sendJson(res, mockData.info || {}),
-  '/api/health': (req, res) => sendJson(res, { status: 'OK', message: 'Mollerussa Metal Fest API' })
+  '/api/health': (req, res) => sendJson(res, { status: 'OK', message: 'Mollerussa Metal Fest API' }),
+  '/api/galeria_images': (req, res) => sendJson(res, mockData.galeria_images || []),
+  '/api/galeria_carteleras': (req, res) => sendJson(res, mockData.galeria_carteleras || []),
 };
 
-// Manejo de rutas API
+// Manejar requests a la API
 const handleApiRequest = (req, res) => {
+  const pathWithoutQuery = req.url.split('?')[0];
+
   const route = Object.keys(apiHandlers)
     .sort((a, b) => b.length - a.length)
     .find(route => {
       const pattern = new RegExp('^' + route.replace(/:\w+/g, '([^/]+)') + '$');
-      return pattern.test(req.url) || req.url === route || req.url.startsWith(route + '/');
+      return pattern.test(pathWithoutQuery) ||
+        pathWithoutQuery === route ||
+        pathWithoutQuery.startsWith(route + '/');
     });
 
-  route ? apiHandlers[route](req, res) : sendError(res, 404, 'Endpoint no encontrado');
+  if (route) {
+    apiHandlers[route](req, res);
+  } else {
+    sendError(res, 404, 'Endpoint no encontrado');
+  }
 };
 
-// Servir archivos estáticos
+// Servir archivos estáticos de Angular
 const serveStaticFile = (req, res) => {
   const filePath = req.url === '/' || req.url === ''
     ? path.join(angularPath, 'index.html')
@@ -377,6 +499,7 @@ const serveStaticFile = (req, res) => {
     res.writeHead(200, { 'Content-Type': contentType });
     res.end(fs.readFileSync(filePath));
   } else {
+    // Fallback a index.html para SPA routing
     const indexHtml = path.join(angularPath, 'index.html');
     if (fs.existsSync(indexHtml)) {
       res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -390,27 +513,24 @@ const serveStaticFile = (req, res) => {
 
 // Servidor principal
 const server = http.createServer((req, res) => {
+  // Configurar CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') return res.writeHead(200).end();
+  if (req.method === 'OPTIONS') {
+    return res.writeHead(200).end();
+  }
 
-  req.url.startsWith('/api/') ? handleApiRequest(req, res) : serveStaticFile(req, res);
+  // Enrutar requests a API o archivos estáticos
+  if (req.url.startsWith('/api/')) {
+    handleApiRequest(req, res);
+  } else {
+    serveStaticFile(req, res);
+  }
 });
 
-// Iniciar servidor
-server.listen(PORT, () => {
-  console.log('🎸 MOLLERUSSA METAL FEST - Servidor con traducciones en puerto:', PORT);
-  console.log('📡 Endpoints disponibles con parámetro ?lang=es|ca|en:');
-  console.log('   • /api/bands, /api/bands/:id');
-  console.log('   • /api/noticias, /api/noticias/:id, /api/noticias/:id/detalle');
-  console.log('   • /api/lineup, /api/tickets');
-  console.log('   • 🔥 /api/acreditacion (POST)');
-  console.log('   • /api/events, /api/info, /api/health');
-});
-
-// Función enviarEmailComidaSolidaria (se mantiene igual)
+// Función para enviar email de comida solidaria
 const enviarEmailComidaSolidaria = async (formData) => {
   try {
     const nodemailer = await import('nodemailer');
@@ -418,14 +538,14 @@ const enviarEmailComidaSolidaria = async (formData) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rodriy86.maps@gmail.com',
+        user: 'info.mmf973@gmail.com',
         pass: process.env.GMAIL_APP_PASSWORD
       }
     });
 
     await transporter.verify();
 
-    // Calcular total CON DONACIÓN
+    // Calcular total con donación
     const subtotal = (
       (formData.mayoresPlato1 || 0) * 10 +
       (formData.mayoresPlato2 || 0) * 11 +
@@ -436,10 +556,10 @@ const enviarEmailComidaSolidaria = async (formData) => {
     );
 
     const donacion = formData.donacionCancer ? 2 : 0;
-    const totalFinal = subtotal + donacion;
+    const preuTotal = formData.preuTotal;
 
     const mailOptions = {
-      from: `"Mollerussa Metal Fest" <rodriy86.maps@gmail.com>`,
+      from: `"Mollerussa Metal Fest" <info.mmf973@gmail.com>`,
       to: 'rodriy86@gmail.com',
       subject: `🍽️ NOVA RESERVA DINAR SOLIDARI - ${formData.nombre} ${formData.apellidos}`,
       html: `
@@ -472,17 +592,8 @@ const enviarEmailComidaSolidaria = async (formData) => {
             </div>
 
             <div class="section">
-              <h3>👥 Persones majors de 12 anys: ${formData.numMayores}</h3>
-              <p><span class="label">Plat Únic 1 (10€):</span> ${formData.mayoresPlato1 || 0}</p>
-              <p><span class="label">Plat Únic 2 (11€):</span> ${formData.mayoresPlato2 || 0}</p>
-              <p><span class="label">Cafè (2€):</span> ${formData.mayoresCafe || 0}</p>
-              <p><span class="label">Bermut (5€):</span> ${formData.mayoresBermut || 0}</p>
-            </div>
-
-            <div class="section">
-              <h3>🧒 Persones menors de 12 anys: ${formData.numMenores}</h3>
-              <p><span class="label">Plat Únic 1 (10€):</span> ${formData.menoresPlato1 || 0}</p>
-              <p><span class="label">Plat Únic 2 (11€):</span> ${formData.menoresPlato2 || 0}</p>
+              <p><span class="label">Plat llongonissa (10€):</span> ${formData.plato1 || 0}</p>
+              <p><span class="label">Plat Escalivada (10€):</span> ${formData.platoVegetariano || 0}</p>
             </div>
 
             ${donacion > 0 ? `
@@ -494,14 +605,14 @@ const enviarEmailComidaSolidaria = async (formData) => {
             ` : ''}
 
             <div class="total">
-              💰 TOTAL: ${totalFinal} €
+              💰 TOTAL: ${preuTotal} €
               ${donacion > 0 ? `<br><small>(Inclou ${donacion}€ de donació solidària)</small>` : ''}
             </div>
 
             <div class="section">
               <h3>📅 Informació de la Reserva</h3>
               <p><span class="label">Data:</span> ${new Date().toLocaleString('ca-ES')}</p>
-              <p><span class="label">Inclou donació:</span> ${formData.donacionCancer ? 'SÍ ✅' : 'NO'}</p>
+              <!--<p><span class="label">Inclou donació:</span> ${formData.donacionCancer ? 'SÍ ✅' : 'NO'}</p>-->
             </div>
           </div>
 
@@ -517,7 +628,11 @@ const enviarEmailComidaSolidaria = async (formData) => {
     return { success: true, message: 'Reserva enviada correctament' };
 
   } catch (error) {
-    console.error('Error enviant email de dinar solidari:', error);
     throw error;
   }
 };
+
+// Iniciar servidor
+server.listen(PORT, () => {
+  console.log('🎸 MOLLERUSSA METAL FEST - Servidor ejecutándose en puerto:', PORT);
+});

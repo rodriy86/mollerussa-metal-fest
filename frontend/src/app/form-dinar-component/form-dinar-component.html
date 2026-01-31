@@ -74,7 +74,7 @@
                             [class.border-brand]="isFieldInvalid('nombre')">
                         <div *ngIf="isFieldInvalid('nombre')" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ERRORES.CAMPO_OBLIGATORIO' | translate }}
+                            {{ 'FORM_DINAR.CAMPO_OBLIGATORIO' | translate }}
                         </div>
                     </div>
                     <div>
@@ -98,7 +98,7 @@
                             [class.border-brand]="isFieldInvalid('dni')">
                         <div *ngIf="isFieldInvalid('dni')" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ERRORES.CAMPO_OBLIGATORIO' | translate }}
+                            {{ 'FORM_DINAR.CAMPO_OBLIGATORIO' | translate }}
                         </div>
                     </div>
                     <div>
@@ -109,7 +109,7 @@
                             [class.border-brand]="isFieldInvalid('poblacion')">
                         <div *ngIf="isFieldInvalid('poblacion')" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ERRORES.CAMPO_OBLIGATORIO' | translate }}
+                            {{ 'FORM_DINAR.CAMPO_OBLIGATORIO' | translate }}
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                 <div class="border-2 border-custom rounded-lg p-6">
                     <h3 class="text-xl font-bold text-brand mb-4">👥 {{ 'FORM_DINAR.PERSONAS' | translate }}</h3>
 
-                    <div class="mb-6">
+                    <!--<div class="mb-6">
                         <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.NUMERO_PERSONAS' | translate }}
                             *</label>
                         <input type="number" [(ngModel)]="formData.numPersonas" name="numPersonas" min="0"
@@ -126,9 +126,9 @@
                             (change)="calcularTotal()">
                         <div *ngIf="isFieldInvalid('numPersonas')" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ERRORES.CAMPO_OBLIGATORIO' | translate }}
+                            {{ 'FORM_DINAR.CAMPO_OBLIGATORIO' | translate }}
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Platos uno debajo del otro -->
                     <div class="space-y-6">
@@ -154,7 +154,7 @@
                                 (change)="calcularTotal()">
                         </div>
 
-                        <!-- Plato Único Celíacos -->
+                        <!-- Plato Único Celíacos 
                         <div class="bg-page border border-custom rounded-lg p-4">
                             <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_CELIACOS' | translate
                                 }} (10€)</label>
@@ -163,9 +163,9 @@
                             <input type="number" [(ngModel)]="formData.platoCeliacos" name="platoCeliacos" min="0"
                                 class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
-                        </div>
+                        </div>-->
 
-                        <!-- Plato Único Infantil -->
+                        <!-- Plato Único Infantil 
                         <div class="bg-page border border-custom rounded-lg p-4">
                             <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_INFANTIL' | translate
                                 }} (10€)</label>
@@ -174,16 +174,16 @@
                             <input type="number" [(ngModel)]="formData.platoInfantil" name="platoInfantil" min="0"
                                 class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
                                 (change)="calcularTotal()">
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 
                 <!-- Donación para asociación de niños con cáncer -->
                 <div class="border-2 border-pink-500 rounded-lg p-6 bg-pink-50/10 mb-6">
                     <label class="flex items-start cursor-pointer group">
-                        <input type="checkbox" [ngModel]="formData.donacionCancer" name="donacionCancer"
+                        <!--<input type="checkbox" [ngModel]="formData.donacionCancer" name="donacionCancer"
                             class="mr-4 mt-1 text-pink-500 focus:ring-pink-500 transform scale-125"
-                            (ngModelChange)="formData.donacionCancer = $event; calcularTotal()">
+                            (ngModelChange)="formData.donacionCancer = $event; calcularTotal()">-->
                         <div class="flex-1">
                             <div class="flex items-center">
                                 <span class="text-2xl mr-3">🎗️</span>
@@ -222,7 +222,7 @@
                         <div *ngIf="formSubmitted && !formData.aceptoTerminos"
                             class="text-red-400 text-sm mt-2 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ERRORES.ACEPTAR_TERMINOS' | translate }}
+                            {{ 'FORM_DINAR.ACEPTAR_TERMINOS' | translate }}
                         </div>
                     </div>
 
@@ -245,7 +245,7 @@
                         <div *ngIf="formSubmitted && !formData.aceptoPoliticaPrivacidad"
                             class="text-red-400 text-sm mt-2 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
-                            {{ 'ERRORES.ACEPTAR_POLITICA' | translate }}
+                            {{ 'FORM_DINAR.ACEPTAR_POLITICA' | translate }}
                         </div>
                     </div>
 

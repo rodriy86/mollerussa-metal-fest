@@ -25,6 +25,7 @@ export class FormDinarComponent {
     platoVegetariano: 0,
     platoCeliacos: 0,
     platoInfantil: 0,
+    preuTotal: 0,
     donacionCancer: false,
     aceptoTerminos: false,
     aceptoPoliticaPrivacidad: false
@@ -60,6 +61,7 @@ export class FormDinarComponent {
       (this.formData.platoCeliacos || 0) * this.precios.platoCeliacos +
       (this.formData.platoInfantil || 0) * this.precios.platoInfantil
     );
+    this.formData.preuTotal=this.total;
 
     this.donacion = this.formData.donacionCancer ? 2 : 0;
 
@@ -93,13 +95,13 @@ export class FormDinarComponent {
     }
 
     // Validar que la suma de platos no exceda el número de personas
-    const totalPlatos = this.formData.plato1 + this.formData.platoVegetariano +
+    /*const totalPlatos = this.formData.plato1 + this.formData.platoVegetariano +
       this.formData.platoCeliacos + this.formData.platoInfantil;
 
     if (totalPlatos > this.formData.numPersonas) {
       alert('La suma de platos no puede ser mayor que el número de personas.');
       return;
-    }
+    }*/
 
     this.enviando = true;
 
@@ -154,7 +156,7 @@ export class FormDinarComponent {
       this.formData.apellidos !== '' &&
       this.formData.dni !== '' &&
       this.formData.poblacion !== '' &&
-      this.formData.numPersonas >= 0 &&
+      //this.formData.numPersonas >= 0 &&
       this.formData.aceptoTerminos &&
       this.formData.aceptoPoliticaPrivacidad
     );
@@ -171,6 +173,7 @@ export class FormDinarComponent {
       platoVegetariano: 0,
       platoCeliacos: 0,
       platoInfantil: 0,
+      preuTotal: 0,
       donacionCancer: false,
       aceptoTerminos: false,
       aceptoPoliticaPrivacidad: false

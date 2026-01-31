@@ -360,7 +360,7 @@ export const mockData = {
     {
       id: 3,
       email: 'admin@mmf.cat',
-      password: 'a1234',
+      password: 'admin',
       name: 'Administrador',
       role: 'admin',
       isActive: true

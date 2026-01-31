@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
+    "fetch": "^1.1.0",
     "jsonwebtoken": "^9.0.2",
     "stripe": "^14.25.0"
   },

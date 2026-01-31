@@ -66,12 +66,12 @@
     "POBLACION": "Población",
     "PERSONAS": "Personas",
     "NUMERO_PERSONAS": "Número de personas",
-    "PLATO_UNICO_1": "Plato Único 1",
-    "PLATO_VEGETARIANO": "Plato Único Vegetariano",
+    "PLATO_UNICO_1": "Bocadillo de longaniza",
+    "PLATO_VEGETARIANO": "Escalivada",
     "PLATO_CELIACOS": "Plato Único Celíacos",
     "PLATO_INFANTIL": "Plato Único Infantil",
-    "DESCRIPCION_PLATO_1": "Descripción del plato único 1...",
-    "DESCRIPCION_PLATO_VEGETARIANO": "Descripción del plato vegetariano...",
+    "DESCRIPCION_PLATO_1": "Bocadillo de longaniza + consumición + café",
+    "DESCRIPCION_PLATO_VEGETARIANO": "Escalivada + consumición + café",
     "DESCRIPCION_PLATO_CELIACOS": "Descripción del plato para celíacos...",
     "DESCRIPCION_PLATO_INFANTIL": "Descripción del plato infantil...",
     "DONACION_TITULO": "Añadir 2€ de donación",
@@ -88,7 +88,9 @@
     "ACEPTAR_TERMINOS": "Debes aceptar los términos y condiciones y la política de privacidad.",
     "SUMA_PLATOS_ERROR": "La suma de platos no puede ser mayor que el número de personas.",
     "RESERVA_ENVIADA": "¡Reserva enviada correctamente! Te contactaremos para confirmar el pago.",
-    "ERROR_RESERVA": "Error al enviar la reserva. Por favor, inténtalo de nuevo."
+    "ERROR_RESERVA": "Error al enviar la reserva. Por favor, inténtalo de nuevo.",
+    "ACEPTAR_POLITICA":"Debes aceptar los términos y condiciones y la política de privacidad.",
+    "CAMPO_OBLIGATORIO":"Este campo es obligatorio"
   }, 
   
   "GALERIA": {

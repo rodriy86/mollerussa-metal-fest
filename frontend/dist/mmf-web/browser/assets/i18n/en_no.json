@@ -66,12 +66,12 @@
     "POBLACION": "City/Town",
     "PERSONAS": "People",
     "NUMERO_PERSONAS": "Number of people",
-    "PLATO_UNICO_1": "Single Dish 1",
-    "PLATO_VEGETARIANO": "Vegetarian Single Dish",
+    "PLATO_UNICO_1": "Sausage sandwich",
+    "PLATO_VEGETARIANO": "Escalivada",
     "PLATO_CELIACOS": "Gluten-Free Single Dish",
     "PLATO_INFANTIL": "Kids Single Dish",
-    "DESCRIPCION_PLATO_1": "Description of single dish 1...",
-    "DESCRIPCION_PLATO_VEGETARIANO": "Description of vegetarian dish...",
+    "DESCRIPCION_PLATO_1": "Sausage sandwich + drink + coffee",
+    "DESCRIPCION_PLATO_VEGETARIANO": "Escalivada sandwich + drink + coffee",
     "DESCRIPCION_PLATO_CELIACOS": "Description of gluten-free dish...",
     "DESCRIPCION_PLATO_INFANTIL": "Description of kids dish...",
     "DONACION_TITULO": "Add 2€ donation",
@@ -88,7 +88,9 @@
     "ACEPTAR_TERMINOS": "You must accept the terms and conditions and the privacy policy.",
     "SUMA_PLATOS_ERROR": "The sum of dishes cannot be greater than the number of people.",
     "RESERVA_ENVIADA": "Reservation sent successfully! We will contact you to confirm the payment.",
-    "ERROR_RESERVA": "Error sending the reservation. Please try again."
+    "ERROR_RESERVA": "Error sending the reservation. Please try again.",
+    "ACEPTAR_POLITICA":"You must accept the terms and conditions and the privacy policy.",
+    "CAMPO_OBLIGATORIO":"This field is mandatory"
   },
   "GALERIA": {
     "GALERIA": "ABOUT AS",
