@@ -347,6 +347,15 @@ textoBoton_en: 'Buy ticket'
 
   galeria_carteleras: [
     {
+      anyo: 2026,
+      headliners: ['-', '-'],
+      asistencia: 0,
+      imagen: '/assets/images/mmf2026.jpg',
+      color: 'purple',
+      bandas: 6,
+      alt: ''
+    },
+    {
       anyo: 2025,
       headliners: ['Bellako', 'Indar'],
       asistencia: 250,
@@ -361,7 +370,7 @@ textoBoton_en: 'Buy ticket'
       asistencia: 180,
       imagen: '/assets/images/cartelera24.jpg',
       color: 'silver',
-      bandas: 4,
+      bandas: 5,
       alt: ''
     }
   ],
