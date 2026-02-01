@@ -32,8 +32,8 @@ class GlobalConfig {
     nombre1: 'Mollerussa',
     nombre2: 'Metalfest',
     nombreCompleto: 'Mollerussa Metal Fest ',
-    //eslogan: 'El festival de metal de referencia en Lleida',
-    NIF: "00000000#",
+    //eslogan: 'Uneix-te a la rebel·lió metal·lera al cor de Mollerussa!',
+    NIF: "G24916785",
     ubicacion: {
       nombreRecinto: 'Teatre La Amistat',
       ciudad: 'Mollerussa, Lleida',
@@ -60,7 +60,7 @@ class GlobalConfig {
     ubicacion: 'Mollerussa, Lleida',
     web: 'www.mollerussametalfest.cat',
     redes: {
-      facebook: '',
+      facebook: 'https://www.facebook.com/profile.php?id=61585687237446',
       instagram: 'https://www.instagram.com/mollerussametalfest/', 
       twitter: '',
       youtube: ''
