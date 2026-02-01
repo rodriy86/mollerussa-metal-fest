@@ -1,4 +1,8 @@
 {
+   "GENERAL": {
+     "VOLVER_INICIO": "Back to Home",
+     "LEER_MAS":"Read more"
+  },
   "HEADER": {
     "INICIO": "Home",
     "NOTICIAS": "News",

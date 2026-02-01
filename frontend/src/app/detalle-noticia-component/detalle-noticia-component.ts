@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { ChangeDetectorRef } from '@angular/core';
 import { configGlobal } from '../configGlobal';
 import { TranslationService } from '../services/translation.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 
 interface NoticiaCompleta {
@@ -28,7 +29,7 @@ interface NoticiaCompleta {
 @Component({
   selector: 'app-detalle-noticia',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './detalle-noticia-component.html',
   styleUrl: './detalle-noticia-component.scss'
 })

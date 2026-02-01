@@ -1,4 +1,8 @@
 {
+  "GENERAL": {
+     "VOLVER_INICIO": "Volver al inicio",
+     "LEER_MAS":"Leer más"
+  },
   "HEADER": {
     "INICIO": "Inicio",
     "NOTICIAS": "Noticias",

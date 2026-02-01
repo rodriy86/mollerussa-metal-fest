@@ -174,8 +174,8 @@ export const mockData = {
       alt_ca: '',
       alt_en: '',
       enlace: '#',
-      textoEnlace: 'Llegir més',
-      textoEnlace_ca: 'Leer más',
+      textoEnlace: 'Leer más',
+      textoEnlace_ca: 'Llegir més',
       textoEnlace_en: 'See more',
       created_at: '2026-01-01 09:00:00'
     }
