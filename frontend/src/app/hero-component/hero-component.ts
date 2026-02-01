@@ -2,14 +2,14 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { configGlobal } from '../configGlobal';
 import { TranslationService } from '../services/translation.service';
-//import { TranslatePipe } from '../pipes/translate.pipe';
+import { TranslatePipe } from '../pipes/translate.pipe';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule/*, TranslatePipe*/], 
+  imports: [CommonModule, TranslatePipe], 
   templateUrl: './hero-component.html',
   styleUrl: './hero-component.scss'
 })
