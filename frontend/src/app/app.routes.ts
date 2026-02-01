@@ -11,7 +11,7 @@ export const routes: Routes = [
   // === RUTAS PÚBLICAS === (Todos pueden acceder)
   { path: '', component: IniciComponent },
   { path: 'noticia/:id', component: DetalleNoticiaComponent },
-  { path: 'detalle-galeria', component: SobreNosotrosComponent },
+  { path: 'about_us', component: SobreNosotrosComponent },
   { path: 'banda/:id', component: DetalleBandaComponent },
   { path: 'comida-solidaria', component: FormDinarComponent },
 
