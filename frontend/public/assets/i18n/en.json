@@ -10,7 +10,7 @@
     "INFORMACION": "Information",
     "UBICACION": "Location",
     "CONTACTO": "Contacts",
-    "GALERIA": "About as",
+    "GALERIA": "About us",
     "IDIOMA": "Language",
     "MENU": "Menu"
   },
@@ -33,7 +33,7 @@
     "INFORMACION": "Information",
     "UBICACION": "Location",
     "CONTACTO": "Contact",
-    "GALERIA": "About as",
+    "GALERIA": "About us",
     "ENLACES_RAPIDOS": "Quick Links",
     "PRENSA": "Press",
     "BTN_SOLICITAR_ACREDITACION": "Request Accreditation",
@@ -97,7 +97,7 @@
     "CAMPO_OBLIGATORIO":"This field is mandatory"
   },
   "GALERIA": {
-    "GALERIA": "ABOUT AS",
+    "GALERIA": "ABOUT US",
     "TITULO": "Gallery",
     "VOLVER_INICIO": "Back to Home",
     "CARGANDO": "Loading gallery...",
