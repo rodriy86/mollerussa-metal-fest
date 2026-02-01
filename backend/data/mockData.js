@@ -153,7 +153,7 @@ export const mockData = {
   ],
 
   noticias: [
-    /*{
+    {
       id: 1,
       fecha: '1 Febrero 2026',
       fecha_ca: '1 Febrer 2026',
@@ -162,14 +162,14 @@ export const mockData = {
       categoria_ca: 'EVENTS',
       categoria_en: 'EVENTS',
       colorCategoria: 'bg-red-600',
-      titulo: 'Dinar solidari',
-      titulo_ca: 'Dinar solidari',
-      titulo_en: 'Solidarity meal',
-      resumenNoticia: 'La organització del Mollerussa Metal Fest organitzara un dinar solidari a la serra el dia 1/2/26',
-      resumenNoticia_ca: "L'organització del Mollerussa Metal Fest organitzarà un dinar solidari a la serra el dia 1/2/26",
-      resumenNoticia_en: 'The Mollerussa Metal Fest organization will organize a solidarity meal in the mountains on 2/1/26',
+      titulo: '¡Entradas ya a la venta!',
+      titulo_ca: 'Entrades ja a la venda!',
+      titulo_en: 'Tickets available now!',
+      resumenNoticia: 'El Mollerussa Metal Fest ya ha puesto a la venta las entradas! Aprovecha el precio reducido de la primera fase y asegura tu plaza en el evento metálico del año en el corazón de Mollerussa! ',
+      resumenNoticia_ca: "El Mollerussa Metal Fest ja ha posat a la venda les entrades! Aprofeita el preu reduït de la primera fase i assegura't el teu lloc a l'esdeveniment metàl·lic de l'any al cor de Mollerussa! ",
+      resumenNoticia_en: 'Mollerussa Metal Fest tickets are now available! Take advantage of the reduced price in the first phase and secure your spot at the metal event of the year in the heart of Mollerussa!',
       detalleNoticia: true,
-      imagen: '/assets/images/menja.png',
+      imagen: '/assets/images/noticies/noti_entrades.jpg',
       alt: '',
       alt_ca: '',
       alt_en: '',
@@ -177,59 +177,66 @@ export const mockData = {
       textoEnlace: 'Llegir més',
       textoEnlace_ca: 'Leer más',
       textoEnlace_en: 'See more',
-      created_at: '2026-01-15 09:00:00'
-    }*/
+      created_at: '2026-01-01 09:00:00'
+    }
   ],
 
   // Detalles de noticias - Tabla relacionada
   detalleNoticia: [
     {
       id: 1,
-      noticia_id: 1,
-      fecha: '1 Febrero 2026',
-      fecha_ca: '1 Febrer 2026',
-      fecha_en: 'February 1, 2026',
-      categoria: 'Eventos',/**/
-      categoria_ca: 'Esdeveniments',
-      categoria_en: 'Events',
-      titulo: 'Dinar solidari',
-      titulo_ca: 'Dinar solidari',
-      titulo_en: 'Solidarity meal',
-      descripcionCorta: 'La organitzación del Mollerussa Metal Fest organizara una comida solidaria en la serra el dia 1/2/26.',
-      descripcionCorta_ca: "L'organització del Mollerussa Metal Fest organitzarà un dinar solidari a la serra el dia 1/2/26.",
-      descripcionCorta_en: 'The Mollerussa Metal Fest organization will organize a solidarity meal in the mountains on 2/1/26.',
-      contenido: JSON.stringify([
-        '(ES) El dinar sera super bo! paragraf 1.',
-        '(ES) Hi haura musica i mes paragraf 12.',
-        '(ES) Es fara per molle paragraf 3.',
-        '(ES) Vine, a casa tampoc faras res paragraf 4.',
-      ]),
-      contenido_ca: JSON.stringify([
-        '(CA) El dinar sera super bo! paragraf 1.',
-        '(CA) Hi haura musica i mes paragraf 12.',
-        '(CA) Es fara per molle paragraf 3.',
-        '(CA) Vine, a casa tampoc faras res paragraf 4.',
-      ]),
-      contenido_en: JSON.stringify([
-        '(EN) El dinar sera super bo! paragraf 1.',
-        '(EN) Hi haura musica i mes paragraf 12.',
-        '(EN) Es fara per molle paragraf 3.',
-        '(EN) Vine, a casa tampoc faras res paragraf 4.',
-      ]),
-      imagenPrincipal: '/assets/images/menja.png',
-      autor: 'Redacción MMF',
-      autor_ca: 'Redacció MMF',
-      autor_en: 'MMF Editorial',
-      tiempoLectura: '8 min',
-      visualizaciones: '',
-      imagenes: JSON.stringify(['/assets/images/menja.png']),
-      videos: JSON.stringify([]),
-      created_at: '2026-01-15 09:00:00',
-      updated_at: '2026-01-15 09:00:00',
-      boton: true,
-      textoBoton: 'Comprar ticket',
-      textoBoton_ca: 'Comprar entrada',
-      textoBoton_en: 'Buy ticket'
+noticia_id: 1,
+fecha: '1 Febrero 2026',
+fecha_ca: '1 Febrer 2026',
+fecha_en: 'February 1, 2026',
+categoria: 'Eventos',
+categoria_ca: 'Esdeveniments',
+categoria_en: 'Events',
+titulo: '¡Entradas ya a la venta!',
+titulo_ca: 'Entrades ja a la venda!',
+titulo_en: 'Tickets available now!',
+resumenNoticia: 'El Mollerussa Metal Fest anuncia con gran emoción que las entradas para su edición 2024 ya están disponibles. Los primeros compradores disfrutarán de un precio reducido exclusivo durante esta fase inicial de venta. Prepárate para tres días intensos de puro metal con las mejores bandas nacionales e internacionales en el corazón de Mollerussa. Las entradas a precio reducido son estrictamente limitadas y el precio subirá automáticamente una vez agotada esta primera fase. ¡No arriesgues quedarte fuera o pagar más! Compra ahora a través de nuestra plataforma oficial segura y asegura tu plaza en el evento metálico más esperado del año.',
+resumenNoticia_ca: "El Mollerussa Metal Fest anuncia amb gran emoció que les entrades per a la seva edició 2024 ja estan disponibles. Els primers compradors gaudiran d'un preu reduït exclusiu durant aquesta fase inicial de venda. Prepara't per a tres dies intensos de pur metal amb les millors bandes nacionals i internacionals al cor de Mollerussa. Les entrades a preu reduït són estrictament limitades i el preu pujarà automàticament un cop esgotada aquesta primera fase. No arrisquis quedar-te fora o pagar més! Compra ara a través de la nostra plataforma oficial segura i assegura't la teva plaça en l'esdeveniment metàl·lic més esperat de l'any.",
+resumenNoticia_en: "Mollerussa Metal Fest announces with great excitement that tickets for its 2024 edition are now available. First buyers will enjoy an exclusive reduced price during this initial sale phase. Get ready for three intense days of pure metal with the best national and international bands in the heart of Mollerussa. Reduced price tickets are strictly limited and the price will automatically increase once this first phase is sold out. Don't risk missing out or paying more! Buy now through our secure official platform and secure your spot at the most anticipated metal event of the year.",
+contenido: JSON.stringify([
+'El Mollerussa Metal Fest anuncia con gran emoción que las entradas para su edición 2026 ya están disponibles. La venta ha comenzado oficialmente y los fans del metal ya pueden asegurar su plaza para el evento más esperado del año.',
+'-PRECIO ESPECIAL PRIMERA FASE: Los primeros compradores disfrutarán de un precio reducido exclusivo durante esta fase inicial de venta. Es una oportunidad única para los verdaderos seguidores que no quieren perderse esta experiencia inigualable.',
+'-QUÉ TE ESPERA: Prepárate para tres días intensos de puro metal con las mejores bandas nacionales e internacionales, una atmósfera única en el corazón de Mollerussa y una comunidad metálica auténtica y apasionada.',
+'-OFERTA LIMITADA: Las entradas a precio reducido son estrictamente limitadas. Una vez que se agote esta primera fase, el precio subirá automáticamente. No arriesgues quedarte fuera o pagar más.',
+'-COMPRA SEGURA: El proceso de compra es rápido, sencillo y seguro a través de nuestra plataforma oficial. Puedes elegir entre diferentes tipos de entradas según tus necesidades.',
+'-NO TE LO PIERDAS: Este es el momento de actuar. Asegura tu entrada al mejor precio posible y prepárate para vivir una experiencia metálica inolvidable en Mollerussa.'
+]),
+contenido_ca: JSON.stringify([
+"El Mollerussa Metal Fest anuncia amb gran emoció que les entrades per a la seva edició 2026 ja estan disponibles. La venda ha començat oficialment i els fans del metal ja poden assegurar-se la seva plaça per a l'esdeveniment més esperat de l'any.",
+"-PREU ESPECIAL PRIMERA FASE: Els primers compradors gaudiran d'un preu reduït exclusiu durant aquesta fase inicial de venda. És una oportunitat única per als veritables seguidors que no volen perdre's aquesta experiència inigualable.",
+"-QUÈ T'ESPERA: Prepara't per a tres dies intensos de pur metal amb les millors bandes nacionals i internacionals, una atmosfera única al cor de Mollerussa i una comunitat metàl·lica autèntica i apassionada.",
+"-OFERTA LIMITADA: Les entrades a preu reduït són estrictament limitades. Un cop s'esgoti aquesta primera fase, el preu pujarà automàticament. No arrisquis quedar-te fora o pagar més.",
+"-COMPRA SEGURA: El procés de compra és ràpid, senzill i segur a través de la nostra plataforma oficial. Pots triar entre diferents tipus d'entrades segons les teves necessitats.",
+"-NO T'HO PERDIS: Aquest és el moment d'actuar. Assegura la teva entrada al millor preu possible i prepara't per viure una experiència metàl·lica inoblidable a Mollerussa."
+]),
+contenido_en: JSON.stringify([
+"Mollerussa Metal Fest announces with great excitement that tickets for its 2026 edition are now available. Sales have officially begun and metal fans can now secure their spot for the most anticipated event of the year.",
+"-SPECIAL EARLY BIRD PRICE: First buyers will enjoy an exclusive reduced price during this initial sale phase. It's a unique opportunity for true followers who don't want to miss this unparalleled experience.",
+"-WHAT AWAITS YOU: Get ready for three intense days of pure metal with the best national and international bands, a unique atmosphere in the heart of Mollerussa, and an authentic and passionate metal community.",
+"-LIMITED OFFER: Reduced price tickets are strictly limited. Once this first phase sells out, the price will automatically increase. Don't risk missing out or paying more.",
+"-SECURE PURCHASE: The buying process is fast, simple and secure through our official platform. You can choose between different ticket types according to your needs.",
+"-DON'T MISS OUT: This is the time to act. Secure your ticket at the best possible price and get ready to live an unforgettable metal experience in Mollerussa."
+]),
+imagenPrincipal: '/assets/images/noticies/noti_entrades.jpg',
+autor: 'Redacción MMF',
+autor_ca: 'Redacció MMF',
+autor_en: 'MMF Editorial',
+tiempoLectura: '-',
+visualizaciones: '-',
+imagenes: JSON.stringify(['/assets/images/noticies/noti_entrades.jpg', /*'/assets/images/menja.png'*/]),
+videos: JSON.stringify([]),
+created_at: '2024-01-15 09:00:00',
+updated_at: '2024-01-15 09:00:00',
+boton: true,
+tipoBoton: "tickets",
+textoBoton: 'Comprar ticket',
+textoBoton_ca: 'Comprar entrada',
+textoBoton_en: 'Buy ticket'
     }
     /*{
       id: 2,

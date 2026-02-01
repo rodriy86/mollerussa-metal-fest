@@ -108,11 +108,18 @@
             </div>
           </div>
         </div>
-        <div *ngIf="noticia.boton" class="max-w-6xl mx-auto px-6 py-20 text-center">
+        <div *ngIf="noticia.tipoBoton=== 'bermut' " class="max-w-6xl mx-auto px-6 py-20 text-center">
           <button (click)="navigateToComidaSolidaria()" class="btn-brand px-8 py-3 rounded-lg font-bold">
             {{noticia.textoBoton}}
-          </button>
+          </button>          
         </div>
+
+        <div *ngIf="noticia.tipoBoton === 'tickets'" class="max-w-6xl mx-auto px-6 py-20 text-center">
+          <button (click)="navigateToEntradas()" class="btn-brand px-8 py-3 rounded-lg font-bold">
+            {{noticia.textoBoton}}
+          </button>          
+        </div>
+        
       </article>
 
       <!-- Call to Action -->

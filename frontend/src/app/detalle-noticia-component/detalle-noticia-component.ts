@@ -21,6 +21,7 @@ interface NoticiaCompleta {
   imagenes: string[];
   videos?: string[];
   boton: boolean;
+  tipoBoton:string;
   textoBoton: string;
 }
 
@@ -60,6 +61,9 @@ export class DetalleNoticiaComponent implements OnInit {
 
   navigateToComidaSolidaria() {
     this.router.navigate(['/comida-solidaria']);
+  }
+  navigateToEntradas() {
+    window.location.href = this.configGlobal.tickets.urlTikets;
   }
 
   cargarNoticia(id: number, lang: string) {
