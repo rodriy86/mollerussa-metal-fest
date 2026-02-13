@@ -55,7 +55,7 @@ class GlobalConfig {
 
   // ==================== CONTACTOS Y REDES SOCIALES ====================
   readonly contactos = {
-    email: 'info@mollerussametalfest.com',
+    email: 'info@mollerussametalfest.cat',
     telefono: '+34 123 456 789',
     ubicacion: 'Mollerussa, Lleida',
     web: 'www.mollerussametalfest.cat',
