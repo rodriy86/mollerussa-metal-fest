@@ -155,8 +155,8 @@ export const mockData = {
   noticias: [
     {
       id: 2,
-      fecha: '1 Febrero 2026',
-      fecha_ca: '1 Febrer 2026',
+      fecha: '16 Febrero 2026',
+      fecha_ca: '16 Febrer 2026',
       fecha_en: 'February 1, 2026',
       categoria: 'EVENTOS',
       categoria_ca: 'EVENTS',
@@ -181,8 +181,8 @@ export const mockData = {
     },
     {
       id: 1,
-      fecha: '16 Febrero 2026',
-      fecha_ca: '16 Febrer 2026',
+      fecha: '1 Febrero 2026',
+      fecha_ca: '1 Febrer 2026',
       fecha_en: 'February 1, 2026',
       categoria: 'EVENTOS',
       categoria_ca: 'EVENTS',
