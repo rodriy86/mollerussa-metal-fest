@@ -67,7 +67,7 @@
     "NOMBRE": "Nombre",
     "APELLIDOS": "Apellidos",
     "DNI": "DNI",
-    "POBLACION": "Población",
+    "EMAIL": "Email",
     "PERSONAS": "Personas",
     "NUMERO_PERSONAS": "Número de personas",
     "PLATO_UNICO_1": "Bocadillo de longaniza",
@@ -94,7 +94,10 @@
     "RESERVA_ENVIADA": "¡Reserva enviada correctamente! Te contactaremos para confirmar el pago.",
     "ERROR_RESERVA": "Error al enviar la reserva. Por favor, inténtalo de nuevo.",
     "ACEPTAR_POLITICA":"Debes aceptar los términos y condiciones y la política de privacidad.",
-    "CAMPO_OBLIGATORIO":"Este campo es obligatorio"
+    "CAMPO_OBLIGATORIO":"Este campo es obligatorio",
+    "MODAL_ENV_FORM_TITOL": "No olvides hacer la transferencia",
+    "MODAL_ENV_FORM_COS": "Tu reserva no será definitiva hasta que realices el pago al número de cuenta ES12 0182 1064 2502 0198 3738.",
+    "MODAL_ENV_FORM_ACCEPTAR": "Aceptar"
   }, 
   
   "GALERIA": {

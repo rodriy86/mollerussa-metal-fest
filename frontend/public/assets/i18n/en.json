@@ -67,7 +67,7 @@
     "NOMBRE": "Name",
     "APELLIDOS": "Surname",
     "DNI": "ID Number",
-    "POBLACION": "City/Town",
+    "EMAIL": "Email",
     "PERSONAS": "People",
     "NUMERO_PERSONAS": "Number of people",
     "PLATO_UNICO_1": "Sausage sandwich",
@@ -94,7 +94,10 @@
     "RESERVA_ENVIADA": "Reservation sent successfully! We will contact you to confirm the payment.",
     "ERROR_RESERVA": "Error sending the reservation. Please try again.",
     "ACEPTAR_POLITICA":"You must accept the terms and conditions and the privacy policy.",
-    "CAMPO_OBLIGATORIO":"This field is mandatory"
+    "CAMPO_OBLIGATORIO":"This field is mandatory",
+    "MODAL_ENV_FORM_TITOL": "Don't forget to make the bank transfer",
+    "MODAL_ENV_FORM_COS": "Your reservation will not be confirmed until you complete the payment to the bank account number ES12 0182 1064 2502 0198 3738.",
+    "MODAL_ENV_FORM_ACCEPTAR": "Accept"
   },
   "GALERIA": {
     "GALERIA": "ABOUT US",

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { configGlobal } from '../configGlobal';
 
@@ -19,7 +20,7 @@ export class FormDinarComponent {
     nombre: '',
     apellidos: '',
     dni: '',
-    poblacion: '',
+    email: '',
     numPersonas: 0,
     plato1: 0,
     platoVegetariano: 0,
@@ -33,6 +34,7 @@ export class FormDinarComponent {
 
   formSubmitted = false;
   showPoliticaPrivacidad = false;
+  showModalTransferencia = false;
   enviando = false;
   total = 0;
   donacion = 0;
@@ -45,7 +47,11 @@ export class FormDinarComponent {
     platoInfantil: 10
   };
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -61,23 +67,8 @@ export class FormDinarComponent {
       (this.formData.platoCeliacos || 0) * this.precios.platoCeliacos +
       (this.formData.platoInfantil || 0) * this.precios.platoInfantil
     );
-    this.formData.preuTotal=this.total;
-
+    this.formData.preuTotal = this.total;
     this.donacion = this.formData.donacionCancer ? 2 : 0;
-
-    // ✅ DEBUG: Verifica que se ejecuta y los valores
-    /*console.log('Calculando total:', {
-      donacionCancer: this.formData.donacionCancer,
-      donacion: this.donacion,
-      subtotal: this.total,
-      totalFinal: this.total + this.donacion,
-      platos: {
-        plato1: this.formData.plato1,
-        vegetariano: this.formData.platoVegetariano,
-        celiacos: this.formData.platoCeliacos,
-        infantil: this.formData.platoInfantil
-      }
-    });*/
   }
 
   // Enviar formulario
@@ -94,21 +85,15 @@ export class FormDinarComponent {
       return;
     }
 
-    // Validar que la suma de platos no exceda el número de personas
-    /*const totalPlatos = this.formData.plato1 + this.formData.platoVegetariano +
-      this.formData.platoCeliacos + this.formData.platoInfantil;
-
-    if (totalPlatos > this.formData.numPersonas) {
-      alert('La suma de platos no puede ser mayor que el número de personas.');
-      return;
-    }*/
-
     this.enviando = true;
 
     try {
       await this.enviarReserva();
-      alert('¡Reserva enviada correctamente! Te contactaremos para confirmar el pago.');
-      this.router.navigate(['/']);
+
+      // Mostrar modal de transferencia
+      this.showModalTransferencia = true;
+      this.cdr.detectChanges(); // fuerza render inmediato
+
     } catch (error) {
       console.error('Error enviando reserva:', error);
       alert('Error al enviar la reserva. Por favor, inténtalo de nuevo.');
@@ -118,7 +103,9 @@ export class FormDinarComponent {
   }
 
   async enviarReserva() {
-    return this.http.post('http://localhost:3000/api/comida-solidaria', this.formData).toPromise();
+    return await firstValueFrom(
+      this.http.post('http://localhost:3000/api/comida-solidaria', this.formData)
+    );
   }
 
   // Método para volver al inicio
@@ -134,6 +121,11 @@ export class FormDinarComponent {
   closePoliticaPrivacidad() {
     this.showPoliticaPrivacidad = false;
     document.body.style.overflow = 'auto';
+  }
+
+  cerrarModalTransferencia() {
+    this.showModalTransferencia = false;
+    this.volverAInicio();
   }
 
   isFieldInvalid(fieldName: string): boolean {
@@ -155,8 +147,7 @@ export class FormDinarComponent {
       this.formData.nombre !== '' &&
       this.formData.apellidos !== '' &&
       this.formData.dni !== '' &&
-      this.formData.poblacion !== '' &&
-      //this.formData.numPersonas >= 0 &&
+      this.formData.email !== '' &&
       this.formData.aceptoTerminos &&
       this.formData.aceptoPoliticaPrivacidad
     );
@@ -167,7 +158,7 @@ export class FormDinarComponent {
       nombre: '',
       apellidos: '',
       dni: '',
-      poblacion: '',
+      email: '',
       numPersonas: 0,
       plato1: 0,
       platoVegetariano: 0,

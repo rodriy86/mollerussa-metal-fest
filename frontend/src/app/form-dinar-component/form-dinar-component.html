@@ -50,9 +50,10 @@
             <div class="space-y-4 text-secondary">
                 <p [innerHTML]="'FORM_DINAR.DESCRIPCION_EVENTO_1' | translate"></p>
                 <p [innerHTML]="'FORM_DINAR.DESCRIPCION_EVENTO_2' | translate"></p>
+                <p><b [innerHTML]="'FORM_DINAR.DESCRIPCION_EVENTO_3' | translate"></b></p>
                 <p>
-                    <strong>{{ 'FORM_DINAR.LUGAR' | translate }}:</strong> Por determinar<br>
-                    <strong>{{ 'FORM_DINAR.FECHA' | translate }}:</strong> Por determinar<br>
+                    <strong>{{ 'FORM_DINAR.LUGAR' | translate }}:</strong> Carrer Arbeca, 34, Mollerussa<br>
+                    <strong>{{ 'FORM_DINAR.FECHA' | translate }}:</strong> 28/03/26 <br>
                     <strong>{{ 'FORM_DINAR.ACTUACIONES' | translate }}:</strong> Grupos de metal locales en directo
                 </p>
                 <p class="text-brand font-semibold">
@@ -102,12 +103,12 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.POBLACION' | translate }}
+                        <label class="block text-primary font-bold mb-3">{{ 'FORM_DINAR.EMAIL' | translate }}
                             *</label>
-                        <input type="text" [(ngModel)]="formData.poblacion" name="poblacion"
+                        <input type="text" [(ngModel)]="formData.email" name="email"
                             class="w-full bg-page border-2 border-custom rounded-lg px-4 py-4 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
-                            [class.border-brand]="isFieldInvalid('poblacion')">
-                        <div *ngIf="isFieldInvalid('poblacion')" class="text-red-400 text-sm mt-1 flex items-center">
+                            [class.border-brand]="isFieldInvalid('email')">
+                        <div *ngIf="isFieldInvalid('email')" class="text-red-400 text-sm mt-1 flex items-center">
                             <i class="ri-error-warning-line mr-1"></i>
                             {{ 'FORM_DINAR.CAMPO_OBLIGATORIO' | translate }}
                         </div>
@@ -133,26 +134,38 @@
                     <!-- Platos uno debajo del otro -->
                     <div class="space-y-6">
                         <!-- Plato Único 1 -->
-                        <div class="bg-page border border-custom rounded-lg p-4">
-                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_UNICO_1' | translate
-                                }} (10€)</label>
-                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_1' | translate }}
-                            </p>
-                            <input type="number" [(ngModel)]="formData.plato1" name="plato1" min="0"
-                                class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
-                                (change)="calcularTotal()">
-                        </div>
+                        <!-- Plato Único 1 -->
+<div class="bg-page border border-custom rounded-lg p-4">
+    <label class="block text-primary font-bold mb-2">
+        {{ 'FORM_DINAR.PLATO_UNICO_1' | translate }} (10€)
+    </label>
+    <p class="text-secondary text-sm mb-3">
+        {{ 'FORM_DINAR.DESCRIPCION_PLATO_1' | translate }}
+    </p>
+    <input type="number"
+           [(ngModel)]="formData.plato1"
+           name="plato1"
+           min="0"
+           class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+           (ngModelChange)="calcularTotal()">
+</div>
 
-                        <!-- Plato Único Vegetariano -->
-                        <div class="bg-page border border-custom rounded-lg p-4">
-                            <label class="block text-primary font-bold mb-2">{{ 'FORM_DINAR.PLATO_VEGETARIANO' |
-                                translate }} (10€)</label>
-                            <p class="text-secondary text-sm mb-3">{{ 'FORM_DINAR.DESCRIPCION_PLATO_VEGETARIANO' |
-                                translate }}</p>
-                            <input type="number" [(ngModel)]="formData.platoVegetariano" name="platoVegetariano" min="0"
-                                class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
-                                (change)="calcularTotal()">
-                        </div>
+<!-- Plato Único Vegetariano -->
+<div class="bg-page border border-custom rounded-lg p-4">
+    <label class="block text-primary font-bold mb-2">
+        {{ 'FORM_DINAR.PLATO_VEGETARIANO' | translate }} (10€)
+    </label>
+    <p class="text-secondary text-sm mb-3">
+        {{ 'FORM_DINAR.DESCRIPCION_PLATO_VEGETARIANO' | translate }}
+    </p>
+    <input type="number"
+           [(ngModel)]="formData.platoVegetariano"
+           name="platoVegetariano"
+           min="0"
+           class="w-32 bg-page border-2 border-custom rounded-lg px-4 py-2 text-primary focus:border-brand focus:ring-2 focus:ring-brand outline-none transition-all"
+           (ngModelChange)="calcularTotal()">
+</div>
+
 
                         <!-- Plato Único Celíacos 
                         <div class="bg-page border border-custom rounded-lg p-4">
@@ -271,6 +284,33 @@
             </form>
         </div>
     </div>
+
+   <!-- Modal Recordatorio Transferencia -->
+<div *ngIf="showModalTransferencia"
+     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+
+    <div class="bg-page border-2 border-brand rounded-xl w-full max-w-md p-8 text-center animate-fade-in">
+
+        <div class="text-5xl mb-4">💳</div>
+
+        <h2 class="text-2xl font-bold text-brand mb-4">
+            {{ 'FORM_DINAR.MODAL_ENV_FORM_TITOL' | translate }}
+        </h2>
+
+        <p class="text-secondary mb-6">
+            {{ 'FORM_DINAR.MODAL_ENV_FORM_COS' | translate }}
+        </p>
+
+        <h3 class="text-2xl font-black text-primary mb-2">{{ 'FORM_DINAR.TOTAL_PAGAR' | translate }}</h3>
+        <div class="text-4xl font-black text-primary">{{ total + donacion }} €</div>
+
+        <button (click)="cerrarModalTransferencia()"
+                class="btn-brand w-full py-3 rounded-lg text-lg font-bold hover:scale-105 transition-transform">
+            <span>{{ 'FORM_DINAR.MODAL_ENV_FORM_ACCEPTAR' | translate }}</span>
+        </button>
+
+    </div>
+</div>
 
     <!-- Modal de Política de Privacidad -->
     <div *ngIf="showPoliticaPrivacidad"

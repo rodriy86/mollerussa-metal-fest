@@ -59,6 +59,7 @@
     "SOBRE_EVENTO": "Sobre l'Esdeveniment",
     "DESCRIPCION_EVENTO_1": "T'invitem al nostre <strong>Dinar Solidari Mollerussa Metal Fest</strong>, un esdeveniment únic que combina bona música metal amb gastronomia solidària.",
     "DESCRIPCION_EVENTO_2": "Aquest dinar especial està organitzat per l'associació Mollerussa Metal Fest com a part del nostre compromís amb la comunitat i la cultura metalera.",
+    "DESCRIPCION_EVENTO_3": "Per participar a l’esdeveniment, només cal que ompliu el formulari. Un cop enviat, haureu de fer el pagament per transferència al número de compte ES12 0182 1064 2502 0198 3738. Podreu recollir el tiquet el mateix dia de l’esdeveniment indicant el nom de la persona que ha fet la reserva. ",
     "LUGAR": "📍 Lloc",
     "FECHA": "📅 Data",
     "ACTUACIONES": "🎵 Actuacions",
@@ -67,7 +68,7 @@
     "NOMBRE": "Nom",
     "APELLIDOS": "Cognoms",
     "DNI": "DNI",
-    "POBLACION": "Població",
+    "EMAIL": "Email",
     "PERSONAS": "Persones",
     "NUMERO_PERSONAS": "Nombre de persones",
     "PLATO_UNICO_1": "Entrepà de llonganissa",
@@ -94,7 +95,10 @@
     "RESERVA_ENVIADA": "¡Reserva enviada correctament! Et contactarem per confirmar el pagament.",
     "ERROR_RESERVA": "Error en enviar la reserva. Si us plau, torna a intentar-ho.",
     "ACEPTAR_POLITICA":"Has d'acceptar els termes i condicions i la política de privacitat.",
-    "CAMPO_OBLIGATORIO":"Aquest camp és obligatori"
+    "CAMPO_OBLIGATORIO":"Aquest camp és obligatori",
+    "MODAL_ENV_FORM_TITOL": "No oblidis fer la transferència",
+    "MODAL_ENV_FORM_COS": "La teva reserva no serà definitiva fins que facis el pagament al número de compte ES12 0182 1064 2502 0198 3738.",
+    "MODAL_ENV_FORM_ACCEPTAR": "Acceptar"
   },
   "GALERIA": {
     "GALERIA": "SOBRE NOSALTRES",
