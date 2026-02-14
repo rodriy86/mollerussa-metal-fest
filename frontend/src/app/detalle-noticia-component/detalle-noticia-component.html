@@ -16,7 +16,7 @@
             class="flex items-center text-secondary hover-text-brand transition-colors font-medium">
             <i class="ri-arrow-left-line mr-2"></i>
             {{ 'GENERAL.VOLVER_INICIO' | translate }}
-            
+
           </button>
         </div>
 
@@ -104,7 +104,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
               <div *ngFor="let imagen of noticia.imagenes; let i = index" class="bg-card rounded-lg overflow-hidden">
                 <img [src]="imagen" [alt]="'Imagen ' + (i + 1) + ' - ' + noticia.titulo"
-                  class="w-full h-64 object-cover">
+                  class="w-full h-full object-cover">
               </div>
             </div>
           </div>
@@ -112,15 +112,15 @@
         <div *ngIf="noticia.tipoBoton=== 'bermut' " class="max-w-6xl mx-auto px-6 py-20 text-center">
           <button (click)="navigateToComidaSolidaria()" class="btn-brand px-8 py-3 rounded-lg font-bold">
             {{noticia.textoBoton}}
-          </button>          
+          </button>
         </div>
 
         <div *ngIf="noticia.tipoBoton === 'tickets'" class="max-w-6xl mx-auto px-6 py-20 text-center">
           <button (click)="navigateToEntradas()" class="btn-brand px-8 py-3 rounded-lg font-bold">
             {{noticia.textoBoton}}
-          </button>          
+          </button>
         </div>
-        
+
       </article>
 
       <!-- Call to Action -->
