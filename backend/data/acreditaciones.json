@@ -88,5 +88,23 @@
     "dias": [],
     "fecha": "2025-10-16T22:32:13.648Z",
     "id": 1760653933648
+  },
+  {
+    "tipo": "prensa",
+    "nombre": "Jordi Rodriguez",
+    "email": "rodriy86.maps@gmail.com",
+    "telefono": "+34973603185",
+    "documentoIdentidad": "123",
+    "ciudadResidencia": "El Palau De Anglesola",
+    "redesSociales": "",
+    "medio": "qweqw",
+    "plataformas": "",
+    "cobertura": "wsdasd",
+    "necesidadesEspeciales": "asd",
+    "aceptoTerminos": true,
+    "aceptoPoliticaPrivacidad": true,
+    "dias": [],
+    "fecha": "2026-02-14T11:43:46.340Z",
+    "id": 1771069426340
   }
 ]

@@ -86,6 +86,7 @@
     "TERMINOS_TEXTO": "<strong>Acepto los términos y condiciones.</strong> Entiendo que esta reserva está sujeta a disponibilidad y confirmación por parte de la organización.",
     "POLITICA_TEXTO": "<strong>He leído y acepto la </strong>",
     "POLITICA_PRIVACIDAD": "Política de privacidad",
+    "POLITICA_CONSENTIMIENTO": "y consiento el tratamiento de mis datos para gestionar la solicitud de acreditación. ",
     "ENVIAR_RESERVA": "ENVIAR RESERVA",
     "ENVIANDO": "ENVIANDO...",
     "CAMPOS_OBLIGATORIOS": "Por favor, completa todos los campos obligatorios correctamente.",

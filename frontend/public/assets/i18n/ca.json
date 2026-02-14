@@ -87,6 +87,7 @@
     "TERMINOS_TEXTO": "<strong>Accepto els termes i condicions.</strong> Entenc que aquesta reserva està subjecta a disponibilitat i confirmació per part de l'organització.",
     "POLITICA_TEXTO": "<strong>He llegit i accepto la </strong>",
     "POLITICA_PRIVACIDAD": "Política de privacitat",
+    "POLITICA_CONSENTIMIENTO": "i consento el tractament de les meves dades per gestionar la sol·licitud d'acreditació. *",
     "ENVIAR_RESERVA": "ENVIAR RESERVA",
     "ENVIANDO": "ENVIANT...",
     "CAMPOS_OBLIGATORIOS": "Si us plau, completa tots els camps obligatoris correctament.",

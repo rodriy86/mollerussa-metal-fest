@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { configGlobal } from '../configGlobal';
@@ -38,6 +38,7 @@ export class FormDinarComponent {
   enviando = false;
   total = 0;
   donacion = 0;
+  errorMensaje: string = '';
 
   // Precios de los platos
   precios = {
@@ -57,6 +58,19 @@ export class FormDinarComponent {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
+    this.errorMensaje = '';
+  }
+
+  // GETTER para validación del formulario
+  get formEsValido(): boolean {
+    return (
+      this.formData.nombre.trim() !== '' &&
+      this.formData.apellidos.trim() !== '' &&
+      this.formData.dni.trim() !== '' &&
+      this.formData.email.trim() !== '' &&
+      this.formData.aceptoTerminos === true &&
+      this.formData.aceptoPoliticaPrivacidad === true
+    );
   }
 
   // Calcular total
@@ -74,39 +88,98 @@ export class FormDinarComponent {
   // Enviar formulario
   async onSubmit() {
     this.formSubmitted = true;
+    this.errorMensaje = '';
 
-    if (!this.isFormValid()) {
-      alert('Por favor, completa todos los campos obligatorios correctamente.');
+    // Forzar detección de cambios después de cambiar formSubmitted
+    this.cdr.detectChanges();
+
+    // Validaciones
+    if (!this.formEsValido) {
+      this.errorMensaje = 'Por favor, completa todos los campos obligatorios correctamente.';
+      alert(this.errorMensaje);
       return;
     }
 
-    if (!this.formData.aceptoTerminos || !this.formData.aceptoPoliticaPrivacidad) {
-      alert('Debes aceptar los términos y condiciones y la política de privacidad.');
+    // Validar que haya al menos un plato seleccionado
+    const totalPlatos = this.formData.plato1 + this.formData.platoVegetariano + 
+                       this.formData.platoCeliacos + this.formData.platoInfantil;
+    
+    if (totalPlatos === 0) {
+      this.errorMensaje = 'Debes seleccionar al menos un plato.';
+      alert(this.errorMensaje);
       return;
     }
 
     this.enviando = true;
 
     try {
-      await this.enviarReserva();
+      const respuesta = await this.enviarReserva();
 
       // Mostrar modal de transferencia
       this.showModalTransferencia = true;
-      this.cdr.detectChanges(); // fuerza render inmediato
+      
+      // Cambiar enviando a false ANTES de detectar cambios
+      this.enviando = false;
+      this.cdr.detectChanges();
 
     } catch (error) {
-      console.error('Error enviando reserva:', error);
-      alert('Error al enviar la reserva. Por favor, inténtalo de nuevo.');
-    } finally {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.errorMensaje = 'No se pudo conectar con el servidor. Verifica tu conexión.';
+        } else if (error.status === 404) {
+          this.errorMensaje = 'La URL del servidor no es correcta.';
+        } else if (error.status === 500) {
+          this.errorMensaje = 'Error interno del servidor. Inténtalo más tarde.';
+        } else {
+          this.errorMensaje = `Error ${error.status}: ${error.statusText}`;
+        }
+      } else {
+        this.errorMensaje = 'Error al enviar la reserva. Por favor, inténtalo de nuevo.';
+      }
+      
+      alert(this.errorMensaje);
+      
+      // En caso de error, también resetear enviando
       this.enviando = false;
+      this.cdr.detectChanges();
     }
   }
 
   async enviarReserva() {
-  return await firstValueFrom(
-    this.http.post('https://mollerussa-metal-fest-production.up.railway.app/api/comida-solidaria', this.formData)
-  );
-}
+    // Calcular el total actualizado
+    this.calcularTotal();
+    
+    // Preparar datos para el backend
+    const datosEnvio = {
+      nombre: this.formData.nombre,
+      apellidos: this.formData.apellidos,
+      dni: this.formData.dni,
+      email: this.formData.email,
+      numPersonas: this.formData.numPersonas,
+      plato1: this.formData.plato1,
+      platoVegetariano: this.formData.platoVegetariano,
+      platoCeliacos: this.formData.platoCeliacos,
+      platoInfantil: this.formData.platoInfantil,
+      preuTotal: this.total + this.donacion,
+      donacionCancer: this.formData.donacionCancer
+    };
+
+    // Detectar entorno: local vs producción
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    const apiUrl = isLocal 
+      ? 'http://localhost:3000/api/comida-solidaria'
+      : 'https://mollerussa-metal-fest-production.up.railway.app/api/comida-solidaria';
+
+    try {
+      const respuesta = await firstValueFrom(
+        this.http.post(apiUrl, datosEnvio)
+      );
+      return respuesta;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   // Método para volver al inicio
   volverAInicio(): void {
@@ -129,28 +202,17 @@ export class FormDinarComponent {
   }
 
   isFieldInvalid(fieldName: string): boolean {
+    if (!this.formSubmitted) return false;
+    
     const fieldValue = this.formData[fieldName as keyof typeof this.formData];
 
-    if (typeof fieldValue === 'number') {
-      return this.formSubmitted && (fieldValue === null || fieldValue === undefined || fieldValue < 0);
+    if (fieldName === 'plato1' || fieldName === 'platoVegetariano' || 
+        fieldName === 'platoCeliacos' || fieldName === 'platoInfantil' || 
+        fieldName === 'numPersonas') {
+      return false;
     }
 
-    return this.formSubmitted && (
-      fieldValue === '' ||
-      fieldValue === null ||
-      fieldValue === undefined
-    );
-  }
-
-  isFormValid(): boolean {
-    return (
-      this.formData.nombre !== '' &&
-      this.formData.apellidos !== '' &&
-      this.formData.dni !== '' &&
-      this.formData.email !== '' &&
-      this.formData.aceptoTerminos &&
-      this.formData.aceptoPoliticaPrivacidad
-    );
+    return !fieldValue && fieldValue !== false;
   }
 
   resetForm() {
@@ -172,5 +234,6 @@ export class FormDinarComponent {
     this.formSubmitted = false;
     this.total = 0;
     this.donacion = 0;
+    this.errorMensaje = '';
   }
 }
