@@ -103,16 +103,10 @@ export class FormDinarComponent {
   }
 
   async enviarReserva() {
-  // Detectar entorn: localhost per desarrollament, Railway per producció
-  const apiUrl = window.location.hostname === 'localhost'
-    ? 'http://localhost:3000/api/comida-solidaria'
-    : 'mollerussa-metal-fest-production.up.railway.app/api/comida-solidaria';
-
   return await firstValueFrom(
-    this.http.post(apiUrl, this.formData)
+    this.http.post('https://mollerussa-metal-fest-production.up.railway.app/api/comida-solidaria', this.formData)
   );
 }
-
 
   // Método para volver al inicio
   volverAInicio(): void {
