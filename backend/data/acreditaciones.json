@@ -106,5 +106,23 @@
     "dias": [],
     "fecha": "2026-02-14T11:43:46.340Z",
     "id": 1771069426340
+  },
+  {
+    "tipo": "prensa",
+    "nombre": "fermin rodriguez",
+    "email": "fermin1x2@hotmail.com",
+    "telefono": "+34609122792",
+    "documentoIdentidad": "qweqwe",
+    "ciudadResidencia": "El Palau De Anglesola",
+    "redesSociales": "qwe",
+    "medio": "qwe",
+    "plataformas": "",
+    "cobertura": "qwe",
+    "necesidadesEspeciales": "qwe",
+    "aceptoTerminos": true,
+    "aceptoPoliticaPrivacidad": true,
+    "dias": [],
+    "fecha": "2026-02-14T23:17:11.545Z",
+    "id": 1771111031545
   }
 ]
