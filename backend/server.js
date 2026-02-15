@@ -409,36 +409,103 @@ const apiHandlers = {
 
   req.on('end', async () => {
     try {
+      // 1. PARSEAR DATOS
       const formData = JSON.parse(body);
 
-      // Validación básica (como en acreditaciones)
-      if (!formData.nombre || !formData.apellidos || !formData.dni || !formData.email) {
-        return sendError(res, 400, 'Falten dades obligatòries');
+      // 2. VALIDACIÓN
+      const requiredFields = ['nombre', 'apellidos', 'dni'];
+      const missingFields = requiredFields.filter(field => !formData[field]);
+      
+      if (missingFields.length > 0) {
+        return sendError(res, 400, `Falten camps obligatoris: ${missingFields.join(', ')}`);
       }
 
-      // Calcular total (simple)
-      const total = (formData.plato1 || 0) * 10 + 
-                    (formData.platoVegetariano || 0) * 10 + 
-                    (formData.platoCeliacos || 0) * 10 + 
-                    (formData.platoInfantil || 0) * 10;
-      
-      if (formData.donacionCancer) total += 2;
-      
-      formData.preuTotal = total;
+      // 3. CALCULAR TOTAL
+      let totalCalculado = Number(formData.preuTotal) || 0;
+      if (!formData.preuTotal || totalCalculado === 0) {
+        const precioPorPlato = 10;
+        const donacionCancer = 2;
+        
+        const plato1 = Number(formData.plato1) || 0;
+        const platoVegetariano = Number(formData.platoVegetariano) || 0;
+        const platoCeliacos = Number(formData.platoCeliacos) || 0;
+        const platoInfantil = Number(formData.platoInfantil) || 0;
+        
+        const totalPlatos = (plato1 + platoVegetariano + platoCeliacos + platoInfantil) * precioPorPlato;
+        totalCalculado = totalPlatos;
+        
+        if (formData.donacionCancer) {
+          totalCalculado += donacionCancer;
+        }
+      }
 
-      // ÚNICAMENTE: Enviar email (como en acreditaciones)
-      await enviarEmailComidaSolidaria(formData);
+      // 4. PREPARAR DATOS PARA GOOGLE SHEETS
+      const sheetsData = {
+        nombre: String(formData.nombre || ''),
+        apellidos: String(formData.apellidos || ''),
+        dni: String(formData.dni || ''),
+        poblacion: String(formData.poblacion || ''),
+        telefono: String(formData.telefono || ''),
+        email: String(formData.email || ''),
+        plat_llongonissa: Number(formData.plato1) || 0,
+        plat_escalivada: Number(formData.platoVegetariano) || 0,
+        preuTotal: Number(totalCalculado) || 0
+      };
 
-      // Responder (si llegamos aquí, el email se envió)
+      // 5. ENVIAR A GOOGLE SHEETS
+      let sheetsSuccess = false;
+      let sheetsResponse = null;
+      
+      try {
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxtweNdgZxp4Fd5PmWITG2E_w8P3CkVs9WFTi9QtjRiP84rdSGAoV5JXForsO_e10eA/exec';
+        
+        const response = await fetch(googleScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sheetsData)
+        });
+
+        const resultText = await response.text();
+        
+        try {
+          sheetsResponse = JSON.parse(resultText);
+          sheetsSuccess = sheetsResponse.success === true;
+        } catch {
+          sheetsSuccess = resultText.toLowerCase().includes('éxito') || 
+                         resultText.toLowerCase().includes('success');
+        }
+
+      } catch (sheetsError) {
+        console.error('Error Google Sheets:', sheetsError.message);
+      }
+
+      // 6. ENVIAR EMAIL
+      let emailSent = false;
+      let emailResult = null;
+      
+      try {
+        formData.preuTotal = totalCalculado;
+        emailResult = await enviarEmailComidaSolidaria(formData);
+        emailSent = emailResult.success === true;
+
+      } catch (emailError) {
+        console.error('Error email:', emailError.message);
+      }
+
+      // 7. RESPONDER
       sendJson(res, {
         success: true,
         message: 'Reserva procesada correctament',
-        total: total
+        details: {
+          emailSent: emailSent,
+          sheetsSaved: sheetsSuccess,
+          total: totalCalculado
+        }
       });
 
     } catch (error) {
-      console.error('Error:', error.message);
-      sendError(res, 500, 'Error intern del servidor');
+      console.error('Error procesando reserva:', error.message);
+      sendError(res, 500, `Error del servidor: ${error.message}`);
     }
   });
 },
