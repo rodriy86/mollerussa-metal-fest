@@ -599,14 +599,16 @@ const enviarEmailComidaSolidaria = async (formData) => {
 
     // Calcular total con donación
     const subtotal = (
-      (formData.plato1 || 0) * 10 +
-      (formData.platoVegetariano || 0) * 10 +
-      (formData.platoCeliacos || 0) * 10 +
-      (formData.platoInfantil || 0) * 10
+      (formData.mayoresPlato1 || 0) * 10 +
+      (formData.mayoresPlato2 || 0) * 11 +
+      (formData.mayoresCafe || 0) * 2 +
+      (formData.mayoresBermut || 0) * 5 +
+      (formData.menoresPlato1 || 0) * 10 +
+      (formData.menoresPlato2 || 0) * 11
     );
 
     const donacion = formData.donacionCancer ? 2 : 0;
-    const preuTotal = formData.preuTotal || subtotal + donacion;
+    const preuTotal = formData.preuTotal || 0; 
 
     const mailOptions = {
       from: `"Mollerussa Metal Fest" <info.mmf973@gmail.com>`,
@@ -638,16 +640,12 @@ const enviarEmailComidaSolidaria = async (formData) => {
               <h3>👤 Informació Personal</h3>
               <p><span class="label">Nom:</span> ${formData.nombre} ${formData.apellidos}</p>
               <p><span class="label">DNI:</span> ${formData.dni}</p>
-              <p><span class="label">Email:</span> ${formData.email}</p>
-              <p><span class="label">Població:</span> ${formData.poblacion || 'No especificada'}</p>
+              <p><span class="label">Població:</span> ${formData.poblacion}</p>
             </div>
 
             <div class="section">
-              <h3>🍽️ Detall de la comanda</h3>
               <p><span class="label">Plat llongonissa (10€):</span> ${formData.plato1 || 0}</p>
               <p><span class="label">Plat Escalivada (10€):</span> ${formData.platoVegetariano || 0}</p>
-              <p><span class="label">Plat per a celíacs (10€):</span> ${formData.platoCeliacos || 0}</p>
-              <p><span class="label">Plat infantil (10€):</span> ${formData.platoInfantil || 0}</p>
             </div>
 
             ${donacion > 0 ? `
@@ -666,6 +664,7 @@ const enviarEmailComidaSolidaria = async (formData) => {
             <div class="section">
               <h3>📅 Informació de la Reserva</h3>
               <p><span class="label">Data:</span> ${new Date().toLocaleString('ca-ES')}</p>
+              <!--<p><span class="label">Inclou donació:</span> ${formData.donacionCancer ? 'SÍ ✅' : 'NO'}</p>-->
             </div>
           </div>
 
