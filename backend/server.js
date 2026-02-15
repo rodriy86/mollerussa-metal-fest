@@ -396,7 +396,6 @@ const apiHandlers = {
   },
 
   // Endpoint POST para comida solidaria
-// Endpoint POST para comida solidaria
 '/api/comida-solidaria': async (req, res) => {
   if (req.method !== 'POST') {
     return sendError(res, 405, 'Mètode no permès');
@@ -410,55 +409,36 @@ const apiHandlers = {
 
   req.on('end', async () => {
     try {
-      // 1. PARSEAR DATOS
       const formData = JSON.parse(body);
 
-      // 2. VALIDACIÓN
-      const requiredFields = ['nombre', 'apellidos', 'dni'];
-      const missingFields = requiredFields.filter(field => !formData[field]);
+      // Validación básica (como en acreditaciones)
+      if (!formData.nombre || !formData.apellidos || !formData.dni || !formData.email) {
+        return sendError(res, 400, 'Falten dades obligatòries');
+      }
+
+      // Calcular total (simple)
+      const total = (formData.plato1 || 0) * 10 + 
+                    (formData.platoVegetariano || 0) * 10 + 
+                    (formData.platoCeliacos || 0) * 10 + 
+                    (formData.platoInfantil || 0) * 10;
       
-      if (missingFields.length > 0) {
-        return sendError(res, 400, `Falten camps obligatoris: ${missingFields.join(', ')}`);
-      }
+      if (formData.donacionCancer) total += 2;
+      
+      formData.preuTotal = total;
 
-      // 3. CALCULAR TOTAL
-      let totalCalculado = Number(formData.preuTotal) || 0;
-      // ... (cálculos)
+      // ÚNICAMENTE: Enviar email (como en acreditaciones)
+      await enviarEmailComidaSolidaria(formData);
 
-      // 4. PRIMERO: ENVIAR EMAIL (IGUAL QUE EN ACREDITACIONES)
-      let emailSent = false;
-      try {
-        formData.preuTotal = totalCalculado;
-        await enviarEmailComidaSolidaria(formData);
-        emailSent = true;
-        console.log('✅ Email enviado correctamente');
-      } catch (emailError) {
-        console.error('Error email:', emailError.message);
-        // No lanzamos error, solo registramos
-      }
-
-      // 5. DESPUÉS: GOOGLE SHEETS (opcional)
-      let sheetsSuccess = false;
-      try {
-        // ... código de Google Sheets
-      } catch (sheetsError) {
-        console.error('Error Google Sheets:', sheetsError.message);
-      }
-
-      // 6. RESPONDER (SIEMPRE success si el email se envió)
+      // Responder (si llegamos aquí, el email se envió)
       sendJson(res, {
-        success: emailSent, // true si email ok, false si no
-        message: emailSent ? 'Reserva procesada correctament' : 'Reserva guardada pero email no enviado',
-        details: {
-          emailSent,
-          sheetsSaved: sheetsSuccess,
-          total: totalCalculado
-        }
+        success: true,
+        message: 'Reserva procesada correctament',
+        total: total
       });
 
     } catch (error) {
-      console.error('Error procesando reserva:', error.message);
-      sendError(res, 500, `Error del servidor: ${error.message}`);
+      console.error('Error:', error.message);
+      sendError(res, 500, 'Error intern del servidor');
     }
   });
 },
