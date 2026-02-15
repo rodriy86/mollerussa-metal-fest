@@ -19,6 +19,7 @@
     "express": "^4.21.2",
     "fetch": "^1.1.0",
     "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^8.0.1",
     "stripe": "^14.25.0"
   },
   "devDependencies": {
