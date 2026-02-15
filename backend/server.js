@@ -585,8 +585,7 @@ const server = http.createServer((req, res) => {
 // Función para enviar email de comida solidaria
 const enviarEmailComidaSolidaria = async (formData) => {
   try {
-    //const nodemailer = await import('nodemailer');
-    const nodemailer = require('nodemailer');
+    const nodemailer = await import('nodemailer');
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
