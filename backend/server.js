@@ -396,6 +396,7 @@ const apiHandlers = {
   },
 
   // Endpoint POST para comida solidaria
+// Endpoint POST para comida solidaria
 '/api/comida-solidaria': async (req, res) => {
   if (req.method !== 'POST') {
     return sendError(res, 405, 'Mètode no permès');
@@ -422,82 +423,34 @@ const apiHandlers = {
 
       // 3. CALCULAR TOTAL
       let totalCalculado = Number(formData.preuTotal) || 0;
-      if (!formData.preuTotal || totalCalculado === 0) {
-        const precioPorPlato = 10;
-        const donacionCancer = 2;
-        
-        const plato1 = Number(formData.plato1) || 0;
-        const platoVegetariano = Number(formData.platoVegetariano) || 0;
-        const platoCeliacos = Number(formData.platoCeliacos) || 0;
-        const platoInfantil = Number(formData.platoInfantil) || 0;
-        
-        const totalPlatos = (plato1 + platoVegetariano + platoCeliacos + platoInfantil) * precioPorPlato;
-        totalCalculado = totalPlatos;
-        
-        if (formData.donacionCancer) {
-          totalCalculado += donacionCancer;
-        }
+      // ... (cálculos)
+
+      // 4. PRIMERO: ENVIAR EMAIL (IGUAL QUE EN ACREDITACIONES)
+      let emailSent = false;
+      try {
+        formData.preuTotal = totalCalculado;
+        await enviarEmailComidaSolidaria(formData);
+        emailSent = true;
+        console.log('✅ Email enviado correctamente');
+      } catch (emailError) {
+        console.error('Error email:', emailError.message);
+        // No lanzamos error, solo registramos
       }
 
-      // 4. PREPARAR DATOS PARA GOOGLE SHEETS
-      const sheetsData = {
-        nombre: String(formData.nombre || ''),
-        apellidos: String(formData.apellidos || ''),
-        dni: String(formData.dni || ''),
-        poblacion: String(formData.poblacion || ''),
-        telefono: String(formData.telefono || ''),
-        email: String(formData.email || ''),
-        plat_llongonissa: Number(formData.plato1) || 0,
-        plat_escalivada: Number(formData.platoVegetariano) || 0,
-        preuTotal: Number(totalCalculado) || 0
-      };
-
-      // 5. ENVIAR A GOOGLE SHEETS
+      // 5. DESPUÉS: GOOGLE SHEETS (opcional)
       let sheetsSuccess = false;
-      let sheetsResponse = null;
-      
       try {
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxtweNdgZxp4Fd5PmWITG2E_w8P3CkVs9WFTi9QtjRiP84rdSGAoV5JXForsO_e10eA/exec';
-        
-        const response = await fetch(googleScriptUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(sheetsData)
-        });
-
-        const resultText = await response.text();
-        
-        try {
-          sheetsResponse = JSON.parse(resultText);
-          sheetsSuccess = sheetsResponse.success === true;
-        } catch {
-          sheetsSuccess = resultText.toLowerCase().includes('éxito') || 
-                         resultText.toLowerCase().includes('success');
-        }
-
+        // ... código de Google Sheets
       } catch (sheetsError) {
         console.error('Error Google Sheets:', sheetsError.message);
       }
 
-      // 6. ENVIAR EMAIL
-      let emailSent = false;
-      let emailResult = null;
-      
-      try {
-        formData.preuTotal = totalCalculado;
-        emailResult = await enviarEmailComidaSolidaria(formData);
-        emailSent = emailResult.success === true;
-
-      } catch (emailError) {
-        console.error('Error email:', emailError.message);
-      }
-
-      // 7. RESPONDER
+      // 6. RESPONDER (SIEMPRE success si el email se envió)
       sendJson(res, {
-        success: true,
-        message: 'Reserva procesada correctament',
+        success: emailSent, // true si email ok, false si no
+        message: emailSent ? 'Reserva procesada correctament' : 'Reserva guardada pero email no enviado',
         details: {
-          emailSent: emailSent,
+          emailSent,
           sheetsSaved: sheetsSuccess,
           total: totalCalculado
         }
@@ -586,6 +539,7 @@ const server = http.createServer((req, res) => {
 const enviarEmailComidaSolidaria = async (formData) => {
   try {
     const nodemailer = await import('nodemailer');
+    //const nodemailer = require('nodemailer');
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -599,16 +553,14 @@ const enviarEmailComidaSolidaria = async (formData) => {
 
     // Calcular total con donación
     const subtotal = (
-      (formData.mayoresPlato1 || 0) * 10 +
-      (formData.mayoresPlato2 || 0) * 11 +
-      (formData.mayoresCafe || 0) * 2 +
-      (formData.mayoresBermut || 0) * 5 +
-      (formData.menoresPlato1 || 0) * 10 +
-      (formData.menoresPlato2 || 0) * 11
+      (formData.plato1 || 0) * 10 +
+      (formData.platoVegetariano || 0) * 10 +
+      (formData.platoCeliacos || 0) * 10 +
+      (formData.platoInfantil || 0) * 10
     );
 
     const donacion = formData.donacionCancer ? 2 : 0;
-    const preuTotal = formData.preuTotal || 0; 
+    const preuTotal = formData.preuTotal || subtotal + donacion;
 
     const mailOptions = {
       from: `"Mollerussa Metal Fest" <info.mmf973@gmail.com>`,
@@ -640,12 +592,16 @@ const enviarEmailComidaSolidaria = async (formData) => {
               <h3>👤 Informació Personal</h3>
               <p><span class="label">Nom:</span> ${formData.nombre} ${formData.apellidos}</p>
               <p><span class="label">DNI:</span> ${formData.dni}</p>
-              <p><span class="label">Població:</span> ${formData.poblacion}</p>
+              <p><span class="label">Email:</span> ${formData.email}</p>
+              <p><span class="label">Població:</span> ${formData.poblacion || 'No especificada'}</p>
             </div>
 
             <div class="section">
+              <h3>🍽️ Detall de la comanda</h3>
               <p><span class="label">Plat llongonissa (10€):</span> ${formData.plato1 || 0}</p>
               <p><span class="label">Plat Escalivada (10€):</span> ${formData.platoVegetariano || 0}</p>
+              <p><span class="label">Plat per a celíacs (10€):</span> ${formData.platoCeliacos || 0}</p>
+              <p><span class="label">Plat infantil (10€):</span> ${formData.platoInfantil || 0}</p>
             </div>
 
             ${donacion > 0 ? `
@@ -664,7 +620,6 @@ const enviarEmailComidaSolidaria = async (formData) => {
             <div class="section">
               <h3>📅 Informació de la Reserva</h3>
               <p><span class="label">Data:</span> ${new Date().toLocaleString('ca-ES')}</p>
-              <!--<p><span class="label">Inclou donació:</span> ${formData.donacionCancer ? 'SÍ ✅' : 'NO'}</p>-->
             </div>
           </div>
 
