@@ -225,22 +225,22 @@ export const mockData = {
       descripcionCorta_ca: 'El Mollerussa Metal Fest organitza un dinar solidari amb tots els beneficis destinats a l\'associació de nens amb càncer. Vine a menjar i col·labora!',
       descripcionCorta_en: 'Mollerussa Metal Fest organizes a solidarity meal with all proceeds going to the children\'s cancer association. Come eat and collaborate!',
       contenido: JSON.stringify([
-        "El Mollerussa Metal Fest siempre ha sido música, pasión y metal, pero este año damos un paso más allá. Por primera vez, organizamos una comida solidaria a base de bocadillos acompañados de buena música de bandas locales, con un objetivo claro: ofrecer algo sencillo, rico y con causa.\nPor cada bocadillo que compres, 1€ se destinará íntegramente a Hardcore Hits Cancer, una organización sin ánimo de lucro que apoya directamente a familias con niños que luchan contra el cáncer, ayudando a cubrir necesidades básicas y ofreciendo apoyo en los momentos más difíciles.",
-        'El menú incluye: bocadillo de llonganissa o para vegetarianos escalivada, ambos por solo 10€. Además, quienes lo deseen pueden añadir una donación voluntaria de 2€ para la asociación.',
-        'La comida se servirá en el recinto del festival, creando un espacio de convivencia donde compartir mesa con amigos, familias y otros asistentes al festival.',
-        'Para participar, solo tienes que rellenar el formulario de reserva indicando el número de platos que deseas y hacer el pago mediante el numero de cuenta ES12 0182 1064 2502 0198 3738. Puedes recoger tus tickets en la entrada del festival el mismo día del evento. ¡Te esperamos!'
+        "La Asociación Mollerussa Metal Fest organiza una vermutada + comida solidaria el día 28 de marzo en el patio de la escuela de música de Mollerussa, calle Arbeca, 34.",
+        "Aquí mismo, en nuestra página web, podéis rellenar el formulario para reservar un ticket de bocadillo + bebida + café por 10 €, en el que podéis elegir si el bocadillo es de longaniza o escalivada. Un euro de cada ticket se destinará a la asociación Hardcore Hits Cáncer. La compra de un ticket os da derecho también a participar en diferentes sorteos que haremos durante el día.",
+        "Una jornada solidaria y festiva que servirá también para anunciar el cabeza de cartel del Mollerussa Metal Fest 2026.",
+        "Durante el mediodía también se servirán vermuts y todo estará amenizado por la actuación en directo de GrocDur, Reccbatt, Botijo y Hashtack."
       ]),
       contenido_ca: JSON.stringify([
-        "El Mollerussa Metal Fest sempre ha estat música, passió i metall, però aquest any fem un pas més enllà. Per primera vegada, organitzem un dinar solidari a base d'entrepans acompanyats de bona música de bandes locals, amb un objectiu clar: oferir alguna cosa senzilla, rica i amb causa.\nPer cada entrepà que compris, 1€ es destinarà íntegrament a Hardcore Hits Cancer, una organització sense ànim de lucre que dóna suport directe a famílies amb infants que lluiten contra el càncer, ajudant a cobrir necessitats bàsiques i oferint acompanyament en els moments més difícils.",
-        'El menú inclou : un bocata de llonganissa o per a vegetarians \'escalivada, tots dos per només 10€. A més, els qui ho desitgin poden afegir una donació voluntària de 2€ per a l\'associació.',
-        'El dinar se servirà al recinte del festival, creant un espai de convivència on compartir taula amb amics, famílies i altres assistents al festival.',
-        "Per participar, només has d'omplir el formulari de reserva indicant el nombre de plats que desitges i fer el pagament mitjançant el número de compte ES12 0182 1064 2502 0198 3738. Pots recollir els teus tiquets a l'entrada del festival el mateix dia de l'esdeveniment. T'esperem!"
+        "L'Associacio Mollerussa Metal Fest organitza una vermutada + dinar solidari el dia 28 de març al pati de l'escola de música de Mollerussa c/Arbeca, 34.",
+        "Aquí mateix a la nostra pàgina web podeu omplir el formulari per reservar un ticket d'entrepà + beguda + cafè per 10 €, en el que podeu triar si l'entrepà és de llonganissa o escalivada, un euro de cada ticket es destinarà a l'associació Hardcore Hits Càncer. La compra d'un ticket et dona dret també a participar en diferents sortejos que farem durant el di",
+        "Una jornada solidària i festiva que servirà també per anunciar el cap de cartell del Mollerussa Metal Fest 2026.",
+        "Durant el migdia també es serviran vermuts i tot estarà amenitzat per l'actuació en directe de GrocDur, Reccbatt, Botijo i Hashtack"
       ]),
       contenido_en: JSON.stringify([
-        "Mollerussa Metal Fest has always been about music, passion, and metal, but this year we're going a step further. For the first time, we are organizing a solidarity meal featuring sandwiches accompanied by great music from local bands, with a clear goal: to offer something simple, tasty, and meaningful.\nFor every sandwich you buy, €1 will go entirely to Hardcore Hits Cancer, a non-profit organization that directly supports families with children battling cancer, helping to cover basic needs and providing support during the toughest times.",
-        'The menu includes a choice of longanissa sandwich or, for vegetarians, an escalivada sandwich, both for only €10. Additionally, those who wish can add a voluntary donation of €2 for the association.',
-        'The meal will be served at the festival grounds, creating a space for coexistence where you can share a table with friends, families, and other festival attendees.',
-        "To participate, simply fill out the reservation form indicating the number of meals you want and make the payment via the account number ES12 0182 1064 2502 0198 3738. You can pick up your tickets at the festival entrance on the same day of the event. We look forward to seeing you!"
+        "The Mollerussa Metal Fest Association organizes a vermouth tasting + charity lunch on March 28th in the courtyard of the Mollerussa music school, at Arbeca Street, 34.",
+        "Right here on our website, you can fill out the form to reserve a ticket for a sandwich + drink + coffee for €10, where you can choose between a longanisa sausage or escalivada sandwich. One euro from each ticket will go to the Hardcore Hits Cancer association. Purchasing a ticket also entitles you to participate in various raffles that we will hold during the day.",
+        "A charity and festive event that will also serve to announce the headliner for the Mollerussa Metal Fest 2026.",
+        "During the midday, vermouth will also be served, and everything will be enlivened by live performances from GrocDur, Reccbatt, Botijo, and Hashtack."
       ]),
       imagenPrincipal: '/assets/images/noticies/bermut.jpeg',
       autor: 'Redacción MMF',
