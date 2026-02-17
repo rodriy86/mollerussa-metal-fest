@@ -44,7 +44,8 @@
   },
   "NOTICIAS": {
     "NOTICIAS": "NOTÍCIES",
-    "LEER_MAS": "Llegir més",
+    "LEER_MAS": "Llegir més",    
+    "GUSTA?": "T'ha agradat aquesta notícia?",
     "COMPARTE":"Comparteix l'emoció amb altres fans del metall",
     "SUBTITULO": "Mantingue't al dia amb les últimes novetats del",
     "TITULO": "NOTÍCIES",
