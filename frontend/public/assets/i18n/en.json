@@ -1,7 +1,7 @@
 {
-   "GENERAL": {
-     "VOLVER_INICIO": "Back to Home",
-     "LEER_MAS":"Read more"
+  "GENERAL": {
+    "VOLVER_INICIO": "Back to Home",
+    "LEER_MAS": "Read more"
   },
   "HEADER": {
     "INICIO": "Home",
@@ -45,7 +45,7 @@
   "NOTICIAS": {
     "NOTICIAS": "NEWS",
     "LEER_MAS": "Read more",
-    "COMPARTE":"Share the excitement with other metal fans",
+    "COMPARTE": "Share the excitement with other metal fans",
     "GUSTA?": "Did you like this news?",
     "SUBTITULO": "Stay updated with the latest news from",
     "TITULO": "NEWS",
@@ -53,7 +53,9 @@
     "ERROR_CARGAR": "Error loading news",
     "REINTENTAR": "Retry",
     "SIN_NOTICIAS": "No news available at the moment",
-    "SIN_NOTICIAS_TITULO": "No news"
+    "SIN_NOTICIAS_TITULO": "No news",
+    "BTN_COMPARTIR": "Share News",
+    "BTN_MAS_NOTICIAS": "View More News"
   },
   "FORM_DINAR": {
     "TITULO": "🍽️ SOLIDARITY MEAL MMF",
@@ -96,8 +98,8 @@
     "SUMA_PLATOS_ERROR": "The sum of dishes cannot be greater than the number of people.",
     "RESERVA_ENVIADA": "Reservation sent successfully! We will contact you to confirm the payment.",
     "ERROR_RESERVA": "Error sending the reservation. Please try again.",
-    "ACEPTAR_POLITICA":"You must accept the terms and conditions and the privacy policy.",
-    "CAMPO_OBLIGATORIO":"This field is mandatory",
+    "ACEPTAR_POLITICA": "You must accept the terms and conditions and the privacy policy.",
+    "CAMPO_OBLIGATORIO": "This field is mandatory",
     "MODAL_ENV_FORM_TITOL": "Don't forget to make the bank transfer",
     "MODAL_ENV_FORM_COS": "Your reservation will not be confirmed until you complete the payment to the bank account number ES12 0182 1064 2502 0198 3738.",
     "MODAL_ENV_FORM_ACCEPTAR": "Accept"
@@ -169,7 +171,6 @@
     "ELIMINAR": "Delete",
     "SI": "Yes",
     "NO": "No",
-    
     "1VOLVER": "Back",
     "1VOLVER_INICIO": "Back to Home",
     "1TITULO": "Photo Gallery",
@@ -184,7 +185,6 @@
     "1ASISTENTES": "Attendees",
     "1PAISES": "Countries",
     "1CARTELERA": "Poster",
-    
     "HISTORIA_TITULO": "History of MMF",
     "HISTORIA_ORIGENES": "The Origins",
     "HISTORIA_ORIGEN_1": "Mollerussa Metal Fest was born in the city of Mollerussa (Pla d'Urgell, Lleida) with the firm intention of giving visibility to the metal, punk, hardcore and related scenes, both at the regional level and throughout Catalan territory.",
@@ -332,8 +332,8 @@
     "MEDIO_OBLIGATORIO": "This field is mandatory for media outlets",
     "PLATAFORMAS_SEGUIDORES": "Platforms and Followers *",
     "PLATAFORMAS_PLACEHOLDER": "Ex: Instagram: @username (50k followers), TikTok: @username (30k), YouTube: @channel (20k)...",
-    "DIFUSIONS_EVENT":"Event Promotion",
-    "DIFUSIONS_PLACEHOLDER":"Tell us if you have helped us promote the event and from which platform.",
+    "DIFUSIONS_EVENT": "Event Promotion",
+    "DIFUSIONS_PLACEHOLDER": "Tell us if you have helped us promote the event and from which platform.",
     "PLATAFORMAS_OBLIGATORIO": "This field is mandatory for influencers",
     "COBERTURA": "Proposed Coverage *",
     "COBERTURA_PLACEHOLDER": "Describe how you plan to cover the festival, type of content (articles, photos, videos, stories, etc.), expected reach, target audience... or if you want to interview any of the festival's bands.",
@@ -442,7 +442,7 @@
   },
   "LOGIN": {
     "TITULO": "Admin Access",
-    "SUBTITULO": "Restricted area for organizers", 
+    "SUBTITULO": "Restricted area for organizers",
     "EMAIL": "Email",
     "EMAIL_PLACEHOLDER": "your@email.com",
     "PASSWORD": "Password",

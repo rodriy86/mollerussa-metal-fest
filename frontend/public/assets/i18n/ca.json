@@ -1,7 +1,7 @@
 {
-   "GENERAL": {
-     "VOLVER_INICIO": "Tornar a l'Inici",
-     "LEER_MAS":"Llegir més"
+  "GENERAL": {
+    "VOLVER_INICIO": "Tornar a l'Inici",
+    "LEER_MAS": "Llegir més"
   },
   "HEADER": {
     "INICIO": "Inici",
@@ -44,16 +44,18 @@
   },
   "NOTICIAS": {
     "NOTICIAS": "NOTÍCIES",
-    "LEER_MAS": "Llegir més",    
+    "LEER_MAS": "Llegir més",
     "GUSTA?": "T'ha agradat aquesta notícia?",
-    "COMPARTE":"Comparteix l'emoció amb altres fans del metall",
+    "COMPARTE": "Comparteix l'emoció amb altres fans del metall",
     "SUBTITULO": "Mantingue't al dia amb les últimes novetats del",
     "TITULO": "NOTÍCIES",
     "CARGANDO": "Carregant notícies...",
     "ERROR_CARGAR": "Error carregant les notícies",
     "REINTENTAR": "Tornar a intentar",
     "SIN_NOTICIAS": "No hi ha notícies disponibles en aquest moment",
-    "SIN_NOTICIAS_TITULO": "Sense notícies"
+    "SIN_NOTICIAS_TITULO": "Sense notícies",
+    "BTN_COMPARTIR": "Compartir Notícia",
+    "BTN_MAS_NOTICIAS": "Veure Més Notícies"
   },
   "FORM_DINAR": {
     "TITULO": "🍽️ DINAR SOLIDARI MMF",
@@ -97,8 +99,8 @@
     "SUMA_PLATOS_ERROR": "La suma de plats no pot ser major que el nombre de persones.",
     "RESERVA_ENVIADA": "¡Reserva enviada correctament! Et contactarem per confirmar el pagament.",
     "ERROR_RESERVA": "Error en enviar la reserva. Si us plau, torna a intentar-ho.",
-    "ACEPTAR_POLITICA":"Has d'acceptar els termes i condicions i la política de privacitat.",
-    "CAMPO_OBLIGATORIO":"Aquest camp és obligatori",
+    "ACEPTAR_POLITICA": "Has d'acceptar els termes i condicions i la política de privacitat.",
+    "CAMPO_OBLIGATORIO": "Aquest camp és obligatori",
     "MODAL_ENV_FORM_TITOL": "No oblidis fer la transferència",
     "MODAL_ENV_FORM_COS": "La teva reserva no serà definitiva fins que facis el pagament al número de compte ES12 0182 1064 2502 0198 3738.",
     "MODAL_ENV_FORM_ACCEPTAR": "Acceptar"
@@ -170,7 +172,6 @@
     "ELIMINAR": "Eliminar",
     "SI": "Sí",
     "NO": "No",
-
     "1VOLVER": "Tornar",
     "1VOLVER_INICIO": "Tornar a l'Inici",
     "1TITULO": "Galeria de Fotos",
@@ -178,14 +179,13 @@
     "1CARTELERAS_HISTORICAS": "Cartelleres Històriques",
     "1CARTELERAS_DESC": "Reviu les edicions anteriors del festival a través dels seus cartells oficials.",
     "1BANDAS": "Bandes",
-    "1HEADLINERS": "Headliners", 
+    "1HEADLINERS": "Headliners",
     "1ASISTENCIA": "Assistència",
     "1ESTADISTICAS": "Estadístiques Històriques",
     "1EDICIONES": "Edicions",
     "1ASISTENTES": "Assistents",
     "1PAISES": "Països",
     "1CARTELERA": "Cartellera",
-    
     "HISTORIA_TITULO": "Història del MMF",
     "HISTORIA_ORIGENES": "Els Orígens",
     "HISTORIA_ORIGEN_1": "El Mollerussa Metal Fest va néixer a la ciutat de Mollerussa (Pla d'Urgell, Lleida) amb la ferma voluntat de donar visibilitat a l'escena del metal, punk, hardcore i els seus derivats, tant a nivell comarcal com a tot el territori català.",
@@ -333,8 +333,8 @@
     "MEDIO_OBLIGATORIO": "Aquest camp és obligatori per a mitjans de comunicació",
     "PLATAFORMAS_SEGUIDORES": "Plataformes i Seguidors *",
     "PLATAFORMAS_PLACEHOLDER": "Ex: Instagram: @usuari (50k seguidors), TikTok: @usuari (30k), YouTube: @canal (20k)...",
-    "DIFUSIONS_EVENT":"Difusió de l'esdeveniment",
-    "DIFUSIONS_PLACEHOLDER":"Explica'ns si ens has ajudat a difondre l'esdeveniment i des de quina plataforma.",
+    "DIFUSIONS_EVENT": "Difusió de l'esdeveniment",
+    "DIFUSIONS_PLACEHOLDER": "Explica'ns si ens has ajudat a difondre l'esdeveniment i des de quina plataforma.",
     "PLATAFORMAS_OBLIGATORIO": "Aquest camp és obligatori per a influencers",
     "COBERTURA": "Cobertura Proposada *",
     "COBERTURA_PLACEHOLDER": "Descriu com planeges cobrir el festival, tipus de contingut (articles, fotos, vídeos, stories, etc.), abast esperat, públic objectiu... o si vols entrevistar algun dels grups del festival.",
@@ -447,7 +447,7 @@
     "EMAIL": "Correu Electrònic",
     "EMAIL_PLACEHOLDER": "el_teu@email.com",
     "PASSWORD": "Contrasenya",
-    "PASSWORD_PLACEHOLDER": "Introdueix la teva contrasenya", 
+    "PASSWORD_PLACEHOLDER": "Introdueix la teva contrasenya",
     "RECUERDAME": "Recordar les meves dades",
     "OLVIDE_PASSWORD": "Has oblidat la contrasenya?",
     "BOTON_ACCEDER": "Accedir al Sistema",
