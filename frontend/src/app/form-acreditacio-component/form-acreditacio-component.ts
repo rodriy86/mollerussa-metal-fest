@@ -27,7 +27,7 @@ import { TranslatePipe } from '../pipes/translate.pipe';
 export class FormAcreditacioComponent {
   //diasFestival = ['Viernes', 'Sábado', 'Domingo'];
   configGlobal = configGlobal;
-  logoUrl = 'assets/icons/mask.png';
+  logoUrl = 'assets/icons/Logo Blanc.png';
   textoVolver = 'Volver al inicio';
 
   formData = {
