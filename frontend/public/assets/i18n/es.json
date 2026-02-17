@@ -53,7 +53,9 @@
     "CARGANDO": "Cargando noticias...",
     "REINTENTAR": "Reintentar",
     "SIN_NOTICIAS": "No hay noticias disponibles en este momento",
-    "SIN_NOTICIAS_TITULO": "Sin noticias"
+    "SIN_NOTICIAS_TITULO": "Sin noticias",
+    "BTN_COMPARTIR":"Compartir Noticia",
+    "BTN_MAS_NOTICIAS":"Ver Más Noticias"
   },
   "FORM_DINAR": {
     "TITULO": "🍽️ COMIDA SOLIDARIA MMF",
