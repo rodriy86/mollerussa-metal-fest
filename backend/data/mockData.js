@@ -232,7 +232,7 @@ export const mockData = {
       ]),
       contenido_ca: JSON.stringify([
         "L'Associacio Mollerussa Metal Fest organitza una vermutada + dinar solidari el dia 28 de març al pati de l'escola de música de Mollerussa c/Arbeca, 34.",
-        "Aquí mateix a la nostra pàgina web podeu omplir el formulari per reservar un ticket d'entrepà + beguda + cafè per 10 €, en el que podeu triar si l'entrepà és de llonganissa o escalivada, un euro de cada ticket es destinarà a l'associació Hardcore Hits Càncer. La compra d'un ticket et dona dret també a participar en diferents sortejos que farem durant el di",
+        "Aquí mateix a la nostra pàgina web podeu omplir el formulari per reservar un ticket d'entrepà + beguda + cafè per 10 €, en el que podeu triar si l'entrepà és de llonganissa o escalivada, un euro de cada ticket es destinarà a l'associació Hardcore Hits Càncer. La compra d'un ticket et dona dret també a participar en diferents sortejos que farem durant el dia.",
         "Una jornada solidària i festiva que servirà també per anunciar el cap de cartell del Mollerussa Metal Fest 2026.",
         "Durant el migdia també es serviran vermuts i tot estarà amenitzat per l'actuació en directe de GrocDur, Reccbatt, Botijo i Hashtack"
       ]),
