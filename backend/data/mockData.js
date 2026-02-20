@@ -279,7 +279,7 @@ export const mockData = {
         'El Mollerussa Metal Fest anuncia con gran emoción que las entradas para su edición 2026 el dia 3 de octubre ya están disponibles. La venta ha comenzado oficialmente y los fans del metal ya pueden asegurar su plaza para el evento más esperado del año.', 
       ]),
       contenido_ca: JSON.stringify([
-        “Mollerussa Metal Fest proudly announces that tickets for its 2026 edition on October 3 are now available. Sales have officially started, and metal fans can now secure their spot for the most anticipated event of the year.”
+        'Mollerussa Metal Fest proudly announces that tickets for its 2026 edition on October 3 are now available. Sales have officially started, and metal fans can now secure their spot for the most anticipated event of the year.'
       ]),
       contenido_en: JSON.stringify([
         "Mollerussa Metal Fest announces with great excitement that tickets for its 2026 edition are now available. Sales have officially begun and metal fans can now secure their spot for the most anticipated event of the year.",
