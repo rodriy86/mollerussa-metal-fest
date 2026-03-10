@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, inject } from '@angular/core';
+import { Injectable, signal, computed, inject, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { configGlobal } from '../configGlobal';
@@ -16,7 +16,7 @@ export class TranslationService {
   private currentLang = signal<string>('es');
   private translations = signal<{ [lang: string]: Translation }>({});
   
-  // ✅ AÑADIDO: Observable para cambios de idioma
+  // Observable para cambios de idioma
   private currentLangSubject = new BehaviorSubject<string>(configGlobal.currentLanguage);
   public currentLang$: Observable<string> = this.currentLangSubject.asObservable();
   
@@ -32,11 +32,9 @@ export class TranslationService {
 
   setLanguage(lang: string): void {
     const langCode = lang.toLowerCase();
-    console.log('Setting language to:', langCode);
     
-    // ✅ ACTUALIZAR AMBOS: signal y subject
     this.currentLang.set(langCode);
-    this.currentLangSubject.next(langCode); // ✅ NOTIFICAR A SUSCRIPTORES
+    this.currentLangSubject.next(langCode);
     
     this.loadTranslations(langCode);
   }
@@ -52,11 +50,8 @@ export class TranslationService {
       return;
     }
 
-    console.log('Loading translations for:', langCode);
-
     this.http.get<Translation>(`/assets/i18n/${langCode}.json`).subscribe({
       next: (translation) => {
-        console.log('Translations loaded for:', langCode, translation);
         this.translations.update(translations => ({
           ...translations,
           [langCode]: translation
@@ -77,7 +72,7 @@ export class TranslationService {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
-        console.warn('Translation key not found:', key);
+        // ✅ Silencioso - sin console.warn
         return key;
       }
     }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'; // ✅ Importar inject
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { configGlobal } from '../configGlobal';
 import { RouterModule, Router } from '@angular/router';

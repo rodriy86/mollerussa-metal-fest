@@ -5,7 +5,7 @@ import { TranslationService } from '../services/translation.service';
 @Pipe({
   name: 'translate',
   standalone: true,
-  pure: false // ← CLAVE: Esto hace que el pipe se actualice con cada cambio
+  pure: false // ← se actualice con cada cambio
 })
 export class TranslatePipe implements PipeTransform {
   private translationService = inject(TranslationService);
