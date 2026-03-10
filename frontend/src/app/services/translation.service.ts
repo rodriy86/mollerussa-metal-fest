@@ -73,7 +73,7 @@ export class TranslationService {
         value = value[k];
       } else {
         // ✅ Silencioso - sin console.warn
-        return key;
+        return key; 
       }
     }
 
