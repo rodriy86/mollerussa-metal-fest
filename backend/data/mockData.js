@@ -255,7 +255,8 @@ export const mockData = {
       created_at: '',
       updated_at: '',
       boton: true,
-      tipoBoton: "bermut",
+      //tipoBoton: "bermut",
+      tipoBoton: "",
       textoBoton: 'Reservar plaza',
       textoBoton_ca: 'Reservar plaça',
       textoBoton_en: 'Book now'
