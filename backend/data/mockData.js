@@ -102,16 +102,16 @@ export const mockData = {
     },
     {
       id: 5,
-      name: 'Próximamente',
-      name_ca: 'Pròximament',
-      name_en: 'Coming soon',
+      name: 'Your knife my back',
+      name_ca: 'Your knife my back',
+      name_en: 'Your knife my back',
       schedule: '-',
       schedule_ca: '-',
       schedule_en: '-',
       genre: '',
       genre_ca: '',
       genre_en: '',
-      image: '/assets/images/bandes/banda.jpg',
+      image: '/assets/images/bandes/kmb.jpg',
       description: "",
       description_ca: "",
       description_en: "",
@@ -127,6 +127,31 @@ export const mockData = {
     },
     {
       id: 6,
+      name: 'Koma',
+      name_ca: 'Koma',
+      name_en: 'Koma',
+      schedule: 'Cabeza de cartel',
+      schedule_ca: 'Cap de cartell',
+      schedule_en: 'Headlining act',
+      genre: '',
+      genre_ca: '',
+      genre_en: '',
+      image: '/assets/images/bandes/koma.jpg',
+      description: "",
+      description_ca: "",
+      description_en: "",
+      autor: "-",
+      spotify: '',
+      instagram: "",
+      country: '',
+      country_ca: '',
+      country_en: '',
+      year: 0,
+      created_at: '',
+      updated_at: ''
+    }/*,
+    {
+      id: 7,
       name: 'Próximamente',
       name_ca: 'Pròximament',
       name_en: 'Coming soon',
@@ -149,7 +174,7 @@ export const mockData = {
       year: 0,
       created_at: '',
       updated_at: ''
-    }
+    }*/
   ],
 
   noticias: [
@@ -413,7 +438,7 @@ export const mockData = {
       anyo: 2026,
       headliners: ['-', '-'],
       asistencia: 0,
-      imagen: '/assets/images/mmf2026.jpg',
+      imagen: '/assets/images/cartelera26.jpg',
       color: 'purple',
       bandas: 6,
       alt: ''
